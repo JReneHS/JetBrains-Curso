@@ -1,0 +1,37 @@
+Definiciones y ejemplos básicos
+Recuerde que un gráfico es un conjunto de nodos y bordes, donde cada borde representa una conexión entre dos nodos. Un gráfico ponderado es un gráfico donde cada borde tiene un valor numérico llamado peso . A continuación se muestra un ejemplo de un gráfico ponderado: ver imagen
+
+El gráfico consta de cinco nodos y siete bordes. Cada borde tiene algo de peso. Por ejemplo, el borde {0, 3} tiene el peso 7, el borde {1, 2} tiene el peso 1.
+
+Los gráficos ponderados se utilizan a menudo para modelar objetos y procesos reales. Por ejemplo, el gráfico anterior se puede considerar como un mapa, donde los nodos son ciudades y los bordes son carreteras. El peso de cada borde es la distancia entre dos ciudades.
+
+El gráfico de arriba es un gráfico no dirigido. Pero también se pueden dirigir gráficos ponderados. A continuación se muestra un ejemplo de un gráfico ponderado dirigido: ver imagen
+
+Los gráficos dirigidos ponderados también se pueden utilizar para modelar algunos procesos reales. Por ejemplo, el nodo 0 en el gráfico anterior se puede considerar como un lugar de almacenamiento, desde donde necesitamos transferir algunos recursos al punto de destino, digamos al nodo 2. Los nodos restantes pueden considerarse lugares intermedios. Cada borde muestra una dirección en la que se pueden transferir los recursos. El peso de un borde muestra la cantidad máxima de recursos que se pueden enviar a través del borde.
+
+Tenga en cuenta que para los gráficos anteriores todos los pesos son positivos, pero también se permiten pesos negativos y cero.
+
+
+Una representación de gráficos ponderados
+Un gráfico no ponderado se puede representar mediante una matriz de adyacencia o una lista de adyacencia . También se puede representar un gráfico ponderado utilizando ambas estructuras.
+
+Para un gráfico ponderado con n nodos, una matriz de adyacencia es un n x n matriz A, dónde A [i, j] es el peso de un borde entre nodos i y j. Si no hay ventaja entre i y j, el valor correspondiente se asigna a ∞. Los elementos diagonales de la matriz se asignan a 0 (aquí asumimos que no hay bucles propios en un gráfico). Para el gráfico dirigido arriba, una matriz de adyacencia es la siguiente: ver imagen
+
+La primera fila y columna de la matriz corresponden a los nodos del gráfico. Las celdas restantes corresponden a los pesos. Por ejemplo, A[1,3] = 4 ya que hay un borde entre los nodos 1 y 3 con el peso 4. A[3,1]= ∞ ya que no hay borde entre 3 y 1.
+
+Las listas de adyacencia para gráficos ponderados y no ponderados son similares. La única diferencia es que necesitamos almacenar un valor adicional en cada nodo de una lista correspondiente al peso de un borde. Para el gráfico dirigido anterior, una lista de adyacencia se ve así: ver imagen
+
+Cada nodo de la lista contiene dos valores. El primer valor es la etiqueta de un nodo del gráfico, el segundo es el peso del borde correspondiente. Por ejemplo, el primer nodo de la primera lista corresponde al borde {0,1} que tiene el peso 3. El segundo nodo de la misma lista corresponde al borde {0,3} que tiene el peso 7. Dado que el nodo 2 del gráfico no tiene vecinos, la lista correspondiente de vecinos está vacía.
+
+
+
+Rutas en gráficos ponderados
+Un camino en un gráfico ponderado es el mismo que en uno no ponderado. La única diferencia es que en un gráfico ponderado, una ruta tiene un peso que es igual a la suma de los pesos de los bordes en la ruta. Por ejemplo, considere un camino 0 → 4 → 3 → 2 (mostrado en azul) para un gráfico dirigido:
+
+ver imagen
+
+El camino consta de tres bordes. El peso total del camino es la suma de los pesos de los bordes: 8 + 3 + 2 = 13. Se puede notar que hay otra ruta desde el nodo 0 al nodo 2: 0 → 1 → 2: ver imagen
+
+El peso del camino es 3 + 1 = 4 , que es menor que el peso del camino azul.
+
+El problema de encontrar la ruta más corta (una ruta con el peso mínimo) entre dos nodos en un gráfico a menudo surge en la práctica de la programación. Hay varios algoritmos que resuelven el problema de la ruta más corta. Los consideraremos con más detalle en los siguientes temas.

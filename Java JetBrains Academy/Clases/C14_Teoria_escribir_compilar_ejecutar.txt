@@ -1,0 +1,26 @@
+Escribir un programa
+
+Para crear un nuevo programa, los desarrolladores primero escriben su código conocido como código fuente . El código fuente es un texto almacenado en uno o varios archivos, es una secuencia de instrucciones que especifican lo que realmente hace el programa. Debe seguir las reglas de sintaxis del lenguaje y debe ser fácil de entender para los humanos.
+
+Como programador, escribirás código en un archivo de texto sin formato. Será un archivo con la extensión ".java" para el lenguaje Java, ".kt" para Kotlin, etc. Un solo programa consta de uno o más de estos archivos.
+
+
+Compilacion
+
+Tan pronto como se escribe un programa y tenemos uno o más archivos de código fuente, de alguna manera debemos hacer que una computadora ejecute este programa. Pero hay un problema: las computadoras no pueden comprender el código fuente. Afortunadamente, existen programas especiales llamados compiladores que transforman el código fuente en un formato que la computadora entiende. Este código se denomina código nativo o código de bajo nivel .
+
+Hay muchos tipos de computadoras en el mundo moderno: dispositivos móviles basados ​​en el sistema operativo Android, computadoras personales (o PC), computadoras portátiles, servidores, etc. Pero hay un problema: cada tipo de computadora funciona con diferentes códigos de bajo nivel, al igual que las personas hablan varios idiomas distintos.
+
+Hay una solución a este problema en el mundo de Java. Un compilador (por ejemplo, "javac" es una herramienta para Java o para Kotlin "kotlinc") traduce el código fuente en la representación intermedia conocida como código de bytes Java , que se almacena en archivos con extension ".class ". El código de bytes no se puede usar con computadoras reales, pero una computadora abstracta especial llamada Java Virtual Machine (o JVM ) puede ejecutarlo.
+
+
+Ejecutando un programa
+
+Antes de ejecutar un programa JVM, se debe instalar una distribución adecuada de JVM en la computadora. Cada sistema operativo tiene su versión especial de JVM. Al mismo tiempo, JVM puede ejecutar un programa escrito en un lenguaje JVM independientemente del tipo de sistema operativo (o SO) y hardware, por lo que el programa que tiene la misma representación de bajo nivel se puede ejecutar en Windows, Linux, Mac OS y otras plataformas. Esto también significa que un programa escrito y compilado en una plataforma se puede ejecutar en otra plataforma si se instala una JVM adecuada. Esto hace que los programas escritos en lenguajes JVM sean independientes de la plataforma .
+
+Para ejecutar un programa compilado, utilizará la javaherramienta. Puede abrir un archivo con la extensión para iniciar un programa representado por este archivo. Esta parte es similar para todos los lenguajes JVM: por ejemplo, para Kotlin seguirá usando la herramienta. .classjava
+
+
+Un desarrollador de Java escribe un programa en un archivo de texto o archivos con la extensión ".java". Luego, el compilador (generalmente javac) traduce el programa a un archivo ".class" que contiene el código de bytes del programa. JVM inicia y ejecuta el programa Java compilado, dando comandos de bajo nivel (nativos) a la computadora. Aquí, usamos el término "computadora" para representar un dispositivo abstracto que puede ser un servidor, una PC, una computadora portátil o incluso un dispositivo móvil. Esta abstracción incluye un sistema operativo y hardware.
+
+En realidad, los procesos son más complejos de lo que muestra esta imagen. Sin embargo, por ahora, creemos que este conocimiento es un buen comienzo. Para otros lenguajes JVM como Kotlin, el esquema es similar excepto las extensiones de los archivos de código fuente y el nombre de la herramienta de compilación.

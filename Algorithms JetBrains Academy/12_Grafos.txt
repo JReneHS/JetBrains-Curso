@@ -1,0 +1,178 @@
+Muchos problemas de la vida real pueden describirse de forma natural y concisa como una colección de objetos y vínculos entre ellos. Esta representación se conoce como grafo. Un grafo puede considerarse como un conjunto de objetos (generalmente denominados nodos o vértices) y enlaces (aristas) que conectan estos objetos entre sí.
+
+A pair of two sets: a set of vertices (nodes) and edges, that show how the nodes are connected with each other.
+
+Por ejemplo, considere el problema de colorear un mapa político. Aquí, debemos asignar un color a cada país teniendo en cuenta una restricción obvia: dos vecinos deben tener colores diferentes. Para deshacernos de los detalles innecesarios de un mapa, podemos representar a cada país como un nodo y conectar dos países con un enlace si son vecinos.
+
+Aquí hay un mapa parcial de Europa. Para obtener una visión más precisa de las fronteras, representamos a cada país como un nodo y conectamos dos países si son vecinos.
+
+La figura de la izquierda corresponde a un mapa con fronteras representadas como enlaces entre los países, y la figura de la derecha es un grafo con cada país sustituido por un nodo. Así, reducimos el problema de colorear un mapa político al problema de colorear los nodos de un grafo. Aunque el ejemplo anterior es bastante simple, dicha representación sería indispensable para mapas más grandes: nos permite no solo mantener los detalles importantes sino también automatizar la solución a este problema.
+
+Considere otro ejemplo en el que los grafos podrían resultar útiles. Suponga que necesita conducir de un punto a otro de su ciudad. Lo más probable es que confíe en servicios como Google Maps o MapQuest. Todos los usamos, pero ¿alguna vez has pensado en cómo funcionan bajo el capó? Una forma posible es representar la ciudad como un grafo con nodos correspondientes a intersecciones y aristas que muestren las carreteras. Entonces, en términos de grafos, nuestra pregunta es: ¿cuál es la ruta más corta entre el nodo de inicio y el nodo de destino?
+
+Colorear mapas y encontrar el camino más corto no son los únicos problemas en los que los grafos pueden resultar útiles. Por ejemplo, la World Wide Web también se puede representar como un grafo con nodos (sitios) y aristas (enlaces correspondientes entre estos sitios). En las redes sociales, las personas pueden considerarse nodos y un vínculo entre dos personas muestra que una de ellas sigue a la otra. En otras palabras, un grafo es una estructura conveniente que es adecuada para modelar varios problemas de la vida real.
+
+
+
+Definicion formal
+El uso del lenguaje formal es fundamental a la hora de trabajar con grafos de forma cómoda, poder almacenarlos en una computadora y describir algoritmos para su procesamiento. Formalmente, un Grafo G es un par de dos conjuntos: G = (V, E). Aquí, V es un conjunto de nodos y E un conjunto de aristas . Cada arista es un par de nodos conectados por este arista. Considere los siguientes ejemplos:
+
+
+  -----     -----    |  -----     -----  |  -----     -----
+  | 0 |     | 1 |    |  | 0 |-----| 1 |  |  | 0 |-----| 1 |
+  -----     -----    |  -----     -----  |  -----     -----
+                     |    |              |    |      /  |
+                     |    |              |    |     /   |
+  -----              |  -----            |  -----  /  -----
+  | 2 |              |  | 2 |            |  | 2 | /   | 3 |
+  -----              |  -----            |  -----     -----
+                     |                   |
+          G_1                 G_2                 G_3  
+
+Aquí tenemos tres grafos. El primer grafo G_1 consta de tres nodos y no tiene aristas. Entonces,
+
+G_1 = (V_1, E_1), V_1 = {0, 1, 2}, E_1 = 0
+
+El segundo grafo G_2 es lo mismo que G_1 pero contiene dos aristas:
+
+G_2 = (V_2, E_2), V_2 = {0, 1, 2}, E_2 = {{0, 1}, {0, 2}}
+
+El tercer grafo G_3, consta de cuatro nodos y cuatro vértices:
+
+G_3 = (V_3, E_3), V_3 = {0, 1, 2, 3}, E_3 = { {0,1} , {0,2} , {1,2} , {1,3} }
+
+Los nodos en los grafos anteriores están etiquetados como números, pero las etiquetas pueden ser de diferentes tipos. Vea los siguientes ejemplos:
+
+  -----     -----  |  ---------     ---------  |
+  | A |-----| B |  |  |  Bob  |-----|  Tom  |  |
+  -----     -----  |  ---------    /---------  |
+    |      /  |    |      |       /     |      |
+    |     /   |    |      |      /      |      |
+  -----  /  -----  |  --------- /  ----------  |
+  | C | /   | D |  |  | Alice |/   |  Mark  |  |
+  -----     -----  |  ---------    ----------  |
+        G_4                     G_5
+
+El grafo G_4 = (V_4, E_4) consta de cuatro nodos con etiquetas V_4 = {A, B, C, D} y aristas E_4 = { {A,B} , {A,C} , {B,C} , {B,D} }.
+El grafo G_5 = (V_5, E_5) representa un grupo de personas, donde las aristas representan quienes se conocen.
+
+Dependiendo de un problema particular que necesite resolver, pueden ser convenientes diferentes tipos de etiquetas.
+
+
+
+Resumen
+Un grafo es una estructura conveniente que se puede utilizar para modelar muchos objetos y procesos de la vida real. En este tema, consideramos varios ejemplos en los que los grafos podrían ser útiles y aprendimos cómo describir esta estructura formalmente. Sin embargo, para resolver problemas reales de manera eficiente, necesita saber más sobre grafos. En los siguientes temas, aprenderemos algunos términos utilizados para describir grafos, consideraremos cómo almacenarlos en una computadora y luego aprenderemos algunos algoritmos eficientes para su procesamiento.
+
+
+
+terminología básica
+Anteriormente, aprendimos algunos conceptos básicos sobre grafos y consideramos varios ejemplos en los que podrían ser útiles. Además, comentamos que es bastante conveniente representar grafos de manera formal como un par de dos conjuntos: un conjunto de nodos y un conjunto de aristas. En este tema, continuaremos con grafos y hablaremos sobre terminología básica. Aunque aprender términos puede parecer un poco tedioso, este es un paso muy importante. Una vez que se familiarice con los términos básicos, podrá comprender algoritmos y conceptos más sofisticados relacionados con los grafos.
+
+grafos simples
+Hasta ahora, solo consideramos grafos pequeños con una estructura simple. Sin embargo, hay grafos que parecen un poco complicados.
+
+"Vea la imagen"
+
+Hay dos cosas a tener en cuenta. Primero: el arista {0,0} conecta el nodo 0 consigo mismo. Tal arista se llama bucle.
+
+Además, hay tres aristas que conectan el mismo par de nodos: 0 y 1. Si un grafo contiene bucles o algunos aristas aparecen varias veces, el grafo se denomina multigraph . De lo contrario, se denomina grafo simple .
+
+Algunos objetos se pueden modelar naturalmente como grafos simples: por ejemplo, un mapa político. En este caso, no hay motivos para agregar bucles o aristas múltiples entre dos países. Ahora piense en un mapa de la ciudad: puede haber varias carreteras entre dos puntos de una ciudad. En este caso, es más apropiado representar una ciudad como un multigraph.
+
+
+Relación de nodos y aristas
+Ya sabemos que los grafos constan de nodos y aristas: ahora consideremos con más detalle cómo describir las relaciones entre ellos. Usaremos el siguiente ejemplo:
+
+  -----     -----  |
+  | 0 |-----| 2 |  |
+  -----     -----  |
+    |      /  |    |
+    |     /   |    |
+  -----  /  -----  |
+  | 1 | /   | 3 |  |
+  -----     -----  |
+
+G_3 = (V_3, E_3), V_3 = {0, 1, 2, 3}, E_3 = { {0,1} , {0,2} , {1,2} , {2,3} }
+
+Dos nodos de un grafo son adyacentes si están conectados por un arista. Por ejemplo, los nodos 0 y 1 en G_1 son adyacentes ya que están conectados por el arista {0, 1}. Si un arista {x, y} conecta nodos X y y, estos nodos inciden en este arista. Por ejemplo, el nodo 1 de G_1 incide en dos aristas: {0, 1} y {1,2}. El grado de un nodo es el número de aristas incidentes a ella. Por ejemplo, el grado del nodo 2 de G_1 es igual a 3 ya que el nodo es incidente a tres aristas.
+
+Para dar una interpretación de la vida real de los términos descritos, puede considerar los nodos del grafo anterior como personas, una ventaja entre dos personas que muestra que se conocen. Así, si dos nodos son adyacentes, significa que las personas que corresponden a los nodos se conocen entre sí. El grado de un nodo muestra cuántos conocidos tiene una persona.
+
+
+grafos dirigidos
+Hasta este momento, solo hablamos de grafos donde los aristas no tienen ninguna dirección. Por ejemplo, considere el arista {0,1} de G_1 que conecta los nodos 0 y 1. Si intercambiamos los nodos, no cambiará nada: el arista {1, 0} todavía conecta los mismos nodos. Los grafos en los que el orden de los nodos no es importante se denominan grafos no dirigidos. Un mapa político es una estructura que se puede representar naturalmente como un grafo no dirigido. Si un país es vecino de otro, la dirección del arista que muestra esta relación no es importante.
+
+Sin embargo, en algunos casos, los grafos no dirigidos no son suficientes. Supongamos que queremos modelar una red social como un grafo. Podemos representar a las personas como nodos y poner una ventaja entre dos personas si una de ellas sigue a la otra. En este caso, la dirección es importante. Si un usuario X sigue a Y, no significa eso Y sigue X. Para modelar tal situación, los grafos dirigidos se adaptan mucho mejor. A continuación se muestra un ejemplo de un grafo dirigido:
+
+  -----      -----  |
+  | 0 |----->| 2 |  |
+  -----     >-----  |
+    |      /   ^    |
+    V     /    |    |
+  -----  /   -----  |
+  | 1 | /    | 3 |  |
+  -----      -----  |
+
+G_3 = (V_3, E_3), V_3 = {0, 1, 2, 3}, E_3 = { (0,1) , (0,2) , (1,2) , (3,2) }
+
+Para mostrar que un arista está dirigido, usamos paréntesis redondos en lugar de rizados.
+
+En grafos dirigidos, un nodo Y se dice que es adyacente a un nodo X si hay una arista (x, y) entre los nodos. Por ejemplo, el nodo 1 de G_2 es adyacente al nodo 0 ya que hay una arista (0, 1). Tenga en cuenta que, a diferencia de los grafos no dirigidos, la adyacencia en los grafos dirigidos no es simétrica: si Y es adyacente a X, X no es necesariamente adyacente a Y. En cuanto al término incidente , para grafos dirigidos, sigue siendo el mismo. Por ejemplo, los nodos 0 y 1 son incidentes al arista (0, 1) de G_2.
+
+En los grafos dirigidos, cada nodo tiene un indegree (grado interno) y un outdegree (grado externo). Para un nodo X, un indegree es el número de nodos incidentes a X. El número de aristas salientes de X se llama un grado externo. Por ejemplo, un grado interno de nodo 0 en G_2 es 0 y su grado externo es 2.
+
+Como se mencionó anteriormente, diferentes tipos de grafos se ajustan para modelar diferentes problemas. Dependiendo del problema que necesite resolver, puede usar grafos dirigidos o no dirigidos.
+
+
+
+Caminos y ciclos
+Una ruta en un grafo es una secuencia alterna de nodos y aristas. Considere los siguientes ejemplos: vea la imagen
+
+Los Nodos azules y aristas de G_3 (la figura de la izquierda) corresponden al camino 0-2-3-4-5. Recuerde el grafo que modela carreteras en una ciudad, donde los aristas corresponden a carreteras y los nodos corresponden a sus intersecciones. Los caminos son posibles formas de llegar de un punto de la ciudad a otro. Si cada nodo de una ruta aparece solo una vez, esta ruta se llama simple . La ruta anterior es una ruta simple ya que no hay nodos que aparezcan varias veces. Si agregamos el arista {3,5} a esta ruta, no será simple ya que ahora el nodo 3 aparece dos veces.
+
+Si la ruta comienza y termina en el mismo nodo, esta ruta se llama ciclo . Por ejemplo, nodos y aristas verdes en G_3 (la figura de la derecha) forman un ciclo 0-2-3-1-0.
+
+Para los grafos dirigidos, los términos son los mismos. Considere los siguientes ejemplos: vea la imagen
+
+La figura de la izquierda muestra un camino 0-1-3-4-5 en un grafo dirigido G_4. La figura de la derecha muestra un ciclo 0-1-3-2-0 en el mismo grafo. Tenga en cuenta que, a diferencia de los grafos no dirigidos, no necesariamente existe una ruta (ciclo) desde el final hasta el nodo inicial. Por ejemplo, no hay camino desde 5 a 0 en G_4.
+
+
+
+
+Conectividad en grafos
+En un grafo no dirigido, dos nodos X y Y se dice que están conectados si hay una ruta entre los nodos. Un conjunto de nodos donde cada par está conectado por una ruta forma un componente conectado . Considere el siguiente ejemplo:
+
+  -------     ---------     ----------     ---------  
+  | Bob |-----| Alice |     |  Kate  |-----|  Sam  |  
+  -------     ---------     ----------   / ---------  
+    |        /                  |       /       |      
+    |       /                   |      /        |      
+  -------- /   --------     --------- /     ---------  
+  | Mike |/----| John |     |  Ann  |/------|  Tom  |  
+  --------     --------     ---------       ---------  
+                        G_5
+
+La gráfica G_5 representa un grupo de personas, donde los nodos están conectados por un arista si las personas se conocen entre sí. Con solo mirar este grafo, es fácil comprender que consta de dos componentes conectados . El primer componente conectado consta de {Bob, Mike, Alice, John}, y el segundo es {Kate, Ann, Sam, Tom}. Un grafo G se llama grafo conectado si contiene exactamente un componente conectado. De lo contrario, el grafo se desconecta . Tenga en cuenta que ahora estamos hablando solo de grafos no dirigidos. En cuanto a los grafos dirigidos, la definición de un componente conectado es un poco más complicada: lo discutiremos en los siguientes temas.
+
+
+
+Subgrafos
+Un grafo obtenido de otro grafo eliminando nodos o aristas se denomina subgrafo . Considere los siguientes ejemplos:
+
+    -----       -----    -----       -----    -----       -----
+    | 0 |-------| 2 |    | 0 |-------| 2 |    | 0 |-------| 2 |
+    -----     / -----    -----       -----    -----       -----
+      |      /    |        |           |                    |
+      |     /     |        |           |                    |
+    -----  /    -----    -----       -----                -----
+    | 1 |-------| 3 |    | 1 |       | 3 |                | 3 |
+    -----       -----    -----       -----                -----
+           G_6                  G_7                  G_8
+
+
+Aquí, el grafo G_7 es un subgrafo de G_6 porque se obtuvo de G_6G quitando los aristas {1,3} y {1,2}. G_8 es un subgrafo de G_6 también ya que se obtuvo de G_6 quitando el nodo 1. Tenga en cuenta que cuando eliminamos un nodo de un grafo, también eliminamos todos los aristas incidentes en este nodo.
+
+Para dar un ejemplo real, suponga que cada nodo de G_6 corresponde a una red de computadoras, y los aristas muestran computadoras que están conectadas entre sí. Una pregunta que podríamos hacernos aquí es ¿cuál es la cantidad mínima de enlaces necesarios para mantener todas las computadoras conectadas? El subgrafo G_7 muestra una de las posibles respuestas: si eliminamos al menos un arista, las computadoras se desconectan.
+
+Resumen
+En este tema, consideramos la terminología básica utilizada para los grafos. Aprendimos que existen grafos dirigidos y no dirigidos y consideramos las relaciones entre los nodos y los aristas con más detalle. Además, tocamos caminos, conectividad y subgrafos. Aunque esto es solo el comienzo, este vocabulario ya es suficiente para discutir conceptos y algoritmos de grafos más sofisticados.

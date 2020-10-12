@@ -1,0 +1,50 @@
+Fundamentos:
+
+La programación orientada a objetos (OOP) es un paradigma de programación basado en el concepto de objetos que interactúan entre sí para realizar las funciones del programa. Cada objeto puede caracterizarse por un estado y un comportamiento. Un objeto mantiene el estado actual en los campos y el comportamiento en los métodos 
+
+
+
+Principios básicos de la programación orientada a objetos:
+
+Hay cuatro principios básicos de la programación orientada a objetos: Son encapsulación, abstracción, herencia y polimorfismo.
+
+La encapsulación de datos es la capacidad de un objeto para ocultar la estructura interna de sus propiedades y métodos. La encapsulación permite a los programadores proteger el objeto de inconsistencias.
+
+La abstracción de datos significa que los objetos deben proporcionar la versión abstracta y simplificada de sus implementaciones. Los detalles de su trabajo interno generalmente no son necesarios para el usuario, por lo que no es necesario representarlos. La abstracción también significa que solo se presentarán las características más relevantes del objeto.
+
+La herencia es un mecanismo para definir las relaciones entre padres e hijos entre clases. A menudo, los objetos son muy similares, por lo que la herencia permite a los programadores reutilizar la lógica común y al mismo tiempo introducir conceptos únicos en las clases.
+
+Polimorfismo significa literalmente un nombre y muchas formas, y se trata de herencia de clases. Permite a los programadores definir una lógica diferente para el mismo método. Por lo tanto, el nombre (o la interfaz) sigue siendo el mismo, pero las acciones realizadas pueden diferir.
+Ejemplo : el sitio necesita tres tipos de publicaciones: noticias, anuncios y artículos. Son algo similares: todos tienen un titular y texto, noticias y anuncios tienen una fecha. De alguna manera son diferentes: los artículos tienen autores, las noticias tienen fuentes y los anuncios tienen una fecha después de la cual se vuelven irrelevantes. Es conveniente redactar una clase abstracta con información general de todas las publicaciones, para no copiarla cada vez. Y almacene lo que es diferente en las clases derivadas apropiadas.
+Estos son los conceptos clave de OOP. Cada lenguaje orientado a objetos implementa estos principios a su manera, pero la esencia permanece igual de un lenguaje a otro.
+
+
+
+Objetos:
+
+La noción clave de la POO es, naturalmente, un objeto. Hay muchos objetos del mundo real a tu alrededor: mascotas, edificios, automóviles, computadoras, aviones, lo que sea. Incluso un programa de computadora puede considerarse un objeto.
+
+Es posible identificar algunas características importantes de los objetos del mundo real. Por ejemplo, para un edificio, podemos considerar una cantidad de pisos, el año de construcción y el área total. Otro ejemplo es un avión que puede acomodar a un cierto número de pasajeros y trasladarte de una ciudad a otra. Estas características constituyen los atributos y métodos del objeto. Los atributos caracterizan los datos o estados de los objetos, y los métodos, su comportamiento.
+
+En OOP, todo puede considerarse un objeto. Los programas están hechos de diferentes objetos que interactúan entre sí. El estado y el comportamiento de un objeto generalmente se colocan juntos, pero no siempre es así. A veces, veremos objetos sin estado ni métodos. Esto, por supuesto, depende del propósito del programa y la naturaleza de un objeto.
+
+
+
+Clases:
+
+A menudo, muchos objetos individuales tienen características similares. Podemos decir que estos objetos pertenecen al mismo tipo o clase .
+
+Una clase es otra noción importante de OOP. Una clase describe una estructura común de objetos similares: sus campos y métodos. Puede considerarse una plantilla o un plano para objetos similares. Un objeto es una instancia individual de una clase.
+
+De acuerdo con el principio de encapsulación mencionado anteriormente, cualquier clase debe considerarse una caja negra, es decir, el usuario de la clase debe ver y usar solo la parte de interfaz de la clase, es decir, la lista de propiedades y métodos declarados, y no debe ahondar en la implementación interna.
+
+
+
+Conclusión sobre objetos y clases.
+Para decirlo de manera concisa, debe recordar lo siguiente:
+
+    un programa orientado a objetos consta de un conjunto de objetos que interactúan;
+    de acuerdo con el principio de encapsulación, el usuario no puede acceder a la implementación interna del objeto;
+    un objeto puede tener características: campos y métodos;
+    un objeto es una instancia de una clase (tipo);
+    una clase es un concepto más abstracto que un objeto individual; puede considerarse una plantilla o plano que describe la estructura común de un conjunto de objetos similares.

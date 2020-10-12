@@ -1,0 +1,29 @@
+Colas
+
+Esenciales
+Una cola es una estructura de datos fundamental con dos operaciones básicas: poner en cola (enqueue) cuando insertas un elemento y sacar de cola (dequeue) cuando eliminas un elemento. Los elementos se insertan al final de una cola y se eliminan de la parte superior. Esta regla se conoce como Primero en entrar , primero en salir , o FIFO (o, alternativamente, Último en entrar , último en salir , LILO ).
+
+La siguiente imagen demuestra cómo funciona una cola:
+
+            |---|---|---|---|---|---|---|---|
+            |   |   |   |   |   |   |   |   |
+enqueue --> | 8 | 7 | 6 | 5 | 4 | 3 | 2 | 1 | --> dequeue
+            |   |   |   |   |   |   |   |   |
+            |---|---|---|---|---|---|---|---|
+
+Aquí, el elemento 1 se agregó antes que cualquier otro y, por lo tanto, se eliminará primero de la cola. Al mismo tiempo, el elemento  se agregó en último lugar y es el último en quitarse de la cola.
+
+
+
+Colas reales, colas virtuales
+Incluso si opta por una palabra más sencilla "línea", probablemente sepa lo que es una cola: según el Diccionario Cambridge, es "una fila de personas esperando algo, una detrás de la otra". Imaginemos una cola como una fila de personas en un cine. El primero en la fila es el primero en entrar al teatro: el primero en llegar es el primero en ser atendido, como a veces decimos en la vida. Así es exactamente como funciona el principio FIFO cuando hablamos de colas en programación.
+
+
+
+Como puede ver, por analogía, las colas se utilizan a menudo en programación. El sistema operativo de su computadora, por ejemplo, utiliza una cola para almacenar datos de pulsaciones de teclas mientras escribe en el teclado. Recuerde haber escrito algo en un editor de texto mientras la computadora está ocupada haciendo otra tarea: las pulsaciones de teclas aún no se pierden. Esto sucede porque el sistema los almacena en orden de cola hasta que se puedan procesar.
+
+
+
+Complejidad
+En el caso de utilizar una lista enlazada o una matriz clásico (no puede cambiar de tamaño) como una estructura interna, tanto enqueue y dequeue operaciones siempre tomar constante O(1) tiempo. No depende de cuántos elementos haya en la cola, por lo que las operaciones son muy rápidas.
+

@@ -1,0 +1,33 @@
+Suponga que está escribiendo un programa Java. Existen diferentes errores que pueden ocurrir durante la compilación o ejecución. Vamos a dividir todos los errores posibles en dos grupos:
+    +los errores en tiempo de compilación
+    +errores de ejecución
+Veamos los casos en los que ocurren los errores y cómo evitarlos.
+
+
+Errores en tiempo de compilación
+Los errores en tiempo de compilación son una clase de errores que impiden que un programa Java se compile:
+
+    +un error de sintaxis: palabra clave incorrecta, un símbolo olvidado, ";" al final de una declaración
+    +un nombre de archivo de código fuente incorrecto.
+    +invocar un método inexistente.
+    +y muchos otros.
+
+Para evitar tales errores, los programadores utilizan IDE (entorno de desarrollo integrado) moderno con un analizador de código estático. Esta herramienta permite a los programadores identificar errores en tiempo de compilación antes de la compilación. Además, puede resaltar advertencias sobre errores más complejos y puntos débiles en su código, así como consejos sobre cómo mejorar el código.
+
+Con el tiempo, escribirá código que contenga menos o ninguno de los errores en tiempo de compilación.
+
+
+Errores en tiempo de ejecución
+Los errores en tiempo de ejecución (también conocidos como "errores") son errores que ocurren cuando el programa se está ejecutando. Los errores en tiempo de ejecución harán que su programa se comporte de forma inesperada o incluso pueden detener la ejecución.
+
+Hay dos subtipos de errores en tiempo de ejecución:
+
+    +errores lógicos : cuando un programa produce un resultado incorrecto porque el código no es correcto (por ejemplo, en lugar de "¡Hola!" , su programa emite "¡Hola!" );
+    +eventos excepcionales no manejados: como división por cero, archivos no encontrados y otros casos inesperados.
+Aprenderemos cómo manejar eventos excepcionales (excepciones) en lecciones posteriores.
+
+Evitar estos errores en tiempo de ejecución es una tarea más difícil que evitar errores en tiempo de compilación. Si su programa se compila correctamente, no hay garantías de que no tenga errores. Existen diferentes estrategias para encontrar tales errores:
+
+    +para depurar su programa;
+    +escribir pruebas automáticas para su programa;
+    +utilizar la práctica de revisión de código como parte del proceso de desarrollo. En general, esta práctica representa un caso, cuando uno o más desarrolladores inspeccionan visualmente el código fuente de un programa.

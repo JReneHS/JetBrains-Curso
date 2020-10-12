@@ -1,0 +1,145 @@
+Presentamos el primer algoritmo
+Los algoritmos informáticos están en todas partes a nuestro alrededor: nos ayudan a encontrar los caminos más cortos en un mapa entre dos puntos de una ciudad, buscar rápidamente la información más relevante en la Web, realizar correcciones ortográficas automáticamente y muchas otras cosas útiles. Para comprender cómo funcionan todas estas tecnologías bajo el capó y poder resolver de manera eficiente problemas similares, es importante que los desarrolladores de software aprendan algoritmos, se familiaricen con sus pros y contras y puedan elegir cuál aplicar.
+
+En este tema, continuaremos aprendiendo la asignatura e implementaremos nuestro primer algoritmo. Aunque el ejemplo será simple, veremos y discutiremos algunos errores que los desarrolladores pueden encontrar al trabajar en algoritmos. También daremos una breve introducción sobre la eficiencia de los algoritmos, explicaremos por qué es importante y cómo estimarlo.
+
+Presentando la secuencia de Fibonacci
+A lo largo de este tema, usaremos una estructura matemática llamada secuencia de Fibonacci como base de nuestra discusión. Esta secuencia se puede definir de la siguiente manera: los dos primeros elementos son 0 y 1, y cada uno de los siguientes es la suma de los dos anteriores. Aquí están los primeros nueve elementos de la secuencia:
+
+0, 1, 1, 2, 3, 5, 8, 13, 21, ...
+
+Matematicamente hablando, el elemento n-esimo de Fn de la secuencia se da por:
+
+     -
+     | 0             si n = 0
+     | 
+Fn = | 1             si n = 1
+     |
+     | Fn-1 + Fn-2   si n > 1
+     -
+
+Un algoritmo ingenuo
+A continuación se muestra un algoritmo para encontrar el nortenorte-ésimo número de Fibonacci escrito usando pseudocódigo:
+
+    function fib(n):
+        if n == 0: return 0
+        if n == 1: return 1
+        return fib(n - 1) + fib(n - 2)
+
+El pseudocódigo es un lenguaje simple similar a los lenguajes de programación reales. Comparado con este último, tiene una sintaxis mucho más simple. Por lo tanto, se usa a menudo para describir algoritmos ya que su simplicidad permite evitar algunos detalles de implementación y concentrarse en la idea principal de un algoritmo. En los siguientes temas, también usaremos pseudocódigo para describir algoritmos.
+
+
+La función anterior funciona de la siguiente manera:
+
+    1)Primero, verifica si el número de entrada n es igual a cero. Si es el caso, devuelve el número de Fibonacci correspondiente. De lo contrario, realiza una verificación similar comparandon con 1.
+Si ninguna de las dos primeras condiciones se cumple, la función realiza una llamada recursiva para encontrar el n-1 y n-2 Números de Fibonacci y luego devuelve su suma como resultado final.
+Una vez que completamos la implementación de un algoritmo, lo primero que debemos preguntarnos es si el algoritmo es correcto. Para el algoritmo anterior, nos gustaría saber si realmente encuentra el n-esimo elemento de la secuencia de Fibonacci. Aquí, la respuesta es obviamente sí, porque el algoritmo sigue literalmente la definición del n-ésimo número de Fibonacci.
+
+La siguiente pregunta que debemos hacernos es "¿cuánto tiempo tarda un algoritmo en resolver un problema?". Para el algoritmo anterior, la pregunta es "¿cuánto tiempo tarda el algoritmo en calcular el n-esimo número de Fibonacci? ". Comparando con la primera, esta pregunta es un poco más complicada, así que vamos a discutirla con más detalle.
+
+
+Analizando el algoritmo ingenuo
+Antes de comenzar a analizar el algoritmo implementado, pongamos de acuerdo algunas suposiciones.
+
+Primero, en realidad no queremos saber la cantidad exacta de tiempo que se ejecutará el algoritmo. Esto se debe a que depende en gran medida de la computadora utilizada. En cambio, estimaremos cuántas operaciones requiere el algoritmo para completarse. Así, obtendremos una estimación que no depende de una computadora en particular.
+
+En segundo lugar, debemos ponernos de acuerdo sobre lo que queremos decir con una operación. Supondremos que para verificar una condición de la declaración if se requiere una operación, y la suma de dos números enteros requiere una operación también.
+
+La suposición anterior es una simplificación significativa. Para sumar dos números, las computadoras en realidad realizan más de dos operaciones. Esto se debe a que la CPU debería al menos leer los números de la RAM, solo luego realizar la suma y luego volver a escribir los números. Además, durante los cálculos, algunos datos pueden almacenarse en caché. En otras palabras, las cosas reales son mucho más complejas. Sin embargo, aplicaremos las suposiciones anteriores para simplificar nuestro análisis posterior y obtener una métrica que no dependa de una máquina o arquitectura de computadora en particular.
+Ahora, estimemos el número de operaciones que requiere el algoritmo para calcular el n-ésimo número de Fibonacci teniendo en cuenta los supuestos anteriores. Sea T( n ) el número de tales operaciones para un determinado n. Luego, el número de operaciones se puede expresar usando la siguiente fórmula de recurrencia:
+
+
+       -
+       | 1                      si n  = 0
+       | 
+T(n) = | 2                      si n  = 1
+       |
+       | T(n-1) + T(n-2) + 3    si n >= 2 
+       -
+
+
+Si n es igual a cero, el algoritmo realiza solo una comparación. Si n es 1, realiza dos de tales comprobaciones. De lo contrario, también realiza dos comprobaciones primero y luego T(n-1) operaciones para encontrar el (n-1)-ésimo número de Fibonacci, T(n-2) para encontrar el (n-2)-ésimo elemento de la secuencia, y una adición más a partir de entonces.
+
+Es difícil dar estimaciones simplemente usando esta fórmula de recurrencia, y sería más conveniente transformarla en una ecuación directa para n. En aras de la simplicidad, evitaremos una demostración matemática formal aquí y solo le daremos el resultado final, que es el siguiente:
+
+    T(n) >= 1.6^n
+
+Por lo tanto, nuestro algoritmo funciona correctamente, pero es desesperadamente lento. Para entender por qué es así, consideremos un árbol de llamadas recursivas que el algoritmo crea durante la ejecución:
+
+                            fib(n)
+                         /         \
+                    fib(n-1)    fib(n-2)
+                  /         \     /        \
+            fib(n-2)   fib(n-3) fib(n-3)  fib(n-4)
+            /      \   /      \ /      \   /      \
+
+Como puede ver, hay muchos cálculos que el algoritmo repite varias veces. Por ejemplo,fib(n-3) se ejecuta dos veces en el tercer nivel de recursividad y una vez más en el cuarto. Los cálculos para números más pequeños se realizan incluso más veces. Por lo tanto, muchas llamadas repetidas provocan una gran cantidad de operaciones.
+
+Una pregunta natural que surge aquí es "¿podemos mejorar nuestro algoritmo?". Y la respuesta es sí. Una idea obvia es calcular cada elemento de la secuencia solo una vez, guardar el resultado y reutilizarlo luego calcular los siguientes elementos. Veamos cómo podemos mejorar nuestro algoritmo usando esta idea.
+
+Mejorando el algoritmo ingenuo
+Aquí hay una versión mejorada de un algoritmo para encontrar el n-esimo número de Fibonacci:
+
+    function fib(n):
+        if n == 0: return 0
+        f = array of size (n + 1)
+        f[0] = 0
+        f[1] = 1
+        for (i = 2; i <= n; i = i + 1):
+            f[i] = f[i - 1] + f[i - 2]
+        return f[n]
+
+La función anterior funciona de la siguiente manera:
+
+Primero, verifica si el número de entrada n es igual a cero. Si es el caso, no hay nada que calcular y devuelve 0 como respuesta.
+De lo contrario, la función crea una matriz de tamaño n + 1 para almacenar los elementos de la secuencia de Fibonacci.
+A continuación, comienza a calcular los elementos del bucle uno por uno reutilizando los elementos calculados en los pasos anteriores.
+Finalmente, devuelve el n-esimo elemento de la matriz como respuesta.
+Ahora vamos a calcular el número de operaciones que realiza este algoritmo y compararlo con el ingenuo.
+
+
+
+Analizando el algoritmo mejorado
+
+En el primer paso, el algoritmo realiza una operación ya que simplemente necesita verificar la condición de la declaración if.
+
+A continuación, crea una matriz de tamaño n + 1:
+
+    f = array of size (n + 1)
+
+Asumiremos que esto requiere n + 1 operaciones ya que el algoritmo necesita inicializar cada elemento de la matriz con cero.
+
+Luego, el algoritmo inicializa los dos primeros elementos de la secuencia:
+
+    f[0] = 0
+    f[1] = 1
+
+Asumiremos que obtener el y-esimo elemento de la matriz requiere 1 operación, así como la asignación.
+
+A continuación, realiza n-1 iteraciones en el bucle, haciendo 7 operaciones en cada iteración (obtiene un elemento de una matriz 3 veces, hace 1 adición, 2 restas y 1 asignación):
+
+    for (i = 2; i <= n; i = i + 1):
+        f[i] = f[i - 1] + f[i - 2]
+
+También debemos tener en cuenta que el algoritmo realiza algunas operaciones con el contador i. Es decir, primero lo inicializa, lo que requiere una operación. A continuación, compara el contador con n en cada iteración haciendo n comparaciones en total. Después de cada una de las comparaciones, excepto la última, el algoritmo debe incrementar y reasignar el contador. Requiere 2⋅(n-1) más operaciones.
+
+Finalmente, devuelve el n-esimo elemento de la matriz como respuesta:
+
+    return f[n]
+
+Por tanto, el número total de operaciones es
+
+T(n)= 1 + (n+1) + 2 + 2 + 7(n-1) + 1 + n + 2(n-1) + 1 = 11n - 1
+
+El enfoque anterior para calcular el número de operaciones generalmente no se usa para estimar la eficiencia de los algoritmos. Esto se debe a que es demasiado detallado y sería tedioso aplicarlo para algoritmos más sofisticados. Existe la denominada notación O grande comúnmente utilizada para tal análisis. Dado que la notación O grande requiere un tema separado para discutir (y lo discutiremos más adelante), usamos otra forma de calcular el número de operaciones que no requiere conocimiento previo específico.
+
+Como puede ver, un pequeño cambio algorítmico ha llevado a una mejora significativa de la eficiencia.
+
+Aunque los dos algoritmos dados resuelven el mismo problema, el algoritmo ingenuo es ineficiente e imposible de usar para encontrar grandes números de Fibonacci. El segundo es mucho más eficiente y se puede aplicar para encontrar grandes números de Fibonacci en un tiempo razonable. Por lo tanto, siempre es importante pensar en la eficiencia de los algoritmos, ya que dependiendo de la eficiencia de su algoritmo, podría ser adecuado (o no) para ser aplicado a tareas reales y sobre datos reales.
+
+Resumen
+En este tema, hemos discutido un algoritmo para encontrar el n-esimo elemento de la secuencia de Fibonacci. Primero, hemos implementado una versión ingenua, que resultó ser muy ineficiente. Luego, hemos mejorado esta versión y tenemos un algoritmo mucho más eficiente para resolver el mismo problema. Los principales puntos a los que hay que prestar atención son:
+
+Cuando se le ocurre algún algoritmo, es importante preguntarse si el algoritmo es correcto. En nuestro ejemplo simple, la exactitud fue obvia. Sin embargo, hay muchos algoritmos sofisticados cuya corrección no es tan obvia y podría requerir mucho esfuerzo demostrar que algún algoritmo realmente funciona. Consideraremos dichos algoritmos en los siguientes temas.
+Otra cosa importante en la que pensar es la eficiencia. Como puede ver en los ejemplos anteriores, puede haber una diferencia significativa en la eficiencia entre dos algoritmos que resuelven el mismo problema.
+También hemos dado un ejemplo básico de cómo estimar el número de operaciones que los algoritmos requieren para completarse. Importante que tenemos una estimación que no depende de una máquina o arquitectura de computadora en particular. En los siguientes temas, continuaremos discutiendo este enfoque y hablaremos sobre la denominada notación O grande.

@@ -1,0 +1,104 @@
+Dividir y conquistar es un paradigma de diseño de algoritmos en el que un problema se divide en subproblemas más pequeños (a menudo dos) del mismo tipo y luego cada subproblema se resuelve de forma independiente. La división se aplica de forma recursiva hasta que los subproblemas se vuelven lo suficientemente simples como para ser resueltos directamente usando un caso base. Finalmente, las soluciones de todos los subproblemas se combinan para obtener la solución del problema original. Consideremos cada uno de los pasos descritos con más detalle.
+
+
+Los pasos de un algoritmo basado en divide y vencerás
+Un algoritmo típico basado en el paradigma de divide y vencerás consta de tres pasos:
+
+Dividir: dividir un problema en subproblemas más pequeños del mismo tipo. Cada subproblema debe representar una parte del problema original.
+
+Conquista: resuelve de forma recursiva los subproblemas. Si son lo suficientemente simples, resuélvalos directamente usando las condiciones del caso base.
+
+Combinar: unir las soluciones de los subproblemas para obtener la solución del problema original.
+
+
+En el ejemplo anterior, primero dividimos el problema original en dos subproblemas. Luego, cada subproblema se divide en nuevos subproblemas hasta que sean lo suficientemente pequeños como para resolverlos directamente. Después de resolver el subproblema más pequeño, obtenemos subsoluciones. Luego, las sub-soluciones se combinan para obtener sub-soluciones para subproblemas más complejos. El proceso continúa hasta que obtengamos la solución al problema original. Como puede ver, el proceso presentado es recursivo por naturaleza.
+
+
+Un ejemplo simple: la suma de elementos en una matriz
+Consideremos cómo se puede usar el paradigma de divide y vencerás para calcular la suma de elementos en una matriz. Tenga en cuenta que el problema se puede resolver de forma más eficaz y sencilla. Aquí, aplicamos el paradigma solo para comprender mejor cómo funciona. El procedimiento es el siguiente:
+
+    function calc_sum(array, left, right):
+        // the sum of zero elements is 0
+        if left == right:
+            return 0    
+
+        // the sum of one-element sub-array is the element
+        if left == right - 1:
+            return array[left]
+
+        // the index of the middle element to divide the array into two sub-arrays
+        middle = (left + right) / 2
+
+        // the sum of elements in the left subarray
+        left_sum = calc_sum(array, left, middle)
+
+        // the sum of elements in the right subarray
+        right_sum = calc_sum(array, middle, right)
+
+        // the sum of elements in the array
+        return left_sum + right_sum
+
+
+El método toma una matriz de números y dos variables llamadas left y right. Las variables corresponden a los límites de un subarreglo donde se debe calcular la suma. El límite left es inclusivo, el right es exclusivo.
+
+Las dos primeras condiciones if del método corresponden a casos base: no realizan una llamada recursiva pero devuelven inmediatamente un resultado. La siguiente declaración corresponde al paso de división : calculamos el elemento del medio dividiendo así la matriz en dos subarreglos. Las siguientes dos declaraciones representan el paso de conquista : calculamos la suma para cada subarreglo. Finalmente, unimos las sumas y lo devolvemos como resultado final.
+
+A continuación, puede ver varios ejemplos de cómo funciona el procedimiento para diferentes matrices:
+
+    single_elem_arr = [55]
+    sum1 = calc_sum(single_elem_arr, 0, 1) // 55
+
+    two_elems_arr = [14, 36]
+    sum2 = calc_sum(two_elems_array, 0, 2) // 50
+
+    five_elems_arr = [14, 27, 31, 54, 38]
+    sum3 = calc_sum(five_elems_arr, 0, 5) // 164
+
+Ejemplos de algoritmos basados ​​en divide y vencerás
+Hay muchos algoritmos eficientes y ampliamente utilizados que se basan en el paradigma de dividir y conquistar: búsqueda binaria , clasificación por fusión , clasificación rápida y otros (binary search , merge sort , quick sort , and others.). Si decide profundizar en los algoritmos, seguramente encontrará el paradigma en los siguientes temas.
+
+
+
+
+EXPLICACION DEL CORMEN
+
+El enfoque de divide y vencerás
+
+Muchos algoritmos útiles tienen una estructura recursiva: para resolver un problema dado, se llaman a sí mismos recursivamente una o más veces para tratar subproblemas estrechamente relacionados. Estos algoritmos suelen seguir un enfoque de divide y vencerás: dividen el problema en varios subproblemas que son similares al problema original pero de menor tamaño, resuelven los subproblemas de forma recursiva y luego combinan estas soluciones para crear una solución al problema original. El paradigma de divide y vencerás implica tres pasos en cada nivel de la recursividad:
+
+Divida el problema en varios subproblemas que sean casos más pequeños del mismo problema.
+
+Conquista los subproblemas resolviéndolos de forma recursiva. Sin embargo, si los tamaños de los subproblemas son lo suficientemente pequeños, simplemente resuelva los subproblemas de una manera sencilla.
+
+Combine las soluciones a los subproblemas en la solución del problema original.
+
+El algoritmo de ordenación por fusión sigue de cerca el paradigma de divide y vencerás. Intuitivamente, funciona de la siguiente manera.
+
+Dividir: Divida la secuencia de n elementos para clasificar en dos subsecuencias de n / 2 elementos cada una.
+
+Conquistar: Ordene las dos subsecuencias de forma recursiva utilizando la clasificación por combinación.
+
+Combinar: combine las dos subsecuencias ordenadas para producir la respuesta ordenada.
+
+La recursividad “toca fondo” cuando la secuencia a ordenar tiene longitud 1, en cuyo caso no hay trabajo por hacer, ya que cada secuencia de longitud 1 ya está ordenada.
+
+La operación clave del algoritmo de clasificación por combinación es la combinación de dos secuencias ordenadas en el paso de "combinación". Fusionamos llamando a un procedimiento auxiliar MERGE (A, p, q, r), donde A es una matriz yp, qyr son índices en la matriz de modo que p <= q <r. El procedimiento asume que los subarreglos A [p ... q] y A [q + 1 ... r] están ordenados. Los fusiona para formar un único subarreglo ordenado que reemplaza al actual subarreglo A [p ... r].
+
+Nuestro procedimiento MERGE toma el tiempo Theta de n, donde n = r - p + 1 es el número total de elementos que se fusionan, y funciona de la siguiente manera. Volviendo a nuestro motivo de juego de cartas, supongamos que tenemos dos pilas de cartas boca arriba en una mesa. Cada pila está ordenada, con las cartas más pequeñas en la parte superior. Deseamos fusionar las dos pilas en una sola pila de salida ordenada, que debe estar boca abajo sobre la mesa. Nuestro paso básico consiste en elegir la más pequeña de las dos cartas en la parte superior de las pilas boca arriba, sacarla de su pila (que expone una nueva carta superior) y colocar esta carta boca abajo en la pila de salida. Repetimos este paso hasta que una pila de entrada esté vacía, momento en el que simplemente tomamos la pila de entrada restante y la colocamos boca abajo en la pila de salida. Computacionalmente, cada paso básico toma un tiempo constante, ya que estamos comparando solo las dos cartas superiores. Dado que realizamos como máximo n pasos básicos, la fusión toma Theta de n tiempo. El siguiente pseudocódigo implementa la idea anterior, pero con un giro adicional que evita tener que verificar si alguna pila está vacía en cada paso básico.
+
+Colocamos en la parte inferior de cada pila una tarjeta centinela, que contiene un valor especial que usamos para simplificar nuestro código. Aquí, usamos infinito como valor centinela, de modo que cada vez que se expone una carta con infinito, no puede ser la carta más pequeña a menos que ambas pilas tengan sus cartas centinela expuestas. Pero una vez que eso sucede, todas las cartas no centinelas ya se han colocado en la pila de salida. Como sabemos de antemano que exactamente r - p + 1 cartas se colocarán en la pila de salida, podemos detenernos una vez que hayamos realizado tantos pasos básicos.
+
+
+
+Analizar algoritmos de divide y vencerás
+
+Cuando un algoritmo contiene una llamada recursiva a sí mismo, a menudo podemos describir su tiempo de ejecución mediante una ecuación de recurrencia o recurrencia, que describe el tiempo de ejecución general en un problema de tamaño n en términos del tiempo de ejecución en entradas más pequeñas. Luego, podemos usar herramientas matemáticas para resolver la recurrencia y proporcionar límites sobre el rendimiento del algoritmo.
+
+La repetición del tiempo de ejecución de un algoritmo de divide y vencerás se sale de los tres pasos del paradigma básico. Como antes, dejamos que T (n) sea el tiempo de ejecución de un problema de tamaño n. Si el tamaño del problema es lo suficientemente pequeño, digamos n <= c para alguna constante c, la solución sencilla toma un tiempo constante, que escribimos como Theta de (1). Suponga que nuestra división del problema produce un subproblema, cada uno de los cuales es 1 / b del tamaño del original. (Para la ordenación por fusión, tanto a como b son 2, pero veremos muchos algoritmos de divide y vencerás en los que a! = B) Se necesita tiempo T (n / b) para resolver un subproblema de tamaño n / b, y por lo que se necesita tiempo aT (n / b) para resolver uno de ellos. Si tomamos D (n) tiempo para dividir el problema en subproblemas y C (n) tiempo para combinar las soluciones de los subproblemas en la solución del problema original, obtenemos la recurrencia:
+
+        -
+        | Theta(1)                      if n <= c
+T (n) = |
+        |aT (n / b) + D (n) + C (n)     otherwise
+        -
+

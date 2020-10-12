@@ -1,0 +1,36 @@
+Seamos realistas: no puede ignorar los algoritmos si espera escribir un programa innovador y eficiente. Sin embargo, los algoritmos no son lo único que necesita: además de la cuestión del procesamiento, también está la cuestión del almacenamiento de datos, incluido cuánto espacio ocupa. Aquí es donde las estructuras de datos son útiles, así que aprendamos los conceptos básicos importantes sobre ellas.
+
+
+Que son las estructuras de datos
+Las estructuras de datos son una forma de organizar los datos y proporcionar un acceso conveniente a ellos. ¿Bastante abstracto? Bien, veamos un ejemplo más específico.
+
+Imagine que tenemos una variedad de latas y botellas de refrescos que nos gustaría organizar de alguna manera. Podríamos ponerlo todo en una bolsa al azar o construir una torre para latas, pero de esta manera, no será fácil pescar un tipo específico de refresco o incluso contar los artículos. Después de reflexionar un poco, decidimos ponerlos en una máquina expendedora. Esta máquina expendedora será una estructura de bebidas: tiene un orden específico, y puedes observar fácilmente las latas y botellas, contarlas y comprender la capacidad de la máquina.
+
+Ahora volvamos a la definición y volvamos a intentarlo: la estructura de datos se refiere a una colección de elementos que contienen datos, así como las relaciones entre estos elementos y las operaciones de datos. Como regla general, las estructuras de datos tienen dos tipos de operaciones: operaciones internas que apoyan la organización de datos y operaciones disponibles para los usuarios para almacenar, recuperar o modificar datos.
+
+Hay un libro famoso titulado "Algoritmos + Estructuras de datos = Programas" escrito por el científico suizo Niklaus Wirth en 1976. Este libro cubre algunos de los temas fundamentales de la programación de computadoras; su título muestra claramente lo importante que es para un programador comprender las estructuras de datos.
+
+Hay varias estructuras de datos comunes: matriz, lista enlazada, tablas hash y toda una variedad de árboles (árbol de búsqueda binaria, montón, árbol rojo-negro, árbol B, etc.).[array, linked list, hash table, and a whole variety of trees (binary search tree, heap, red-black tree, B-tree, etc.).] Se consideran detenidamente en nuestra plataforma, pero no se apresure: asimilemos lo básico.
+
+Tipo de datos abstracto
+Hay otro término: tipo de datos abstracto (DAT, ADT en ingles abstract data type) , que a veces se usa como sinónimo de estructuras de datos, aunque esto no es del todo cierto. Intentemos averiguar qué es ADT considerando otro ejemplo más.
+
+Esperamos que no dudes que esta es una máquina expendedora. También es posible que sepa cómo interactuar con él: inserta una moneda y obtiene su bebida. Si solo tiene sed, esta información es más que suficiente. No le importa cómo se organizan las bebidas dentro de la máquina o cuántas hay; solo sabes cómo conseguir tu refresco. Así que esta es una máquina expendedora abstracta para ti.
+
+El tipo de datos abstracto es un tipo abstracto que se define por un valor y un conjunto de posibles operaciones (comportamiento) desde el punto de vista del usuario . Este tipo de descripción se utiliza para ofrecer un "panorama general" sin confundir a nadie con detalles específicos. Hay algunas TDAs comunes que todo programador entrenado debe saber: pila , cola, y así sucesivamente . Como regla general, los lenguajes de programación modernos como Java, Python y C ++ los proporcionan en bibliotecas estándar para su uso en nuevos programas.
+
+
+Comparación
+Volvamos a nuestra parábola de la máquina expendedora una vez más para ver cuál es la diferencia entre las estructuras de datos y los ADT.
+
+Hay diferentes formas de crear una máquina expendedora simple que realiza una única función de "cambiar una moneda por una bebida". La soda se puede guardar en una botella enorme; ya puede estar en diferentes botellas en un montón dentro del almacenamiento; las botellas y latas se pueden colocar en una fila grande o en diez filas diferentes. Todos estos arreglos pueden denominarse implementaciones de una simple máquina expendedora abstracta. Si quieres crear un mecanismo más complicado con varias funciones, por ejemplo, "elige un tipo de refresco y luego da una moneda" o "elige una bebida o un helado", algunas de las implementaciones anteriores no funcionarán para eso.
+
+Los ADT contrastan con las estructuras de datos que son representaciones exactas de datos; reflejan el punto de vista de un implementador, no de un usuario. Un buen ejemplo de un tipo de datos abstracto es un número entero. Sabemos qué valores pueden tener y qué operaciones admiten (suma, resta, multiplicación, etc.). Pueden representarse como el complemento de uno o dos en la memoria de la computadora, pero generalmente no nos importa. Es suficiente para nosotros saber que lo que tenemos es un número entero, no un número de coma flotante.
+
+En cierto sentido, ADT define la forma lógica del tipo de datos, mientras que la estructura de datos implementa la forma física del tipo de datos.
+
+
+Conclusión
+Hay muchos tipos de estructuras de datos que se utilizan para organizar y administrar datos en programas de manera eficiente. Otro concepto estrechamente relacionado a tener en cuenta es un tipo de datos abstractos (ADT) que oculta una estructura de datos específica, proporcionando solo un conjunto bien definido de operaciones necesarias para el usuario-programador.
+
+¿Tienes hambre de más? Vea una discusión donde puede encontrar muchas sugerencias de libros sobre el tema.

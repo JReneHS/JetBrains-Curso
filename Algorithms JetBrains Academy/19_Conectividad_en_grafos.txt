@@ -1,0 +1,53 @@
+Conectividad en grafos
+
+Por ahora, ya hemos aprendido qué es un grafo y hemos discutido una terminología básica. Otro concepto importante que deberíamos cubrir es la conectividad . Este concepto se utiliza a menudo en la teoría de grafos y surge en diferentes algoritmos de grafos, por lo que es importante familiarizarse con él. En este tema, discutiremos este concepto en detalle: primero, para grafos no dirigidos y luego para grafos dirigidos.
+
+
+
+Conectividad en grafos no dirigidos
+En un grafo no dirigido, se dice que dos nodos están conectados si existe una ruta entre estos nodos. Por ejemplo, los nodos 1 y 3 de G_1 están conectados ya que hay un camino 1-2-3: ver imagen
+
+Un ejemplo de nodos que no están conectados es 3 y 6: como puede ver, no hay camino que los conecte.
+
+Un subgrafo de un grafo se llama componente conectado si
+
+    *cada par de nodos en este subgrafo está conectado;
+    *no se pueden agregar otros nodos a este componente sin romper su propiedad de estar conectado.
+
+Según esta definición, G_1 consta de dos componentes conectados. El primero incluye los nodos 0, 1, 2 y 3, ya que
+
+    *hay un camino entre cada par de estos nodos;
+    *si agregamos un nodo más de G_1 a este subgrafo, no se conectará.
+
+El segundo componente conectado contiene los nodos 4, 5, 6y 7.
+
+Un grafo G se llama conectado si consta de un solo componente conectado. Como puedes ver,G_1 no se ajusta a esta definición, por lo que está desconectado.
+
+
+
+grafos dirigidos: conectividad débil
+En cuanto a los grafos dirigidos, el concepto de conectividad es un poco más complejo que el de los no dirigidos. Hay dos tipos diferentes de conectividad para grafos dirigidos: débil y fuerte .
+
+Un grafo dirigido está débilmente conectado si existe una ruta no dirigida entre cada par de nodos del grafo. En otras palabras, si transformamos un grafo dirigido en uno no dirigido eliminando la dirección de cada borde y obtenemos un grafo conectado, entonces el grafo dirigido está débilmente conectado. Consideremos el siguiente ejemplo: ver imagen
+
+
+Si quitamos la dirección de cada borde del grafo G_1 obtendremos un grafo no dirigido conectado G_2 . Por lo tanto,G_1 está débilmente conectado.
+
+
+
+grafos dirigidos: conectividad fuerte
+Un grafo dirigido está fuertemente conectado si existe una ruta dirigida entre cada par de nodos en el grafo. Según esta definición,G_1 no está fuertemente conectado. Por ejemplo, hay un camino 3 → 0 → 1 → 2 entre los nodos 3 y 2, pero no hay camino entre 2 y 3.
+
+Un subgrafo de un grafo dirigido es un componente fuertemente conectado (en breve, SCC) si:
+
+    *existe una ruta dirigida entre cada par de nodos en este subgrafo;
+    *no se pueden agregar otros nodos o bordes a este subgrafo sin romper su propiedad de estar fuertemente conectado.
+
+La gráfica G_1 , por ejemplo, consta de dos componentes fuertemente conectados: ver imagen
+
+
+Los nodos azules 0, 3 y 4 pertenecen al primer componente, mientras que los nodos rojos 1, 2 y 5 representan el segundo. Si fusionamos los nodos de cada componente fuertemente conectado en uno, obtendremos un grafo acíclico dirigido, una condensación deG_1: ver imagen
+
+
+Resumen
+En este tema, hemos aprendido sobre la conectividad en grafos dirigidos y no dirigidos. Tenga en cuenta que, a diferencia de los grafos no dirigidos, los dirigidos tienen dos tipos de conectividad: débil y fuerte. Intuitivamente, cada componente conectado en un grafo representa un conjunto de nodos que están "más estrechamente relacionados" entre sí en comparación con los nodos que pertenecen a diferentes componentes. Por ejemplo, si modelamos una red social usando un grafo dirigido, es más probable que dos personas de un componente fuertemente conectado se conozcan entre sí. Así, uno de ellos podría presentarse a otro como amigo.

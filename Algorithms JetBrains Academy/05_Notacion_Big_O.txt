@@ -1,0 +1,47 @@
+la notación O grande
+
+La complejidad de un algoritmo
+Suponga que le gustaría aplicar uno de varios algoritmos para resolver un problema. ¿Cómo averiguar qué algoritmo es mejor? Puede implementar estos algoritmos, comenzar muchas veces y luego analizar el momento de resolver el problema. Sin embargo, este enfoque compara implementaciones en lugar de algoritmos. No hay garantía de que los resultados sean los mismos en otra computadora.
+
+Usamos la notación Big O para clasificar los algoritmos de acuerdo con cómo crecen sus requisitos de tiempo de ejecución o espacio (por ejemplo, en la memoria o en el disco) a medida que aumenta el tamaño de entrada. No depende de los detalles de implementación, como el lenguaje de programación, el sistema operativo, el hardware o las habilidades del programador, y otros detalles de implementación. Primero nos centraremos en la complejidad del tiempo.
+
+La notación Big O se escribe como O(T(n)) y consta de dos partes:
+
+    T(n) es una función de complejidad de tiempo que describe cómo crece el tiempo de ejecución a medida que crece el tamaño de la entrada;
+    el símbolo O significa que, cuando la entrada es lo suficientemente grande, el tiempo de ejecución crece como máximo proporcionalmente a la función entre paréntesis.
+
+La notación Big O tiene algunas características esenciales:
+
+    que describe el límite superior de la tasa de crecimiento de una función y se podría considerar el peor de los casos escenario ;
+
+    describe especialmente bien la situación de grandes entradas de un algoritmo, pero no le importa qué tan bien se desempeñe su algoritmo con entradas de pequeño tamaño.
+
+En la práctica, un algoritmo puede funcionar incluso mejor que los programas de Big O , pero definitivamente no peor.
+
+
+Tasas de crecimiento comunes
+Aquí hay una breve lista de algunas notaciones comunes ordenadas desde la mejor O(1) hasta la peor O(2^n) tiempo:
+
+    Tiempo constante: O(1). El número de operaciones necesarias no depende del tamaño de entrada. Ejemplos: acceder a un elemento de una matriz por su índice, calcular la suma de la progresión aritmética usando la fórmula, imprimir un solo valor.
+
+    Tiempo logarítmico: O(log n). El número de operaciones necesarias es proporcional al logaritmo del tamaño de entrada. La base del logaritmo puede ser cualquiera; por eso no está escrito. Ejemplo: la búsqueda binaria en una matriz ordenada.
+
+    Tiempo de raíz cuadrada: O(sqrt(n)) . El número de operaciones necesarias es proporcional a la raíz cuadrada del tamaño de entrada.
+
+    Tiempo lineal: O(n). El número de operaciones requeridas es proporcional al tamaño de entrada, es decir, el tiempo crece linealmente a medida que aumenta el tamaño de entrada. A menudo, estos algoritmos se repiten una vez sobre una colección. Ejemplos: búsqueda secuencial, búsqueda de elementos máximos / mínimos en una matriz.
+
+    Tiempo log-lineal O(n*log n) . El tiempo de ejecución crece en proporción a n*log(n) de la entrada. Como regla general, la base del logaritmo no importa; por lo tanto, lo omitimos.
+
+    Tiempo cuadrático: O(n^2). El número de operaciones requeridas es proporcional al cuadrado del tamaño de entrada. Ejemplos: algoritmos de clasificación simples como clasificación de burbujas, clasificación de selección, clasificación de inserción.
+
+    Tiempo exponencial: O(2^n). El número de operaciones necesarias depende exponencialmente del rápido crecimiento del tamaño de la entrada.
+
+Como puede ver, un algoritmo con complejidad de tiempo O(n) es mejor que un algoritmo con complejidad de tiempo O (n^2) porque la función lineal crece más lenta que la cuadrática. Sin embargo, un algoritmo con la complejidad O(log n) es mejor que ambos. El algoritmo con la complejidad O(2^n) puede necesitar demasiado tiempo para resolver un problema incluso para un tamaño de entrada pequeño. Por regla general, no utilizamos este tipo de algoritmos en la práctica.
+
+
+Complejidad espacial
+Curiosamente, podemos usar la misma notación O grande para estimar la memoria requerida para ejecutar algoritmos. Suponga que un algoritmo tiene una complejidad de espacio O(n) , lo que significa que la memoria requerida es proporcional al tamaño de entrada.
+
+
+Conclusión
+La notación O grande es una herramienta crucial para evaluar el rendimiento de los algoritmos y compararlos. Podemos usarlo para evaluar las complejidades del tiempo y la memoria. Es esencial que esta notación clasifique un algoritmo en lugar de brindarle un tiempo de ejecución real en segundos o la memoria requerida en megabytes. También debe comprender la diferencia entre las funciones de complejidad estándar.

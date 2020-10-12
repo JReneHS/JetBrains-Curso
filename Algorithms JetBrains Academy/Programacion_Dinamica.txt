@@ -1,0 +1,104 @@
+conceptos básicos de la programación dinámica
+
+Por ahora, ya conocemos un enfoque eficiente para resolver problemas algorítmicos: divide y vencerás . Solo para recordarle, la idea principal de este enfoque es dividir un problema inicial en subproblemas más pequeños, resolverlos y luego combinar sus soluciones para obtener una respuesta al problema original.
+
+En algunos casos, sin embargo, este enfoque puede no ser ideal. Si algún subproblema aparece varias veces durante la división, se resolverá repetidamente, lo que aumentará la complejidad del tiempo. Una forma intuitiva de abordar esta limitación es resolver cada subproblema solo una vez, guardar su solución y reutilizar cuando sea necesario. Un enfoque que no solo descompone un problema en subproblemas, sino que también guarda y reutiliza sus soluciones se llama programación dinámica .
+
+Este enfoque será el tema principal de discusión en este tema. Comencemos por formular un problema simple y luego apliquemos el enfoque de programación dinámica para resolverlo.
+
+
+Números de Fibonacci
+Los números de Fibonacci representan una secuencia, cuyo primer elemento es 0, el segundo es 1, y cada elemento siguiente es la suma de los dos anteriores. A continuación se muestran los primeros88 elementos de la secuencia:
+
+0, 1, 1, 2, 3, 5, 8, 13, ...
+
+Por conveniencia, denotaremos el n-esimo elemento de la secuencia como F_n. Por ejemplo, F_0 = 0, F_1 ​​= 1, F_6 = 8 
+
+Dado un número n, nuestra tarea será calcular F_n
+​	
+Veamos cómo se puede aplicar el enfoque de programación dinámica para resolver este problema.
+
+
+Dividir el problema en subproblemas
+Primero, necesitamos encontrar una manera de dividir el problema en subproblemas más pequeños. En un caso tan simple, la división es clara: calcular F_n, debemos calcular F_{n-1} y F_{n-2} primero, y luego encontrar su suma para obtener F_n. Partiendo de esta idea y teniendo en cuenta que F_0 = 0 y F_1 = 1, podemos implementar el siguiente algoritmo para encontrar el n-esimo número de Fibonacci:
+
+    function fib(n):
+        if n < 2:
+            return n
+
+        return fib(n - 1) + fib(n - 2)
+
+Por un lado, la función funciona correctamente y resuelve nuestro problema. Por otro lado, es ineficiente ya que realiza muchos cálculos repetidos. Para entender por qué es así, consideremos un árbol de llamadas recursivas para fib(4):
+
+
+                            fib(4)
+                           /      \
+                       fib(3)    fib(2)
+                      /     \    /     \
+                 fib(2)  fib(1) fib(1)  fib(0)
+                /      \ 
+            fib(1)    fib(0)
+
+En la imagen de arriba, Como puedes ver,fib(1) se calcula tres veces, fib(0) y fib(2) se calculan dos veces. Cuanto mayor sea el n, los cálculos más repetidos que realiza el algoritmo, lo que aumenta el tiempo de ejecución.
+
+
+Memorización
+Para resolver este desagradable problema, debemos aplicar la memorización . La idea aquí es usar una matriz para almacenar las respuestas de los subproblemas y reutilizar estas respuestas cuando sea necesario. El pseudocódigo a continuación es el algoritmo anterior complementado con memorización:
+
+
+    function fib(n):
+        numbers = array of size (n + 1)
+        
+        for (i = 0; i <= n; i = i + 1):
+            numbers[i] = -1
+
+        return fib_helper(n, numbers)
+
+    function fib_helper(n, numbers):
+        if numbers[n] != -1:
+            return numbers[n]
+
+        if n < 2:
+            numbers[n] = n
+        else:
+            numbers[n] = fib_helper(n - 1, numbers) + fib_helper(n - 2, numbers)
+
+        return numbers[n]
+
+En la función fib, creamos una matriz numbers para almacenar las respuestas de los subproblemas. Inicialmente, cada elemento de la matriz se asigna a -1 indicando que el elemento aún no está calculado. A continuación, llamamos a la función fib_helper pasando el número n a calcular y la matriz numbers como parámetros.
+
+La primera condición en la función fib_helper es el lugar donde comienza a funcionar la memorización: verificamos si el número actual n ya está calculado y si es así, lo devolvemos inmediatamente como respuesta. De lo contrario, calculamos este número directamente o mediante recursividad, lo guardamos en la matriz y solo luego lo devolvemos.
+
+Dado que cada número se calcula exactamente una vez aquí, el algoritmo funciona en En O(n), siendo así más eficiente que el anterior.
+
+Método de abajo hacia arriba (Bottom-up method)
+La forma en que se implementa la función anterior se llama método de arriba hacia abajo (top-down method): comenzamos con un problema inicial (top) y luego lo dividimos en subproblemas más pequeños (down). Sin embargo, hay otra forma de resolver el mismo problema llamada método de abajo hacia arriba (Bottom-up method). En este método, comenzamos a calcular las respuestas directamente a partir de los subproblemas más pequeños (bottom) y basándonos en sus soluciones encontramos respuestas a los subproblemas más grandes (up). A continuación se muestra un algoritmo para encontrar el n-esimo número de Fibonacci implementado con el método ascendente:
+
+    function fib_bottom_up(n):
+        if n < 2:
+            return n
+
+        numbers = array of size (n + 1)
+        numbers[0] = 0
+        numbers[1] = 1
+
+        for (i = 0; i <= n - 2; i = i + 1):
+            numbers[i + 2] = numbers[i + 1] + numbers[i]
+
+        return numbers[n]
+
+De manera similar a la función anterior, creamos una matriz numbers para almacenar las respuestas de los subproblemas. Sin embargo, no usamos la recursividad aquí y comenzamos a calcular números de menor a mayor: los dos primeros se inicializan directamente y el resto se calcula con el ciclo for. Finalmente, devolvemos el n-esimo número de Fibonacci como respuesta.
+
+Como puede ver, esta función es más sencilla que la anterior. Además, requiere menos memoria adicional ya que no usa la recursividad. Por estas razones, este método se usa con más frecuencia cuando se aplica el enfoque de programación dinámica.
+
+
+Resumen
+En este tema, aprendimos qué es la programación dinámica y la aplicamos para calcular la n-ésimo número de Fibonacci. Además de este problema, hay muchos otros que se pueden resolver utilizando el enfoque de DP. En general, use la programación dinámica cuando su problema pueda dividirse en subproblemas más pequeños idénticos al inicial. Recuerde aplicar la memorización para evitar cálculos repetidos y así hacer que el algoritmo sea aún más eficiente.
+
+
+Top-down vs bottom-up
+
+What is the difference between the top-down and bottom-up dynamic programming methods?
+
+In the former, we start with an original problem and break it down into smaller ones.
+The former is usually implemented using recursion, while the second one is iterative.

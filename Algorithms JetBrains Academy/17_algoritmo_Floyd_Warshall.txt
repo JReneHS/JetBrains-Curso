@@ -1,0 +1,51 @@
+
+Suponga que cada nodo en el grafo a continuación es un aeropuerto de alguna ciudad y el peso de cada borde es la distancia entre dos aeropuertos: ver imagen
+
+Suponga que se le pide que haga un horario para los aviones de estos aeropuertos. Para minimizar el tiempo necesario para que cada avión llegue de una ciudad a otra, es necesario conocer las rutas más cortas entre todos los pares de aeropuertos. ¿Cómo se pueden encontrar esos caminos? Uno de los algoritmos que nos permite solucionar este problema es el algoritmo Floyd-Warshall . Está diseñado para encontrar las rutas más cortas entre todos los pares de nodos y funciona incluso si un grafo contiene bordes ponderados negativamente . Consideremos una descripción más detallada de este algoritmo.
+
+
+Una descripción de algoritmo
+Cualquier camino más corto u → w_1 → ... → w_k → v Entre u y v incluye cierto número de nodos intermedios (posiblemente ninguno). La idea principal del algoritmo Floyd-Warshall es construir los caminos más cortos gradualmente, en cada paso considerando solo algunos nodos como intermedios.
+
+En el primer paso, ninguno de los nodos se puede utilizar como intermedio. En este caso, la longitud de la ruta más corta para dos nodos es igual al peso de un borde que conecta los nodos o ∞ si no existe ningún borde entre los nodos. En cada uno de los siguientes pasos, se permite un nuevo nodo como intermedio. Luego, el algoritmo verifica si este nuevo nodo se puede utilizar para acortar las rutas actuales y las actualiza si es necesario. El proceso continúa hasta que todos los nodos se utilizan como intermedios.
+
+Consideremos el paso de actualización con más detalle. Por conveniencia, denotaremos dist(u,v) como la distancia actual entre los nodos u y v. Suponga que en el paso actual los nodos {0,1,...,k-1} se permiten como productos intermedios. ¿Cómo cambiarán las distancias si el nodo k también está permitido? Para nodos u y v, dist(u,v) puede permanecer igual o disminuir si el camino más corto entre u y v a través de los nodos permitidos contiene k como intermedio. El último se puede verificar fácilmente ya que ya sabemos dist(u, k) y dist(k,v). Si dist(u,k) + dist(k,v) < dist(u,v), la distancia actual entre u y v debe establecerse en un valor menor. En cada paso del algoritmo, todos los pares de nodos deben verificarse de esta manera y actualizarse si es necesario.
+
+En resumen, los pasos del algoritmo Floyd-Warshall son:
+
+    1) Para cada par de nodos u y vv, establecer dist(u,v) ya sea al peso de un borde que conecta los nodos o ∞ si no existe ningún borde entre los nodos.
+
+    2) Comience con un conjunto vacío de nodos intermedios.
+
+    3) Expandir el conjunto actual de nodos intermedios por un nuevo nodo k. Para cada par de nodos u y v, compruebe si k se puede utilizar para acortar la distancia entre u y v. Es decir, si dist(u,k) + dist(k,v) < dist(u,v), actualizar dist(u,v) a un valor menor.
+
+    4) Repita el tercer paso hasta que todos los nodos se utilicen como intermedios.
+
+Una vez finalizado el algoritmo, para cada par de nodos u y v,, dist(u,v) es la longitud de las rutas más cortas entre los nodos.
+
+
+Un ejemplo
+Para cubrir todos los detalles del algoritmo, consideraremos cómo funciona para el siguiente grafo dirigido G con un borde negativo (como en el ejemplo anterior, se le pedirá que encuentre usted mismo las rutas más cortas para el grafo).
+
+Para almacenar las distancias actuales entre todos los pares de nodos, usaremos 5×5 matriz dist(ver las figuras a continuación), donde dist (u, v) es la distancia actual entre los nodos u y v.
+
+Inicialmente, dist(u, v) = peso(u,v) si hay una ventaja de u a v o ∞ de otra manera. Tenga en cuenta que las distancias iniciales son los mismos que los pesos en la matriz de adyacencia de G.
+
+En el siguiente paso (k = 0), incluimos el nodo 0 al conjunto de nodos intermedios. Podemos ver que la única distancia que se puede actualizar (mostrada en azul) es dist(1, 2), ya que dist(1, 0) + dist(0, 2) = 2 + 4 = 6, que es menor que dist(1, 2) = 7.
+
+próximo (k = 1), ampliamos el conjunto de nodos intermedios con el nodo 1. Podemos ver eso dist(3, 1) + dist(1, 0) = -3, que es menor que dist (3, 0) = ∞. Entonces,dist (3, 0) se establece en -3. Similar, dist(3, 2) se establece en 2. En este paso, estas son las únicas distancias que se pueden actualizar.
+
+Luego (k = 2), hay 5 distancias que se pueden actualizar. Por ejemplo,dist(0, 2) + dist(2, 3) = 13, que es menor que dist(0,3) = ∞ y dist (0, 3) está asignado a 13. Otras distancias se actualizan de forma similar.
+
+Continuando con el mismo proceso, finalmente obtendremos la matriz (la más a la derecha en la figura anterior) que contiene las longitudes de las rutas más cortas entre todos los pares de nodos.
+
+La matriz final no nos permite obtener los caminos más cortos. Para reconstruirlos, necesitamos usar una matriz adicional prev, que para cada par de nodos u y v mantiene el nodo prev(u,v), que se estableció como intermedio. Entonces, el camino más corto entre u y v consiste en el camino más corto entre u y prev(u,v), prev(u,v) sí mismo y prev(u,v) y v. El 1er y el 3er camino se pueden encontrar de manera similar usando la matriz.
+
+Tenga en cuenta que aunque el grafo anterior está dirigido, se puede aplicar el mismo algoritmo para un grafo no dirigido. Otra cosa importante a mencionar es que el algoritmo de Floyd-Warshall no se puede aplicar para grafos que contienen un ciclo de peso negativo . En tales grafos, es posible que no se definan las rutas más cortas entre algunos nodos, ya que podemos disminuir infinitamente la longitud de una ruta atravesando este ciclo.
+
+Aquellos que estén interesados ​​en un ejemplo más interactivo de cómo funciona el algoritmo pueden echar un vistazo a una visualización aquí (https://www.cs.usfca.edu/~galles/visualization/Floyd.html)
+
+
+
+El análisis de complejidad
+Suponga que el algoritmo de Floyd-Warshall se aplica a un grafo G con n nodos. En cada paso, el algoritmo expande el conjunto actual de nodos intermedios por uno nuevo, realizando n pasos en total. En cada uno de estos pasos, es necesario comprobar y actualizar todos los pares de nodos (si es necesario). Dado que el número total de pares de nodos es n*(n-1), el tiempo de ejecución total es n*n*(n-1) = O(n^3).

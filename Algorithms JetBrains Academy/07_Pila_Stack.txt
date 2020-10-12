@@ -1,0 +1,54 @@
+Lo esencial de Stack
+La pila es un tipo de datos abstracto donde los elementos se insertan y eliminan de acuerdo con el principio de último en entrar, primero en salir (LIFO) . La operación de push inserta un elemento en la parte superior de la pila, la operación pop elimina el elemento superior de la pila. El acceso a elementos arbitrarios está restringido. Como regla general, una pila también admite la operación de inspección que solo devuelve el elemento superior actual (peek). En algunos casos, también puede ser útil verificar si la pila está vacía o cuál es su tamaño, por lo que estas operaciones también deberían ser compatibles.
+La siguiente imagen muestra el mecanismo básico:
+
+        Push -------   ----> Pop
+                   |   |
+                   V   |
+                ____________
+    Top ------> |    5     |
+                ------------
+                |    4     |
+                ------------
+                |    3     |
+                ------------
+                |    2     |
+                ------------
+                |    1     |
+                ------------
+
+Aquí, el elemento 1 se agregó primero y se eliminará en último lugar. Al mismo tiempo, el elemento 5 se agregó en último lugar y es el primero en eliminarse.
+
+La estructura de datos subyacente para implementar una pila puede ser una matriz o una lista vinculada con acceso restringido a sus elementos.
+
+
+
+Pilas en la vida real y la programación
+El ejemplo más simple de la vida real es una pila de libros. Solo se puede quitar un libro colocado en la parte superior a la vez, pero siempre se agrega un libro nuevo en la parte superior de la pila.
+
+
+
+También puede imaginarlo como una pila de platos o un cargador de pistola. Además, es posible que haya visto un logotipo de StackOverflow antes.
+
+En programación, las pilas se utilizan para:
+
+    evaluar expresiones aritméticas;
+
+    almacenar argumentos de funciones y resultado de las llamadas de las funciones;
+
+    invertir el orden de los elementos.
+
+
+
+La eficiencia de las pilas
+Si usó una lista vinculada o una matriz clásica (no redimensionable) como estructura interna, tanto las operaciones push como pop siempre toman un tiempo constante O (1). No depende de cuántos elementos haya en la pila, por lo que las operaciones son muy rápidas.
+
+
+Stack X contains elements a, b, and c (in that order, a is on top). Stack Y is empty. An element popped out of stack X can be printed immediately or pushed to stack Y. An element popped out of stack Y can only be printed.
+
+In this situation, which of the following sequences cannot be printed?
+
+abc
+bca
+bac
+cab **

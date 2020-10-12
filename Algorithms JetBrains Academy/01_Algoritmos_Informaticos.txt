@@ -1,0 +1,30 @@
+Algoritmos cotidianos
+Probablemente hayas escuchado algo sobre algoritmos en la vida real. En pocas palabras, es una secuencia de acciones paso a paso que debe realizar para lograr un resultado útil. Puede ser un algoritmo para cocinar un sándwich descrito por una receta o un algoritmo para vestirse de acuerdo con el clima actual y su estado de ánimo.
+
+Entre todos los algoritmos, hay un grupo especial llamado algoritmos informáticos. Estos son los que generalmente se crean y utilizan las computadoras. En este tema, discutiremos en detalle qué son los algoritmos informáticos y explicaremos por qué es importante aprenderlos.
+
+Algoritmos para computadoras
+Los algoritmos informáticos están en todas partes a nuestro alrededor. Su teléfono inteligente puede guiarlo a través de una ciudad de un punto a otro utilizando un algoritmo determinado. Otros algoritmos pueden controlar el comportamiento de tus enemigos en un juego de computadora. Servicios como Google o Yahoo aplican algoritmos sofisticados para brindarle los resultados más relevantes cuando los usa para buscar información en la Web. Los algoritmos también se utilizan para calcular la trayectoria de los cohetes e incluso ayudan a los médicos a determinar correctamente los diagnósticos.
+
+Una diferencia importante entre los algoritmos de la vida real y los de la computadora es que una computadora no puede adivinar lo que queremos hacer. Si algo sale mal o un algoritmo no está claro, un humano puede ajustar el algoritmo en función de su experiencia. Las computadoras no pueden hacer lo mismo. Por tanto, un algoritmo informático debe describirse de forma precisa y sin ambigüedades.
+
+Programas y algoritmos
+Como sabrá, un programa es una secuencia de instrucciones para realizar algunas tareas en una computadora. La diferencia entre programas y algoritmos es que los programas se escriben utilizando un lenguaje de programación específico, mientras que los algoritmos generalmente se describen en un nivel más alto que las declaraciones del lenguaje de programación. En otras palabras, un algoritmo es como un esquema abstracto y un programa puede ser su implementación.
+
+Todo esto también significa que los algoritmos son independientes del lenguaje: un algoritmo se puede implementar utilizando diferentes lenguajes de programación. Por ejemplo, puede usar Java, Python, Kotlin u otros lenguajes para implementar el mismo algoritmo.
+
+Los lenguajes de programación generalmente contienen implementaciones de algunos algoritmos básicos para resolver problemas típicos. Estos algoritmos se proporcionan en bibliotecas estándar y los desarrolladores de software pueden reutilizarlos en lugar de implementar uno nuevo cada vez. Sin embargo, para poder usar dichos algoritmos de manera correcta y eficiente, y para poder comprender cómo los usan otros desarrolladores, es importante aprender estos algoritmos básicos y familiarizarse con cómo funcionan bajo el capó.
+
+Los algoritmos de las bibliotecas estándar no pueden cubrir todos los posibles problemas que pueden encontrar los desarrolladores. Por lo tanto, a veces necesitará implementar una solución para un problema desde cero. Esta es otra razón por la que es importante aprender algoritmos: necesita saber cuál aplicar y cómo implementarlo de manera eficiente.
+
+
+Resumen
+Un algoritmo es una secuencia de acciones que debe realizar para lograr un resultado útil. Un grupo importante de algoritmos son los algoritmos informáticos: los creados y utilizados por los ordenadores. Hay varias razones por las que es importante aprender algoritmos informáticos:
+
+Los desarrolladores de software a menudo encuentran tareas del mismo tipo mientras trabajan en diferentes proyectos. Para tareas tan típicas, los lenguajes de programación proporcionan algoritmos listos para usar en bibliotecas estándar. Para utilizar estos algoritmos de manera eficiente, debe comprender cómo funcionan bajo el capó.
+a veces puede encontrar un problema que es imposible de resolver utilizando algoritmos de bibliotecas estándar. En tales casos, debe implementar un algoritmo usted mismo. Para poder hacer eso, necesita conocer los enfoques algorítmicos básicos, sus pros y contras, y cuál aplicar en un caso particular.
+a menudo es necesario no solo escribir el código usted mismo, sino también leer el código escrito por otros desarrolladores. Si desea comprender los algoritmos que probablemente utilicen, también debe conocer los algoritmos básicos y los enfoques algorítmicos.
+La implementación de algoritmos puede ayudarlo a mejorar sus habilidades de programación.
+Creemos que existen otras razones por las que vale la pena aprender algoritmos. Si tienes alguno, no dudes en escribirlo en los comentarios :)
+
+¡Buena suerte con los algoritmos de aprendizaje!

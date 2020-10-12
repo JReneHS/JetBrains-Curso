@@ -1,0 +1,44 @@
+Topological sort
+
+Muchos tipos de información se pueden modelar naturalmente como grafos acíclicos dirigidos (DAG). Por ejemplo, el mapa de conocimientos sobre Hyperskill se representa como DAG. O un árbol genealógico también se puede considerar como DAG. Otro uso clásico de DAG es la programación de trabajos. Considere el siguiente ejemplo: ver imagen
+
+
+Cada nodo de ese grafo corresponde a un determinado trabajo. Cada borde(u, v) significa ese trabajo v depende del trabajo u. En otras palabras, el trabajo v se puede iniciar solo después de que el trabajo u está terminado. El desafío aquí es representar los trabajos en el orden que permita completarlos uno tras otro teniendo en cuenta sus dependencias. Tal representación se llama clasificación topológica .
+
+De una manera más formal, para un grafo acíclico dirigido G = (V,E), la clasificación topológica de V es un orden de nodos tal que para cada borde (u, v) ∈ mi el nodo u viene antes del nodo v. A continuación se muestra una posible clasificación topológica para el grafo anterior: ver imagen
+
+Para un ejemplo tan simple, es fácil ver cómo se pueden ordenar los nodos con solo mirar el grafo. Pero, ¿qué pasa con los grafos enormes almacenados en la memoria de la computadora como matrices de adyacencia o listas de adyacencia? En este tema, aprenderemos sobre un algoritmo que permite realizar una clasificación topológica para DAG arbitrarios. Como resultado, podrá implementar y aplicar el algoritmo usted mismo.
+
+
+
+Descripción
+Un posible algoritmo para la clasificación topológica se basa en el procedimiento DFS. La idea es ejecutar DFS e identificar las posiciones de los nodos en la clasificación topológica según el orden en que se visitan. Con más detalle, el algoritmo se puede formular de la siguiente manera:
+
+    Inicializar un contador C con 1. Establecer un nodo arbitrario u de un grafo como actual y ejecute DFS para el nodo.
+
+    Establecer el nodo actual u como visitado. Entonces, si el nodo tiene un vecino no visitado v, establecer v como actual y aplicar recursivamente el procedimiento para v. De lo contrario, marque u como procesado, asigne su etiqueta a C, y establecer C a C + 1.
+
+    Si todos los nodos están marcados como procesados, el algoritmo finaliza. De lo contrario, elija un nodo sin procesar u, configúrelo como actual y aplique el paso 2 para el nodo.
+
+Nótese que cuando se procesa algún nodo, es decir, no tiene vecinos no visitados, se garantiza que sus vecinos tengan etiquetas más pequeñas ya que se procesaron en la misma llamada recursiva o en otra. Por tanto, cuando finalice el algoritmo, la etiqueta de cada nodo corresponderá a su orden en la clasificación topológica. Tenga en cuenta que el orden es descendente: el nodo con la etiqueta más grande es el primero y el que tiene la etiqueta más pequeña será el último.
+
+
+
+Un ejemplo
+
+Apliquemos el algoritmo descrito para encontrar el orden topológico de los nodos del siguiente grafo. Por conveniencia, los nodos se considerarán en orden alfabético.
+vea la imagen
+
+Las figuras siguientes ilustran los pasos del algoritmo. Los nodos procesados ​​se muestran en azul; las etiquetas numéricas cerca de los nodos procesados ​​corresponden a su orden topológico.
+
+El procedimiento comienza con el nodo A que tiene tres vecinos no visitados: B, C y D. Primero, nos movemos al nodo B; después de eso, procedemos a C. Ya que C no tiene vecinos no visitados, está marcado como procesado y su etiqueta se establece en 1. Luego, volvemos al nodo B y pasar a D. Nodo D no tiene vecinos no visitados, por lo que su etiqueta se establece en 2. Luego, volvemos al nodo B otra vez. Ahora tampoco tiene vecinos no visitados y configuramos su etiqueta como 3. Después de eso, hacemos lo mismo para el nodo A. Como resultado, obtenemos un grafo que se muestra en la figura de la izquierda a continuación: ver imagen
+
+Después del primer recorrido, el grafo todavía tiene nodos sin procesar, por lo que debemos aplicar el mismo procedimiento comenzando con el nodo E. Después de realizar los mismos pasos para los nodos restantes sin procesar, obtenemos el grafo que se muestra en la segunda figura anterior.
+
+La etiqueta numérica de cada nodo corresponde al orden de los nodos en la clasificación topológica: nodo E con la etiqueta más grande es el primer nodo del orden, mientras que C con la etiqueta más pequeña es la última. El siguiente grafo revela el orden topológico de los nodos: ver imagen
+
+Para comprender mejor el algoritmo, puede echar un vistazo a una visualización . Tenga en cuenta que la versión proporcionada del sitio es un poco diferente de lo que se describe aquí: en lugar de asignar una etiqueta, cada nodo procesado se agrega al encabezado de una lista que almacena los nodos en el orden topológico.
+
+
+Análisis de complejidad
+Para un grafo acíclico dirigido G = (V, E), el algoritmo funciona en O (| V | + | E |), ya que simplemente aplicamos DFS para el grafo que realiza el número constante de operaciones para cada nodo.

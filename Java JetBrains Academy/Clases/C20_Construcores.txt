@@ -1,0 +1,27 @@
+Los constructores son métodos especiales que inicializan un nuevo objeto de la clase.
+Se invoca un constructor de una clase cuando se crea una instancia utilizando la palabra clave new.
+
+Un constructor se diferencia de otros métodos en que:
+
+    tiene el mismo nombre que la clase que lo contiene.
+    no tiene ningún tipo de retorno (ni siquiera void).
+
+
+Los constructores inicializan instancias (objetos) de la clase. Establecen valores en los campos cuando se crea el objeto. Además, los constructores pueden tomar parámetros para inicializar campos por los valores dados.
+
+
+Constructor predeterminado y sin argumentos
+El compilador proporciona automáticamente un constructor sin argumentos predeterminado para cualquier clase sin constructores.
+
+En este caso, todos los campos se completarán con los valores predeterminados de sus tipos.
+
+Si define un constructor específico, no se creará el constructor predeterminado.
+
+También podemos definir un constructor sin argumentos, pero usarlo para establecer valores predeterminados para los campos de una clase. Por ejemplo, podemos inicializar name con "Unknown"
+
+
+Para resumir
+    Cualquier clase de Java tiene un constructor para inicializar objetos;
+    Un constructor tiene el mismo nombre que la clase que lo contiene;
+    Un constructor no tiene ningún tipo de retorno, ni siquiera void;
+    Si una clase no tiene constructores explícitos, el compilador de Java proporciona automáticamente un constructor sin argumentos predeterminado.

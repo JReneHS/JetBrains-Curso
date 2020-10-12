@@ -1,0 +1,50 @@
+Esenciales
+Deque es una generalización de la cola que permite insertar y eliminar elementos de ambos extremos. El término deque proviene de "cola de dos extremos". Combina las reglas de acceso proporcionadas por la cola (FIFO) y la pila (LIFO) juntas ademas de (LILO).
+
+La siguiente imagen muestra un deque con siete elementos:
+
+                  0   1   2   3   4   5   6   7
+    insert ---> |---|---|---|---|---|---|---|---| <--- insert
+                | 1 | 2 | 3 | 4 | 5 | 6 | 7 |   |
+    remove <--- |---|---|---|---|---|---|---|---| ---> remove
+                  ^                       ^
+                  |                       |
+                front                    back
+
+Operaciones
+Hay cuatro operaciones básicas en él:
+
+    inserte un elemento al frente;
+    inserte un elemento en la parte posterior;
+    quitar un elemento del frente;
+    quitar un elemento de la parte posterior.
+
+Supongamos que ejecutamos las siguientes operaciones en el deque presentado anteriormente:
+
+    remove an element from the front
+    remove an element from the front
+    remove an element from the front
+    insert 9 to the front
+    remove an element from the back
+    remove an element from the back
+    insert 1 to the back
+
+El resultado sería:
+
+                  0   1   2   3   4   5   6   7
+    insert ---> |---|---|---|---|---|---|---|---| <--- insert
+                |   |   | 9 | 4 | 5 | 1 |   |   |
+    remove <--- |---|---|---|---|---|---|---|---| ---> remove
+                          ^           ^
+                          |           |
+                        front        back
+
+Un deque suele tener algunas operaciones adicionales que nos permiten ver el primer y el último elemento sin quitarlos (examinar el frente y examinar el reverso) así como obtener la cantidad de elementos que contiene. Por lo general, los deques no admiten la indexación, pero algunas implementaciones pueden proporcionarla.
+
+
+
+Aplicaciones
+Los desarrolladores utilizan deque con menos frecuencia que la cola normal. Los ejemplos más comunes de deque son:
+
+deshacer-rehacer operaciones en software como editores gráficos o IDE;
+Robar algoritmos de programación de tareas: un procesador toma la primera tarea de su deque y la ejecuta; cuando uno de los procesadores completa la ejecución de sus propias tareas, roba la última tarea del deque de otro procesador y la ejecuta.

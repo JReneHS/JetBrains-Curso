@@ -1,0 +1,66 @@
+Agrupar clases juntas
+Los proyectos grandes de Java tienen muchas clases. Es difícil administrarlos si están almacenados en el mismo directorio. Los paquetes proporcionan un mecanismo para agrupar clases en el mismo módulo (paquete). Un paquete puede contener otros paquetes y toda la estructura se asemeja a directorios en un sistema de archivos.
+
+En general, los paquetes tienen muchas ventajas. Nos permiten:
+
+    agrupar clases relacionadas, lo que hace que sea más fácil averiguar dónde está determinada clase;
+    evitar el conflicto de nombres de clases;
+    controle el acceso a clases y miembros junto con modificadores de acceso (aprenderá sobre esto en otro tema).
+
+De acuerdo con la convención de nomenclatura, los nombres de los paquetes siempre están en minúsculas
+
+En la parte superior del árbol, hay un directorio src. Este es el directorio raíz de origen. 
+
+Puede generar el nombre completo utilizando el siguiente código:
+
+    System.out.println(User.class.getName());
+
+
+
+Evitar el conflicto de nombres de clases
+Cuando usa bibliotecas externas, dos clases pueden tener el mismo nombre. Los paquetes nos permiten evitar el conflicto de nombres de clases porque el nombre completo de la clase incluye el nombre del paquete. Entonces, incluso si dos clases de diferentes paquetes tienen el mismo nombre, sus nombres completos serán diferentes. Eso es, por supuesto, si no hubiera conflictos entre los nombres de los paquetes.
+
+Para evitar crear paquetes con los mismos nombres que otros paquetes públicos, generalmente se recomienda comenzar la jerarquía de paquetes con el nombre de dominio inverso de su empresa (u otra organización).
+
+
+
+Importando clases
+Si dos clases están ubicadas en el mismo paquete usando una clase dentro de la otra, no hay problema. Si no es el caso y las clases están en paquetes diferentes, debe escribir una declaración de importación para usar una clase dentro de la otra. La declaración de importación está definida por la palabra clave "import".
+
+La declaración del paquete y las declaraciones de importación son opcionales. Si ambos están presentes, el paquete debe venir antes que todas las importaciones. De lo contrario, obtenemos un error de compilación.
+
+Hay una forma de usar una clase de otro paquete sin la declaración de importación. En este caso, debe escribir el nombre completo de la clase (incluida la ruta completa de los paquetes) en lugar del nombre de la clase en sí (nombre corto). Así es como usaríamos el Scanner sin importarlo explícitamente primero:
+
+
+
+Importar clases estándar
+No hay diferencia entre importar clases estándar o personalizadas.
+
+Por ejemplo, muchos desarrolladores de Java utilizan java.util.Scanner para trabajar con la entrada / salida estándar.
+
+Después de esto, podemos crear una instancia Scanner similar en los ejemplos anteriores y usarla en nuestros programas.
+
+Aunque tendríamos que importar la mayoría de los paquetes, existe un paquete Java que siempre se importa automáticamente. Es java.lang. Este paquete contiene muchas clases ampliamente utilizados, tales como String, System, Long, Integer, NullPointerException y otros.
+
+
+
+Importaciones estáticas
+También podemos importar miembros estáticos (métodos y campos) de una clase dentro de otra clase. Si escribimos * en la declaración de importación, entonces no necesitamos escribir el nombre de la clase importada antes de invocar métodos estáticos o leer campos estáticos.
+
+
+
+Paquete predeterminado
+Si no escribimos una declaración de paquete antes de definir nuestra clase, se colocará dentro del paquete predeterminado . Este paquete tiene una gran desventaja: las clases ubicadas aquí no se pueden importar a clases ubicadas dentro de paquetes con nombre.
+
+No utilice el paquete predeterminado para aplicaciones reales. Está perfectamente bien para aplicaciones educativas simples, como "Hola mundo", pero los proyectos más complejos serán mejores en paquetes con nombre.
+
+
+
+Resumen
+Los paquetes son una herramienta muy útil para proyectos OOP. Los paquetes nos permiten estructurar mejor el código fuente y lo hacen más fácil de mantener. Eso es muy importante para grandes proyectos que pueden constar de miles de clases.
+
+Los paquetes también son muy útiles para evitar el conflicto de nombres de clases porque el nombre de clase completo incluye la ruta de todo el paquete. Si tenemos cuidado con el nombre del paquete, ¡no debería haber conflictos!
+
+Otra cosa para recordar es que los paquetes afectan la visibilidad de clases y miembros de clase entre sí. Aquí deberíamos recordar acerca de las importaciones, los miembros estáticos y el paquete predeterminado.
+
+¡Crear paquetes incluso para aplicaciones pequeñas es una gran práctica para futuros grandes programas!

@@ -1,0 +1,16 @@
+Definiciones
+Un grafo acíclico dirigido (DAG) tiene un nombre que habla por sí mismo: es un grafo dirigido que no contiene ciclos. A pesar de esta propiedad acíclica, un DAG puede contener rutas paralelas . Los caminos paralelos son caminos que comienzan y terminan en los mismos nodos sin formar un ciclo. Las imágenes a continuación muestran algunos ejemplos de DAG, algunos de los cuales contienen rutas paralelas para que las consulte: vea la imagen
+
+Hasta ahora, ¿parece pan comido? Agreguemos algunas definiciones más esenciales para comprender este tema:
+
+La accesibilidad de un nodo "v" se refiere a la existencia de una ruta dirigida que va del nodo "u" al nodo "v".
+
+El orden parcial en un DAG es un orden de los nodos del grafo por accesibilidad. Si hay un arista dirigido desde el nodo u al nodo v , entonces los nodos u y v se pueden comparar: u < v . Entonces, si el nodo v es accesible desde el nodo u , también u < v.
+
+Clasificación topológica (u orden topológico) es un ordenamiento lineal de los nodos del grafo de modo que para cada arista dirigido desde el nodo u al nodo v , el nodo u se coloca antes que el nodo v . La clasificación topológica tiene mucho sentido en DAG y en la teoría de grafos en general, por lo que se discutirá con más detalle.
+
+
+La estructura de datos DAG se utiliza en una amplia gama de áreas de programación diferentes, como aprendizaje automático, redes neuronales, compiladores y muchas otras. Incluso nuestro mapa de conocimiento es un DAG: cualquier tema puede heredarse de su tema anterior (o de varios), y no puede haber ciclos en dicha estructura de datos.
+
+Conclusión
+De hecho, DAG es una estructura de datos útil: esperamos haberlo ilustrado bien para usted. Además de algunas aplicaciones posibles, enumeradas anteriormente, ¡a menudo se puede encontrar en problemas en concursos de programación! Sin embargo, hay más que decir sobre DAG, por supuesto: además de la accesibilidad, el orden parcial y la clasificación topológica, hay otros conceptos que se utilizan a menudo en la programación competitiva. Estos incluyen cierre transitivo y reducción transitiva. En este tema, no hablaremos de ellos, pero puede consultar este artículo de Wikipedia para obtener más información (https://en.wikipedia.org/wiki/Directed_acyclic_graph).

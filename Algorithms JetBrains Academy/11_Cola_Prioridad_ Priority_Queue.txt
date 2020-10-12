@@ -1,0 +1,63 @@
+Una cola de prioridad es una estructura de datos similar a una cola normal: también podemos poner y extraer elementos de ella. La diferencia es que cada elemento en una cola de prioridad está asociado con un valor llamado prioridad . Este valor se utiliza para ordenar los elementos de una cola: los elementos con mayor prioridad se recuperan antes que los elementos con menor prioridad.
+
+En otras palabras, una cola de prioridad es un tipo de datos abstracto que proporciona las siguientes operaciones:
+
+    is_empty(q)- devuelve verdadero si una cola no contiene ningún elemento y falso en caso contrario;
+
+    put(q, elem) - poner el elemento especificado en una cola;
+
+    extract_max(q) - extrae el elemento con la máxima prioridad.
+
+Existe otra versión de una cola de prioridad que proporciona un método llamado extract_min (en lugar de extract_max) que devuelve el elemento de una cola con la prioridad mínima.
+
+Un ejemplo
+Veamos un ejemplo de cómo podemos trabajar con una cola de prioridad. Para simplificar, utilizaremos números enteros como elementos. La prioridad de un elemento corresponde al número en sí.
+
+Primero, pongamos algunos valores en una cola q:
+
+    put(q, 8)
+    put(q, 3)
+    put(q, 5)
+
+Una vez realizadas las operaciones, el estado de la cola se puede representar de la siguiente manera:
+
+                |---|---|---|---|---|
+       put ---> |   | 3 | 5 | 8 |   | ---> extract_max
+                |---|---|---|---|---|
+
+Hay tres elementos ordenados según sus prioridades. Si realizamos dos inserciones más:
+
+    put(q, 7)
+    put(q, 1)
+
+                |---|---|---|---|---|
+       put ---> | 1 | 3 | 5 | 7 | 8 | ---> extract_max
+                |---|---|---|---|---|
+
+Todos los elementos nuevamente están ordenados según sus prioridades. Ahora, extraigamos algunos elementos de la cola:
+
+    extract_max(q) # extracts 8
+    extract_max(q) # extracts 7
+
+                |---|---|---|---|---|
+       put ---> | 1 | 3 | 5 |   |   | ---> extract_max
+                |---|---|---|---|---|
+
+Cuando extraemos los elementos restantes:
+
+    extract_max(q) # extracts 5
+    extract_max(q) # extracts 3
+    extract_max(q) # extracts 1
+
+los extraeremos todos en el orden ordenado: 8, 7, 5, 3, 1.
+
+La cola de prioridad anterior se representa como una matriz ordenada. Sin embargo, tal implementación es solo una variante posible, que generalmente no se usa debido a la ineficiencia. Las implementaciones más eficientes se basan en una estructura denominada montón (heap). Aquí, no describiremos los detalles de implementación, sino que nos concentraremos solo en los conceptos principales de cómo funciona una cola de prioridad.
+
+
+
+Aplicaciones
+Una cola de prioridad se utiliza en muchos algoritmos en los que es necesario acceder a algunos objetos según sus prioridades.
+
+Un ejemplo es el algoritmo de Dijkstra, que nos permite encontrar los caminos más cortos entre los nodos de un gráfico. En cada paso del algoritmo, necesitamos encontrar el nodo con la distancia mínima actual. Para hacer eso, se puede usar una cola de prioridad.
+
+Otro ejemplo es el algoritmo de Huffman que se utiliza para la compresión de datos. El algoritmo calcula las frecuencias de los símbolos en el texto y luego las usa para construir un código óptimo para cada símbolo. Aquí se utiliza una cola de prioridad para recuperar símbolos según sus frecuencias.

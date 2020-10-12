@@ -1,0 +1,53 @@
+conceptos básicos de la recursividad
+En resumen, la recursividad en la programación es cuando una función se llama a sí misma . Tiene un caso en el que termina y un conjunto de reglas para reducir otros casos al primer caso. Una función que puede hacerlo se llama función recursiva . ¿Suena un poco abstracto? Intentemos obtener la idea principal en el ejemplo.
+
+Matrioska recursiva
+Piense en ello como una muñeca rusa, matrioska. Es una muñeca o, más exactamente, un juego de muñecas colocadas unas dentro de otras. Abres la primera muñeca y ahí está la segunda, abres esta y obtienes la tercera, y así sucesivamente hasta llegar a esta última muñeca que no se abre.
+
+Si queremos encontrar la muñeca más pequeña, cogemos nuestra gran matrioska y tratamos de abrirla: si cede, seguimos abriendo nuestras muñecas, hasta que finalmente encontramos esa pequeña. La recursividad funciona prácticamente de la misma manera, así que usémosla como metáfora para comprender principios más complicados.
+
+Imagina que tienes un juego de muñecos como este como regalo, y quieres no solo encontrar el más pequeño sino también contarlos todos. ¿Cuántas muñecas tienes? Ninguna pista. Digamos que tenemos muñecas X. Como verdadero entusiasta de la recursividad, decide contarlos de forma recursiva. Cada vez que estás siendo optimista, te haces una pregunta: "¿Es esta muñeca la más pequeña?" Logras abrir la muñeca X , pero no pierdes la esperanza. "Bueno, tal vez la muñeca X - 1 no se abra". Finalmente, llegas a la muñeca más pequeña y exclamas: "¡Aquí hay una muñeca que no se puede abrir! ¡Esta muñeca es la primera!" Ahora entiendes que la muñeca que abriste por última vez era en realidad la segunda muñeca, luego la tercera ....
+
+Una vez más: primero, los abres uno tras otro, y solo cuando llegas al más pequeño, puedes contarlos, volviendo sobre tus pasos. Si fuera una función recursiva diseñada para contar las matrioshkas, trabajaría exactamente como se describe.
+
+
+Diseñando una función
+La mayoría (si no todos) los lenguajes de programación tienen recursividad, es decir, permiten que una función se llame a sí misma desde su propio código. Es muy conveniente saber cómo crear funciones recursivas, así que ahora creemos un algoritmo para contar las muñecas. Cada función recursiva consta de los siguientes pasos:
+
+    *Un caso base trivial detiene la recursividad. Este es el caso del que conocemos el resultado. Por ejemplo, si encontramos una muñeca que no podemos abrir, la tomamos y decimos con orgullo: "¡es nuestra muñeca más pequeña!"
+
+    *Un paso de reducción (uno o más, ¡imagina que nuestra muñeca contiene dos muñecas dentro!) Nos lleva del problema actual a uno más simple. Por ejemplo, si nuestra muñeca se puede abrir, la abrimos y miramos lo que hay dentro.
+
+Si estamos hablando de la base trivial de nuestra función de conteo , es solo una muñeca. En otras palabras, si X es igual a 1, entonces podemos dejar de pensar y simplemente ser felices.
+
+Ahora estamos imaginando las matrioskas del mundo real, así que digamos lo siguiente: si X no es igual a 1, entonces es más grande. en este caso, debemos probar nuestra función de conteo en X - 1. Solo tenga en cuenta que necesitaremos agregar esta muñeca que abrimos al resultado más tarde.
+
+Pero espera, ¿quién cuenta así? ¡Buena pregunta! Y aquí es cuando llegamos a nuestro siguiente punto: ¿es la recursividad una buena alternativa?
+
+
+Ventajas y desventajas
+Muchas funciones recursivas se pueden escribir de otra manera: podríamos simplemente pasar por todos los números del 1 a n y calcular la función para cada número. Por ejemplo, podemos simplemente abrir la muñeca más grande, decirnos a nosotros mismos "Uno", tirar la muñeca y seguir así hasta la última. Esta forma de cálculo se llama bucle . Pero, ¿cuál es la forma más eficiente?
+
+De hecho, depende del lenguaje de programación. Como regla, en Python y Java, los bucles son más eficientes en términos de tiempo y memoria . La recursividad es más lenta y "más pesada" porque cada llamada de una función requiere memoria adicional, y las funciones recursivas generalmente se llaman muchas veces.
+
+En ese caso, ¿por qué la recursividad? Bueno, tiene una cierta ventaja sobre los bucles: en algunos casos, es intuitivo . Si está seguro de que alguna función se usa a sí misma, es mucho más rápido escribir 3-4 líneas de código recursivo que pensar cómo debe comportarse exactamente un bucle. Si tiene poco tiempo pero no tiene que preocuparse por el consumo de memoria, la recursividad es su elección.
+
+Por lo tanto, la recursividad suele ser más lenta y menos eficiente en la memoria , pero ahorra tiempo a los desarrolladores.
+
+Veamos un problema clásico (y más práctico, para ser perfectamente honestos) que la recursividad puede resolver de manera efectiva.
+
+
+El ejemplo factorial
+Un ejemplo clásico de recursividad es una función matemática llamada factorial .
+
+El factorial de un número entero no negativo n es igual al producto de todos los números enteros positivos de 1 a n inclusivo. Además, por definición, el factorial de 0 es 1: basta con tratarlo. Sin embargo, tomemos un número normal: por ejemplo, el factorial de 5 (¡escrito 5!) Es 1 * 2 * 3 * 4 * 5 = 120.
+
+Entonces, conocemos el factorial de 0 y el factorial de 1. Además, podríamos decir que el factorial de cualquier número n> 1 es igual a n multiplicado por el factorial de n - 1 . Por ejemplo:
+
+4! = 4 * 3! = 4 * 3 * 2! = 4 * 3 * 2 * 1! = 4 * 3 * 2 * 1 = 24 
+
+factorial(4) = 4 * factorial(3) = 4 * 3 * factorial(2) = ... = 4 * 3 * 2 * 1 = 24
+
+¿Ves lo que está pasando? Al escribir una función para calcular el factorial, ¡podríamos hacerlo de forma recursiva! No hay necesidad de pensar mucho porque la función recursiva se puede crear simplemente usando la definición de factorial . Tenemos un caso trivial (para 0 o 1, nuestra función devuelve 1) y el paso de reducción (si es nuestro número n > 1, la función devuelve n * factorial (n-1)). Y ahora intenta imaginar la función factorial con bucles. ¿No es tan obvio, verdad?
+
+Como puede ver, la recursividad es una idea simple pero muy poderosa. ¡Disfrutar!

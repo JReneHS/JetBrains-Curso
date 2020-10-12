@@ -1,0 +1,42 @@
+búsqueda en profundidad Depth-first search
+
+Por ahora, sabemos qué es un grafo, cómo describir formalmente esta estructura y almacenarlo en una computadora. Este conocimiento básico es importante, pero aún no es suficiente para manejar de manera eficiente las tareas basadas en grafos. Para poder resolver una variedad de ellos, también debemos familiarizarnos con los algoritmos de procesamiento apropiados. Nos permitirán analizar la estructura de los grafos con más detalle y obtener información útil de ellos.
+
+Uno de estos algoritmos es la búsqueda en profundidad , un procedimiento de recorrido de grafo simple que a menudo se utiliza como componente básico para muchos otros algoritmos de procesamiento de grafos. Este algoritmo será el foco principal de este tema: aprenderemos los detalles del procedimiento y veremos cómo funciona en un ejemplo.
+
+Algoritmo de búsqueda en profundidad
+Para un grafo G, el procedimiento de búsqueda en profundidad (DFS) consta de los siguientes pasos:
+
+Elija un nodo arbitrario no visitado V de una gráfica G.
+Considere todos los vecinos no visitados del nodo actual V y visitar de forma recursiva cada uno de ellos.
+Repita los pasos 1-2 hasta que se visiten todos los nodos.
+
+DFS es un algoritmo recursivo . Si el nodo actual tiene vecinos no visitados, se aplica el procedimiento DFS para cada uno de ellos. El proceso continúa hasta que se hayan visitado todos los nodos del grafo.
+
+Un ejemplo
+Para comprender mejor el procedimiento, veamos cómo funciona para el siguiente grafo:
+
+    -----      -----        -----      -----
+    | 0 |------| 2 |        | 4 |------| 6 |
+    -----      -----        -----    / -----
+      |          |            |     /    |
+      |          |            |    /     |
+      |          |            |   /      |
+    -----      -----        -----      -----
+    | 1 |------| 3 |--------| 5 |------| 7 |
+    -----      -----        -----      -----
+
+Las figuras siguientes muestran el procedimiento paso a paso. El nodo actual se muestra en azul, los nodos visitados se muestran en azul y los vecinos no visitados del nodo actual son verdes.
+
+Primero, elegimos un nodo arbitrario para comenzar. Para el grafo dado, este nodo es 0. Inicialmente, el nodo tiene dos vecinos no visitados:1 y 2. Elegimos el nodo 1 como el siguiente nodo para procesar y ejecutar el procedimiento DFS para este nodo. En el segundo paso, llamamos de forma recursiva a DFS para el nodo 3 ya que es el único nodo no visitado de 1. A continuación, consideramos a todos los vecinos no visitados del nodo. 3, que son 2 y 5. Elegimos el nodo 2 y aplique DFS para ello. Después de eso, podemos ver que el nodo 2 no tiene vecinos no visitados. Entonces, el nodo se procesa y regresamos al nodo anterior en el orden de llamadas recursivas.
+
+En el quinto paso, nuevamente tenemos un solo nodo al que pasar. Llamamos recursivamente DFS para el nodo 5 y pasar al siguiente paso.
+
+Una cosa importante aquí es que los nodos y bordes azules forman un árbol. Dicho árbol se denomina árbol de expansión porque conecta (abarca) todos los nodos del grafo. En este punto, una de las aplicaciones del procedimiento de búsqueda en profundidad es la construcción de un árbol de expansión en un grafo.
+
+Otra aplicación interesante de DFS es el recorrido por laberintos. Un laberinto se puede representar como un grafo no dirigido con los bordes correspondientes a los caminos del laberinto y los nodos correspondientes a sus intersecciones. Para comprender mejor cómo funciona exactamente, eche un vistazo a este video. Además, puede consultar una visualización de DFS para grafos arbitrarios.
+
+Aunque proporcionamos la descripción del algoritmo solo para grafos no dirigidos, funciona exactamente de la misma manera para los dirigidos.
+
+Análisis de complejidad
+Al aplicar el procedimiento DFS para un grafo G = (V, E), visitamos cada nodo del grafo exactamente una vez. Cada borde {x, y} se considera exactamente dos veces: durante la visita X y luego mientras visitaba y (o viceversa). Por lo tanto, el tiempo de ejecución total del algoritmo es |V| + 2*|E|, es decir O (| V | + | E |).

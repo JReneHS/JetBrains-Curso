@@ -1,0 +1,106 @@
+Esenciales
+Una cola circular es una cola de tamaño fijo que sigue el principio FIFO (primero en entrar , primero en salir). En lugar de terminar en la última posición como lo hace la cola normal, comienza de nuevo desde el segundo después de la última posición.
+
+Esta estructura de datos también se conoce como Ring Buffer . Se representa de forma muy natural como un círculo.
+
+Hay dos partes importantes:
+
+el frente (front) es una posición actual para quitar un elemento de la cola (eliminar);
+la parte trasera (rear) es una posición actual para poner en cola un elemento (agregar).
+
+Aunque mostramos una cola circular en forma de círculo, generalmente se construye sobre una matriz ordinaria;
+
+              0   1   2   3   4   5   6   7
+            |---|---|---|---|---|---|---|---|
+            | 1 | 2 | 3 | 4 | 5 |   |   |   |
+            |---|---|---|---|---|---|---|---|
+              ^               ^
+              |               |
+            front            rear
+
+Mecánica interna
+Inicialmente, tenemos una cola circular vacía con un tamaño específico, y tanto la parte delantera como la trasera no están configuradas. Al realizar operaciones de poner en cola y sacar de cola , la parte delantera y trasera se desplazan al final de la cola.
+Supongamos que hemos realizado la siguiente secuencia de operaciones:
+
+    enqueue 1
+    enqueue 3
+    enqueue 2
+    enqueue 4
+    enqueue 5
+    dequeue
+    dequeue
+
+              0   1   2   3   4   5   6   7
+            |---|---|---|---|---|---|---|---|
+            |   |   | 2 | 4 | 5 |   |   |   |
+            |---|---|---|---|---|---|---|---|
+                      ^       ^
+                      |       |
+                    front    rear
+
+Lo más interesante surge cuando la parte delantera o trasera llega al final: en este caso, debe cambiarse al principio.
+
+Aquí hay una secuencia de operaciones
+    enqueue 7
+    enqueue 3
+    enqueue 5
+    enqueue 9
+
+              0   1   2   3   4   5   6   7
+            |---|---|---|---|---|---|---|---|
+            | 9 |   | 2 | 4 | 5 | 7 | 3 | 5 |
+            |---|---|---|---|---|---|---|---|
+              ^       ^ 
+              |       |
+             rear   front
+
+Podemos reutilizar el espacio libre al principio para insertar nuevos elementos y, como puede imaginar, el frente se comporta de la misma manera.
+
+Para calcular la siguiente posición de trasera o delantera en base a la actual es conveniente utilizar una fórmula con la operación de módulo (%):
+
+    next = (current + 1) % size
+
+Aquí, el tamaño no es el número de elementos realmente almacenados en la cola, sino el número total de espacios para almacenar elementos (8 en la imagen de arriba).
+
+
+
+Cola circular completamente llena
+Otro caso interesante es cuando una cola circular está completamente llena así:
+
+              0   1   2   3   4   5   6   7
+            |---|---|---|---|---|---|---|---|
+            | 9 | 0 | 2 | 4 | 5 | 7 | 3 | 5 |
+            |---|---|---|---|---|---|---|---|
+                  ^   ^ 
+                  |   |
+                rear front
+
+Hay dos estrategias completamente diferentes para manejar este caso:
+
+    sobrescribir los elementos de la cola existentes;
+
+    notificar sobre la imposibilidad de poner en cola hasta que se retiren algunos elementos.
+
+La primera estrategia es similar al comportamiento cuando las posiciones no están ocupadas en absoluto. Supongamos que hemos puesto 8 y 7 en la cola completamente llena; se desplaza hacia "atrás" reescribiendo los números antiguos 2 y 4. También cambia al frente para mantener el orden FIFO:
+
+              0   1   2   3   4   5   6   7
+            |---|---|---|---|---|---|---|---|
+            | 9 | 0 | 8 | 7 | 5 | 7 | 3 | 5 |
+            |---|---|---|---|---|---|---|---|
+                          ^   ^ 
+                          |   |
+                        rear front
+
+
+La segunda estrategia necesita una forma de notificar a un usuario (un programador que usa una implementación de una cola circular) lanzando una excepción o devolviendo un resultado booleano que la operación falló.
+
+
+
+Aplicaciones
+La cola circular se utiliza para:
+
+    unir la parte delantera y trasera al volver a almacenar en búfer;
+
+    utilizar las ubicaciones de memoria no utilizadas;
+
+    Encienda los semáforos uno a uno repetidamente.
