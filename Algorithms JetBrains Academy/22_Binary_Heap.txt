@@ -1,0 +1,66 @@
+Binary Heap
+
+
+Definición
+Un montón binario es un árbol con las siguientes propiedades:
+
+    el valor de cada nodo es mínimo entre todos los valores presentes en sus subárboles;
+
+    la diferencia entre la profundidad máxima y mínima de las hojas no es mayor a 1;
+
+    siempre es un árbol completo o un árbol binario casi completo.
+
+Un árbol binario completo de nivel n es un árbol en el que cada nodo del nivel n es una hoja y cada nodo de un nivel menor que n tiene subárboles tanto derecho como izquierdo.
+
+Un árbol binario casi completo es un árbol binario para el que hay una k positiva, tal que:
+
+    cada hoja de un árbol tiene nivel k o k+1;
+
+    si un nodo del árbol tiene un hijo correcto de nivel k+1, entonces todos los hijos izquierdos de este nodo son hojas también tienen nivel k+1.
+
+Las imágenes a continuación muestran varios ejemplos de montones binarios: ver imagen
+
+
+Al igual que con los árboles de búsqueda binarios, los elementos de un montón binario pueden ser de cualquier tipo de datos para el que se define el operador de comparación (caracteres, cadenas, etc.)
+
+En este tema, hablaremos específicamente sobre min-heaps que también pueden denominarse colas con el mínimo . Max-heaps funcionan absolutamente igual. La única diferencia son los caracteres de comparación que usaremos durante la construcción de un montón y las operaciones con él.
+
+Se pueden realizar dos operaciones básicas en montones binarios: agregar un elemento y eliminar (extraer) el más pequeño. Si un montón binario permite extraer el elemento más pequeño, entonces se llama min-heap y, en el caso del elemento más grande, es max-heap .
+
+Analicemos cada una de las dos operaciones básicas con más detalle.
+
+
+
+Agregar: Insertar (clave)
+Las características de esta operación están dictadas por las tres propiedades básicas de un montón binario que hemos enumerado al principio. Debido a la segunda y tercera propiedad, el único lugar posible para insertar un nuevo nodo es después del último nodo en el último nivel. Si está lleno, colocamos el nodo como el primero en el siguiente nivel.
+
+Sin embargo, esta simple operación aún puede romper la primera propiedad. Si sucede, así es como lo arregla: primero, intercambie el nodo actual con su padre y luego repita la acción hasta que se cumpla el requisito. Tenga en cuenta que la violación de la primera propiedad solo puede ocurrir cuando insertamos un nodo y tenemos que moverlo desde el nivel más bajo a su posición correcta. No habrá más que log(n) nodos en ese subárbol que estarán "fuera de lugar": moviendo el nodo hacia arriba, nos aseguramos de que se satisfaga la primera propiedad. Otros subárboles no se verán afectados.
+
+Las siguientes imágenes muestran la secuencia de rotaciones al agregar el elemento "3": ver imagen
+
+
+El algoritmo se completa cuando el árbol satisface la primera propiedad: 1 <= 3, por lo que se logra un montón binario correcto.
+
+
+
+Extrayendo un mínimo: ExtractMin ()
+Como habrás notado, el elemento mínimo en el min-heap es siempre la raíz del árbol, por lo que básicamente debemos aprender a eliminar el elemento raíz .
+
+El primer paso es guardar el valor en la raíz para el retorno posterior de la función. A continuación, mueva el último elemento del montón a la raíz del árbol. La estructura que obtenga no satisfará la primera condición, por lo que ahora nuestra tarea es mover este elemento a una posición en la que se cumplan todos los requisitos.
+
+A diferencia de la rotación de elementos durante la operación de inserción, aquí tenemos dos opciones: el descendiente derecho o el izquierdo. Para un min-heap, debe intercambiar el nodo actual con su hijo más pequeño; para un montón máximo, elija el más grande.
+
+Las imágenes a continuación muestran una cadena de rotaciones después de la extracción del mínimo. ver imagen
+
+
+El resultado es un árbol que cumple las tres condiciones.
+
+Hay otras operaciones que se basan en esos dos, como la eliminación y alteración de cualquier valor en el montón binario. El uso de estas operaciones requerirá cambiar un poco la estructura de datos. Hablaremos de ello durante la práctica.
+
+Construir un montón binario sobre una matriz existente de datos requiere un tiempo En O(n). Todas las operaciones mencionadas en un montón binario toman O(logn) en el peor de los casos. Al agregar un elemento o extraer un mínimo, el número de rotaciones no será mayor que la profundidad del árbol. Dado que el árbol está casi completo, su profundidad no excede O(log n).
+
+
+Heapsort
+Con base en la estructura de datos propuesta, se puede adoptar un enfoque muy interesante para la clasificación de sus elementos. Este enfoque se denomina clasificación en pila . La idea es seguir extrayendo el mínimo siempre que el tamaño del montón no baje a cero. La construcción de un montón binario tomará O(n) tiempo, y también habrá n operaciones de extracción para O(log n). Por tanto, la asíntota total es O(n) + n*O(log n) = O(n*log n).
+
+La ventaja del heapsort es que está "en el lugar" y tiene una buena complejidad. Además, si necesita encontrar el k-ésimo mínimo, solo necesita un tiempo O(k*log n), y no O(n*log n) como ocurre con la clasificación rápida (quicksort).

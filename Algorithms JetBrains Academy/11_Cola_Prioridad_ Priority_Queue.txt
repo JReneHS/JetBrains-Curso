@@ -58,6 +58,6 @@ La cola de prioridad anterior se representa como una matriz ordenada. Sin embarg
 Aplicaciones
 Una cola de prioridad se utiliza en muchos algoritmos en los que es necesario acceder a algunos objetos según sus prioridades.
 
-Un ejemplo es el algoritmo de Dijkstra, que nos permite encontrar los caminos más cortos entre los nodos de un gráfico. En cada paso del algoritmo, necesitamos encontrar el nodo con la distancia mínima actual. Para hacer eso, se puede usar una cola de prioridad.
+Un ejemplo es el algoritmo de Dijkstra, que nos permite encontrar los caminos más cortos entre los nodos de un grafo. En cada paso del algoritmo, necesitamos encontrar el nodo con la distancia mínima actual. Para hacer eso, se puede usar una cola de prioridad.
 
 Otro ejemplo es el algoritmo de Huffman que se utiliza para la compresión de datos. El algoritmo calcula las frecuencias de los símbolos en el texto y luego las usa para construir un código óptimo para cada símbolo. Aquí se utiliza una cola de prioridad para recuperar símbolos según sus frecuencias.

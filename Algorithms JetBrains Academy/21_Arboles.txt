@@ -1,0 +1,48 @@
+Árbol
+Lo primero que me viene a la mente es probablemente un roble ramificado en un bosque. No estás muy lejos: esa misma imagen dio nombre a un tipo específico de estructura de datos que vamos a ver. En cierto modo, se parece a árboles reales (ambos tienen raíces y hojas y una estructura similar) y árboles genealógicos con padres, hijos y hermanos. Teniendo en cuenta esa analogía, veamos de cerca qué son los árboles en informática.
+
+Cualquier árbol es un grafo, pero uno con ciertas condiciones: es un grafo conectado sin ciclos. La propiedad principal de un árbol es que solo hay una ruta entre dos nodos (también llamados vértices) del grafo. Si hay al menos un ciclo en el grafo, significa que hay pares de nodos con más de una ruta que los conecta: en otras palabras, no es un árbol.
+
+Visualicemos eso: las siguientes figuras muestran dos grafos. El primero es un árbol y el segundo no lo es: ver imagen
+
+
+El segundo grafo no es un árbol porque contiene un ciclo 1-3-6-0, por lo que hay dos rutas desde el nodo 2 al nodo 0: 2-3-1-0 y 2-3-6-0.
+
+
+
+Términos y definiciones importantes
+Un árbol comienza con su nodo superior, que se llama nodo raíz o raíz de un árbol. Para cada nodo de árbol, todos los nodos directamente debajo de él (conectados por un arista) se denominan nodos secundarios o hijos del nodo. En el ejemplo anterior (primera figura) el nodo 2 es la raíz del árbol, mientras que los nodos 3, 4 y 5 son los hijos de root. Hasta ahora bastante simple, muy parecido a un árbol genealógico.
+
+Repasemos las definiciones básicas relacionadas con los árboles:
+
+    el nodo raíz es el nodo más alto de un árbol;
+
+    la profundidad de un nodo es el número de aristas desde la raíz hasta este nodo;
+
+    un hijo es un nodo directamente debajo de un nodo dado, conectado por un arista;
+
+    un padre es un nodo directamente encima de un nodo dado, conectado por un arista;
+
+    una hoja es un nodo sin hijos;
+
+    la altura de un nodo es el número de aristas en el camino más largo desde el nodo hasta una hoja;
+
+    la altura de un árbol es la altura de su nodo raíz.
+
+En este y en los siguientes temas relacionados con grafos, usaremos Node y Vertex como nombres para los puntos del grafo: trátelos como sinónimos. En la literatura, también se usan indistintamente.
+
+Los nodos o aristas en el árbol pueden contener información: por ejemplo, el número del vértice o el costo de moverse a lo largo del arista (la suma de aristas desde la raíz hasta este vértice). La siguiente imagen muestra un ejemplo de un árbol con nodos numerados: ver imagen
+
+
+En este ejemplo, nodo 0 es la raíz del árbol, mientras que los nodos 6, 7, 8, 5, 2, 9 y 10 son hojas.
+
+Tenga en cuenta que si agrega un arista adicional al árbol, se formará un ciclo, y si elimina cualquiera de los aristas, el grafo se desconectará.
+
+Un árbol en el que cada nodo no tiene más de dos hijos se llama árbol binario . Si el número de nodos en el árbol es n, entonces la profundidad del árbol es al menos log_2(n). A partir de ese momento, discutiremos específicamente los árboles binarios, a menos que se indique lo contrario.
+
+
+
+Árboles en la práctica
+La estructura de datos de árbol es muy común en la práctica: por ejemplo, ya hemos mencionado árboles genealógicos. La taxonomía en biología hace uso de la misma estructura jerárquica; si desea acercarlo a su hogar, puede pensar en la estructura "jefe-subordinado" en una empresa, donde los hijos representan a los subordinados y el padre es el jefe.
+
+Los árboles se utilizan mucho en TI porque nos permiten procesar datos considerablemente más rápido. Prácticamente todos los analizadores sintácticos de distintas gramáticas utilizan árboles en distintos grados. Además, en muchos DBMS, los índices se basan en árboles para un procesamiento de datos más rápido.

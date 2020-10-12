@@ -1,0 +1,69 @@
+Un árbol de búsqueda binaria es un árbol basado en nodos que tiene las siguientes propiedades:
+
+    para cualquier nodo, los valores de todos los nodos dentro de su subárbol izquierdo son estrictamente menores que el valor de ese nodo.
+
+    para cualquier nodo, los valores de todos los nodos dentro de su subárbol derecho son mayores o iguales que el valor de ese nodo.
+
+    cualquier subárbol de un árbol de búsqueda binaria también es un árbol de búsqueda binaria.
+
+En otras palabras, en un árbol de búsqueda binario los nodos se ramifican en subárboles ("hijos"), donde los nodos de la izquierda toman un valor menor y los nodos de la derecha son mayores o iguales que el "padre". El nodo superior se llama raíz y los nodos sin subárboles se llaman hojas .
+
+
+
+Ejemplos
+Eche un vistazo a algunos ejemplos de árboles de búsqueda binarios, observe los valores y las posiciones de los nodos:
+ver imagen
+
+La raíz del árbol tiene el valor '4'. Dado que no hay un subárbol derecho, '4' es el valor más alto. El nodo más a la izquierda tiene el valor más pequeño de '1'.
+
+Los nodos del subárbol derecho pueden tomar un valor igual a su padre.
+
+Cada uno de los subárboles es un árbol de búsqueda binario en sí mismo; siguen el mismo patrón: los valores más pequeños van a la izquierda y los valores iguales / mayores van a la derecha.
+
+El valor de un nodo puede ser de cualquier tipo para el que se defina un operador de comparación: números, caracteres, cadenas u objetos (siempre que tengan un comparador específico). Por ejemplo, aquí hay un árbol de búsqueda binario con cadenas como elementos:
+
+El valor también puede ser un objeto complejo como un usuario, un producto, un resultado de búsqueda, etc.
+
+
+
+
+Operaciones básicas
+Hay tres operaciones básicas en un árbol de búsqueda binaria:
+
+    buscar (clave): comprueba si el árbol contiene la clave especificada
+
+    insertar (clave): agrega un nodo con la clave especificada al árbol.
+
+    eliminar (clave): elimina un nodo con la clave especificada del árbol, si tal nodo existe
+
+En los tres algoritmos de operaciones básicas, comenzamos desde la raíz y, dependiendo del valor del nodo actual, nos movemos hacia abajo en el árbol hacia el subárbol izquierdo o derecho. Echemos un vistazo más de cerca a las operaciones básicas.
+
+
+
+operación  "FIND"
+Si el valor de un nodo coincide con la clave, obtenemos el mensaje de que se encontró el elemento. De lo contrario, dependiendo de si el valor de un nodo es menor o mayor que la clave, nos movemos hacia el subárbol izquierdo o derecho respectivamente y repetimos la acción.
+
+El algoritmo finaliza cuando encontramos el elemento que contiene la clave o llegamos a las hojas del árbol y no encontramos ningún nodo que contenga la clave. La siguiente imagen muestra una búsqueda de un artículo con la tecla "8".
+
+
+operación "INSERT"
+Si la clave es menor que el valor del nodo actual, baje a su subárbol izquierdo; de lo contrario, muévase hacia la derecha. Repetimos esta acción hasta que no podamos bajar más. Si no hay un subárbol al que podamos descender, insertamos aquí un nodo con la clave. La siguiente imagen muestra la inserción del elemento "6".
+
+
+operación "REMOVE"
+Esta operación es un poco más complicada ya que aquí tenemos que considerar varias opciones posibles. Primero, usando la operación de búsqueda, encontramos la posición del elemento que se va a eliminar. Si no existe, no queda nada por hacer. Si es así, hay tres opciones posibles:
+
+    1)si el nodo no tiene hijos , simplemente lo eliminamos;
+
+    2)si el nodo tiene un solo hijo (ya sea a la derecha o a la izquierda), eliminamos el nodo y colocamos su hijo en su lugar;
+
+    3)Si el nodo tiene hijos tanto izquierdo como derecho , mantenga la calma y siga los pasos: primero, identifique el nodo que desea eliminar, luego busque el hijo más a la derecha en su subárbol izquierdo. Ponga su valor en el nodo inicial y elimine el duplicado en la parte inferior utilizando el algoritmo para el primer o el segundo caso. Tenga en cuenta que en su lugar puede utilizar el hijo situado más a la izquierda del subárbol derecho; Cualquiera que sea la opción que elija, mover esos dos nodos no romperá la estructura del árbol.
+
+Observe cómo se elimina el nodo con ambos hijos (esto corresponde a la tercera opción del algoritmo). Supongamos que queremos eliminar el nodo 10: encontramos el nodo más a la derecha en su subárbol izquierdo (que en nuestro caso es el 8), lo colocamos en el lugar del nodo eliminado y finalmente eliminamos el duplicado:
+
+La variedad de opciones posibles puede hacer que la tarea parezca difícil a primera vista, pero todo se aclarará a medida que practique.
+
+Hay operaciones más complejas en un árbol de búsqueda binario como dividir, fusionar, etc., pero su implementación se basa en el uso de tres operaciones básicas: buscar, insertar y eliminar.
+
+Conclusión
+Hemos cubierto las propiedades de los árboles de búsqueda binarios, algunos términos y tres operaciones básicas. Todas estas operaciones tienen una complejidad O(log n) en promedio y O(n) en el peor de los casos. Esto último se puede lograr insertando una secuencia de valores no decrecientes en el árbol. En este caso, el árbol se convertirá en una lista lineal y todas las operaciones en este árbol funcionarán para O(n) . Para lograr una complejidad O(log n) en el peor de los casos, debe mantener el equilibrio del árbol. Aprenderá cómo hacer esto en lecciones futuras.

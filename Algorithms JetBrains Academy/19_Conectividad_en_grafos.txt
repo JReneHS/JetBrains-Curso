@@ -28,10 +28,10 @@ Un grafo G se llama conectado si consta de un solo componente conectado. Como pu
 grafos dirigidos: conectividad débil
 En cuanto a los grafos dirigidos, el concepto de conectividad es un poco más complejo que el de los no dirigidos. Hay dos tipos diferentes de conectividad para grafos dirigidos: débil y fuerte .
 
-Un grafo dirigido está débilmente conectado si existe una ruta no dirigida entre cada par de nodos del grafo. En otras palabras, si transformamos un grafo dirigido en uno no dirigido eliminando la dirección de cada borde y obtenemos un grafo conectado, entonces el grafo dirigido está débilmente conectado. Consideremos el siguiente ejemplo: ver imagen
+Un grafo dirigido está débilmente conectado si existe una ruta no dirigida entre cada par de nodos del grafo. En otras palabras, si transformamos un grafo dirigido en uno no dirigido eliminando la dirección de cada arista y obtenemos un grafo conectado, entonces el grafo dirigido está débilmente conectado. Consideremos el siguiente ejemplo: ver imagen
 
 
-Si quitamos la dirección de cada borde del grafo G_1 obtendremos un grafo no dirigido conectado G_2 . Por lo tanto,G_1 está débilmente conectado.
+Si quitamos la dirección de cada arista del grafo G_1 obtendremos un grafo no dirigido conectado G_2 . Por lo tanto,G_1 está débilmente conectado.
 
 
 
@@ -41,7 +41,7 @@ Un grafo dirigido está fuertemente conectado si existe una ruta dirigida entre 
 Un subgrafo de un grafo dirigido es un componente fuertemente conectado (en breve, SCC) si:
 
     *existe una ruta dirigida entre cada par de nodos en este subgrafo;
-    *no se pueden agregar otros nodos o bordes a este subgrafo sin romper su propiedad de estar fuertemente conectado.
+    *no se pueden agregar otros nodos o aristas a este subgrafo sin romper su propiedad de estar fuertemente conectado.
 
 La gráfica G_1 , por ejemplo, consta de dos componentes fuertemente conectados: ver imagen
 

@@ -1,26 +1,26 @@
-Demostramos que los gráficos brindan un enfoque visual para representar y resolver una variedad de problemas, aunque los problemas particularmente grandes pueden ser muy difíciles de resolver manualmente. Afortunadamente, su computadora puede ayudar si presenta su problema como un gráfico en la memoria de la computadora e implementa un algoritmo específico para resolverlo. Pero, ¿cómo se puede presentar esto en la memoria de la computadora?
+Demostramos que los grafos brindan un enfoque visual para representar y resolver una variedad de problemas, aunque los problemas particularmente grandes pueden ser muy difíciles de resolver manualmente. Afortunadamente, su computadora puede ayudar si presenta su problema como un grafo en la memoria de la computadora e implementa un algoritmo específico para resolverlo. Pero, ¿cómo se puede presentar esto en la memoria de la computadora?
 
 Matriz de adyacencia
-La primera forma se conoce como matriz de adyacencia . Esta es una matriz en la que cada entrada indica si existe un borde particular en el gráfico. Veamos un ejemplo específico. Digamos que tenemos un gráfico como este:
+La primera forma se conoce como matriz de adyacencia . Esta es una matriz en la que cada entrada indica si existe un arista particular en el grafo. Veamos un ejemplo específico. Digamos que tenemos un grafo como este:
 ver imagenes
 
-El valor 1 en una celda significa que el borde existe en el gráfico, mientras que 00significa que no existe tal ventaja. Esta matriz te permite comprobar si un nodo está conectado a otro en tiempo constante O(1).
+El valor 1 en una celda significa que el arista existe en el grafo, mientras que 00significa que no existe tal ventaja. Esta matriz te permite comprobar si un nodo está conectado a otro en tiempo constante O(1).
 
-Para gráficos no dirigidos, la matriz de adyacencia es siempre simétrica: A [i, j] = A [j, i]. Como no permitimos bordes de un nodo a sí mismo, los elementos diagonales A [yo, yo] son todos ceros, pero es posible en el caso común. La matriz de adyacencia para gráficos dirigidos no es simétrica.
+Para grafos no dirigidos, la matriz de adyacencia es siempre simétrica: A [i, j] = A [j, i]. Como no permitimos aristas de un nodo a sí mismo, los elementos diagonales A [yo, yo] son todos ceros, pero es posible en el caso común. La matriz de adyacencia para grafos dirigidos no es simétrica.
 
-Cuando tenemos una matriz de adyacencia, podemos decidir si dos nodos están conectados por un borde con solo mirar la ranura apropiada en la matriz. También podemos listar todos los vecinos de un nodo escaneando la fila (o columna) correspondiente.
+Cuando tenemos una matriz de adyacencia, podemos decidir si dos nodos están conectados por un arista con solo mirar la ranura apropiada en la matriz. También podemos listar todos los vecinos de un nodo escaneando la fila (o columna) correspondiente.
 
-La representación gráfica en forma de matriz de adyacencia necesita O (V^2) memoria donde V es una serie de nodos en la memoria de la computadora. Esta representación es especialmente adecuada para gráficos en los que el número de bordes está cerca del máximo ( gráficos densos ).
+La representación gráfica en forma de matriz de adyacencia necesita O (V^2) memoria donde V es una serie de nodos en la memoria de la computadora. Esta representación es especialmente adecuada para grafos en los que el número de aristas está cerca del máximo ( grafos densos ).
 
 Listas de adyacencia
-Otra forma común de representar un gráfico en la memoria de la computadora son las listas de adyacencia donde cada lista almacena los vecinos del nodo correspondiente.
+Otra forma común de representar un grafo en la memoria de la computadora son las listas de adyacencia donde cada lista almacena los vecinos del nodo correspondiente.
 
-Para gráficos no dirigidos, cada borde se almacena dos veces (como 'a' → 'b' y 'b →' a 'en el ejemplo superior). Para gráficos dirigidos, cada borde se almacena solo una vez; si la dirección en nuestro gráfico inicial (ver imagen superior) fuera de 'b' a 'a', entonces la primera lista de adyacencia sería 'a' → 'c'.
+Para grafos no dirigidos, cada arista se almacena dos veces (como 'a' → 'b' y 'b →' a 'en el ejemplo superior). Para grafos dirigidos, cada arista se almacena solo una vez; si la dirección en nuestro grafo inicial (ver imagen superior) fuera de 'b' a 'a', entonces la primera lista de adyacencia sería 'a' → 'c'.
 
-La representación gráfica en forma de una lista de adyacencia necesita O(V + E) memoria del ordenador. Es más eficaz que la matriz de adyacencia para gráficos dispersos en los que el número de aristas es mucho menor que el número de nodos en el cuadrado (E << V^2).
+La representación gráfica en forma de una lista de adyacencia necesita O(V + E) memoria del ordenador. Es más eficaz que la matriz de adyacencia para grafos dispersos en los que el número de aristas es mucho menor que el número de nodos en el cuadrado (E << V^2).
 
 Sin embargo, esta representación tiene un inconveniente que puede resultar grave en algunos tipos de problemas. No podemos comprobar si un nodo está conectado a otro sin pasar por los elementos de una lista de adyacencia. Esto es mucho más difícil que simplemente usar la matriz de adyacencia.
 
 
 Otras representaciones
-Consideramos dos formas comunes de representar un gráfico en la memoria de la computadora, pero hay más opciones. El más simple es una lista de todas las aristas en un gráfico: 'a' → 'b', 'a' → 'c', 'b' → 'c', y así sucesivamente. Algunos problemas también pueden necesitar una representación gráfica más específica para mayor eficiencia.
+Consideramos dos formas comunes de representar un grafo en la memoria de la computadora, pero hay más opciones. El más simple es una lista de todas las aristas en un grafo: 'a' → 'b', 'a' → 'c', 'b' → 'c', y así sucesivamente. Algunos problemas también pueden necesitar una representación gráfica más específica para mayor eficiencia.

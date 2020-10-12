@@ -1,6 +1,6 @@
 Muchos problemas de la vida real pueden describirse de forma natural y concisa como una colección de objetos y vínculos entre ellos. Esta representación se conoce como grafo. Un grafo puede considerarse como un conjunto de objetos (generalmente denominados nodos o vértices) y enlaces (aristas) que conectan estos objetos entre sí.
 
-A pair of two sets: a set of vertices (nodes) and edges, that show how the nodes are connected with each other.
+A pair of two sets: a set of vertices (nodos) and edges, that show how the nodos are connected with each other.
 
 Por ejemplo, considere el problema de colorear un mapa político. Aquí, debemos asignar un color a cada país teniendo en cuenta una restricción obvia: dos vecinos deben tener colores diferentes. Para deshacernos de los detalles innecesarios de un mapa, podemos representar a cada país como un nodo y conectar dos países con un enlace si son vecinos.
 

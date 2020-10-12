@@ -32,11 +32,11 @@ Primero, elegimos un nodo arbitrario para comenzar. Para el grafo dado, este nod
 
 En el quinto paso, nuevamente tenemos un solo nodo al que pasar. Llamamos recursivamente DFS para el nodo 5 y pasar al siguiente paso.
 
-Una cosa importante aquí es que los nodos y bordes azules forman un árbol. Dicho árbol se denomina árbol de expansión porque conecta (abarca) todos los nodos del grafo. En este punto, una de las aplicaciones del procedimiento de búsqueda en profundidad es la construcción de un árbol de expansión en un grafo.
+Una cosa importante aquí es que los nodos y aristas azules forman un árbol. Dicho árbol se denomina árbol de expansión porque conecta (abarca) todos los nodos del grafo. En este punto, una de las aplicaciones del procedimiento de búsqueda en profundidad es la construcción de un árbol de expansión en un grafo.
 
-Otra aplicación interesante de DFS es el recorrido por laberintos. Un laberinto se puede representar como un grafo no dirigido con los bordes correspondientes a los caminos del laberinto y los nodos correspondientes a sus intersecciones. Para comprender mejor cómo funciona exactamente, eche un vistazo a este video. Además, puede consultar una visualización de DFS para grafos arbitrarios.
+Otra aplicación interesante de DFS es el recorrido por laberintos. Un laberinto se puede representar como un grafo no dirigido con los aristas correspondientes a los caminos del laberinto y los nodos correspondientes a sus intersecciones. Para comprender mejor cómo funciona exactamente, eche un vistazo a este video. Además, puede consultar una visualización de DFS para grafos arbitrarios.
 
 Aunque proporcionamos la descripción del algoritmo solo para grafos no dirigidos, funciona exactamente de la misma manera para los dirigidos.
 
 Análisis de complejidad
-Al aplicar el procedimiento DFS para un grafo G = (V, E), visitamos cada nodo del grafo exactamente una vez. Cada borde {x, y} se considera exactamente dos veces: durante la visita X y luego mientras visitaba y (o viceversa). Por lo tanto, el tiempo de ejecución total del algoritmo es |V| + 2*|E|, es decir O (| V | + | E |).
+Al aplicar el procedimiento DFS para un grafo G = (V, E), visitamos cada nodo del grafo exactamente una vez. Cada arista {x, y} se considera exactamente dos veces: durante la visita X y luego mientras visitaba y (o viceversa). Por lo tanto, el tiempo de ejecución total del algoritmo es |V| + 2*|E|, es decir O (| V | + | E |).

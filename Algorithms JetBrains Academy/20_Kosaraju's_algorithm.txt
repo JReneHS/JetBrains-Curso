@@ -1,20 +1,20 @@
 Kosaraju's algorithm
 
-Ya aprendimos sobre la conectividad en gráficos dirigidos y, en particular, discutimos qué es un componente fuertemente conectado. También consideramos algunos ejemplos simples de gráficos y encontramos manualmente componentes fuertemente conectados para ellos. Sin embargo, en aplicaciones reales, los gráficos suelen ser enormes y se representan en el formato de una matriz de adyacencia o una lista de adyacencia. Para encontrar componentes fuertemente conectados en tales casos, necesitamos utilizar enfoques más sofisticados. En este tema, discutiremos el algoritmo de Kosaraju, un posible algoritmo para encontrar componentes fuertemente conectados en gráficos dirigidos.
+Ya aprendimos sobre la conectividad en grafos dirigidos y, en particular, discutimos qué es un componente fuertemente conectado. También consideramos algunos ejemplos simples de grafos y encontramos manualmente componentes fuertemente conectados para ellos. Sin embargo, en aplicaciones reales, los grafos suelen ser enormes y se representan en el formato de una matriz de adyacencia o una lista de adyacencia. Para encontrar componentes fuertemente conectados en tales casos, necesitamos utilizar enfoques más sofisticados. En este tema, discutiremos el algoritmo de Kosaraju, un posible algoritmo para encontrar componentes fuertemente conectados en grafos dirigidos.
 
 
 El algoritmo de Kosaraju
-El algoritmo de Kosaraju consta de dos series de DFS y una transformación gráfica simple entre ellas. Veremos cómo funciona paso a paso utilizando como ejemplo el siguiente gráfico dirigido: ver imagen
+El algoritmo de Kosaraju consta de dos series de DFS y una transformación gráfica simple entre ellas. Veremos cómo funciona paso a paso utilizando como ejemplo el siguiente grafo dirigido: ver imagen
 
 El primer paso es ejecutar DFS y ahorrar tiempo de salida para cada nodo. Después de hacer eso comenzando con el nodo 0, obtendremos lo siguiente: ver imagen
 
-Aquí, los bordes azules corresponden al árbol de expansión DFS, y los números en los rectángulos muestran el tiempo de salida para cada nodo. Por ejemplo, nodo 2 fue el primer nodo que DFS terminó el procesamiento, nodo 6 fue el segundo, y el nodo 0 Fué el último.
+Aquí, los aristas azules corresponden al árbol de expansión DFS, y los números en los rectángulos muestran el tiempo de salida para cada nodo. Por ejemplo, nodo 2 fue el primer nodo que DFS terminó el procesamiento, nodo 6 fue el segundo, y el nodo 0 Fué el último.
 
 
 ¿Por qué tiempos de salida?
 Antes de continuar, analicemos una propiedad importante de los tiempos de salida.
 
-Asumir que C_1 y C_2 son dos componentes fuertemente conectados en un gráfico dirigido. Suponga también que hay un borde de algún nodo de C_1 a algún nodo de C_2. Denotaremos este borde como(C_1, C_2). Suponga que aplicamos DFS para el gráfico y calculamos los tiempos de salida para sus nodos. Sea Tout_1 ser el tiempo de salida máximo entre todos los nodos de C_1 y Tout_2 ser el mismo para C_2. Resulta que Tout_1> Tout_2.
+Asumir que C_1 y C_2 son dos componentes fuertemente conectados en un grafo dirigido. Suponga también que hay un arista de algún nodo de C_1 a algún nodo de C_2. Denotaremos este arista como(C_1, C_2). Suponga que aplicamos DFS para el grafo y calculamos los tiempos de salida para sus nodos. Sea Tout_1 ser el tiempo de salida máximo entre todos los nodos de C_1 y Tout_2 ser el mismo para C_2. Resulta que Tout_1> Tout_2.
 
 Para entender por qué la propiedad siempre se mantiene, consideremos dos formas posibles de visitar los nodos de estos componentes al aplicar DFS.
 
@@ -24,31 +24,31 @@ Para entender por qué la propiedad siempre se mantiene, consideremos dos formas
 
 Resumiendo, si hay una ventaja (C_1, C_2) entre dos componentes fuertemente conectados, luego de aplicar DFS, siempre obtendremos Tout_1 > Tout_2.
 
-Esta propiedad nos da una pista sobre qué tan fuertemente conectados se pueden encontrar los componentes. Es decir, consideremos el nodo con el tiempo de salida máximo. Según la propiedad descrita, este nodo pertenece a un componente raíz: uno que no tiene bordes entrantes de otros componentes. Lo que nos gustaría hacer a continuación es iniciar DFS desde este nodo y visitar solo los nodos del componente raíz. Después de eso, podemos aplicar DFS para el siguiente nodo no visitado con el tiempo de salida máximo y encontrar el siguiente componente y así sucesivamente hasta que se encuentren todos los componentes.
+Esta propiedad nos da una pista sobre qué tan fuertemente conectados se pueden encontrar los componentes. Es decir, consideremos el nodo con el tiempo de salida máximo. Según la propiedad descrita, este nodo pertenece a un componente raíz: uno que no tiene aristas entrantes de otros componentes. Lo que nos gustaría hacer a continuación es iniciar DFS desde este nodo y visitar solo los nodos del componente raíz. Después de eso, podemos aplicar DFS para el siguiente nodo no visitado con el tiempo de salida máximo y encontrar el siguiente componente y así sucesivamente hasta que se encuentren todos los componentes.
 
-La estructura que nos ayudará a realizar tal recorrido es un gráfico transpuesto : un gráfico con todas las direcciones de los bordes invertidas. En tal gráfico, un componente raíz no tiene bordes salientes. Así, si aplicamos DFS para el nodo con el tiempo de salida máximo, visitaremos solo los nodos de este componente. Luego, podemos continuar aplicando DFS desde el siguiente nodo no visitado con el tiempo de salida máximo y encontrar el siguiente componente. Continuando con el mismo procedimiento, finalmente encontraremos todos los componentes del gráfico fuertemente conectados.
+La estructura que nos ayudará a realizar tal recorrido es un grafo transpuesto : un grafo con todas las direcciones de los aristas invertidas. En tal grafo, un componente raíz no tiene aristas salientes. Así, si aplicamos DFS para el nodo con el tiempo de salida máximo, visitaremos solo los nodos de este componente. Luego, podemos continuar aplicando DFS desde el siguiente nodo no visitado con el tiempo de salida máximo y encontrar el siguiente componente. Continuando con el mismo procedimiento, finalmente encontraremos todos los componentes del grafo fuertemente conectados.
 
 
 
-Aplicar DFS para un gráfico transpuesto
-Ahora, veamos cómo funcionan las ideas descritas para nuestro gráfico. Aquí está su versión transpuesta: ver imagen
+Aplicar DFS para un grafo transpuesto
+Ahora, veamos cómo funcionan las ideas descritas para nuestro grafo. Aquí está su versión transpuesta: ver imagen
 
-Primero, necesitamos aplicar DFS comenzando con el nodo 00ya que tiene el mayor tiempo de salida. A continuación se muestra un gráfico después de que se completa la primera iteración DFS:
+Primero, necesitamos aplicar DFS comenzando con el nodo 00ya que tiene el mayor tiempo de salida. A continuación se muestra un grafo después de que se completa la primera iteración DFS:
 
 Como puede ver, el único nodo visitado después de esta iteración es 0. Por lo tanto, el primer componente fuertemente conectado incluye solo un nodo. El siguiente nodo a procesar de acuerdo con los tiempos de salida es 1. Después de aplicar DFS para este nodo, obtenemos lo siguiente: ver imagen
 
 El componente conectado encontrado consta de 3 nodos, 1, 3 y 2, mostrado en verde. En el siguiente paso, aplicamos DFS para el nodo 4: ver imagen
 
-Los nodos que se muestran en rojo corresponden al componente fuertemente conectado encontrado. Después de este paso, el algoritmo finaliza ya que se procesan todos los nodos. El gráfico transpuesto consta de tres componentes fuertemente conectados, así como el inicial.
+Los nodos que se muestran en rojo corresponden al componente fuertemente conectado encontrado. Después de este paso, el algoritmo finaliza ya que se procesan todos los nodos. El grafo transpuesto consta de tres componentes fuertemente conectados, así como el inicial.
 
 
 Análisis de complejidad
-Para un gráfico GRAMOGRAMO que consiste en nortenorte nodos y metrometro bordes, el algoritmo realiza DFS dos veces, por lo que tiene O (n + m) complejidad del tiempo.
+Para un grafo GRAMOGRAMO que consiste en nortenorte nodos y metrometro aristas, el algoritmo realiza DFS dos veces, por lo que tiene O (n + m) complejidad del tiempo.
 
 
 
 Conclusión
-En resumen, los pasos del algoritmo de Kosaraju para un gráfico G son:
+En resumen, los pasos del algoritmo de Kosaraju para un grafo G son:
 
     1) Ejecute DFS para G y ahorre tiempo de salida para cada nodo.
 
@@ -58,6 +58,6 @@ En resumen, los pasos del algoritmo de Kosaraju para un gráfico G son:
 
     4) Cuando DFS finalice la iteración actual, guarde los nodos visitados durante la iteración como un componente fuertemente conectado.
 
-    5) Repita los pasos 3 a 4 hasta que el gráfico no contenga nodos no visitados.
+    5) Repita los pasos 3 a 4 hasta que el grafo no contenga nodos no visitados.
 
 Si desea ver otro ejemplo de cómo funciona el algoritmo, eche un vistazo a una visualización (elija Algoritmo SCC -> Algoritmo de Kosaraju en el panel de la esquina inferior izquierda). https://visualgo.net/en/dfsbfs?slide=1

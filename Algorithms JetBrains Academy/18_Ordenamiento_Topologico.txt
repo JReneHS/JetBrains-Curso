@@ -3,9 +3,9 @@ Topological sort
 Muchos tipos de información se pueden modelar naturalmente como grafos acíclicos dirigidos (DAG). Por ejemplo, el mapa de conocimientos sobre Hyperskill se representa como DAG. O un árbol genealógico también se puede considerar como DAG. Otro uso clásico de DAG es la programación de trabajos. Considere el siguiente ejemplo: ver imagen
 
 
-Cada nodo de ese grafo corresponde a un determinado trabajo. Cada borde(u, v) significa ese trabajo v depende del trabajo u. En otras palabras, el trabajo v se puede iniciar solo después de que el trabajo u está terminado. El desafío aquí es representar los trabajos en el orden que permita completarlos uno tras otro teniendo en cuenta sus dependencias. Tal representación se llama clasificación topológica .
+Cada nodo de ese grafo corresponde a un determinado trabajo. Cada arista (u, v) significa ese trabajo v depende del trabajo u. En otras palabras, el trabajo v se puede iniciar solo después de que el trabajo u está terminado. El desafío aquí es representar los trabajos en el orden que permita completarlos uno tras otro teniendo en cuenta sus dependencias. Tal representación se llama clasificación topológica .
 
-De una manera más formal, para un grafo acíclico dirigido G = (V,E), la clasificación topológica de V es un orden de nodos tal que para cada borde (u, v) ∈ mi el nodo u viene antes del nodo v. A continuación se muestra una posible clasificación topológica para el grafo anterior: ver imagen
+De una manera más formal, para un grafo acíclico dirigido G = (V,E), la clasificación topológica de V es un orden de nodos tal que para cada arista (u, v) ∈ mi el nodo u viene antes del nodo v. A continuación se muestra una posible clasificación topológica para el grafo anterior: ver imagen
 
 Para un ejemplo tan simple, es fácil ver cómo se pueden ordenar los nodos con solo mirar el grafo. Pero, ¿qué pasa con los grafos enormes almacenados en la memoria de la computadora como matrices de adyacencia o listas de adyacencia? En este tema, aprenderemos sobre un algoritmo que permite realizar una clasificación topológica para DAG arbitrarios. Como resultado, podrá implementar y aplicar el algoritmo usted mismo.
 
