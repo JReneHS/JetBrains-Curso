@@ -6,7 +6,7 @@ Ya aprendimos sobre la conectividad en gráficos dirigidos y, en particular, dis
 El algoritmo de Kosaraju
 El algoritmo de Kosaraju consta de dos series de DFS y una transformación gráfica simple entre ellas. Veremos cómo funciona paso a paso utilizando como ejemplo el siguiente gráfico dirigido: ver imagen
 
-El primer paso es ejecutar DFS y ahorrar tiempo de salida para cada nodo. Después de hacer eso comenzando con el nodo00, obtendremos lo siguiente: ver imagen
+El primer paso es ejecutar DFS y ahorrar tiempo de salida para cada nodo. Después de hacer eso comenzando con el nodo 0, obtendremos lo siguiente: ver imagen
 
 Aquí, los bordes azules corresponden al árbol de expansión DFS, y los números en los rectángulos muestran el tiempo de salida para cada nodo. Por ejemplo, nodo 2 fue el primer nodo que DFS terminó el procesamiento, nodo 6 fue el segundo, y el nodo 0 Fué el último.
 
@@ -14,13 +14,13 @@ Aquí, los bordes azules corresponden al árbol de expansión DFS, y los número
 ¿Por qué tiempos de salida?
 Antes de continuar, analicemos una propiedad importante de los tiempos de salida.
 
-Asumir que C_1 y C_2 son dos componentes fuertemente conectados en un gráfico dirigido. Suponga también que hay un borde de algún nodo de C_1 a algún nodo de C_2. Denotaremos este borde como(C_1, C_2). Suponga que aplicamos DFS para el gráfico y calculamos los tiempos de salida para sus nodos. Sea Tout_1 ser el tiempo de salida máximo entre todos los nodos de C_1 y Toit_2 ser el mismo para C_2. Resulta que Tout_1> Tout_2.
+Asumir que C_1 y C_2 son dos componentes fuertemente conectados en un gráfico dirigido. Suponga también que hay un borde de algún nodo de C_1 a algún nodo de C_2. Denotaremos este borde como(C_1, C_2). Suponga que aplicamos DFS para el gráfico y calculamos los tiempos de salida para sus nodos. Sea Tout_1 ser el tiempo de salida máximo entre todos los nodos de C_1 y Tout_2 ser el mismo para C_2. Resulta que Tout_1> Tout_2.
 
 Para entender por qué la propiedad siempre se mantiene, consideremos dos formas posibles de visitar los nodos de estos componentes al aplicar DFS.
 
-    1. Comenzamos a procesar algún nodo deC_2 primero. Dado que no hay ninguna ventajaC_2 a C_1, primero consideramos todos los nodos de C_2 y solo entonces todos los nodos de C_1. Así, el último nodo deC_1 será procesado después del último nodo de C_2 y por lo tanto Tout_1 será mayor que Tout_2.
+    1. Comenzamos a procesar algún nodo de C_2 primero. Dado que no hay ninguna ventaja C_2 a C_1, primero consideramos todos los nodos de C_2 y solo entonces todos los nodos de C_1. Así, el último nodo de C_1 será procesado después del último nodo de C_2 y por lo tanto Tout_1 será mayor que Tout_2.
 
-    2. Empezamos a procesar algún nodo deC_1 primero. Entonces, dado que hay una ventaja deC_1 a C_2, comenzaremos visitando los nodos de C_2 en algún momento. Después de visitar todos los nodos deC_2, volveremos a C_1 y continuar procesando sus nodos restantes. Así, en este caso, el último nodo deC_1 será procesado después del último nodo de C_2 también.
+    2. Empezamos a procesar algún nodo de C_1 primero. Entonces, dado que hay una ventaja de C_1 a C_2, comenzaremos visitando los nodos de C_2 en algún momento. Después de visitar todos los nodos de C_2, volveremos a C_1 y continuar procesando sus nodos restantes. Así, en este caso, el último nodo de C_1 será procesado después del último nodo de C_2 también.
 
 Resumiendo, si hay una ventaja (C_1, C_2) entre dos componentes fuertemente conectados, luego de aplicar DFS, siempre obtendremos Tout_1 > Tout_2.
 
