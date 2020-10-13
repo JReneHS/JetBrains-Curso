@@ -1,0 +1,37 @@
+algoritmo de Kruskal
+
+El algoritmo de Kruskal permite encontrar el árbol de expansión mínimo en un grafo ponderado no dirigido conectado. El algoritmo comienza con un árbol de expansión vacío y agrega repetidamente un arista con el peso más pequeño que no produce un ciclo en el árbol actual. Entonces, es un algoritmo codicioso: en cada paso, se selecciona un arista que brinda la mejor ventaja posible.
+
+
+Un ejemplo
+Veamos cómo funciona el algoritmo para el siguiente grafo: ver imagen
+
+Los pesos de los aristas van desde 1 a 5, por lo que comenzaremos a considerar aquellos cuyo peso es 1. Hay 5 de esos aristas: {0,1} ,{1,3} ,{2,3} ,{4,7} y {8,11}. Si comenzamos a incluir repetidamente estos aristas en el árbol de expansión actual, ninguno producirá un ciclo. Por lo tanto, todos ellos deben agregarse al árbol de expansión: ver imagen
+
+A continuación, debemos considerar todos los aristas cuyo peso es 2. Estos son { 0 ,2 } ,{ 8 ,9 } y { 9 ,1 2 } Si incluimos el arista { 0 ,2 }al árbol de expansión actual, producirá un ciclo, por lo que no se puede utilizar. El arista restante no dará un ciclo, por lo que los agregaremos al árbol de expansión actual: ver imagen
+
+Luego, intentaremos sumar los aristas con el peso de 3 en el siguiente orden: { 3 ,4 } ,{ 6 ,7 } ,{ 3 ,6 } ,{ 6 ,10 } ,{ 1 2 ,13 } y { 11 ,12 }. Los dos primeros aristas se pueden agregar al árbol de expansión actual. Pero después de eso, el arista { 3 ,6 }no se puede utilizar, ya que produce un ciclo. Entonces los aristas { 6 ,1 0 } y { 12 ,13 } también se puede agregar con éxito, pero el arista { 11 ,12 } no puede, porque da un ciclo. Una vez procesados ​​todos estos aristas, obtendremos lo siguiente: ver imagen
+
+Los aristas con el peso de 4 son { 2 ,5 } ,{ 5 ,6 } y { 9 ,10 }. El primer arista se puede agregar al árbol de expansión actual ya que no produce un ciclo. El segundo no se puede usar porque da un ciclo 2-5-6-7-4-3-2. El último no da un ciclo, así que lo agregaremos al árbol. Finalmente, obtendremos lo siguiente: ver imagen
+
+
+
+Dado que no hay aristas que se puedan agregar al árbol de expansión actual, hemos terminado. El árbol de expansión mínimo consta de131 3 aristas y tiene el peso 1 + 1 + 1 + 1 + 1 + 2 + 2 + 3 + 3 + 3+ 3 + 4 + 4 = 29 
+
+Resumen
+En resumen, el algoritmo de Kruskal construye un árbol de expansión mínimo en un grafo ponderado no dirigido conectado utilizando un enfoque codicioso. Los pasos del algoritmo son:
+
+Ordene todos los aristas de un grafo por peso en orden creciente.
+Comience con un árbol de expansión vacío.
+Considere sucesivamente los aristas ordenados. Si la arista actual no produce un ciclo, agréguela al árbol de expansión. De lo contrario, pase al siguiente arista.
+Repita el paso 3 hasta que se procesen todos los aristas. Luego devuelva el árbol de expansión mínimo resultante.
+
+
+
+
+El análisis de complejidad
+Suponga que una gráfica G tiene nortenorte nodos y m aristas. Luego, para encontrar un árbol de expansión mínimo en G , primero debemos ordenar todos los aristas de G , que requiere O(m*log m) operaciones. A continuación, comenzando con un árbol de expansión vacío, debemos considerar los aristas ordenados y agregar repetidamente uno que no produzca un ciclo en el árbol actual. Para el ejemplo anterior, verificamos si un arista produce un ciclo simplemente mirando el grafo. Pero al implementar el algoritmo usando un lenguaje de programación, es necesario usar alguna estructura de datos para ello. Ahora necesitamos ir a más detalles de implementación para completar el análisis.
+
+Para comprobar si agregar un arista produce un ciclo, podemos almacenar una matriz A de tamaño nortenorte dónde A[ i ] es el id de un componente el nodo i pertenece a. Inicialmente, todos los nodos pertenecen a diferentes componentes (por ejemplo,A [i] = i). Cuando queremos agregar una arista { i ,j } al árbol de expansión actual, podemos verificar si los nodos están en componentes diferentes comparando sus identificadores A[ i ] y A[ j ]. Después de agregar un nuevo arista, necesitamos actualizar la matriz A. Por ejemplo, si A [i] = a y A [j] = b podemos iterar a través de la matriz y sustituir todos segundosegundo por A uniendo así componentes.
+
+Dado que cualquier árbol de expansión en G contiene n-1 aristas, el número total de actualizaciones no es más que n*(n-1) = O(n^2) y por lo tanto el tiempo total de ejecución es O(m log m + n ^ 2) . Sin embargo, para almacenar y unir componentes, se puede usar una estructura de datos más sofisticada llamada conjunto disjunto, que puede disminuir el tiempo de ejecución para O(m log m).

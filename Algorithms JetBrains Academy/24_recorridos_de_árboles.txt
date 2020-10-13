@@ -1,0 +1,45 @@
+recorridos de árboles
+
+Los gráficos generalmente se almacenan en la memoria de la computadora como una matriz de adyacencia o una lista de adyacencia. Junto con los dos, existe otra forma de representar gráficos que se adapta mejor a los árboles enraizados. Dado que cada nodo de un árbol enraizado mantiene los enlaces a sus hijos, es suficiente almacenar solo un enlace a la raíz para tener acceso a todos los nodos del árbol. Para poder procesar un árbol enraizado representado en el formato descrito, necesitamos una forma de atravesar todos sus nodos.
+
+Existen cuatro formas de atravesar un árbol enraizado llamadas recorridos por pedido anticipado , en orden , posterior a pedido y por orden de nivel . En este tema aprenderemos cada uno de ellos y veremos cómo funcionan con el ejemplo. Usaremos el siguiente árbol binario enraizado para aplicar los recorridos: ver imagen
+
+
+
+El recorrido de la reserva (Pre-Order)
+
+En el recorrido de pre-orden , primero visitamos el nodo actual, luego, visitamos recursivamente al hijo izquierdo (si existe), y después de eso, visitamos al hijo derecho (si existe). Las siguientes figuras ilustran cómo funciona el recorrido para el árbol de arriba: ver imagen
+
+Comenzamos el recorrido con la raíz del árbol. Primero, marcamos la raíz 1 como visitado y luego pasar a su hijo izquierdo 2. A continuación, marcamos el nodo 2 como visitado y pasar a su hijo izquierdo 4. Dado que el nodo 4 es una hoja, detenemos las llamadas recursivas aquí y regresamos al nodo visitado anteriormente 2. A continuación, visitamos a su hijo adecuado 5. Después de aplicar los mismos pasos para los nodos restantes, tendremos los nodos visitados en el siguiente orden: 1 2 4 5 3.
+
+
+
+El recorrido en orden (In-Order)
+En el recorrido en orden , primero visitamos el hijo izquierdo del nodo actual (si existe), luego, visitamos el nodo actual, después de eso, visitamos el hijo derecho del nodo actual (si existe). Veamos cómo funciona para el gráfico anterior: ver imagen
+
+Comenzamos el recorrido con la raíz del árbol. La etiqueta de la raíz no se muestra, lo que indica que el nodo aún no se ha procesado. A continuación, visitamos al hijo izquierdo de la raíz. Dado que el hijo también tiene el hijo izquierdo, aplicamos el mismo procedimiento para él. Después de eso, llegamos al nodo 4 y como es una hoja, la marcamos como visitada y regresamos a su nodo padre. A continuación, marcamos el nodo actual 2 como visitado y comience a procesar el hijo correcto del árbol.
+
+Habiendo aplicado los mismos pasos para los nodos restantes, tendremos los nodos del árbol atravesados ​​en el siguiente orden: 4 2 5 1 3.
+
+
+
+Recorrido posterior (Post-Order)
+
+En el recorrido posterior al orden , primero visitamos el hijo izquierdo del nodo actual (si existe), después de eso, visitamos el hijo derecho del nodo actual (si existe), y luego, visitamos el nodo actual. Para el árbol anterior, funciona de la siguiente manera: ver imagen
+
+Comenzamos el recorrido con la raíz del árbol. La etiqueta de la raíz no se muestra, lo que indica que el nodo aún no se ha procesado. A continuación, visitamos el hijo izquierdo del nodo actual. Después de eso, aplicamos lo mismo para ese hijo y llegamos al nodo 4. Dado que el nodo 4 es una hoja, la marcamos como visitada y la movemos a su nodo padre. Después de eso, visitamos al hijo derecho del nodo actual. El hijo correcto es una hoja, marcamos el nodo como visitado y nuevamente volvemos al padre.
+
+Dado que se visitan tanto el hijo izquierdo como el derecho del nodo actual, podemos marcar el nodo como visitado. Después de aplicar los mismos pasos para los nodos restantes, los tendremos recorridos en el siguiente orden: 4 5 2 3 1.
+
+
+
+
+Cruce de orden de nivel (Level-Order)
+En el recorrido por orden de nivel , visitamos los nodos de un árbol nivel por nivel . Primero visitamos la raíz, luego visitamos todos los nodos que están a una distancia de uno de la raíz, luego visitamos los nodos que están a una distancia de dos de la raíz y así sucesivamente. Veamos cómo funciona con un ejemplo: ver imagen
+
+Primero, visitamos la raíz 1 del árbol. A continuación, la visita a los nodos 2, y entonces 3, ya que están a una distancia de uno de la raíz. Después de eso, visitamos el nodo 4 y 5, ya que están a una distancia de dos de la raíz. Tenga en cuenta que los nodos que pertenecen a un nivel se visitan de izquierda a derecha. Finalmente, tenemos los nodos atravesados ​​en el siguiente orden: 1 2 3 4 5.
+
+
+
+Resumen
+En este tema, aprendimos algoritmos básicos de recorridos de árboles: recorridos de orden anticipado, en orden, posterior y de orden de nivel. Cada uno de estos recorridos se puede utilizar para resolver diferentes problemas. Por ejemplo, si desea acceder a todos los elementos de un árbol de búsqueda binario en el orden ordenado, puede utilizar el recorrido en orden. Si desea eliminar algún subárbol de un árbol, puede ejecutar el recorrido posterior a la orden desde la raíz del subárbol para eliminar los hijos primero y luego la raíz misma. Existen otros problemas que pueden requerir diferentes enfoques. Si se encuentra con uno similar, solo piense qué tipo de recorridos se ajusta mejor y aplíquelo.

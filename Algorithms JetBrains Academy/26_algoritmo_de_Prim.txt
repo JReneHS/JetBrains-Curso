@@ -1,0 +1,41 @@
+el algoritmo de Prim
+
+
+El algoritmo de Prim permite encontrar un árbol de expansión mínimo en un grafo ponderado conectado no dirigido. El algoritmo comienza a construir un árbol con un solo nodo. En cada paso, considera todos los aristas {x,y} tal que X es un nodo del árbol actual y Y no es. Entre todos esos aristas, el que tiene el menor peso se agrega al árbol actual. Entonces, el algoritmo es codicioso : en cada paso, se selecciona una arista que brinde la mejor ventaja posible.
+
+Ejemplo
+Consideremos cómo funciona el algoritmo para el siguiente grafo: ver imagen
+
+En las figuras siguientes, los nodos y los aristas del árbol actual se muestran en azul, los aristas que son candidatos para agregarse al árbol actual se mostrarán en verde.
+
+Comenzamos a construir un árbol de expansión mínimo con el nodo 00. Hay tres aristas que inciden en este nodo: {0,1},{0,2} y {0,3}. Los aristas }{ 0 ,1 } y {0,2} tener el peso más pequeño. Elegimos el primer arista y lo agregamos al árbol actual. En el siguiente paso, el único arista que se puede agregar al árbol actual es {0,2}.
+
+Entonces, podemos elegir entre {0,3} o {1,3}. Elegimos el primer arista y lo agregamos al árbol. Después de eso, el único arista que se puede incluir en el árbol es {3,5}.
+
+Continuando con el mismo proceso, finalmente obtenemos un árbol de expansión que se muestra en la figura 8. El árbol de expansión mínimo resultante consiste en 7 aristas y tiene un peso de 1 + 1 + 2 + 3 + 2 + 1 + 2 = 12.
+
+
+
+Resumen
+En resumen, el algoritmo de Prim construye un árbol de expansión mínimo en un grafo ponderado conectado no dirigido utilizando un enfoque codicioso. Los pasos del algoritmo son:
+
+    1) Seleccione un nodo arbitrario en un grafo como el primer nodo de un árbol de expansión.
+
+    2) Considere todos los aristas {x,y} tal que X es un nodo del árbol actual y Y no es.
+
+    3) Entre todos estos aristas, elija el que tenga el menor peso y agréguelo al árbol actual.
+
+    4) Repita los pasos 2 y 3 mientras haya aristas que se puedan agregar al árbol actual. Luego, devuelva el árbol resultante como respuesta final.
+
+
+
+Análisis de complejidad
+Suponga que una gráfica G tiene n nodos y m aristas. El tiempo de ejecución del algoritmo de Prim depende de la representación del grafo y de la estructura de datos utilizada para encontrar un arista con el menor peso.
+
+Por ejemplo, podemos usar una matriz de adyacencia para almacenar el grafo y en cada paso encontrar una arista con el menor peso simplemente considerando todas las aristas usando esta matriz. Dado que el tamaño de la matriz es n^2 y el número total de pasos es n-1 , el tiempo de ejecución en tal caso es O(n^3) .
+
+Sin embargo, este tiempo de ejecución se puede reducir: para cada nodo X de G que aún no está en el árbol actual, podemos almacenar una arista {x,y} del menor peso donde Y es un nodo que ya está en el árbol. Luego, en cada paso, podemos considerar todos esos aristas, elegir el que tenga el menor peso y agregarlo al árbol actual. Si usamos una lista o una matriz para almacenar los aristas, encontrar un arista con el menor peso requerirá O(n) operaciones. Tenga en cuenta que después de agregar un nuevo arista {x,y} al árbol, los nodos que son vecinos para Y puede que sea necesario actualizarlo. Esto se puede hacer en O(n) considerando a todos los vecinos de Y y comprobar si el incidente del arista Y tiene un peso menor que el arista anterior con un peso menor para el vecino. Dado que el número total de pasos es n-1 , el tiempo de ejecución total es O(n^2) que es mejor que en el caso anterior.
+
+Una posible modificación del enfoque anterior es usar una cola de prioridad en lugar de una lista (o una matriz) para almacenar un conjunto de aristas con el menor peso. En este caso, la actualización y la búsqueda de una arista se pueden realizar en O(log n) (asumiendo que una cola de prioridad se implementa a través de un heap binario). Dado que cada arista se puede actualizar solo una vez y el número total de veces que encontramos un arista con el peso más pequeño no es más que n, el tiempo de ejecución total es O(m*log n + n*log n) = O(m*logn).
+
+Para grafos dispersos (m ≈ n) este enfoque funciona en O(n*log n), pero para grafos densos (m ≈ n^2) en resultado de O ((n^2)*log n) que es más lento que el algoritmo anterior. Por lo tanto, es razonable usar una cola de prioridad cuando se sabe que un grafo es escaso. Tenga en cuenta que, en este caso, es mejor utilizar una lista de adyacencia para almacenar el grafo, ya que para grafos dispersos requiere menos memoria adicional.

@@ -1,0 +1,33 @@
+árboles de expansión
+
+Recuerde que un árbol es un grafo conectado sin ciclos. Un árbol de expansión de un grafo no ponderado conectado G es un subgrafo de G que es un árbol que conecta (abarca) todos los nodos de G. Considere el siguiente ejemplo: ver imagen
+
+Un subgrafo que consta de aristas azules es un árbol, ya que está conectado y no contiene ciclos. Además, cubre todos los 8 nodos del grafo. Por lo tanto, es un árbol de expansión para este grafo.
+
+Tenga en cuenta que pueden existir varios árboles de expansión en un grafo. A continuación se muestra un ejemplo de otro árbol de expansión para el grafo anterior (mostrado en amarillo): ver imagen
+
+Para cualquier árbol de expansión, se cumplen todas las propiedades de los árboles. En particular, si un grafo contiene n nodos, cualquier árbol de expansión del grafo consta de n-1 aristas. Puede ver que el grafo anterior tiene88 nodos y ambos árboles de expansión tienen 7 aristas.
+
+Otra propiedad importante de los árboles es que eliminar cualquier arista hace que el árbol se desconecte. En este punto, se puede pensar en un árbol de expansión como un subgrafo mínimamente conectado .
+
+Existen varios problemas en los que los árboles de expansión pueden resultar útiles. Por ejemplo, suponga que el grafo anterior representa una red, donde los nodos son computadoras y los aristas son vínculos potenciales entre ellos. El objetivo es seleccionar el número mínimo de enlaces para que todas las computadoras estén conectadas. Para este problema, un árbol de expansión nos da una solución deseable ya que conecta todos los nodos del grafo y es mínimo (eliminar cualquier arista de un árbol hace que el árbol se desconecte).
+
+
+Un árbol de expansión en grafos ponderados
+En un grafo ponderado, un árbol de expansión es lo mismo que en uno no ponderado, pero también tiene un peso igual a la suma de los pesos de los aristas del árbol. Veamos el siguiente ejemplo: ver imagen
+
+Los aristas azules del grafo anterior forman un árbol de expansión cuyo peso es igual a
+
+3 + 5 + 4 + 9 + 1 + 5 + 4 = 31 Si consideramos nuevamente el grafo como una red de computadoras, entonces el peso de cada arista puede considerarse como un costo de mantenimiento del enlace correspondiente. Si necesitamos encontrar un conjunto de enlaces que conecten todas las computadoras, es razonable minimizar el costo total de los enlaces.
+
+En un grafo conectado ponderado, un árbol de expansión que tiene el peso más pequeño entre todos los demás árboles de expansión se denomina árbol de expansión mínimo (en breve, MST ). Para el grafo anterior, el árbol de expansión que consta de los aristas azules no es mínimo, ya que existe otro árbol de expansión en el grafo con un peso menor: ver imagen
+
+El peso total del árbol de expansión verde es 3 + 5 + 4 + 3 + 2 + 1 + 4 = 22 , que es menor que el costo del azul. Además, el árbol de expansión verde es mínimo, ya que no hay otro árbol de expansión en el grafo que tenga un peso menor.
+
+Se puede probar que si todos los pesos de los aristas de un grafo son únicos, entonces solo existe un árbol de expansión mínimo en el grafo. De lo contrario, el grafo puede contener varios árboles de expansión.
+
+Tenga en cuenta que todos los grafos anteriores están conectados. Los grafos que constan de varios componentes conectados no tienen un árbol de expansión ya que no se pueden conectar nodos de diferentes componentes. En tal caso, podemos encontrar un árbol de expansión en cada componente conectado. Una unión de todos estos árboles de expansión será un bosque de expansión del grafo.
+
+
+Algoritmos para encontrar un árbol de expansión
+En los grafos no ponderados, se puede encontrar un árbol de expansión mediante una búsqueda en profundidad o una búsqueda en amplitud. En cuanto a los grafos ponderados, dos enfoques ampliamente utilizados para la construcción de un árbol de expansión mínimo son los algoritmos de Prim y Kruskal. Todos ellos serán cubiertos en las siguientes lecciones.
