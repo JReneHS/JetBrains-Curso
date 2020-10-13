@@ -1,0 +1,40 @@
+Insertion sort
+
+
+La ordenación por inserción es un algoritmo de ordenación simple que realiza una ordenación in situ. Divide la matriz en partes ordenadas y no ordenadas. En cada iteración, el algoritmo mueve un elemento de la parte no ordenada a la ordenada hasta que todos los elementos de la matriz estén ordenados. El elemento actual se inserta en una posición adecuada en la parte ordenada.
+
+El algoritmo funciona de la siguiente manera:
+
+    1) Suponga que el primer elemento pertenece a la parte ordenada de la matriz y que todos los elementos restantes están en la parte no ordenada;
+
+    2) Elija el primer elemento de la parte sin clasificar e inserte ese elemento en la lista ordenada en una posición adecuada;
+
+    3) Repita los pasos 1-2 hasta que todos los elementos estén ordenados.
+
+La operación principal consiste en insertar un valor en la parte ordenada. La operación no debe romper la parte ordenada, es decir, siempre permanece ordenada. Supongamos que ordenamos una matriz en orden ascendente. La posición adecuada para un elemento actual es el último índice en la parte ordenada donde el elemento anterior es menor o igual que el actual.
+
+El algoritmo no es adecuado para arreglos grandes ya que su complejidad de tiempo promedio y en el peor de los casos es de Ο(n^2), donde n es la longitud de la matriz.
+
+El algoritmo es estable : no cambia el orden relativo de elementos idénticos.
+
+
+Ejemplo
+Supongamos que tenemos una matriz de números enteros sin clasificar. Nuestra tarea es ordenarlos en orden ascendente. ver imagen
+
+La matriz tiene seis elementos, el primer elemento tiene el índice 0, el último tiene el índice 5.
+
+La siguiente imagen ilustra cómo funciona el algoritmo de ordenación por inserción: ver imagen
+
+1) La parte ordenada incluye solo un elemento con el índice 0. Es el primer elemento de la matriz. Consideremos el segundo (23). Es mayor que el último elemento de la parte ordenada, por lo que no lo movemos.
+
+2) La parte ordenada incluye elementos con los índices 0-1. Consideramos el elemento con índice 2 (19). Es menor que el último elemento de la parte ordenada, por lo que lo movemos hacia la izquierda hasta que sea menor que el elemento anterior. Después de moverlo tiene el índice 0.
+
+3) La parte ordenada incluye elementos con índices 0-2. Consideramos el elemento con el índice 3 (30). Es mayor que el último elemento de la parte ordenada, por lo que no lo movemos.
+
+4) La parte ordenada incluye elementos con los índices 0-3. Consideramos el elemento con índice 4 (11). Es menor que el último elemento de la parte ordenada, por lo que lo movemos hacia la izquierda hasta que sea menor que el elemento anterior. Después de moverlo, tiene el índice 0.
+
+5) La parte ordenada incluye elementos con los índices 0-4. Consideramos el elemento con índice 5 (28). Es menor que el último elemento de la parte ordenada y lo movemos hacia la izquierda hasta que sea menor que el elemento anterior. Después de moverlo tiene el índice 4.
+
+6) Se ordena toda la matriz.
+
+Ver una visualización del algoritmo de ordenación por inserción puede ayudarlo a comprender la esencia. https://www.cs.usfca.edu/~galles/visualization/ComparisonSort.html

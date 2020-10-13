@@ -1,0 +1,69 @@
+búsqueda por salto
+
+
+Introducción
+La búsqueda por salto (también conocida como búsqueda de bloque ) es un algoritmo para encontrar la posición de un elemento en una matriz ordenada. A diferencia de la búsqueda lineal, no compara cada elemento de una matriz con el valor objetivo. En cambio, para encontrar un valor, podemos representar la matriz como una secuencia de bloques: ver imagen
+
+Está demostrado que el tamaño de bloque óptimo es sqrt (n) , donde N es el tamaño de la matriz. En este caso, el algoritmo realiza sqrt (n) + sqrt (n) comparaciones en el peor de los casos, por lo que la complejidad del tiempo es O(sqrt(n)). Esto es más eficiente que el algoritmo de búsqueda lineal.
+
+
+
+Principios básicos
+Considere los principios básicos de este algoritmo para buscar en arreglos ordenados ascendentes. Tenga en cuenta que también puede buscar en matrices ordenadas descendentemente.
+
+Principio 1. Si la matriz es ascendente, un elemento de un bloque es menor o igual que un valor del siguiente bloque.
+
+Principio 2. Si un valor no está presente desde el principio del primer bloque, cuyo borde derecho excede el valor, no está presente en la matriz en absoluto.
+
+El algoritmo salta bloques para encontrar uno que pueda contener el elemento objetivo. Para hacer eso, el algoritmo compara los bordes correctos de los bloques con este elemento de destino.
+
+buscando
+Si el borde derecho de un bloque es igual al elemento de destino, la búsqueda se completa con éxito. A veces necesitamos buscar el objetivo con el índice mínimo.
+
+Si el borde derecho de un bloque es mayor que el elemento objetivo, hemos encontrado un bloque que puede contener el valor objetivo. Cuando se encuentra el bloque, el algoritmo realiza una búsqueda lineal hacia atrás dentro del bloque. Si se encuentra el valor objetivo, devuelve su índice; de lo contrario, la matriz no contiene el destino.
+
+A veces, los bloques no incluyen el primer elemento de la matriz y luego el algoritmo funciona de la misma manera que se describe anteriormente. La complejidad del algoritmo no cambia.
+
+Además, consideraremos el algoritmo con un tamaño de salto igual a sqrt (n).
+
+Tenga en cuenta lo siguiente:
+
+    Si sqrt (n) no es un valor entero, solo tomamos la parte entera;
+
+    Si el índice del siguiente elemento al que saltar es mayor que el índice del último elemento, saltamos al último elemento.
+
+
+
+Ejemplo
+Supongamos que tenemos una matriz ascendente ordenada de nueve enteros: ver imagen
+
+La matriz de entrada tiene nueve elementos con índices. 0 a 8. Queremos encontrar el índice del valor 26 usando la búsqueda por salto; su índice es 5.
+
+Nuestro primer paso sería encontrar el bloque que puede contener el valor objetivo. La longitud del salto es sqrt(9) = 3.
+
+    1) El primer elemento (10) es menos el valor objetivo (26), por lo que saltamos al siguiente elemento con el índice 0 + 3 = 3.
+
+    2) El elemento con el índice 3(20) es menor que el valor objetivo (26); saltamos al siguiente elemento con el índice3 + 3 = 6.
+
+    3) El elemento con el índice 6(30) es mayor que el valor objetivo (26).
+
+
+Durante la etapa, almacenamos índices de la corriente y del elemento previamente considerado para utilizarlos en la segunda etapa.
+
+En segundo lugar, hacemos una búsqueda lineal hacia atrás.
+
+Tenemos los índices izquierdo y derecho del bloque que pueden contener el valor objetivo. La izquierda es k2, la derecha es k3. Ahora consideraremos solo los elementos que pertenecen a este bloque.
+
+Después de hacer una búsqueda lineal entre estos índices, hemos encontrado nuestro elemento (26) y devolvemos su índice. 5.
+
+Entonces, la idea es que el algoritmo encuentre los bloques donde el elemento objetivo puede estar presente y luego use la búsqueda lineal dentro del bloque.
+
+
+
+
+Más duro, Más rápido .. Más fuerte
+En este algoritmo, una vez que encontramos el bloque que puede contener el valor, realizamos una búsqueda lineal hacia atrás. Sin embargo, lo que también podríamos hacer es realizar otra búsqueda de salto dentro del bloque (hacia atrás o hacia adelante), y luego realizar de forma recursiva la búsqueda de salto hasta que nos quedemos con un solo elemento.
+
+Esta versión funcionará sqrt(n) + sqrt(sqrt(n)) + sqrt(sqrt(sqrt(n))) + ... + 1 comparaciones en el peor de los casos. Es más rápido que la implementación básica, pero sigue siendo O(sqrt(n)).
+
+Si se siente preparado para el desafío, puede intentar jugar con este algoritmo.

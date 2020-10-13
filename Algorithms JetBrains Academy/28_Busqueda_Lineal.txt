@@ -1,0 +1,36 @@
+búsqueda lineal
+
+El algoritmo de búsqueda lineal
+La búsqueda lineal (o búsqueda secuencial ) es un algoritmo simple para buscar un valor objetivo en matrices y listas. El algoritmo verifica cada elemento de la matriz hasta que encuentra un elemento que coincide con el valor objetivo. Si el algoritmo llega al final de la matriz, termina sin éxito.
+
+En el peor de los casos, realiza exactamente N comparaciones donde N es la longitud de la secuencia de entrada de elementos. La complejidad del tiempo es O(N).
+
+
+
+¿Cómo funciona con el ejemplo?
+Supongamos que tenemos una matriz con seis elementos: ver imagen
+
+Nuestro objetivo es buscar el índice de un elemento que sea igual a 20. Comenzaremos desde el primer elemento con el índice 0 y compararemos cada elemento de la matriz con el valor objetivo hasta encontrar el elemento apropiado.
+
+Como puede ver, la búsqueda lineal es absolutamente simple, pero tiene una característica importante: puede funcionar para arreglos sin clasificar.
+
+
+
+Posibles modificaciones de la búsqueda lineal
+Incluso un algoritmo tan simple tiene varias pequeñas modificaciones:
+
+    comprobar que la matriz contiene un elemento especificado, el resultado es verdadero o falso;
+
+    buscar la primera / última aparición de un elemento en la matriz;
+
+    contar todas las apariciones de un elemento en la matriz;
+
+    buscar todas las apariciones de un elemento en la matriz;
+
+    buscando un valor solo en un rango de índices de la matriz.
+
+Además, el algoritmo de búsqueda lineal se puede utilizar como una subrutina en algoritmos más complejos. Por ejemplo, contar todos los elementos de apariciones de una matriz en otra matriz.
+
+Si sabemos que nuestra matriz está ordenada (por ejemplo, en orden ascendente), podríamos modificar el algoritmo de búsqueda lineal. Si el siguiente elemento marcado es mayor que el valor objetivo, significa que no encontraremos el valor en el resto de la matriz y debemos detenernos. En las próximas lecciones, consideraremos cómo hacer que la búsqueda en matrices ordenadas sea más efectiva.
+
+Si desea ver una visualización, ingrese un valor objetivo y haga clic en Búsqueda lineal aquí . https://www.cs.usfca.edu/~galles/visualization/Search.html

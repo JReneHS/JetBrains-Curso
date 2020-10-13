@@ -1,0 +1,31 @@
+Busqueda Binaria
+
+
+Introducción
+La búsqueda binaria es un algoritmo rápido para encontrar la posición de un elemento en una matriz ordenada . El algoritmo se ejecuta en tiempo logarítmico haciendo O(log n)comparaciones, donde n es la longitud de la matriz de entrada.
+
+El algoritmo comienza comparando el elemento medio de la matriz con el valor objetivo. Si hay una coincidencia, se devuelve el índice del elemento. Si el valor objetivo es menor o mayor que el elemento del medio, la búsqueda procede al subconjunto izquierdo o derecho respectivamente, sin tener en cuenta por completo el otro subconjunto. Continúa hasta que se encuentra el valor necesario o un nuevo intervalo de búsqueda está vacío.
+
+
+
+Ejemplo
+Supongamos que tenemos una matriz ascendente ordenada de números enteros. Nos gustaría encontrar el índice del valor.34 utilizando la búsqueda binaria. La matriz de entrada tiene nueve elementos con índices de 0 a 8. Nuestro elemento deseado34 tiene el índice 7. ver imagen
+
+Primero, consideramos la matriz completa. El índice más a la izquierda es 0, el de la derecha es 8. El índice del elemento medio es (0 + 8) / 2 = 4.
+
+Es hora de tomar algunas decisiones. Nuestro elemento objetivo (34) es mayor que el elemento intermedio (24). Debido a que la matriz está ordenada en orden ascendente , la submatriz de la izquierda no puede contener el elemento de destino, por lo que continuamos la búsqueda en la submatriz de la derecha.
+
+Consideramos los elementos con índices 55 a 88. El índice del elemento medio es(5 + 8) / 2 = 6 (División entera).
+
+El elemento objetivo (34) es mayor que el elemento intermedio (30). Debido a que la matriz está ordenada en orden ascendente , continuamos la búsqueda en la submatriz de la derecha.
+
+Esta vez miramos elementos con índices 7 a 8. El índice del elemento medio es (7 + 8) / 2 = 7 (División entera).
+
+Mire lo que sucedió: ¡el elemento objetivo (34) coincide con el valor medio (34)! Por lo tanto, devolvemos el índice 7.
+
+
+
+Conclusión
+El algoritmo de búsqueda binaria divide la matriz en dos subarreglos en cada paso y luego busca el elemento en uno de ellos. El número de comparaciones es mucho menor que la longitud de la matriz.
+
+Si desea ver una visualización del algoritmo, aquí hay una visualización ; Ingrese un valor objetivo y haga clic en "Búsqueda binaria". https://www.cs.usfca.edu/~galles/visualization/Search.html

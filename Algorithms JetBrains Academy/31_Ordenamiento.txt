@@ -1,0 +1,44 @@
+el problema de la clasificación
+
+Entendiendo el problema
+El problema de clasificación surge a menudo en la práctica de programación cuando tenemos que ordenar una secuencia de elementos. El orden requerido puede ser ascendente o descendente. A menudo, el orden ascendente se considera predeterminado.
+
+Para representar secuencias de elementos, muchos lenguajes admiten matrices y / o listas.
+
+Muchos lenguajes de programación proporcionan algoritmos integrados para ordenar listas y matrices. Hay muchos algoritmos de clasificación diferentes en informática y, en este tema, aprenderemos algunos de ellos.
+
+
+
+¿Qué se puede ordenar?
+Es posible ordenar datos de diferentes tipos:
+
+    números de acuerdo con el orden aritmético;
+
+    Caracteres Unicode de acuerdo con su orden en la tabla de caracteres Unicode;
+
+    cadenas ( lexicográficamente o por tamaño);
+
+    fechas y horas de acuerdo con el orden cronológico.
+
+
+Además, a menudo es posible ordenar datos de tipos más complejos si sabemos cómo comparar elementos. Como regla general, dichos datos tienen uno o más campos llamados claves de clasificación , mediante las cuales se realiza la clasificación.
+
+
+
+Características clave de los algoritmos de clasificación
+    Eficiencia de tiempo. El tamaño de una matriz para clasificar es muy importante para la eficiencia. Si queremos ordenar una matriz que consta de unas pocas docenas de elementos, podemos usar cualquier algoritmo de ordenación. Pero, ¿y si la matriz contiene muchos datos? En ese caso, deberíamos usar solo los algoritmos de clasificación efectivos, de lo contrario, los resultados podrían tardar demasiado.
+
+    Estabilidad. Una matriz para ordenar puede contener varios elementos idénticos. Los algoritmos de clasificación estables siempre clasifican elementos idénticos en el mismo orden en que aparecen en la entrada. De lo contrario, el algoritmo de clasificación es inestable. La estabilidad es importante cuando clasificamos estructuras complejas como objetos, tuplas u otra cosa.
+
+    Clasificación en el lugar y fuera del lugar. Un algoritmo realiza una clasificación en el lugar si solo requiere una cantidad constante de espacio adicional; de lo contrario, el algoritmo realiza una clasificación fuera de lugar . Cuanto mayor sea el tamaño de la matriz, más memoria adicional requieren los algoritmos fuera de lugar .
+
+    Clasificación interna o externa . Un algoritmo realiza una clasificación interna si los datos de clasificación se mantienen completamente dentro de la memoria principal de la computadora. La clasificación externa es necesaria cuando los datos no caben en la memoria principal del dispositivo informático y, en cambio, deben mantenerse en la memoria externa más lenta (generalmente un disco duro).
+
+Consideraremos ordenar algoritmos con diferentes propiedades.
+
+Muchos algoritmos de clasificación comparan elementos de matriz durante la clasificación, pero algunos algoritmos utilizan otras técnicas para clasificar. Estos algoritmos también se conocen como algoritmos de clasificación sin comparación .
+
+
+
+Conclusión
+El problema de clasificación surge a menudo en la práctica de la programación y es uno de los problemas más estudiados en informática. Hay muchos algoritmos diferentes para resolver el problema. A menudo, la clasificación es el componente básico de otros algoritmos; por lo tanto, comprender que la clasificación es fundamental para resolver muchos otros problemas.
