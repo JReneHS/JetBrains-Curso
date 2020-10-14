@@ -1,0 +1,39 @@
+ordenación por selección
+
+
+La clasificación por selección es un algoritmo de clasificación simple que realiza una clasificación en el lugar.
+
+Veamos cómo funciona el algoritmo para ordenar una matriz en orden ascendente. Primero, encuentra el elemento más pequeño de toda la matriz y lo intercambia con el elemento en la primera posición; luego encuentra el segundo elemento más pequeño y lo intercambia con el elemento en la segunda posición. Continúa haciendo eso hasta que se ordena toda la matriz.
+
+Si queremos ordenar la matriz en orden descendente, debemos encontrar el elemento más grande en lugar del más pequeño.
+
+Si n es la longitud de una matriz de entrada, el algoritmo tiene una complejidad de tiempo asintótica Ο(n^2) en el peor de los casos y en la media en cuanto al número de comparaciones. Esto hace que el algoritmo sea ineficaz para clasificar matrices grandes. El algoritmo encuentra el elemento mínimo / máximo n - 1 veces.
+
+La implementación básica del algoritmo es inestable , pero se puede modificar para que sea estable .
+
+
+
+Ejemplo
+Supongamos que tenemos una matriz de números enteros sin clasificar y deberíamos clasificarla en orden ascendente. ver imagen
+
+Esta matriz tiene seis elementos, el primer elemento tiene el índice 0, el último tiene el índice 5.
+
+La siguiente imagen ilustra cómo funciona el algoritmo de clasificación: ver imagen
+
+
+Aquí tienes algunas explicaciones:
+
+1) Encontramos el número mínimo en toda la matriz (11) y lo intercambiamos con el primer elemento (21). Ahora, el primer elemento pertenece al subarreglo ordenado.
+
+2) Encontramos el número mínimo en el subarreglo sin clasificar (19) e intercambiamos el número con el segundo elemento. Ahora, el primer y segundo elementos pertenecen al subarreglo ordenado.
+
+3) Encontramos el número mínimo en el subarreglo sin clasificar (21) y lo intercambiamos con el tercer elemento (23). Ahora, los primeros tres elementos pertenecen al subarreglo ordenado.
+
+4-6) Repetimos el mismo proceso hasta que se ordena toda la matriz.
+
+Como puede ver, el algoritmo es bastante simple. Nunca cambia el subarreglo ya ordenado.
+
+También puede consultar una visualización del Orden de selección para comprenderlo mejor. https://www.cs.usfca.edu/~galles/visualization/ComparisonSort.html
+
+Orden de selección doble
+La variante bidireccional del ordenamiento por selección encuentra los valores mínimo y máximo en la matriz en cada pasada. Reduce el número de escaneos de la matriz. El algoritmo divide la matriz en tres submatrices: 1) mínimos ordenados; 2) sin clasificar; 3) máximos ordenados. El algoritmo tiene la misma complejidad de tiempo que el algoritmo básico: Ο(n^2) 

@@ -1,0 +1,61 @@
+Merge Sort
+
+
+La clasificación por combinación es un algoritmo de clasificación eficaz basado en comparaciones. El algoritmo se basa en la técnica de divide y vencerás . Divide la matriz no clasificada dada de tamaño n en n subarreglos de un solo elemento que ya están ordenados, y luego fusiona repetidamente los subarreglos para producir subarreglos recién ordenados hasta que solo quede un subarreglo.
+
+En el algoritmo, fusionar es la operación principal. Produce una nueva matriz ordenada a partir de dos matrices ordenadas de entrada.
+
+El algoritmo de clasificación por fusión y sus modificaciones son mejores que los algoritmos de clasificación primitivos como la clasificación por burbujas, la clasificación por inserción y la clasificación por selección. La clasificación por combinación se puede utilizar para clasificar incluso matrices grandes.
+
+
+Implementaciones
+El algoritmo se puede implementar de dos formas:
+
+top-down es una implementación recursiva que divide de forma recursiva la matriz dada en dos subarreglos hasta que solo queda un subarreglo de un solo elemento; luego fusiona los resultados para producir un subarreglo ordenado de mayor tamaño;
+bottom-up es una implementación iterativa que primero combina pares de arreglos adyacentes de un solo elemento y produce subarreglos ordenados de 2 elementos, luego fusiona pares de arreglos adyacentes de 2 elementos produciendo subarreglos ordenados de 4 elementos, luego combina pares de 4 elementos, y así hasta que toda la matriz se fusione (ordene).
+Consideraremos ambas implementaciones.
+
+
+Propiedades del algoritmo
+Considere las siguientes propiedades de la ordenación por combinación:
+
+independientemente de la implementación, el algoritmo tiene una complejidad de tiempo O (n log n) en el peor y promedio de los casos;
+el tipo de combinación es estable;
+en una implementación típica, no es un algoritmo in situ.
+
+
+
+Ejemplo
+Supongamos que tenemos una matriz de enteros de siete elementos sin clasificar: ver imagen
+
+Los elementos de la matriz tienen índices de 0 a 6.
+
+Tenemos que ordenar la matriz en orden ascendente utilizando la clasificación de combinación de arriba hacia abajo . La siguiente imagen ilustra cómo funciona: ver imagen
+
+
+En la imagen, los bloques blancos representan subarreglos sin clasificar y los bloques azules representan subarreglos ordenados. El número junto a las flechas indica el orden de procesamiento.
+
+Primero, calculamos el índice del elemento del medio (3) en la matriz y luego dividimos la matriz en dos subarreglos. El primer subarreglo { 30, 21, 23 } contiene elementos de la izquierda al medio (exclusivo), el segundo subarreglo { 19, 28, 11, 23 } contiene elementos del medio a la derecha. Los subarreglos tienen diferentes tamaños, pero no es un problema para el algoritmo.
+
+Dividimos recursivamente el primer subarreglo para producir nuevos subarreglos usando la misma regla, y luego hacemos lo mismo para el segundo subarreglo. El primer subarreglo es { 30 }, el segundo subarreglo es { 21, 23 }. No dividimos el subarreglo { 30 } porque tiene un solo elemento. Luego dividimos el subarreglo { 21, 23 }en nuevos subarreglos { 21 } y { 23 } que ya están ordenados. Luego los fusionamos para mantener el orden ascendente, el resultado es { 21, 23 }. Luego lo fusionamos con el arreglo { 30 }, el resultado es el subarreglo ordenado { 21, 23, 30 }. Después, realizamos las mismas operaciones para el subarreglo { 19, 28, 11, 23 }. El resultado es { 11, 19, 23, 28 }. Vea la imagen para entenderla mejor.
+
+La última operación (20) fusiona dos submatrices ordenados { 21, 23, 30 }y { 11, 19, 23, 28 }produce una matriz ordenada { 11, 19, 21, 23, 23, 28, 30 }.
+
+Al dividir un arreglo de esta manera, a veces el segundo subarreglo es más largo que el primero. Si incluimos el elemento del medio en el primer subarreglo y lo excluimos del segundo, la situación se revertirá. Afortunadamente, ambos casos funcionan bien.
+
+Si todavía está algo confundido, vea una visualización de clasificación por combinación . https://www.cs.usfca.edu/~galles/visualization/ComparisonSort.html
+
+
+Ejemplo de implementación de abajo hacia arriba Buttom-up
+También podemos ordenar la matriz usando la ordenación de combinación de abajo hacia arriba . La siguiente imagen lo ilustra: ver imagen
+
+Suponemos la matriz de entrada se separa en una secuencia de subconjuntos de un elemento: { 30 }, { 21 }, { 23 }, { 19 }, { 28 }, { 11 }, { 23 }. Comenzamos a fusionar pares de arreglos adyacentes para producir arreglos de dos elementos ordenados y un subarreglo de un solo elemento. El resultado es { 21, 30 }, { 19, 23 }, { 11, 28 }, { 23 }. El resultado después de la siguiente combinación es { 19, 21, 23 , 30 }, { 11, 23, 28 }. A continuación, nos fusionamos dos subconjuntos para producir una matriz de entrada clasificada: { 11, 19, 21, 23, 23, 28, 30 }.
+
+La operación de combinación funciona de la misma forma que la anterior. Reducimos solo las llamadas recursivas para separar la matriz en partes.
+
+Posibles modificaciones
+El algoritmo de ordenación por combinación tiene muchas modificaciones diferentes.
+
+    Orden de fusión in situ que es un algoritmo más complejo;
+
+    Timsort es un algoritmo de clasificación estable híbrido, derivado de la clasificación por combinación y la clasificación por inserción . Divide las matrices de entrada en bloques de un tamaño fijo y luego ordena el bloque utilizando el algoritmo de ordenación por inserción .

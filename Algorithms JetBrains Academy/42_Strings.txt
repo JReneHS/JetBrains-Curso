@@ -1,0 +1,45 @@
+conceptos básicos de Strings
+
+¿Qué es una String?
+Una String es una de estas maravillosas palabras que cambian de significado según el contexto: puede referirse a los encantadores sonidos de un arpa o describir la estructura del universo. En programación de computadoras, una cadena es simplemente una secuencia ordenada de símbolos. La longitud de una cadena se refiere a la cantidad de símbolos que contiene. Hay un par de ejemplos a continuación:
+
+    100101 - una cadena de longitud 6 que consta de los símbolos 0 y 1 ;
+    GATTACA - una cadena de longitud 7 que consiste en símbolos A , C , T, y G .
+
+Una cadena puede constar de un solo símbolo. Por ejemplo, A es una cadena que consta de un solo símbolo y, por lo tanto, su longitud es 1. Además, una cadena no puede contener ningún símbolo. En este caso, se llama cadena vacía y su longitud es igual a 0. Además, para una cadenas s Denotaremos la longitud de la cadena como ∣ s ∣ .
+
+A veces debemos considerar una cadena inversa . Por una Stringss, denotaremos una cadena inversa como reverse(s). Por ejemplo,
+
+    reverse(GATTACA) = ACATTAG
+
+
+Subcadenas
+Una subcadena es una subsecuencia contigua de símbolos de una cadena original. Por ejemplo, ATTA es una subcadena de la cadena GATTACA porque está contenida allí comenzando por el primero y terminando con el cuarto símbolo (asumiendo una indexación basada en cero).
+
+Tenga en cuenta que una cadena original también es una subcadena de sí misma. Una cadena vacía es una subcadena para cualquier cadena.
+
+Es conveniente denotar una subcadena con la siguiente notación: s[i:j], que significa una subcadena de la cadena s comenzando desde el i-esimo y terminando con el (j-1)-ésimo símbolo. Por ejemplo, para s= GATTACA ,s[1:5] = ATTA .
+
+Una subcadena a partir del índice 0 es un prefijo y una subcadena que termina con el último índice es un sufijo . Por ejemplo, s[0:3] = GAT es un prefijo de s y s[4:7] = ACA es un sufijo de s.
+
+Al recordar la misteriosa noción de una cadena vacía, puede preguntarse: ¿cuál es el índice de su aparición en otra cadena? Además, asumiremos que una cadena vacía es una subcadena de cualquier cadena y el índice de su aparición es 0.
+
+
+
+¿Dónde se utilizan las Strings?
+Las cadenas son una de las estructuras de datos más utilizadas en programación. En casi cualquier campo, existen problemas que requieren conocimiento de los algoritmos de procesamiento de cadenas. Considere algunos problemas típicos y algunos ejemplos reales en los que surgen estos problemas.
+
+    Buscando una subcadena en una cadena . Digamos que estamos desarrollando un editor de texto y queremos agregar una función que permita a los usuarios buscar un patrón en un texto: si alguna vez ha intentado encontrar una palabra específica en un texto enorme, ya conoce la prueba. Para resolver este problema, necesitamos implementar un algoritmo que encuentre todas las ocurrencias de un patrón dado como una subcadena en un texto.
+
+    Identificando similitud . Supongamos que estamos trabajando en un sistema de búsqueda y queremos corregir los errores ortográficos de los usuarios para procesar mejor sus solicitudes (recuerde buscar algo en Google rápidamente: se siente maravilloso cuando un motor de búsqueda lo entiende de todos modos). Después de recibir una solicitud con un error tipográfico, podemos encontrar la palabra más similar en nuestra base de datos de palabras correctas y usarla en lugar de la inicial. Para hacer eso, necesitamos implementar un método que identifique la similitud entre dos cadenas.
+
+    Buscando una colección de patrones en un texto . Supongamos que estamos desarrollando un nuevo proyecto para aprender lenguajes de programación. En cada página con problemas de programación, hay un foro donde los usuarios pueden discutirlo y hacer preguntas. Por supuesto, esperamos que nuestros usuarios sean amables. Sin embargo, en caso de que alguien se sienta realmente frustrado, queremos estar seguros y mantener nuestro foro agradable, por lo que hacemos una lista de palabras prohibidas que no se pueden usar en los comentarios. Antes de que se publique un comentario, debemos asegurarnos de que no contenga palabras "tabú". Dado que no tiene sentido controlarlo todo manualmente, usamos un algoritmo especial para verificar si al menos una palabra de una colección determinada está contenida como una subcadena en un texto.
+
+
+
+¿Por qué estudiar algoritmos de cadenas?
+Normalmente, los lenguajes de programación proporcionan algunos métodos estándar para trabajar con cadenas. Sin embargo, a veces no es suficiente, porque algunos de los problemas requieren enfoques más sofisticados. En tales casos, los algoritmos para resolver estos problemas deben implementarse manualmente.
+
+Otra razón es que a menudo es fácil encontrar una solución simple para un problema en particular, pero un algoritmo ingenuo probablemente no será eficiente en términos de tiempo de ejecución y consumo de memoria. Los algoritmos más eficientes suelen ser menos obvios y más difíciles de idear. Recuerde los ejemplos descritos anteriormente: ¿por qué no podríamos aplicar el mismo algoritmo para permitir la búsqueda en el editor de texto y filtrar las palabras prohibidas en un foro, cuál es la diferencia? ¿No podemos simplemente aplicar el algoritmo del primer ejemplo a cada cadena de una colección determinada y así verificar si al menos una de ellas está contenida en un comentario? Este enfoque también funcionaría, es cierto, pero el problema es que no es tan eficiente como otros algoritmos que pueden resolver el mismo problema y hacer un trabajo mucho mejor.
+
+Por estas razones, es importante estar familiarizado con algunos algoritmos de procesamiento de cadenas estándar y bien estudiados y sus aplicaciones. Consideraremos algunos de ellos en las próximas lecciones.

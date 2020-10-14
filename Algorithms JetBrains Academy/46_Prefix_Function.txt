@@ -1,0 +1,77 @@
+función de prefijo
+
+
+La función de prefijo es una estructura que nos permite resolver diferentes problemas de procesamiento de cadenas de manera eficiente. Por ejemplo, se puede utilizar para implementar un algoritmo de búsqueda de subcadenas que funcione en tiempo lineal en el peor de los casos. En esta lección, nos familiarizaremos con esta estructura, crearemos un algoritmo eficiente para su cálculo y veremos cómo funciona en un ejemplo simple.
+
+
+Una definición de la función de prefijo
+Por una cadena s, la función de prefijo es una matriz P de longitud ∣s∣ dónde p[i] es la longitud del prefijo más largo de s[0...i + 1] que también es un sufijo de s[0...i + 1]. Los prefijos iguales a la propia cadena no se consideran. Por lo general, pensamos que la función es un mapa. f(x) → y. Y en ese caso, un algoritmo también se llama función, porque de alguna manera obtenemos valores para cada índice en la cadena. Entonces hacemos una función p(i) = y, dónde i es el índice de cadena y y es el valor de la función de prefijo en dicho prefijo. Por convención,p[0] = 0. A continuación se muestra un ejemplo de la función de prefijo para una cadenas = ABACABAD: ver imagen
+
+La matriz P se calculó de la siguiente manera:
+
+    p [0] = 0 por convención.
+
+    p [1] = 0, ya que s[0...2] = AB no contiene prefijos iguales a sus sufijos.
+
+    p [2] = 1, ya que el prefijo más largo de s[0...3] = ABA, que también es un sufijo es A.
+
+    p [3] = 0, ya que s[0...4] = ABAC no contiene prefijos iguales a sus sufijos.
+
+    p [4] = 1, ya que el prefijo más largo de s[0...5] = ABACA, que también es un sufijo es A.
+
+    p [5] = 2, ya que el prefijo más largo de s[0...6] = ABACAB, que también es un sufijo es AB.
+
+    p [6] = 3, ya que el prefijo más largo de s[0...7] = ABACABA, que también es un sufijo es ABA.
+
+    p [7] = 0, ya que s[0...8] = ABACABAD no contiene prefijos iguales a sus sufijos.
+
+Además, denotaremos un prefijo de s, que también es un sufijo como limite de s.
+
+Nuestro próximo objetivo es implementar un algoritmo eficiente para el cálculo de la función de prefijo. Para hacer esto, primero necesitamos aprender algunas propiedades de los limites.
+
+
+
+Propiedades de los limites
+Tenga en cuenta que el limite de la cadena s es tal cadena t que es al mismo tiempo un prefijo y un sufijo de cadena s. Es importante destacar que los limites pueden cruzarse. Por ejemplo, si tenemos una cadena AAAAA, tendría 4 limites: A, AA, AAA y AAAA.
+
+Propiedad 1. Sea a y b limites de una cadena s y ∣a∣ < ∣b∣ Luego a es un limite de b. La siguiente figura ilustra la declaración: ver imagen
+
+Ya que a es un prefijo de s, es un prefijo de b también. Similar,a es un sufijo de s y por lo tanto es un sufijo de b. Entonces,a es un limite de b. De esta propiedad, podemos concluir que si b es el limite más largo de s, luego el siguiente limite más largo de s se puede encontrar como el limite más largo de b.
+
+Propiedad 2. Suponga b es un limite de una cadena s. Luego b se puede ampliar con el símbolo X Si bx es un limite de sx. La siguiente figura explica la declaración: ver imagen
+
+Esta propiedad será bastante útil en el futuro. Por ahora, sin embargo, puede que no esté muy claro por qué lo necesitamos, pero pronto lo obtendrá.
+
+
+
+
+Un algoritmo para el cálculo de la función de prefijo.
+Ahora, veamos cómo usando las propiedades de los limites, podemos encontrar la función de prefijo P para una cadena s. La matriz de función de prefijo se evalúa paso a paso, así que primero, calculamos p[1], luego p[2] y así sucesivamente hasta p [9]. Para calcular el i-ésimo valor de la función de prefijo, solo necesitamos los valores anteriores. La idea es calcular todos los elementos de P secuencialmente, comenzando desde el primero, luego calculando el segundo y así sucesivamente hasta el último elemento. En cada paso, utilizamos elementos de P para encontrar el limite más largo que pueda extenderse con el símbolo actual o s. Consideremos este paso con más detalle para el siguiente ejemplo: ver imagen
+
+Aquí, los elementos p [0], p [1], ..., p [8] ya están calculados y el último paso es calcular p[9]. Para hacer esto, verificamos si podemos extender el limite más largo de s[0...9] (vea la figura de la izquierda a continuación). Este limite es s[ 0 ... p[8] - 1] = s[0...3] = ACCA (mostrado en amarillo). ver imagen
+
+Podemos ver eso s[p[8]] = s[4] = B, mientras s[9] = C. Ya queB != C, el limite no se puede ampliar. Luego, debemos verificar si es posible extender el siguiente limite más largo de s[0...9]. Según la primera propiedad, dicho limite se puede encontrar como el limite más largo de ACCA. Este limite es s[0...p[3] - 1 ] = s[0] = A (vea la figura de la derecha arriba). Ya que s[1] = C y s[9] = C, el limite se puede ampliar y p[9] = p[3] + 1 = 1 + 1 = 2.
+
+Tenga en cuenta que, en algunos casos, es posible que no haya ningún limite que se pueda extender. Entonces, el valor correspondiente de P está asignado a 0.
+
+En resumen, los pasos del algoritmo son:
+
+    1) Establesca p [0] 0.
+
+    2) Para i = 1 ... |s|, establecer p[i] a l + 1, dónde l es la longitud del limite más largo de s[0...i] que se puede extender por s[i]. Si no hay un limite que se pueda extender, configure p[i] a 0.
+
+Después de que todos los elementos de P estén calculados, la matriz corresponderá a la función de prefijo para s.
+
+
+
+Un ejemplo
+Veamos cómo funciona el algoritmo descrito para s = ABACABAD. Las figuras siguientes ilustran los pasos del algoritmo: ver imagen
+
+Primero, necesitamos calcular p [1]. En este paso, el limite más largo de s[0...1] = A está vacío y desde s[0] != s[1], no se puede ampliar. Entonces, p[1] se establece en 0. En el siguiente paso, el limite más largo de s[0...2] está vacío de nuevo, pero se puede ampliar, ya que s[0] = s[2]. En este caso,s[2] se establece en 1.
+
+Continuando con el mismo procedimiento, finalmente obtendremos la misma función de prefijo p = [0,0,1,0,1,2,3,0] como en el ejemplo anterior.
+
+
+
+Análisis de complejidad
+Mientras calcula la función de prefijo P por una cadena s, realizamos una iteración para cada elemento de P, así ∣s∣ iteraciones en total. En cada una de estas iteraciones, un nuevo valor de la función de prefijo puede aumentar en uno o disminuir. Por lo tanto, el número total de aumentos, así como el número total de disminuciones, está limitado por ∣s∣. De esto, podemos concluir que el tiempo total de ejecución del algoritmo es O( ∣s∣ ).

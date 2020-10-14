@@ -1,0 +1,56 @@
+Lee's Algorithm
+
+Si alguna vez te quedas atascado en un gran laberinto, no te asustes y espera encontrar una barra de chocolate en tu bolsillo: ese es el único consejo que podemos darte. Sin embargo, si se encuentra en una situación en un laberinto virtual , este tema podría ofrecerle algo de ayuda. El algoritmo de Lee es una de las posibles soluciones para el problema del enrutamiento del laberinto : encontrar el camino más corto entre dos puntos en una cuadrícula 2D: ver imagen
+
+Los cuadrados rojos S y T en la cuadrícula de arriba corresponden a los puntos de inicio y destino. Los cuadrados azules representan obstáculos.
+
+El algoritmo de Lee se utiliza en sistemas de diseño asistido por computadora para enrutar cables en placas de circuito impreso, en la industria del juego (especialmente para estrategias en tiempo real) y otras áreas. En este tema, aprenderemos sobre este algoritmo y, para comprenderlo mejor, lo aplicaremos para la cuadrícula anterior. Entonces, ¡comencemos a movernos hacia el objetivo!
+
+
+Algoritmo de Lee: parte 1
+La primera parte del algoritmo de Lee es encontrar la longitud del camino más corto entre el punto de inicio y el de destino. Encontrarlo es un proceso paso a paso: debemos comenzar desde el principio, encontrar primero las distancias a los puntos vecinos, luego calcular las distancias a los siguientes puntos vecinos y así sucesivamente, hasta que finalmente se alcanza el punto objetivo.
+
+En el primer paso, las etiquetas de todos los puntos vecinos de S están configurados para 1 indicando que las distancias más cortas son iguales a 1. Después de eso, consideramos todos los vecinos de los puntos con la etiqueta 1 y establecer sus etiquetas en 2 indicando que las distancias más cortas desde el punto de inicio son iguales a 2. La siguiente figura muestra la cuadrícula después de estos dos pasos: ver imagen
+
+Este procedimiento continúa hasta que se alcanza el punto de destino. Después de eso, la cuadrícula se verá así: ver imagen
+
+
+Ahora sabemos que la longitud del camino más corto entre S y T es 7.
+
+En resumen, los pasos de la primera parte del algoritmo de Lee son:
+
+    1) Etiquete el punto de inicio con 0.
+
+    2) Inicializar una variable i con 0.
+
+    3) Considere todos los vecinos sin etiqueta de los puntos con etiqueta i y establecer sus etiquetas en i + 1.
+
+    4) Establece i a i + 1.
+
+    5) Repita los pasos 3 a 4 hasta alcanzar el punto objetivo.
+
+
+Algoritmo de Lee: parte 2
+A continuación, necesitamos reconstruir el camino más corto entre los puntos de inicio y destino. Para hacer esto, comenzamos con el punto de destino y nos movemos a cualquier punto vecino con una etiqueta menos que la etiqueta del punto actual. Este proceso continúa hasta que se alcanza el punto de inicio. Las figuras siguientes muestran los dos primeros pasos; los puntos verdes corresponden al comienzo del camino más corto entre S y i + 1.
+
+Tenga en cuenta que, en algunos casos, hay varias direcciones posibles para elegir. Esto significa que puede haber varios caminos más cortos entre el punto de inicio y el punto de destino (como en la vida).
+
+Entonces, los pasos de la segunda parte de los algoritmos de Lee son:
+
+    1) Establezca el punto de destino como actual.
+
+    2) Inicializar una variable i con la etiqueta del punto de destino.
+
+    3) Considere todos los vecinos del punto actual y muévase a cualquiera que tenga una etiqueta i-1.
+
+    4) Conjunto i a i-1.
+
+    5) Repita los pasos 3 - 4 hasta llegar al punto de inicio.
+
+
+Para comprender mejor los pasos del algoritmo, eche un vistazo a una visualización (donde el algoritmo descrito corresponde a la opción Breadth-First-Search en el panel derecho). https://qiao.github.io/PathFinding.js/visual/
+
+
+
+Análisis de complejidad
+Para una cuadrícula de tamaño n × m, la complejidad temporal y espacial del algoritmo de Lee es O(n*m) ya que necesitamos almacenar una serie de distancias para todos n × m puntos de la cuadrícula y, en el peor de los casos, todos estos puntos podrían procesarse.

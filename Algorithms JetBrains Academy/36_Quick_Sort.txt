@@ -1,0 +1,81 @@
+Quick Sort
+
+Quicksort es un algoritmo de clasificación local eficiente que a menudo es más rápido en la práctica en comparación con otros algoritmos de clasificación. El algoritmo se basa en el paradigma de divide y vencerás.
+
+Estos son los pasos de la ordenación rápida:
+
+    1) Elija algún elemento de la matriz. A ese elemento lo llamaremos pivote .
+
+    2) Reordene la matriz para que todos los valores más pequeños que el pivote se coloquen antes y todos los valores más grandes vengan después; los valores iguales al pivote pueden ir en cualquier dirección.
+
+    3) Ordene de forma recursiva los subconjuntos de elementos mayores y menores.
+
+
+El caso base de la recursividad son las matrices del tamaño de cero o uno, que está en orden por definición, por lo que nunca es necesario ordenarlas.
+
+Quicksort se puede implementar como un algoritmo recursivo o iterativo. Aquí consideraremos solo la versión recursiva.
+
+La complejidad del tiempo es O(n*log n) en el caso medio, y O(n^2) en el peor de los casos, pero afortunadamente, suele ser normal. Consideraremos algunos casos malos más adelante.
+
+Tenga en cuenta que hay muchas modificaciones que hacen que el algoritmo sea más eficiente. Los pasos de partición y selección de pivote se pueden implementar de diferentes maneras. La elección de una estrategia de implementación específica afecta en gran medida el rendimiento del algoritmo.
+
+
+Elegir un pivote
+Su elección de pivote afecta en gran medida el tiempo de clasificación. Es bastante difícil determinar un buen pivote para todas las matrices.
+
+El mejor pivote dividiría la matriz en dos partes iguales, lo que reduciría a la mitad el tamaño del problema. Sin embargo, esto significa que el pivote es la mediana de los elementos y, para encontrar la mediana, necesitaríamos usar una matriz ya ordenada o un enfoque más complejo para encontrar la mediana.
+
+A continuación, se muestran algunos métodos posibles para elegir el pivote:
+
+    Elija el elemento más a la izquierda o más a la derecha;
+
+    Elija el elemento del medio;
+
+    Elija un elemento aleatorio;
+
+    Tome el primer, medio y último valor de la matriz y elija la mediana de estos tres números como pivote.
+
+
+En este tema, siempre buscaremos el elemento más a la derecha. Este enfoque se llama esquema de partición Lomuto . Más adelante, aprenderá estrategias más complejas para elegir el pivote.
+
+
+
+Ejemplo
+Supongamos que necesitamos ordenar una matriz de entradas usando el algoritmo de ordenación rápida. Como pivote, siempre elegirá el elemento más a la derecha.
+
+La matriz de entrada contiene 8 entradas con índices de 0 a 7. La siguiente imagen ilustra cómo funciona la ordenación rápida con más explicaciones a continuación: ver imagen
+
+1) Escojamos el elemento más a la derecha 14 como el pivote en la matriz original y luego reordenarlo para que todos los valores más pequeños que el pivote - 11, 10, 13 - vengan antes y todos los valores más grandes que el pivote - 17, 25, 16, 22 - lo sigan. Después de la reordenación, el pivote tiene el índice 3.
+
+2) Divida la matriz en dos submatrices: la izquierda { 11, 10, 13 } y la derecha { 17, 25, 16, 22 }. El pivote se excluye de ambos subarreglos.
+
+3) Considere el subarreglo izquierdo. El pivote es 13. Después de reorganizar, obtenemos el mismo orden de elementos en la matriz { 11, 10, 13 }.
+
+4) Divida el subarreglo { 11, 10, 13 }en dos subarreglos más pequeños: el izquierdo { 11, 10 }y el subarreglo vacío.
+
+5) Considere el subarreglo { 11, 10 }. El pivote es101 0. Después de reorganizar, obtenemos el pedido { 10, 11 }.
+
+6) Divida el subarreglo { 10, 11 }en dos subarreglos más pequeños: el arreglo vacío y { 11 }. Ambos arreglos nuevos ya están ordenados. El pivote 10 está excluido.
+
+Tenga en cuenta que consideramos las matrices vacías y de un solo elemento como ya ordenadas y no las procesamos.
+
+7) Seguimos los mismos pasos para el subarreglo derecho { 17, 25, 16, 22 } del arreglo original hasta que todos los subarreglos estén vacíos o consistan en un solo elemento.
+
+Después, todo el conjunto se clasifica: { 10, 11, 13, 14, 16, 17, 22, 25 }.
+
+Cuando hemos elegido un pivote y reorganizado la matriz, el pivote está en su posición final. Todos los elementos de la izquierda son menores que el pivote y todos los elementos de la derecha son mayores que el pivote. Pero es posible que no estén ordenados entre sí en el paso actual.
+
+Puede echar un vistazo a una visualización si lo desea. https://www.cs.usfca.edu/~galles/visualization/ComparisonSort.html
+
+
+Problemas y posibles modificaciones
+
+1) Desafortunadamente, el esquema de partición de Lomuto causa el peor comportamiento O(n^2) en matrices ya ordenadas. El problema se puede resolver optando por una estrategia de selección de pivote diferente: eligiendo un índice aleatorio para el pivote, eligiendo el índice medio de la partición o (especialmente para particiones más largas) eligiendo la mediana del primer, medio y último elemento de la partición para el pivote (según lo recomendado por Sedgewick ). (https://en.wikipedia.org/wiki/Robert_Sedgewick_(computer_scientist))
+
+La opción de mediana de tres cuenta el caso de entrada ordenada (o ordenada inversamente) y proporciona una mejor estimación del pivote óptimo (la mediana verdadera) que seleccionar un elemento aleatorio cuando no se sabe nada sobre el orden de la entrada.
+
+2) Cuando todos los elementos de entrada son iguales, un subarreglo siempre está vacío mientras que otro solo ha disminuido en un elemento (se elimina el pivote). Esto provoca el peor comportamiento de los casos.
+
+Para evitar el problema, podemos separar los valores en tres grupos: valores menores que el pivote, valores iguales al pivote y valores mayores que el pivote. Los valores iguales al pivote ya están ordenados, por lo que solo las particiones menor que y mayor que se deben ordenar de forma recursiva.
+
+Por lo tanto, es posible mejorar el peor caso de clasificación rápida para hacerlo más rápido en muchos conjuntos de datos.

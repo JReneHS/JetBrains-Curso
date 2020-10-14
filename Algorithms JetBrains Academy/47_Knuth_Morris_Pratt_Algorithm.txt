@@ -1,0 +1,48 @@
+El algoritmo Knuth-Morris-Pratt (KMP) es un enfoque eficaz para el problema de búsqueda de subcadenas. Para comprobar si un patróns s es una subcadena de un texto t, el algoritmo requiere O( ∣s∣ + ∣t∣ ) operaciones en el peor de los casos. En este tema, aprenderemos este algoritmo y veremos cómo funciona con el ejemplo. Después de completar el tema, podrá implementar el algoritmo y usarlo para resolver de manera eficiente varios problemas relacionados con la búsqueda de subcadenas.
+
+
+
+Descripción del algoritmo
+El algoritmo KMP es similar al enfoque de búsqueda de subcadenas ingenuo: en cada paso, compara un patrón con una subcadena de un texto tratando de encontrar una coincidencia completa. La diferencia entre estos dos algoritmos es cómo procesan el caso de símbolos no coincidentes. En el algoritmo ingenuo, simplemente cambiamos un patrón por un símbolo y comenzamos una nueva iteración. En algunos casos, esto puede dar lugar a muchas comparaciones innecesarias. Para procesar este caso de manera más eficiente, el algoritmo KMP calcula la función de prefijo para el patrón y luego la usa para cambiar el patrón de manera más óptima.
+
+Veamos con más detalle cómo funciona este paso para s = BACBAD y t = BACBACBAD. Primero, calculamos la función de prefijo P para el patrón: ver imagen
+
+Luego, comenzamos a buscar el patrón en el texto: ver imagen
+
+En la primera iteración, hay una falta de coincidencia en el último par de símbolos: t[5] != s[5]. Podemos ver esos [0...5] = BACBA es una subcadena del patrón que coincide con el comienzo del texto. Dado que la longitud de esta subcadena es 5 y la longitud de su borde más largo es p [4] = 2, podemos cambiar el patrón 5 - 2 = 3 símbolos y continuar la comparación con el 5th símbolo del texto y 2nd símbolo del patrón sabiendo que los símbolos anteriores ya coinciden: ver imagen
+
+Los símbolos amarillos de la figura anterior corresponden a la posición actual en el texto y en el patrón. Entonces, usando la función de prefijo, podemos encontrar un cambio óptimo para el patrón evitando comparaciones que no resulten en una coincidencia. Esto nos permite reducir significativamente el número total de comparaciones de símbolos.
+
+Para un patrón arbitrario s y un texto t, el algoritmo KMP se puede formular de la siguiente manera:
+
+    1) Calcular la función de prefijo P para el patrón s.
+
+    2) Establecer la primera subcadena del texto con longitud ∣s∣ como actual.
+
+    3) Compare el patrón con la subcadena actual del texto. Si todos los símbolos coinciden, guarde el índice de la ocurrencia encontrada. De lo contrario, cambie el patrón L - P[L - 1] símbolos, donde L es la longitud de la subcadena coincidente del patrón.
+
+    4) Continúe con el paso 3 hasta que se procesen todas las subcadenas del texto. Luego, devuelva las ocurrencias encontradas.
+
+
+
+Un ejemplo
+Apliquemos el algoritmo de Knuth-Morris-Pratt para un patrón s = ABCABD en un texto t = ABCABCAABCABD. Primero, necesitamos calcular la función de prefijo P para el patrón: ver imagen
+
+Luego, comenzamos a comparar el patrón con subcadenas del texto: ver imagen
+
+En la primera iteración, hay una falta de coincidencia en el último par de símbolos: t[5] != s[5]. Ya que p [4] = 2, cambiamos el patrón por 5 - 2 = 3 símbolos y comenzar una nueva iteración: ver imagen
+
+Ahora, hay una falta de coincidencia nuevamente: t [7] != s[4]. Ya que p[3] = 1, cambiamos el patrón por 4 - 1 = 3 símbolos y comenzar una nueva iteración: ver imagen
+
+Volvemos a tener un desajuste: t[7] != s[1]. Ya que p[0] = 0, cambiamos el patrón por 1 - 0 = 1 símbolo: ver imagen
+
+Ahora, todos los símbolos del patrón coinciden con la subcadena actual del texto, por lo que se encuentra una ocurrencia. Dado que se procesan todos los símbolos del texto, el algoritmo está terminado.
+
+Si desea ver una visualización del algoritmo KMP, puede echar un vistazo a este sitio . http://whocouldthat.be/visualizing-string-matching/
+
+
+
+Análisis de complejidad
+Supongamos que queremos encontrar un patrón  s en un texto tt. Primero, calculamos la función de prefijo para s, que requiere O ( ∣s∣ )operaciones. Después de eso, comenzamos a buscar s en tt realizar una comparación símbolo por símbolo del patrón con subcadenas de tt. Si los símbolos correspondientes coinciden, simplemente pasamos al siguiente par de símbolos. El número total de tales casos no es más de ∣t∣. Si tenemos un desajuste, usamos la función de prefijo calculada para encontrar un cambio óptimo para el patrón. En cada uno de estos casos, el número de veces que podemos cambiar el patrón está limitado por el número de símbolos que coincidían antes. Por lo tanto, el número total de tales operaciones no es más de ∣t∣ también. Por lo tanto, el tiempo total de ejecución es O( ∣s∣ + ∣t∣ ).
+
+El algoritmo requiere O ( ∣s∣ ) memoria adicional para almacenar la función de prefijo para  s.

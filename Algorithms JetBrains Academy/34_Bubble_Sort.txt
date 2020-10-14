@@ -1,0 +1,20 @@
+Ordenamiento de Burbuja
+
+La clasificación de burbujas es uno de los algoritmos de clasificación más simples. Recorre repetidamente la matriz que se va a clasificar, compara cada par de elementos adyacentes y los intercambia si están en el orden incorrecto.
+
+Los pedidos incorrectos y correctos dependen del orden de clasificación requerido. Si una matriz debe clasificarse en orden ascendente, el orden incorrecto es cuando el elemento anterior es mayor que el siguiente. Si una matriz debe clasificarse en orden descendente, el orden incorrecto es el caso cuando el elemento anterior es menor que el siguiente.
+
+El algoritmo no es adecuado para arreglos grandes ya que su complejidad de tiempo promedio y en el peor de los casos es Ο (n ^ 2), donde n es la longitud de la matriz.
+
+El algoritmo es estable : no cambia el orden relativo de elementos idénticos.
+
+En un bucle, el algoritmo compara cada par de elementos de matriz adyacentes y los intercambia si están en el orden incorrecto (color azul oscuro). Si el pedido es correcto (color azul), no hace nada.
+
+Como puede ver, los elementos max flotan gradualmente hasta el final de la matriz, lo que justifica el nombre del algoritmo. El algoritmo no intercambia elementos en la parte ordenada correcta.
+
+Para tener una mejor idea de cómo funciona el algoritmo, vea una visualización . https://www.cs.usfca.edu/~galles/visualization/ComparisonSort.html
+
+Conclusión
+El algoritmo se denomina "Clasificación de burbujas" porque mueve los elementos más pequeños o más grandes al final de la matriz. Compara elementos adyacentes en pares y los intercambia si están en el orden incorrecto.
+
+Aunque la clasificación de burbujas es uno de los algoritmos de clasificación más simples de comprender e implementar, su Ο (n ^ 2) La complejidad significa que su eficiencia disminuye drásticamente en arreglos que contienen muchos elementos.

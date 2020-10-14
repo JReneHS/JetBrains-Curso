@@ -1,0 +1,20 @@
+distancia de Hamming
+
+
+Formular el problema
+A veces, para resolver un problema, es necesario identificar si dos cadenas son similares. Por ejemplo, supongamos que queremos comparar dos secuencias de ADN para comprender cuán diferentes son dos organismos. O queremos encontrar una palabra en un documento, pero no solo coincidencias exactas sino también aproximadas. Para resolver estos problemas, necesitamos encontrar una métrica para identificar la similitud entre dos cadenas e implementar un algoritmo para calcular la métrica.
+
+Por ahora, existen varias métricas que permiten estimar la similitud de dos cadenas. En esta lección, consideraremos una de las métricas más simples llamada distancia de Hamming . Para dos cadenas de igual longitud, la distancia de Hamming es el número de posiciones en las que las cadenas son diferentes. O, en otras palabras, la métrica mide el número mínimo de sustituciones necesarias para transformar una cadena en otra. Se usa en teoría de la información para medir cuán similares son dos códigos binarios, en telecomunicaciones para contar el número de bits diferentes en dos palabras binarias como una estimación de un error (algunos otros ejemplos se pueden encontrar en un artículo de Wikipedia ). https://en.wikipedia.org/wiki/Hamming_distance#History_and_applications
+
+Descripción del algoritmo
+Un algoritmo para calcular la distancia de Hamming es bastante sencillo: comparemos los símbolos correspondientes de dos cadenas desde el primero hasta el último símbolo y contemos el número de diferentes. El número total de símbolos diferentes es la distancia de Hamming de las cadenas.
+
+
+Un ejemplo
+A continuación se muestra un ejemplo de cálculo de la distancia de Hamming para cuerdas "microscope" y "microphone". Los símbolos iguales se muestran en verde, los diferentes se muestran en rojo. ver imagen
+
+
+Como puede ver, hay tres símbolos diferentes. Entonces, la distancia de Hamming es igual a 3.
+
+Análisis de complejidad
+El tiempo de ejecución del algoritmo es O(n) dónde n el número de símbolos en una de las cadenas. El algoritmo no requiere memoria adicional.

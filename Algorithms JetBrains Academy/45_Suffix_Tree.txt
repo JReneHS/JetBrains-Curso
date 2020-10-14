@@ -1,0 +1,39 @@
+árbol de sufijo
+
+Definiciones basicas
+Un árbol de sufijos es una estructura de datos que nos permite resolver algunos problemas relacionados con las cadenas. En general, los árboles de sufijos pueden funcionar con cualquier tipo de secuencias de bytes (cadenas, matrices, etc.), pero en esta lección examinaremos esta estructura de datos considerando solo cadenas, el caso más frecuente e intuitivo. Los árboles de sufijos se pueden utilizar para varios problemas, que van desde corregir la gramática en un documento hasta buscar patrones comunes en las secuencias de ADN.
+
+Como ya sabrá, el sufijo de cadena es una secuencia de caracteres en una cadena, el último de los cuales es el último carácter de una cadena. Por ejemplo, la cadena "suffix" tiene 6 sufijos: "suffix", "uffix", "ffix", "fix", "ix" y "x".
+
+Un árbol de sufijos es una estructura que almacena todos los sufijos de una cadena determinada. Se implementa usando un árbol donde cada ruta desde la raíz hasta la hoja representa un sufijo diferente de la cadena original. Si dos sufijos comienzan con el mismo carácter, tendrán un borde común que denota ese carácter. De manera similar, si dos sufijos comienzan con la misma subcadena, tendrán una ruta común desde la raíz hasta cierto nodo. Además, tenga en cuenta que el árbol de sufijos tiene un número mínimo de vértices necesarios para regenerar todos los sufijos posibles de la cadena original. Si desea ver una visualización de esta estructura de datos, puede consultar este ejemplo . https://visualgo.net/en/suffixtree
+
+
+Un ejemplo gráfico
+Para otro ejemplo, consideremos un árbol de sufijos para la cadena "abcabb": ver imagen
+
+En primer lugar, probablemente notará que algunos bordes contienen un peculiar carácter "0". Este carácter especial es un requisito para construir árboles de sufijos que denoten el final de un sufijo particular. Este carácter no puede estar presente en toda la cadena.
+
+Para intuir por qué necesitamos este carácter, consideremos los sufijos "b" y "bb". Si miramos detenidamente el árbol de arriba, podemos ubicar ambos sufijos en dos ramas del medio: ver imagen
+
+Ahora, suponiendo que no adjuntamos un carácter "0" al final de la cadena, nuestro árbol se vería así: ver imagen
+
+En este árbol, no hay forma de deducir que "b" es un sufijo válido. Aunque todavía tenemos un nodo que conecta los sufijos "bb" y "bcabb", la ruta desde la raíz hasta el nodo en sí no representa un sufijo válido por sí mismo. A modo de comparación, podemos mirar la rama más a la izquierda del árbol: "ab" no es un sufijo válido de la cadena "abcabb", aunque denota un camino común entre los sufijos "abb" y "abcabb".
+
+Es por eso que necesitamos un carácter especial al final de una cadena: lo necesitamos para crear nodos hoja que indiquen sufijos válidos. El carácter en sí puede ser cualquier cosa (siempre que no aparezca en la cadena). Para una mejor comprensión, puede consultar otro ejemplo . https://stackoverflow.com/questions/13422573/why-do-we-need-a-sentinel-character-in-a-suffix-tree
+
+
+
+Una aplicación de árbol de sufijos
+Encuentra una subcadena en una cadena. Si deseamos encontrar una subcadena en una cadena, podemos usar el enfoque convencional de fuerza bruta y probar todas las posiciones posibles para nuestra subcadena, o podríamos ser más eficientes y hacer uso de árboles de sufijos. Consideremos el siguiente ejemplo: imaginemos que queremos encontrar si una cadena de consulta "aabx" está presente en una cadena de búsqueda "xaaabxba". 
+
+Primero, construimos un árbol de sufijos para "xaaabxba": ver imagen
+
+La búsqueda comienza desde el nodo raíz del árbol. Tenemos un borde "a" que está presente en nuestra cadena de consulta "aabx", así que seguimos ese borde hasta el nodo más a la izquierda. A continuación, siguiendo el mismo principio, obtenemos una coincidencia con la cadena "b". Resulta que ningún prefijo de la subcadena restante se incluye por completo en ningún borde del árbol. Ahora tenemos que buscar una coincidencia para el resto de la subcadena de consulta con el sufijo del borde del árbol: la subcadena "bx" coincide. Como coincidimos con todos los caracteres de nuestra cadena de consulta, confirmamos que "aabx" está en "xaaabxba" incluso sin inspeccionar todas las ramas de nuestro árbol. La capacidad de omitir verificaciones innecesarias es la principal ventaja de usar árboles de sufijos para operaciones de cadenas.
+
+De manera similar, podemos contar el número de subcadenas diferentes en una cadena e incluso implementar algoritmos de compresión de texto como Ziv-Lempel, aunque no los discutiremos en esta lección.
+
+Construye un árbol de sufijos. Hay varias formas de construir árboles de sufijos, como los métodos propuestos por Ukkonen y McCreight. Sin embargo, dado que estos algoritmos son bastante complejos y difíciles de implementar, no los cubriremos en esta lección. Todo lo que necesita saber por ahora es que los árboles de sufijos se pueden construir en tiempo lineal O (n) y requieren memoria O (n).
+
+
+Conclusión
+En esta lección, analizamos los árboles de sufijos, cómo se relacionan con los sufijos presentes en una cadena y cómo se pueden usar los árboles de sufijos para encontrar subcadenas de manera eficiente. Representan una forma poderosa de trabajar con texto y son una herramienta importante para resolver problemas relacionados con el lenguaje natural y el procesamiento de secuencias.

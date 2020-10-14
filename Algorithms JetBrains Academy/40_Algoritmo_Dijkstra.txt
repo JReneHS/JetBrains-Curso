@@ -1,0 +1,68 @@
+Dijkstra's algorithm
+
+Suponga que un grafo ponderado a continuación representa un mapa, donde los nodos son ciudades, los aristas son carreteras y el peso de cada arista es la distancia entre dos ciudades: ver imagen
+
+Supongamos que estamos en la ciudad A y quiero hacer un viaje a la ciudad G. Para llegar de A a G Lo más rápido posible, necesitamos conocer el camino más corto entre las ciudades, es decir, el camino con el peso total mínimo. ¿Cómo se puede encontrar este camino?
+
+Uno de los posibles enfoques es utilizar el algoritmo de Dijkstra . Permite encontrar las rutas más cortas desde un nodo dado a todos los demás nodos de un grafo. Consideremos el algoritmo con más detalle.
+
+
+
+Descripción del algoritmo
+Primero, acordemos que usaremos más las siguientes notaciones:
+
+    fuente: el nodo desde el que queremos encontrar las rutas más cortas a todos los demás nodos;
+
+    peso(u, v) - el peso del arista que conecta los nodos u y v;
+
+    dist(v) - la distancia actual desde la fuente al nodo v.
+
+Ahora, el algoritmo de Dijkstra se puede formular de la siguiente manera:
+
+    1) Establezca la distancia actual a la fuente 0, para todos los demás nodos, asígnelo a ∞. Marque todos los nodos como sin procesar.
+
+    2) Encuentra un nodo sin procesar u con los mas pequeños dist(u).
+
+    3) Para todos los vecinos sin procesar v del nodo u, compruebe si la distancia desde u a v es menor que la distancia actual a v. Si ese es el caso, es dist(u) + peso(u, v) < dist(v), actualice la distancia actual a v a un valor menor.
+
+    4) Cuando todos los vecinos de u son considerados, marca u como procesado.
+
+    5) Si no hay nodos sin procesar, el algoritmo está terminado. De lo contrario, vuelva al segundo paso.
+
+Una vez procesados ​​todos los nodos, cada una de las distancias actuales dist(u)  es la distancia más corta desde la fuente hasta el nodo u.
+
+
+
+
+Ejemplo
+Apliquemos el algoritmo para encontrar las rutas más cortas desde el nodo. A a todos los demás nodos del grafo anterior. En las figuras siguientes, el nodo que se procesa en el paso actual y los aristas incidentes a los vecinos no procesados ​​de este nodo se muestran en verde. Los nodos que ya están procesados ​​y los aristas que corresponden a las rutas más cortas actuales se muestran en azul. Las distancias actuales se muestran en negrita cerca de los nodos.
+
+En el primer paso, consideramos el nodo fuente A, ya que tiene la distancia actual más pequeña. El nodo tiene dos vecinos: B y C. La distancia desde A a B es dist(A) + peso(A, B) = 0 + 4 = 4. Ya que 4 es menos que ∞, la distancia a B se establece en 4. Del mismo modo, la distancia a C se establece en 7. Luego, A está marcado como procesado.
+
+En el siguiente paso, el nodo B tiene la distancia más pequeña. La distancia desde B a C es dist(B) + peso(B, C) = 4 + 1 = 5, que es menor que 7. Entonces, la distancia a C se establece en 5. Siguiendo la misma regla, las distancias D y E están configurados para 7 y 14 respectivamente y luego B está marcado como procesado. ver imagen
+
+A continuación, el nodo C tiene la distancia más pequeña. La distancia desde C a D es dist(C) + peso(C, D) = 5 + 8 = 13, que es mayor que 7. Entonces, la distancia D no necesita ser actualizado. La distancia desde C a F es 10, que es menor que ∞. Entonces, está configurado para10.
+
+En el cuarto paso, el nodo D tiene la distancia más pequeña. Las distancias desde D a E y F son menores que las distancias anteriores para estos nodos, por lo que se establecen en 12 y 8 respectivamente.
+
+Continuando con el mismo proceso para los nodos restantes, finalmente obtenemos el grafo que se muestra en la figura 8.
+
+El árbol resultante (mostrado en azul) se denomina árbol de ruta más corta. Se puede utilizar para reconstruir la ruta más corta desde la fuente hasta cualquier otro nodo del grafo. Por ejemplo, el camino más corto desde A a G es A → B → D → F → E → G. El peso total de este camino es 4 + 3 + 1 + 3 + 4 = 15, que corresponde a dist(G).
+
+Tenga en cuenta que aunque el grafo anterior no está dirigido, el mismo algoritmo también funciona para grafos dirigidos. Otro detalle importante del algoritmo de Dijkstra es que no funciona si un grafo contiene aristas de peso negativos. El siguiente ejemplo ilustra la declaración: ver imagen
+
+Podemos ver que la distancia final desde A a B es 22, aunque el camino A → C → B tiene un peso de 5 + (-4) = 1. El problema es que cuando el nodo C fue considerado, el nodo B ya había sido procesado y el peso de B no se pudo actualizar.
+
+Lo último a mencionar es que existen muchos recursos que permiten visualizar los pasos del algoritmo de Dijkstra. Aquellos que estén interesados ​​en un ejemplo más interactivo de cómo funciona el algoritmo pueden consultar una visualización . https://www.cs.usfca.edu/~galles/visualization/Dijkstra.html
+
+
+
+
+Análisis de complejidad
+Considere una gráfica G con n nodos y m aristas. El tiempo de ejecución del algoritmo de Dijkstra para este grafo depende de una estructura de datos utilizada para almacenar las distancias actuales.
+
+Una de las posibles implementaciones usa una matriz A de tamaño n, dónde A[i] almacena la distancia actual al nodo i. En este caso, encontrar la distancia más pequeña requiere O(n)operaciones, ya que necesitamos escanear toda la matriz. La operación de actualización se puede realizar en O(1). Dado que el número total de búsquedas es n y el número total de actualizaciones no es más que m, el tiempo de ejecución total es O(n^2 + m).
+
+Otro enfoque es almacenar las distancias en una cola de prioridad. Si la cola se implementa a través de un binary heap, la búsqueda y actualización se pueden realizar en O(log n). En este caso, el tiempo de ejecución es n*log n + m*log n = O((n + m)*log n).
+
+Entonces, ¿cuál de las implementaciones es preferible? Si G es un grafo denso (con muchos aristas, m ≈ n^2), entonces la implementación basada en la cola de prioridad da como resultado O(n^2*log n). En este caso, la implementación basada en matrices es una mejor opción. Para grafos dispersos, (con pocos aristas, m ≈ n), la implementación basada en la cola de prioridad es más apropiada ya que para tales grafos el tiempo de ejecución del algoritmo es O(n*log n).

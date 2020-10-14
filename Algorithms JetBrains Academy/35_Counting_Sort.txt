@@ -1,0 +1,93 @@
+Countig Sort
+
+El ordenamiento por conteo es un algoritmo que no se basa en la comparación para ordenar números enteros pequeños. El algoritmo cuenta el número de apariciones de números distintos en la matriz de entrada y luego genera los valores del mínimo al máximo de acuerdo con sus conteos. El algoritmo necesita una matriz adicional para almacenar los recuentos.
+
+
+Propiedades del algoritmo
+Aquí hay una lista de las propiedades del algoritmo:
+
+    El ordenamiento por recuento es eficaz cuando un rango de datos de entrada no es significativamente mayor que el número de objetos que se van a ordenar;
+
+    El algoritmo también puede ordenar otros tipos de datos si se pueden asignar a números enteros;
+
+    Se puede ampliar para que funcione con números enteros negativos;
+
+    La complejidad del tiempo es O (n + k) dónde n es el número de elementos en la matriz de entrada y k es el rango de la entrada;
+
+    el uso de espacio total del algoritmo también es O (n + k).
+
+
+El algoritmo puede ser estable e inestable . Consideraremos ambas versiones.
+
+
+
+El algoritmo inestable más simple
+La versión más simple del algoritmo es inestable y funciona de la siguiente manera.
+
+La matriz de entrada denominada numbers de longitud n contiene números enteros del rango[0, k-1]. Hay una matriz adicional denominada counts de la longitud k.
+
+    1) Revisamos los números y escribimos counts[numbers[i]] la cuenta de números igual a numbers[i].
+
+    2) Ahora es suficiente pasar por la matriz counts y escribir cada número num en una matriz exactamente counts[num] veces.
+
+Como matriz de salida, podemos usar los números de matriz de entrada. Esto nos permitirá gastar menos memoria adicional.
+
+La siguiente imagen muestra el tipo de conteo: ver imagen
+
+
+
+
+El tipo de conteo estable
+A menudo, necesitamos un algoritmo de clasificación estable para clasificar objetos complejos por claves. El tipo de conteo puede ser estable .
+
+Para que sea estable, después de completar la matriz counts , lo modificaremos sumando el recuento anterior al siguiente. Entonces, obtenemos recuentos acumulativos . Para almacenarlos usaremos la misma matriz acounts .
+
+Aquí hay un algoritmo con la misma notación que el anterior.
+
+    1) Revisamos los numbers y escribimos counts[i] la cuenta de números igual a i.
+
+    2) Modificamos la matriz counts: counts[i] almacena el recuento de elementos de 0 a i.
+
+    3) Revisamos los numbers al revés y escribimos numbers[i] sobre la posición counts[numbers[i]] - 1 en una nueva matriz, al mismo tiempo disminuimos counts[numbers[i]] por uno después de cada escritura.
+
+
+Realmente, counts[numbers[i]] - 1 es la última aparición de numbers[i] en la matriz ordenada (el índice más a la derecha). Cuando lo disminuimos, nos referimos al siguiente numbers[i] tendrá el índice anterior en la matriz ordenada.
+
+Las siguientes imágenes demuestran la ordenación de conteo por ejemplo. El primero muestra el cálculo acumulativo de counts ( recuentos modificados), el segundo muestra cómo escribir elementos en la matriz ordenada. ver imagen
+
+Después de calcular los recuentos acumulativos y modificar la matriz counts para almacenarlos, podemos escribir elementos en la matriz ordenada.
+
+
+Para escribir elementos en la matriz ordenada, recorremos la matriz de entrada hacia atrás y obtenemos el índice de elementos más a la derecha en la matriz ordenada. Para obtener el índice más a la derecha, accedemos a la matriz modificada counts .
+
+    1) Queremos saber el índice del elemento. numbers[7] igual a 1 en la matriz ordenada. Obtenemos el valor counts[1] igual a 3 y calcular 3 - 1 = 2. Significa el elemento 1 tiene el índice 2 en la matriz ordenada. Entonces disminuimos counts[numbers[7]] en uno.
+
+    2) Después de eso, queremos saber el índice del elemento. numbers[6] igual a 3 en la matriz ordenada. Obtenemos el valor de counts[3] igual a 7 y calcular 7 - 1 = 6, lo que significa que el elemento tiene el índice 6 en la matriz ordenada. No olvides disminuir numbers[6] en uno. Los siguientes elementos son iguales a 3 tendrá un índice más pequeño porque disminuimos cuenta counts[numbers[6]] en uno.
+
+Repetimos los mismos pasos para todos los demás elementos de la matriz de entrada.
+
+Esta versión del algoritmo puede ser más difícil de entender. Ves una visualización si quieres. https://www.cs.usfca.edu/~galles/visualization/CountingSort.html
+
+
+
+Cuándo usar la ordenación por conteo
+counting sort es una buena opción cuando:
+
+    la matriz de entrada contiene números enteros o se puede asignar a números enteros (caracteres, objetos con teclas pequeñas, etc.);
+
+    se conoce la gama de elementos;
+
+    la mayoría de los elementos del rango están presentes;
+
+    el uso de memoria adicional no es un problema.
+
+La ordenación de conteo estable se utiliza para implementar otros algoritmos de ordenación no basados ​​en la comparación, como la ordenación por base.
+
+
+
+Buscando el rango de índices
+Si no se conoce el rango de elementos, podemos encontrarlo mediante la búsqueda lineal del mínimo y máximo.
+
+Si el mínimo es negativo, podemos aumentar todos los valores en este mínimo y luego disminuirlos.
+
+https://www.cs.miami.edu/home/burt/learning/Csc517.091/workbook/countingsort.html

@@ -1,0 +1,44 @@
+búsqueda de una subcadena
+
+
+El problema
+Las cadenas crean el universo de la programación, siendo una de las estructuras de datos más utilizadas, por lo que es fundamental saber cómo manejarlas. La búsqueda de una subcadena es una de las habilidades que probablemente usará con bastante frecuencia. Por ejemplo, mientras trabaja en un editor de texto, es posible que desee buscar todas las apariciones de una palabra en particular en un texto, o puede que necesite encontrar una frase en particular en una página web sin tener que leer todo. Para mayor comodidad y claridad, diferenciemos: una subcadena que estamos buscando se llama patrón y una cadena en la que hacemos una búsqueda es un texto .
+
+Digamos que tenemos un patrón " ACA " y un texto " ACBACAD". Podemos ver que el patrón es una subcadena del texto porque está contenido allí comenzando desde el tercero y terminando con el quinto símbolo (asumiendo una indexación basada en cero). Con esta cadena corta, nuestro ojo vigilante es suficiente, pero en programación y con secuencias más largas necesitamos encontrar un algoritmo que pueda resolver el problema de un patrón y texto arbitrarios.
+
+
+
+El algoritmo más simple
+Uno de los algoritmos más simples para encontrar un patrón en un texto es el siguiente:
+
+    1) Compara el patrón con el comienzo del texto.
+    
+    2) Si cada símbolo del patrón coincide con el símbolo correspondiente del texto, tenemos suerte: se encuentra una ocurrencia.
+
+    3) Si al menos un símbolo del patrón no coincide con el símbolo correspondiente del texto, el intento actual es un fracaso. En este caso, movemos el patrón un símbolo a la derecha y hacemos una comparación nuevamente.
+
+    4) Repita los pasos 2 y 3 hasta que encuentre el patrón o llegue al final del texto. Si ninguno de los intentos tuvo éxito, debemos indicar que no existe tal patrón en el texto.
+
+
+Un ejemplo
+La siguiente imagen ilustra cómo funciona este algoritmo para el patrón " ACA " y el texto " ACBACAD ". Para complacer su vista y ayudar a su comprensión, los símbolos coincidentes se muestran en verde, los que no coinciden son rojos y los que no se usan en el paso actual están coloreados con un suave tono azul: ver imagen
+
+Esto es lo que está sucediendo: en el primer paso, comparamos el patrón con el comienzo del texto. Los dos primeros símbolos coinciden pero, lamentablemente, el tercero no. El intento no tiene éxito, por lo que cambiamos el patrón a la derecha. En el segundo y tercer paso, intentamos comparar los símbolos correspondientes nuevamente, pero tenemos una discrepancia obvia en el primer símbolo. En el cuarto paso, todos los símbolos correspondientes coinciden, por lo que una ocurrencia se encuentra correctamente.
+
+Puede ver que a veces no es necesario procesar todos los símbolos del patrón. Si tenemos un desajuste, digamos, en el primer símbolo, no necesitamos comparar el resto. En caso de falla, podemos cambiar inmediatamente el patrón y comenzar un nuevo paso: una buena lección de vida de la que aprender.
+
+Análisis de complejidad
+Vamos a denotar ∣p∣ como la longitud de un patrón y ∣t∣ como la longitud de un texto. En el peor de los casos, debemos procesar todos ∣p∣ símbolos del patrón en cada paso. El número máximo de pasos es ∣t∣ - ∣p∣ + 1 ( asumiendo ∣t∣ ≥ ∣p∣ ). Entonces, el tiempo de ejecución total es
+
+( ∣t∣ - ∣p∣ + 1 ) * ∣p∣ = ∣t∣ * ∣p∣ - ∣p∣^2 + ∣p∣ = O(∣t∣ * ∣p∣)
+
+Tenga en cuenta que el algoritmo requiere O (1) de memoria adicional.
+
+Notas adicionales
+Por ahora, hemos aprendido sobre el algoritmo que puede responder "sí" si un patrón está presente en el texto y "no" si no lo está. Sin embargo, el problema también se puede formular de muchas otras formas. Es posible que necesitemos:
+
+    encontrar el índice de la primera aparición de un patrón en un texto;
+
+    encontrar todas las apariciones de un patrón en un texto;
+    
+    encontrar todas las ocurrencias no superpuestas de un patrón en un texto.

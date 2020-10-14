@@ -1,0 +1,41 @@
+Breadth First Search (BFS)
+
+Cuando trabajamos con grafos, a veces necesitamos saber qué tan lejos están unos de otros dos nodos. Por ejemplo, recuerde nuestro grafo con aristas que representan carreteras en una ciudad y nodos correspondientes a las intersecciones de las carreteras. Si necesitamos ir de un punto de la ciudad a otro, probablemente queramos ir por la ruta más corta. Otro ejemplo es un grafo en el que cada nodo representa un aeropuerto y los aristas correspondientes a los vuelos entre dos aeropuertos. Si tenemos que ir de un aeropuerto a otro y no hay vuelo directo entre ellos, preferimos utilizar la ruta con menos transbordos.
+
+En términos de grafos, los problemas descritos se pueden formular de la siguiente manera: dados dos nodos de un grafo llamado origen y destino , encuentre una ruta entre ellos que consista en el menor número posible de nodos intermedios.
+
+Uno de los algoritmos que nos permite solucionar este problema es la búsqueda en amplitud . Es un algoritmo simple y eficiente que se puede utilizar como un procedimiento independiente o como una subrutina para otros algoritmos de procesamiento de grafos. En este tema, aprenderemos el procedimiento con más detalle y veremos cómo funciona en un ejemplo.
+
+
+Procedimiento de búsqueda en amplitud primero
+El recorrido de búsqueda primero en amplitud (BFS) comienza con un solo nodo de un grafo. Luego, el algoritmo visita a todos sus vecinos. Después de eso, considera todos los vecinos de los nodos visitados en el paso anterior y así sucesivamente hasta que se procesan todos los nodos. En otras palabras, BFS visita gradualmente todos los nodos de un grafo en el orden de distancia creciente desde el nodo de inicio.
+
+El algoritmo es el siguiente:
+
+    1) Elija un nodo inicial de un grafo, márquelo como visitado y establezca su distancia en 0.
+
+    2) Considere todos los vecinos no visitados de los nodos visitados en el paso anterior y márquelos como visitados. Establezca la distancia a cada uno de estos nodos para d + 1, dónde d es la distancia a los nodos procesados ​​en el paso anterior.
+
+    3) Repita el paso 2 hasta que se visiten todos los nodos.
+
+
+Una vez completado el procedimiento, la distancia a cada nodo vv corresponderá a la distancia más corta entre el nodo inicial y v.
+
+Para implementar BFS usando un lenguaje de programación particular, necesitará usar la estructura de datos de la cola (Queue) . La idea es poner un nodo inicial en la cola, luego en cada paso extraer el nodo actual de él, considerar a todos los vecinos y ponerlos en la cola, y así sucesivamente. Esto nos permite atravesar los nodos de un grafo exactamente en el orden descrito anteriormente.
+
+Un ejemplo
+Apliquemos el algoritmo para el siguiente grafo no dirigido usando D como nodo inicial: ver imagen
+
+Las figuras siguientes ilustran el procedimiento paso a paso. Los nodos visitados se muestran en azul y los vecinos no visitados de los nodos visitados son verdes. Los nodos restantes se muestran en negro. La etiqueta de cada nodo visitado v corresponde a la distancia más corta entre el nodo inicial D y v.
+
+Comenzamos el procedimiento con el nodo D poniendo su etiqueta a 0. Entonces, consideramos a todos sus vecinos no visitados. Hay cinco de ellos que se muestran en verde en la primera figura. Establecemos las distancias a cada uno de los nodos en 1 y marcarlos como visitados. En el segundo paso, consideramos a todos los vecinos no visitados de los nodos etiquetados con 1. Hay cuatro de ellos que se muestran en verde en la segunda figura. Establecemos la distancia a cada uno de los nodos en 2 y pasar a los próximos vecinos no visitados. Después de que se procesan todos los nodos, obtenemos el siguiente grafo: ver imagen
+
+La etiqueta de cada nodo v de ese grafo corresponde a la distancia más corta entre el nodo inicial y v. El nodo inicial en sí tiene la etiqueta 0. Como puede ver, los nodos azules y los aristas del grafo forman un árbol. Dicho árbol se denomina árbol de expansión porque conecta (abarca) todos los nodos del grafo. Entonces, encontrar un árbol de expansión es una de las aplicaciones del procedimiento BFS.
+
+Aunque el grafo anterior no está dirigido, BFS funciona de la misma manera para los grafos dirigidos.
+
+Si desea ver otro ejemplo de cómo funciona el algoritmo, puede echar un vistazo a una visualización del proceso. https://www.cs.usfca.edu/~galles/visualization/BFS.html
+
+
+Análisis de complejidad
+Al aplicar el procedimiento BFS para un grafo G = (V, E) , cada nodo se agrega a una cola y se extrae de ella exactamente una vez. Cada arista { x ,y} se considera exactamente dos veces: durante la visita X y luego mientras visitaba y (o viceversa). Entonces, el tiempo de ejecución general del algoritmo es 2*|V| + 2*|E| = O(| V | + | E |).
