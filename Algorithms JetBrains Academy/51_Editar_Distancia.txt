@@ -45,7 +45,11 @@ Tenga en cuenta que asumimos que la primera parte de cada transformación es óp
 
 Como no sabemos de antemano cuál de las operaciones descritas da el resultado óptimo, debemos verificarlas todas y luego elegir la mejor. Usando la notación anterior, el razonamiento se puede escribir de la siguiente manera:
 
-    d_{i, j} = min{ d_{i-1, j} + 1, d_{i, j-1} + 1, d_{i-1, j-1 } + Match(s[i], t[j]) }
+    d_{i, j} = min{ d_{i-1, j} + 1 , d_{i, j-1} + 1 , d_{i-1, j-1} + Match(s[i], t[j]) }
+
+otra posible es:
+
+        d_{i, j} = min{ d_{i-1, j} + 1 , d_{i, j-1} + 1 , d_{i-1, j-1} + Match(s[i -1], t[j -1]) }
 
 Aquí, Match(s_1, s_2) es igual a 0 si los símbolos coinciden y 1 de otra manera.
 
@@ -90,4 +94,4 @@ El análisis de complejidad
 
 Para cadenas s y t, el tiempo de ejecución del algoritmo es O( ∣s∣ ⋅ ∣t∣ ), ya que cada valor en una tabla de respuestas intermedias se calcula solo una vez y cada uno de esos cálculos requiere solo un número constante de operaciones.
 
-La tabla en sí requiere O( ∣s∣ ⋅ ∣t∣ )memoria adicional para almacenar. Sin embargo, se puede notar que para calcular d[i][j], solo se requiere la fila anterior de la tabla. Por lo tanto, el algoritmo se puede implementar usando solo O( min ∣s∣, ∣t∣ ) memoria adicional.
+La tabla en sí requiere O( ∣s∣ ⋅ ∣t∣ ) memoria adicional para almacenar. Sin embargo, se puede notar que para calcular d[i][j], solo se requiere la fila anterior de la tabla. Por lo tanto, el algoritmo se puede implementar usando solo O( min (∣s∣, ∣t∣) ) memoria adicional.
