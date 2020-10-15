@@ -1,0 +1,93 @@
+Editar distancia
+
+Una introducción
+A veces sucede que al escribir una palabra en un editor de texto, traductor o en un sistema de búsqueda, comete un error de ortografía. Afortunadamente, en tal caso, estas herramientas sugieren sustituir su solicitud por una nueva sin errores.
+
+¿Ha pensado alguna vez en los algoritmos que permiten hacer tales correcciones? Uno de los posibles enfoques para este problema es crear un vocabulario de palabras correctas y usar la palabra más similar para cada solicitud con un error. El único problema aquí es encontrar un método que permita estimar la similitud entre dos palabras. Una de las métricas más utilizadas para comparar dos cadenas arbitrarias entre sí se llama Editar distancia . La métrica tiene muchas aplicaciones: se puede utilizar para la corrección ortográfica (como se describió anteriormente), en bioinformática para medir la similitud entre dos secuencias de ADN y en otras áreas. La métrica será el enfoque principal de esta lección, así que comencemos a considerarla con más detalle.
+
+
+Una definición formal
+
+Para dos cadenas s y t, la distancia de edición d_E(s, t) se define como el número mínimo de operaciones necesarias para transformar s dentro t. Hay tres operaciones que se pueden utilizar para la transformación:
+
+    Insertion: rat → rapt (una Insertion de "p" después de "a").
+
+    Deletion: rat → at (una Deletion de "r").
+
+    Substitution: rat → cat (una Substitution de "r" por "c").
+
+Por ejemplo, la palabra "rat" se puede transformar en la palabra "arm" mediante tres operaciones:
+
+    rat → at → Art → arm.
+
+Primero borramos la letra "r", luego insertamos la letra "r" después de "a" y finalmente, sustituimos la letra "t" por la letra "m".
+
+Ahora, consideremos un algoritmo para encontrar la distancia de edición para dos cadenas arbitrarias s y t.
+
+
+Una descripción de algoritmo
+
+Se puede construir un algoritmo para el cálculo de la distancia de edición utilizando una técnica de programación dinámica . La idea de este enfoque es la siguiente: dividimos el problema inicial en problemas más pequeños, buscamos las respuestas para los problemas más pequeños y luego combinamos las respuestas para obtener la solución a la tarea inicial. Veamos cómo se puede aplicar este enfoque para encontrar la distancia de edición.
+
+Para cadenas s y t, luego denotemos d_{i, j} como la distancia de edición para un prefijo s[0...i] de s y un prefijo t[0...j] de t:
+
+    d_{i, j} = d_E( s[0...i], t[0...j]).
+
+Entonces, intentemos calcular d_{i, j} asumiendo que ya conocemos las respuestas para todos los prefijos más pequeños de s[0...i] y t[0...j]. Para hacer esto, considere las posibles variantes de transformación de s[0...i] dentro t[0...j]:
+
+1. s[0...i] puede transformarse primero en t[0...j-1] , luego el último símbolo t[j] necesita ser insertado: ver imagen
+
+2. s[0...i-1] puede transformarse primero en t[0...j] , luego el último símbolo s[i] necesita ser eliminado: ver imagen
+
+3. s[0...i-1] puede transformarse primero en t[0...j-1] , luego s[i] necesita ser sustituido por t[j] si los símbolos no coinciden: ver imagen
+
+Tenga en cuenta que asumimos que la primera parte de cada transformación es óptima. Por lo tanto, al menos uno de los resultados finales también será óptimo.
+
+Como no sabemos de antemano cuál de las operaciones descritas da el resultado óptimo, debemos verificarlas todas y luego elegir la mejor. Usando la notación anterior, el razonamiento se puede escribir de la siguiente manera:
+
+    d_{i, j} = min{ d_{i-1, j} + 1, d_{i, j-1} + 1, d_{i-1, j-1 } + Match(s[i], t[j]) }
+
+Aquí, Match(s_1, s_2) es igual a 0 si los símbolos coinciden y 1 de otra manera.
+
+Para completar la descripción del algoritmo, también necesitamos especificar la distancia de edición en el caso de que una de las cadenas sea la cadena vacía (denotémosla como e). En este caso,
+
+    d_E(e, t) = d_E(t, e) = |t|,
+
+ya que para transformar la cadena vacía en t (o viceversa) uno necesita realizar exactamente ∣ t ∣ operaciones.
+
+La formula (1) inmediatamente nos da una idea de cómo podemos encontrar la distancia de edición para dos cadenas arbitrarias ss y tt: podemos comenzar los cálculos con prefijos más pequeños (con subproblemas más pequeños en términos de programación dinámica) y pasar a los más grandes finalmente obtener la respuesta para las cadenas iniciales.
+
+
+
+Un ejemplo
+
+Considere cómo funciona el algoritmo para las cadenas "bone" y "brown". Las respuestas intermedias se almacenarán en una matriz 2x2 d, dónde d[i][j] = d_E( s[0...i], t[0...j]).
+
+Inicialmente, necesitamos llenar la primera fila y la primera columna de la matriz: ver imagen
+
+La primera fila y la primera columna corresponden a la transformación de la cadena vacía a algún prefijo de s o t. Entonces, d[i][0] = i y d[][j] = j.
+
+A continuación, podemos comenzar a calcular las respuestas intermedias para los prefijos usando la fórmula (1) (las flechas que salen de las celdas verdes corresponden a la transformación óptima en el paso actual): ver imagen
+
+Llenando la tabla fila por fila, finalmente obtendremos lo siguiente: ver imagen
+
+La esquina inferior derecha de la tabla corresponde a la distancia de edición de las cadenas iniciales. Entonces, d_E( bone, brown) = 3
+
+Para dos cadenas arbitrarias s y t, el algoritmo para el cálculo de la distancia de edición se puede formular de la siguiente manera:
+
+    1) Crear un ( ∣s∣ + 1 ) × ( ∣t∣ + 1 ) tabla para almacenar respuestas intermedias.
+    
+    2) Complete la primera fila y la primera columna de la tabla (como en el ejemplo anterior).
+    
+    3) Complete las celdas restantes usando la fórmula (1).
+    
+    4) Devuelve un valor en la esquina inferior derecha de la tabla como resultado final.
+
+
+
+
+El análisis de complejidad
+
+Para cadenas s y t, el tiempo de ejecución del algoritmo es O( ∣s∣ ⋅ ∣t∣ ), ya que cada valor en una tabla de respuestas intermedias se calcula solo una vez y cada uno de esos cálculos requiere solo un número constante de operaciones.
+
+La tabla en sí requiere O( ∣s∣ ⋅ ∣t∣ )memoria adicional para almacenar. Sin embargo, se puede notar que para calcular d[i][j], solo se requiere la fila anterior de la tabla. Por lo tanto, el algoritmo se puede implementar usando solo O( min ∣s∣, ∣t∣ ) memoria adicional.

@@ -1,0 +1,62 @@
+editar alineación de distancia
+
+Introducción
+Recuerda que para dos cadenas s y t, la distancia de edición d_E(s, t) es el número mínimo de inserciones, eliminaciones o sustituciones necesarias para transformar s dentro t. Por ahora, aprendimos el algoritmo que permite encontrar solo el número de tales operaciones. Pero a veces queremos saber la secuencia exacta de transformaciones correspondientes a la distancia de edición.
+
+Por ejemplo, supongamos que queremos comparar una secuencia de ADN correspondiente a algún gen con un ADN de referencia para encontrar mutaciones que ocurrieron en el gen. En este caso, es importante conocer la secuencia exacta de transformaciones, ya que diferentes escenarios de mutación pueden tener diferentes consecuencias.
+
+O bien, suponga que estamos interesados ​​en la historia de algún idioma y queremos entender cómo una palabra se originó a partir de otra. Para hacer esto, podemos intentar comparar las palabras usando la métrica de distancia de edición. En este caso, la secuencia exacta de transformaciones también es crucial.
+
+Entonces, tener el orden exacto de las operaciones de edición es importante en algunos casos. Consideremos un algoritmo que permite encontrar estas operaciones para dos cadenas arbitrarias.
+
+
+Reconstrucción de operaciones de edición
+
+Para dos cadenas arbitrarias, la secuencia de operaciones de edición se puede reconstruir utilizando una tabla de respuestas intermedias. Recuerda eso para s =bone y t =brown la tabla se ve así: ver imagen
+
+Para reconstruir las operaciones de edición, podemos comenzar desde la celda inferior derecha de la tabla (que contiene d_E(s, t) ) y muévase a la celda vecina (superior, izquierda o diagonal) que corresponda a la transformación óptima. Si consideramos una cadena en la primera columna como una cadena inicial y una cadena en la primera fila como resultado final, entonces un movimiento a la celda superior corresponde a la eliminación, un movimiento a la celda de la izquierda corresponde a la inserción, un movimiento a la la diagonal corresponde a la sustitución. Tenemos que seguir moviéndonos por la tabla hasta llegar a la celda superior izquierda. Luego, considerando todas las operaciones en orden inverso, obtendremos la secuencia de transformaciones correspondiente a la distancia de edición.
+
+
+
+Un ejemplo
+
+Ahora veamos cómo podemos reconstruir las operaciones de edición para el ejemplo anterior. Comenzamos desde la celda inferior derecha de la tabla: ver imagen
+
+En este caso, podríamos obtener el valor final de la celda superior o de la celda de la diagonal. Entonces, vayamos a la celda de la diagonal (esto corresponde a una sustitución de "e" por "n"): ver imagen
+
+Ahora podemos obtener el valor actual solo de la celda en la diagonal (esto corresponde a una sustitución de "n" por "w"): ver imagen
+
+Nuevamente, podemos obtener el valor actual solo de la celda en la diagonal. Tenga en cuenta que en este caso, los símbolos correspondientes son los mismos, por lo que el costo de esta sustitución es 0.
+
+En este paso, podemos obtener el valor actual solo de la celda de la izquierda. Esto corresponde a una inserción de "r" después de "b": ver imagen
+
+Finalmente, necesitamos realizar una sustitución (que nuevamente tiene costo cero, ya que los símbolos correspondientes son los mismos): ver imagen
+
+Entonces, para transformar la palabra "bone" en la palabra "brown" , primero necesitamos realizar una sustitución, luego insertar "r" después de "b" y finalmente hacer tres sustituciones para los símbolos "o", "n" y "e". Omitiendo las sustituciones de los símbolos iguales, podemos representar las operaciones de edición de la siguiente manera:
+
+    bone -> [insert "r" after "b"] -> 
+    brone -> [substitute "n" after "w"] -> 
+    browe -> [substitute "e" after "n"] -> 
+    brown
+
+En algunos pasos, hay varias formas óptimas de elegir una operación de edición. Esto significa que pueden existir varias formas óptimas de transformar una cadena en otra.
+
+
+
+Alineación
+
+Una forma conveniente de representar una secuencia de operaciones de edición es mediante la denominada alineación. La siguiente alineación corresponde a la secuencia de transformaciones dada anteriormente: ver imagen
+
+La primera fila de esta tabla corresponde a la palabra inicial ( bone ), la segunda fila corresponde a la palabra final ( brown ). Una columna con un símbolo de espacio en la celda superior y una letra en la celda inferior corresponde a una inserción, el caso contrario corresponde a una eliminación. Las columnas que no tienen espacios corresponden a una sustitución.
+
+Para el ejemplo anterior, la segunda columna corresponde a una inserción, las dos últimas columnas son sustituciones. La primera y la tercera columnas son sustituciones sin costo.
+
+Dado que pueden existir varias formas de transformar una cuerda en otra, las cuerdas también pueden tener varias alineaciones. Una alineación correspondiente a la secuencia óptima de operaciones de edición la llamaremos alineación óptima.
+
+
+
+Análisis de complejidad
+
+Suponiendo que para dos cuerdas s y t Se calcula una tabla de respuestas intermedias, la secuencia de operaciones de edición se puede reconstruir en O( ∣s∣ + ∣t∣ ), ya que en cada paso procesamos al menos un símbolo de una de las cadenas y el número total de símbolos es ∣s∣ + ∣t∣.
+
+En este caso, necesitamos almacenar toda la tabla de respuestas intermedias para reconstruir las operaciones, por lo que el algoritmo requiere O( ∣s∣ ⋅ ∣t∣ ) memoria adicional. Sin embargo, se puede reducir a O( min ( ∣s∣, ∣t∣ ) ). Dado que el algoritmo es bastante complejo para ser explicado completamente aquí, aquellos que estén interesados ​​pueden echar un vistazo al artículo de Wikipedia correspondiente. htps://en.wikipedia.org/wiki/Hirschberg%27s_algorithm
