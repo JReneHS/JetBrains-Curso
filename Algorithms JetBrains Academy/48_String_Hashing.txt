@@ -1,0 +1,96 @@
+hash de cadenas
+
+El hash de cadena es una técnica que nos permite representar una cadena como un número. Una regla que se utiliza para asociar una cadena con un número se llama función hash , y el número resultante se llama valor hash (o simplemente hash ):
+ver imagen
+
+Una ventaja importante del hash de cadenas es que permite comparar dos cadenas en O(1) ya que simplemente necesitamos comparar los valores hash de las cadenas. Esta propiedad se usa para resolver de manera eficiente algunos problemas de procesamiento de subcadenas.
+
+Por lo general, un hash para una cadena se calcula de la siguiente manera: cada símbolo de la cadena se asocia con un número, luego se calcula un valor hash como una suma de estos números con algunos coeficientes. Hay varias formas de asociar un símbolo con un número. En este tema, usaremos la siguiente regla: A corresponde a 1, B corresponde a 2,..., Z corresponde a 26. Es decir, cada símbolo está asociado con su número de orden en el alfabeto. En cuanto a las funciones de hash de cadenas, también hay algunas. Nuestro siguiente paso es aprender algunos de ellos y comprender sus pros y contras.
+
+
+
+Hash lineal
+
+Por una cadena s = s_0s_1 ... s_{n-1}, una función hash lineal h_L se define como una suma de los valores asociados a los símbolos:
+
+    h_L(s) = s_0 + s_1 + ... + s_{n-1}
+
+Por ejemplo, un valor hash para s = ABAC es
+
+    h_L(ABAC) = 1 + 2 + 1 + 3 = 7. 
+
+Esta es una de las funciones hash más simples para cadenas. Una desventaja de la función hash lineal es que un valor hash no depende del orden de los símbolos. Esto significa que si reordenamos los símbolos de una cadena, el valor hash de la cadena no cambiará. Por ejemplo, cadenas s_1 = ABAC y s_2 = CBAA no son iguales, pero constan de los mismos símbolos y, por lo tanto, tienen valores hash iguales:
+
+    h_L(ABAC) = 1 + 2 + 1 + 3 = 7
+
+    h_L(CBAA) = 3 + 2 + 1 + 1 = 7
+
+Una situación en la que dos cadenas diferentes tienen valores hash iguales se denomina colisión . Una propiedad importante de cualquier función hash es cuántas cadenas asigna al mismo valor hash. Cuanto menor sea el número de tales cadenas, mejor será la función hash. En este punto, el hash lineal no es la mejor opción, ya que la limitación descrita anteriormente da como resultado muchas colisiones.
+
+
+
+Hash polinomial
+
+Por una cadena s = s_0s_1 ... s_{n-1} , una función hash polinomial se define de la siguiente manera:
+
+    h_P(s) = ( s_0 ⋅ a^0 + s_1 ⋅ a^1 + ... + s_{n-1} ⋅ a^{n-1} ) mod m
+
+Aquí, a es una constante, generalmente un número primo aproximadamente igual al número total de símbolos diferentes en el alfabeto; metrometrotambién es una constante, generalmente un número primo grande. Consideremos cómo podemos calcular el hash polinomial para s = ACDC. Por simplicidad, usaremos a = 3 y m = 11.
+
+    h_P(ACDC) = ( 1 ⋅ 3^0 + 3 ⋅ 3^1 + 4 ⋅ 3^2 + 3 ⋅ 3^3 ) mod 11 = ( 1 ⋅ 1 + 3 ⋅ 3 + 4 ⋅ 9 + 3 ⋅ 27 ) mod 11= 127 mod 11 = 6
+
+Aunque el hash polinomial depende del orden de los símbolos en una cadena, las colisiones aún son posibles. Por ejemplo,s_1 = BBAB  y s_2 = ABCC son cadenas diferentes con valores hash iguales: 
+
+        h_P(BBAC) = ( 2 ⋅ 3^0 + 2 ⋅ 3^1 + 1 ⋅ 3^2 + 2 ⋅ 3^3 ) mod 11 = 71 mod 11 = 5
+
+        h_P(ABCC) = ( 1 ⋅ 3^0 + 2 ⋅ 3^1 + 3 ⋅ 3^2 + 3 ⋅ 3^3 ) mod 11 = 115 mod 11 = 5
+
+
+Sin embargo, la probabilidad de una colisión para la función hash polinomial es approx ≈ 1/m , que es bastante bajo para una gran m. Por lo tanto, la función hash polinomial es una buena opción para el hash de cadenas.
+
+
+
+Hash rodante (Rolling)
+
+Esta sección describe no una función distinta, sino más bien una propiedad de las funciones hash que es aplicable tanto al hash lineal como polinomial.
+
+Considere una cadena s = ABBCCB. Usemos la función hash lineal para calcular un hash para un prefijo de s de longitud 4:
+
+    h_L(ABBC) = s_0 + s_1 + s_2 + s_3 = 1 + 2 + 2 + 3 = 8
+
+Ahora, suponga que necesitamos calcular un valor hash para la siguiente subcadena de s de longitud 4. Esto puede hacerse de la siguiente manera:
+
+    h_L(BBCC) = s_1 + s_2 + s_3 + s_4 = 2 + 2 + 3 + 3 = 10
+
+Tenga en cuenta que la segunda suma también se puede obtener si restamos s_0 de la primera suma y luego agregue s_4:
+
+    h_L(BBCC) = h_L(ABBC) -s_0 + s_4 = 8 - 1 + 3 = 10
+
+Por lo tanto, si conocemos un valor hash h_L( s_i s_{i + 1}... s_j), se puede calcular un valor hash para la siguiente subcadena en O(1) como sigue:
+
+    h_L( s_{i + 1} s_{i + 2} ... s_{j + 1}) = h_L( s_i s_{i + 1} ... s_j ) - s_i + s_{j + 1}.
+
+Esta propiedad de una función hash se denomina hash rodante . La misma propiedad se aplica a la función hash polinomial: la única diferencia es que necesitamos comenzar los cálculos con la última subcadena de s:
+
+    h_P(BCCB) = (s_2 ⋅ 3^0 + s_3 ⋅ 3^1 + s_4 ⋅ 3^2 + s_5 ⋅ 3^3 ) mod 11 = (2 ⋅ 3^0 + 3 ⋅ 3^1 + 3 ⋅ 3^2 + 2 ⋅ 3^3 ) mod 11 = 92 mod 11 = 4.
+
+La siguiente subcadena de s desde el final tiene el siguiente valor hash:
+
+
+    h_P (BBCC) = (s_1 ⋅ 3^0 + s_2 ⋅ 3^1 + s_3 ⋅ 3 ^2 + s_4 ⋅ 3^3 ) mod 11 = ( 2 ⋅ 3^0 + 2 ⋅ 3^1 + 3 ⋅ 3^2 + 3 ⋅ 3^3 ) mod 11 = 116 mod 11 = 6
+
+Usando el valor hash de la primera subcadena, la segunda se puede obtener de la siguiente manera:
+
+    h_P(BBCC) = ( (h_P (BCCB) - s_5 ⋅ 3^3 ) ⋅ 3 + s_1 ) mod 11 = ( (4 - 2 ⋅ 27 ) ⋅ 3 + 2 ) mod 11 = -148 mod 11 = 6
+
+Entonces, si conocemos el valor hash h_P( s_{i + 1} s_{i + 2} ... s_{j} ), se puede calcular un valor hash para una subcadena vecina de la siguiente manera:
+
+    h_P( s_i s_{i + 1} ... s_{j-1} ) = ( (h_P(s_{i + 1} s_{i + 2} ... s_j ) - s_j ⋅ a^{j-i-1} ) ⋅ a + s_i ) mod m.
+
+La propiedad de hash rodante nos permite resolver de manera eficiente algunos problemas de procesamiento de subcadenas. Un buen ejemplo es un algoritmo de Rabin-Karp , que se basa en el hash de cadenas. Nos permite encontrar una subcadena en tiempo lineal, que es más rápido que el enfoque ingenuo. Consideraremos este algoritmo con más detalle en el siguiente tema.
+
+
+
+Resumen
+
+El hash de cadena es una forma de representar una cadena como un número. Es útil para algunos algoritmos de procesamiento de cadenas, ya que los valores hash se pueden comparar en O(1). Hay varias formas de hash de una cadena, entre ellas el hash lineal y polinomial. Esta última es una mejor opción para el hash de cadenas, ya que tiene menos colisiones. Ambas funciones hash son hash continuos. Es decir, si conocemos el valor hash de alguna subcadena, se puede calcular un valor hash para una subcadena vecina en O(1).
