@@ -1,0 +1,64 @@
+Fixed_Size_Array
+
+En los programas, los datos se representan en formato de números, caracteres, cadenas u otros objetos más complejos. A menudo, algunos de estos objetos se pueden agrupar naturalmente.
+
+Por ejemplo, suponga que realizó un experimento y obtuvo medidas para algún proceso. Las medidas pueden corresponder a temperatura, distancia, tiempo u otra cosa. En tal caso, sería conveniente no almacenar cada medición como una variable separada, sino procesarlas todas juntas como una sola unidad.
+
+Para tratar de manera eficiente estos casos, la mayoría de los lenguajes de programación proporcionan una estructura llamada matriz de tamaño fijo. La estructura nos permite almacenar secuencialmente una colección de elementos del mismo tipo y procesarlos como una sola unidad. En este tema, consideraremos esta estructura con más detalle y aprenderemos algunas operaciones básicas utilizadas para matrices.
+
+
+Una matriz de tamaño fijo
+
+Una matriz de tamaño fijo es una estructura para almacenar una colección de elementos del mismo tipo. Como puede concluir del título, el tamaño de una matriz es una constante: una vez que se crea una matriz, su tamaño no se puede cambiar. Los elementos de una matriz de tamaño fijo se almacenan secuencialmente. Cada elemento tiene un índice, que corresponde a su número de secuencia en la matriz. El primer elemento tiene el índice 00, el segundo elemento tiene el índice 11, el último elemento tiene el índice n-1n − 1, donde nn es el número total de elementos en la matriz. A continuación se muestra un ejemplo de una matriz de tamaño fijo que almacena cinco números de punto flotante: ver imagen
+
+El primer elemento de la matriz es 10.8 y su índice es 0, el segundo es 14.3 con el índice 1. El último elemento es 9.7 con el índice 4. Usando pseudocódigo, la matriz se puede representar de la siguiente manera:
+
+    medidas = [10,8, 14,3, 13,5, 12,1, 9,7]
+
+Una variable denominada medidas une los números en una sola unidad.
+
+
+
+Obteniendo los elementos de acceso
+
+Los lenguajes de programación proporcionan un conjunto de métodos estándar para el procesamiento de matrices. Hay uno de ellos que se utiliza con mayor frecuencia. Es un método para acceder a un elemento por su índice:
+
+    medidas = [10,8, 14,3, 13,5, 12,1, 9,7]
+    valor = medidas [2] # valor es igual a 13,5
+
+No solo podemos leer, sino también modificar elementos de la matriz:
+
+    medidas [2] = 3,7
+
+Ahora, la matriz se ve así:
+
+    medidas = [10,8, 14,3, 3,7, 12,1, 9,7]
+
+Junto con los dos, existen otros métodos más sofisticados para el procesamiento de matrices, como ordenar, invertir, métodos para buscar elementos y algunos otros. Cuando utilice un lenguaje de programación en particular, consulte la documentación de la biblioteca estándar para ver qué métodos proporciona el lenguaje.
+
+
+
+Calcular la media de los elementos de la matriz
+
+Consideremos un ejemplo simple de cómo se pueden procesar las matrices. Dada una matriz de números, nuestra tarea será calcular la media de elementos en la matriz. La media de los elementos de la matriz es un número igual a la suma de todos los elementos de la matriz dividida por su número. Consideraremos cómo se puede hacer para nuestro conjunto de medidas:
+
+    medidas = [10,8, 14,3, 13,5, 12,1, 9,7]
+
+El procedimiento es el siguiente:
+
+    suma = 0
+
+    para (i = 0; i <len (medidas); i = i + 1):
+        suma + = medidas [i]
+
+    mean = sum / len (medidas) # 12.08
+
+Aquí, inicializamos la variable suma con 0, luego, comenzamos a iterar a través del rango de 0 a 4 accediendo a cada elemento de una matriz por su índice y lo sumamos a la suma total. Después de eso, dividimos la suma obtenida por la longitud de la matriz obteniendo el valor medio de los elementos. La longitud de las medidas de la matriz se conoce de antemano.
+
+
+
+Resumen
+
+Una matriz de tamaño fijo es una estructura que nos permite almacenar secuencialmente una colección de elementos del mismo tipo. El método más utilizado para las matrices es acceder a un elemento por su índice.
+
+Para obtener información sobre otros métodos, consulte la biblioteca estándar de un lenguaje de programación que utilice. Utilice una matriz de tamaño fijo si necesita procesar una colección de objetos de tipo similar y conoce la cantidad de objetos de antemano.

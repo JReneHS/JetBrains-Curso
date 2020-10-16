@@ -1,0 +1,63 @@
+Dynamic_Array
+
+
+Introducción
+
+Muchos programas necesitan almacenar y procesar secuencias de elementos del mismo tipo como números, cadenas o incluso objetos más complejos. Una matriz es una estructura ampliamente utilizada para representar tales secuencias de datos, ya que se puede acceder a un elemento en tiempo constante por índice. Sin embargo, las matrices regulares tienen un inconveniente importante: tienen un tamaño fijo. Esto no permite crear una matriz si no se conoce de antemano el número de elementos. En tales casos, el uso de una matriz dinámica es una posible solución.
+
+
+
+Esenciales
+
+La matriz dinámica es una estructura de datos lineal que puede aumentar y, en algunas implementaciones, reducirse cuando cambia su tamaño. Como regla general, tiene una matriz interna regular que en realidad almacena datos bajo el capó y proporciona algunas operaciones adicionales además.
+
+Una matriz dinámica tiene dos propiedades importantes:
+
+    tamaño: la cantidad de elementos que ya están almacenados en él;
+
+    capacidad: una posible cantidad de elementos a almacenar que corresponde al tamaño de la matriz regular interna.
+
+Por lo general, hay dos rutas: para especificar una capacidad para una nueva matriz dinámica o para establecer un valor predeterminado constante (por ejemplo, 10). A diferencia de las matrices básicas, las matrices dinámicas tienen operaciones para agregar / eliminar elementos hacia o desde cualquier posición. De esta manera, podemos agregar y eliminar elementos uno por uno después de que se haya creado una matriz dinámica.
+
+La siguiente imagen muestra una matriz dinámica a la que agregamos cuatro números. El tamaño real es 4 y la capacidad es 10 (inicial): ver imagen
+
+
+
+Factor de escala
+
+Si el número de elementos excede la capacidad, todos los elementos se copiarán a una nueva matriz interna de mayor tamaño. Hay una serie de estrategias de escalado diferentes para el tamaño del mismo. Las más habituales son la multiplicación de la capacidad inicial por 1,5 (Java) o 2 (C ++, la implementación GCC STL). También hay casos más únicos como el arreglo dinámico de Golang ("corte"), que duplica el tamaño hasta 1024 elementos (después de eso, la proporción es 5/4).
+
+Es un compromiso entre las complejidades del tiempo y el espacio. Con un factor de crecimiento mayor, tenemos más inserciones antes de que tengamos que extender una matriz, disminuyendo así la complejidad del tiempo.
+
+Pero, ¿cuál es el mejor factor de escala? Es decir, ¿qué valor tendrá complejidades tanto temporales como espaciales? Resulta que el valor debe ser igual a la proporción áurea, 1,61803. Como puede notar, 1.5 es lo más cercano posible. Si tiene curiosidad por saber más, puede leerlo allí.
+https://stackoverflow.com/questions/1100311/what-is-the-ideal-growth-rate-for-a-dynamically-allocated-array
+
+También puede ser necesario soportar la contracción de la matriz interna al eliminar elementos para reducir el tamaño requerido.
+
+
+Operaciones comunes
+
+Agrega un elemento al final de la matriz. Como se discutió anteriormente, en el escenario del caso base donde simplemente agregamos un elemento a una matriz sin especificar el índice, tendremos estas complejidades:
+
+    O(1) - en casos promedio, ya que solo insertamos un elemento en la memoria ya asignada (menos que la capacidad);
+
+    O(n): en el peor de los casos, cuando nos quedamos sin espacio y necesitamos asignar una nueva matriz y copiar cada elemento en ella.
+
+La estimación promedio para agregar un elemento al final de la matriz se llama amortizado. Dado que es bastante difícil decir a primera vista que es O(1), tenemos que usar un análisis especial para eso. Si alguien está interesado, puede leerlo aquí.
+https://en.wikipedia.org/wiki/Amortized_analysis
+
+Agrega un elemento en el índice especificado. Esta operación se utiliza cuando queremos agregar un elemento entre algunos elementos ya colocados. Sus complejidades (tanto promedio como peores) serían O (n) ya que en cada inserción debemos mover un elemento en el índice que queremos y luego mover cada elemento un índice hacia la derecha. ver imagen
+
+Actualizar valor en el índice especificado. Esta operación reemplaza el elemento en el índice especificado con el elemento. Todo esto se hace en tiempo constante ya que es como la asignación en la matriz básica, por lo que las complejidades son ambas O(1).
+
+Elimina un elemento por valor / índice. Estos métodos eliminan la primera aparición de un elemento especificado o un elemento en el índice especificado. Ambos son similares a agregar un elemento en el índice especificado en el sentido de que tendríamos que mover algunos (o todos) de los elementos restantes un índice a la izquierda; por lo tanto, sus complejidades también serían O(n). ver imagen
+
+Claro. Aquí solo queremos eliminar todos los elementos de la matriz. Dado que la inserción se realiza mediante el cálculo del tamaño actual de la matriz, podemos restablecer el tamaño a cero y anular los elementos antiguos durante las siguientes inserciones. Eso dejaría los elementos colgando en la memoria (por lo que el recolector de basura no podrá recolectarlos) hasta que se anulen. La forma más simple tendría complejidades de O(1), pero la de la derecha tendría O(n).
+
+Obtener elemento por índice. Dado que una matriz dinámica es básicamente una matriz normal, podemos acceder a los elementos por su índice en tiempo constante, por lo que las complejidades son O(1).
+
+
+
+Conclusión
+
+Una matriz dinámica es como una matriz normal, pero se puede cambiar el número de elementos almacenados. Si las operaciones de adición se quedan sin espacio para almacenar elementos, se asigna una nueva matriz más grande y todos los elementos de la matriz anterior se copian en la nueva. El factor de escala es una compensación entre tiempo (velocidad) y espacio. Con un factor mayor, tenemos menos asignaciones y menos copias, pero mayores posibilidades de quedarnos sin memoria. Los factores más comunes son 1.5 y 2. En algunas implementaciones, una matriz dinámica puede admitir la reducción para reducir la memoria utilizada después de eliminar elementos.

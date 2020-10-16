@@ -1,0 +1,42 @@
+Tabla_de_Hash
+
+Introducción
+Hashing es una técnica en computación que constituye la representación de un objeto, llamado valor hash, mediante una secuencia única, llamada clave hash, en una estructura de datos, llamada tabla hash. El hash implica el proceso de convertir un objeto de tamaño arbitrario en una clave de tamaño definido utilizando una función conocida como función hash.
+
+El hash es un concepto importante en programación porque resuelve un problema de búsqueda de un objeto (y datos asociados) en una tabla en el tiempo O (1). Este concepto también se utiliza en el cifrado y la verificación de archivos.
+
+
+
+Tabla de Hash
+Una tabla hash es una estructura de datos de matriz asociativa que asigna claves a valores. Una tabla hash consta de cubos o ranuras que están indexadas por claves únicas, generadas mediante una función hash.
+
+Un ejemplo simple de una tabla hash sería una tabla que consta de columnas para los nombres de los estudiantes y códigos de admisión únicos para los estudiantes asociados. ver imagen
+
+Aquí, los códigos de admisión son las claves que se utilizan como referencia o índice para el valor del nombre del estudiante.
+
+
+
+Funciones hash
+
+La función hash se utiliza para convertir una entrada de tamaño arbitrario en un valor único. Si tenemos una matriz que puede contener M pares clave-valor, entonces la función hash asigna cualquier clave dada a un pequeño entero en el rango [0, M-1] que se puede usar como índice en la tabla hash. La siguiente tabla representa cómo se puede utilizar una función hash para indexar claves de nombre mediante hash numéricos. ver imagen
+
+Fuente: https://en.wikibooks.org/wiki/A-level_Computing/AQA/Paper_1/Fundamentals_of_data_structures/Hash_tables_and_hashing
+
+Una buena función hash es:
+
+    Válido: calcula una clave para todos los tamaños de entrada en el tiempo O (1);
+
+    Determinista: proporciona una salida clave única para cualquier entrada cada vez que se calcula;
+    
+    Uniforme: asegura que las teclas estén distribuidas uniformemente.
+
+
+Ejemplo de funciones hash
+Un método simple de hash de números enteros se llama hash modular o hash de resto. Para nuestra función hash, elegimos un número primo M y para cualquier clave de entero positivo k, calculamos el resto al dividir k entre M. Esta función es fácil de calcular y es efectiva para dispersar las claves uniformemente entre 0 y M-1. La siguiente tabla ofrece un ejemplo de tabla hash utilizando el módulo 11 como función hash. ver imagen
+
+
+El hash modular también funciona para cadenas. Simplemente los tratamos como una secuencia larga de números enteros convirtiendo cada carácter a su equivalente ASCII.
+
+Hay otros ejemplos de funciones hash para cadenas. Imagine que desarrollamos una función hash que concatena los valores ASCII de los caracteres de cadena para crear el valor hash.
+
+Por ejemplo, para la entrada de "abc", el valor hash sería 979899.

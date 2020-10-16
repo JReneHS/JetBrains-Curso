@@ -1,0 +1,28 @@
+Hashing_Descripción_General
+
+
+El hash es una técnica muy utilizada en programación. Ya sea que envíe un mensaje a través de Internet, inicie sesión en un sitio web o busque un archivo en su computadora, ¡está utilizando funciones hash! Pero, ¿qué son y qué hacen?
+
+
+¿Qué es el hash?
+
+Formalmente, las funciones hash son funciones que podemos utilizar para asignar datos de tamaño arbitrario a valores de tamaño fijo. Eso es bastante vago, así que veamos una comparación de la vida real para comprenderlos mejor:
+
+Imagina que tienes un amigo Paul que lleva una guía telefónica. Tu amigo es perezoso y no quiere perder mucho tiempo escribiendo los nombres completos de sus contactos. Entonces, en cambio, Paul escribe solo las consonantes en sus nombres. Por ejemplo, en lugar de John Smith, Paul escribe Jhn Smth. En bastantes formas, este proceso es similar al hash. Podemos considerar que "eliminar todas las vocales" es la función hash. Llamamos al resultado de aplicar una función hash a alguna entrada un valor hash, o simplemente su hash. En nuestro caso, Jhn Smth es el valor hash de John Smith. Ahora, no todos los valores hash serán distintos: piense en dos personas con los nombres Tim Black y Tom Black. El valor hash para ambos nombres será Tm Blck. Cuando esto sucede, lo llamamos colisión.
+
+La principal diferencia entre nuestro ejemplo y una función hash real es que, en nuestro caso, los valores hash no tienen un tamaño fijo. Un ejemplo más preciso sería si Pablo escribiera las primeras 5 letras de sus nombres. El valor hash para John Smith sería John S, para Tim Black sería Tim Bl, y para Tim Blacksmith, también sería Tim Bl. Hay más nombres que formas posibles de escribir 5 letras, por lo que tenemos la garantía de tener colisiones. Lo mismo ocurre con las funciones hash. Reciben entradas que pueden ser realmente grandes y devuelven algo de un tamaño fijo, por lo que no hay forma de evitar por completo las colisiones.
+
+
+
+Aplicaciones de funciones hash
+
+Como mencionamos al principio, las funciones hash tienen muchas aplicaciones. Veamos algunos de los más importantes:
+
+Resúmenes de mensajes: supongamos que tiene un mensaje que desea enviar a un amigo a través de Internet, pero tiene miedo de que alguien pueda cambiar su contenido antes de que llegue a sus amigos. Una de las cosas que puede hacer es calcular un valor hash para su mensaje antes de enviarlo. Cuando tus amigos lo reciben, calculan el valor hash del mensaje usando la misma función hash que tú. Luego puede comparar los dos hashes y verificar que sean iguales. Las funciones hash utilizadas para esto tienen la propiedad de que es difícil encontrar colisiones. Estas funciones hash se denominan función hash criptográfica. También pueden tener otras propiedades, como la del siguiente ejemplo.
+
+Almacenamiento de contraseña: ¿Alguna vez se ha preguntado por qué los sitios web no tienen la opción de enviarle su contraseña en caso de que la olvide y le obliguen a restablecerla? Para poder devolverlo, deben almacenarlo en texto sin formato. Al hacerlo, si alguien obtiene acceso a la base de datos de contraseñas, ¡puede robar fácilmente todas las cuentas! Lo que hacen los sitios web es almacenar un hash de su contraseña. Cuando envía la contraseña para iniciar sesión, calculan su hash y comprueban si es igual a lo que han almacenado. En este caso, encontrar colisiones no es un gran problema. Aquí, debe saber que si alguien encuentra el hash de su contraseña, no debería poder averiguar su contraseña a partir de él.
+
+Tablas hash: un uso más común en la programación diaria son las tablas hash. Son estructuras de datos rápidas y convenientes que utilizan hash. Con ellos, puede buscar, insertar o eliminar elementos de una tabla. La idea principal detrás de ellos es que desea usar valores hash para indexar datos en una matriz. Por ejemplo, si desea utilizar una tabla hash para almacenar una guía telefónica, puede guardar el par (Tim Black, 0123456789) en el índice Tm Blck. Luego, para encontrar el número de teléfono de Tim, solo tienes que buscar en el índice Tm Blck. Después de eso, también puede guardar (Tom Black, 9876543210) en el mismo índice y, siempre que necesite encontrar el número de teléfono de Tim o Tom, solo tiene que buscar entre dos pares, en lugar de buscar en toda la agenda. Las funciones hash utilizadas en las tablas hash son menos restrictivas que las utilizadas para resúmenes de mensajes y almacenamiento de contraseñas, y sus valores hash son, generalmente, números. Veremos más de cerca las tablas hash en los siguientes temas.
+
+Conclusión
+Ahora tiene una idea sobre las funciones hash y hash, qué son y dónde puede usarlas. Esto debería ser más que suficiente por ahora para enfatizar su importancia. En los siguientes temas, estudiaremos con más detalle las funciones hash, las tablas hash y las colisiones.

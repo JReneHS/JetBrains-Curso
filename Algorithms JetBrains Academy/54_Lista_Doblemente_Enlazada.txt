@@ -1,0 +1,34 @@
+Lista Doblemente Enlazada
+
+Esenciales
+En una lista doblemente enlazada, cada nodo almacena datos, una referencia al siguiente nodo (next) y una referencia al nodo anterior (prev). ver imagen
+
+La siguiente imagen muestra una lista con cuatro nodos que almacenan números: ver imagen
+
+Como puede ver, el primer nodo no tiene un nodo anterior y el último nodo no es seguido por otro.
+
+Es posible iterar sobre una lista doblemente enlazada en ambas direcciones comenzando desde la cabeza o la cola porque cada nodo tiene referencias anterior y siguiente. Entonces, ni siquiera necesitamos invertirlo para imprimir elementos en el orden inverso.
+
+
+
+Operaciones
+
+Las operaciones básicas de una lista enlazada doble son las mismas que para una lista enlazada individualmente. En este tema, consideraremos solo dos operaciones que se pueden realizar de manera más eficiente en el caso de una lista doblemente vinculada.
+
+1) A veces necesitamos agregar un nuevo elemento antes de un nodo específico al que tenemos una referencia. Se puede hacer con bastante facilidad: simplemente tomamos el nodo anterior del nodo especificado y establecemos la siguiente referencia del nodo anterior al nuevo. También necesitamos establecer ambas referencias del nuevo nodo y modificar la referencia anterior del nodo especificado para hacer referencia al nuevo nodo. Esta operación tiene una complejidad de tiempo O (1).
+
+La siguiente imagen muestra la adición del elemento 48 como un nuevo nodo antes del nodo de lectura (con 54). ver imagen
+
+Si la lista estuviera vinculada de forma individual, nos veríamos obligados a buscar el nodo anterior del especificado, y eso lleva O (n) O (n) tiempo.
+
+2) La operación de eliminar el último elemento también es más eficiente cuando se utilizan listas doblemente enlazadas. Todo lo que necesitamos es modificar la siguiente referencia del penúltimo nodo a nada (null o nil, según el idioma) y restablecer la referencia de cola. Podemos acceder al penúltimo nodo a través de la referencia anterior del nodo de cola cuya referencia tenemos. Esta operación tiene una complejidad de tiempo O (1).
+
+En el siguiente ejemplo, eliminamos el último nodo (con 42) de la lista y reasignamos la cola al nuevo último nodo (54): ver imagen
+
+En el caso de una lista enlazada individualmente, no tenemos la referencia anterior y debemos buscar el penúltimo nodo que atraviesa la lista, lo que lleva O (n) tiempo.
+
+
+
+Conclusión
+
+Una lista doblemente enlazada es una estructura de datos lineal independiente como una lista enlazada individualmente, pero proporciona más flexibilidad y optimiza algunas operaciones básicas porque usa una referencia adicional entre los nodos. Esta es la razón principal por la que este tipo de listas es común en las bibliotecas estándar de muchos lenguajes de programación. Pero hay un inconveniente: almacenar referencias adicionales requiere más espacio.

@@ -1,0 +1,65 @@
+Lista simplemente Enlazada
+
+Esenciales
+
+Una lista enlazada es una estructura de datos lineal representada como una secuencia de nodos conectados. Cada nodo almacena datos y una referencia al siguiente nodo en una lista, pero el último no se refiere a ningún otro nodo. El primer nodo de una lista generalmente se llama cabeza.
+
+La siguiente imagen muestra una lista con cuatro nodos que almacenan los números 18, 15, 10, 21: ver imagen
+
+A continuación, se muestran algunos puntos importantes sobre una lista Enlazada:
+
+    mantiene un orden de precedencia que es importante en algunas aplicaciones;
+
+    los nodos se pueden almacenar en cualquier lugar de la memoria a diferencia de los arreglos donde los elementos se ubican secuencialmente;
+
+    es dinámico, por lo que la longitud se puede aumentar o disminuir durante su existencia.
+
+Cada lista Enlazada admite agregar y eliminar elementos, así como obtener el tamaño. Algunas operaciones requieren un recorrido de lista que se puede realizar utilizando un bucle que comienza desde el encabezado.
+
+Dado que las listas se utilizan ampliamente en la práctica de la programación, es importante comprender sus conceptos básicos. En cierto modo, una analogía de la vida real de una lista enlazada es un tren que tiene una locomotora (cabeza) y una serie de vagones conectados (nodos) con personas a bordo (datos).
+
+
+Índices de apoyo
+
+Las listas Enlazadas no permiten el acceso aleatorio a los datos, pero aún pueden admitir la indexación. Para obtener un nodo por su índice, simplemente repita las siguientes referencias hasta alcanzar el índice especificado. La complejidad del tiempo es O (n).
+
+Por ejemplo, aquí accedemos al valor 10 por índice 2: ver imagen
+
+Comenzamos desde la cabeza en el índice 0 y seguimos los enlaces exactamente dos veces (0 → 1, 1 → 2) ya que necesitamos acceder al nodo en el índice 2. El resultado es 10.
+
+
+Agregar elementos
+
+Hay tres formas posibles de agregar un nuevo elemento a una lista Enlazada:
+
+    Al inicio de la lista
+    
+    al final de la lista
+    
+    en cualquier otro lugar especificado por un índice.
+
+Muchas fuentes de programación llaman a estas operaciones anteponer, agregar e insertar. Echemos un vistazo más de cerca a ellos.
+
+Top de la lista. Todo lo que necesitamos es crear un nodo para el nuevo elemento, establecerlo junto al antiguo encabezado de la lista y hacer que el nuevo elemento sea el encabezado (actualizando la referencia al encabezado de la lista).
+
+El siguiente ejemplo muestra cómo se agrega el elemento 30 a la lista.
+ver imagen
+
+La complejidad temporal de agregar un nuevo primer elemento es O (1) porque solo actualizamos las referencias.
+
+Fin de la lista. Esta operación es similar a la anterior, pero desde el otro lado: cree un nodo para el nuevo elemento y establezca la siguiente referencia del último nodo actual al nuevo nodo.
+
+Si almacenamos la referencia al último elemento real (cola), no necesitamos iterar sobre toda la lista. En este caso, la complejidad del tiempo es) O (1). Pero tampoco debemos olvidar actualizar la referencia de cola. Si no guardamos una referencia a la cola, primero debemos encontrar el último nodo comenzando desde la cabeza, y luego hacer lo mismo que arriba. En tal caso, la complejidad del tiempo es O (n) donde n es el número de elementos de la lista.
+
+Aquí hay un ejemplo donde se agrega el valor 12 al final de una lista: ver imagen
+
+Por índice. Primero, necesitamos encontrar el nodo con el índice requerido: pasamos por las siguientes referencias comenzando desde el encabezado. Una vez lo hemos alcanzado, creamos un nuevo nodo y actualizamos las referencias: el nodo anterior debe referirse al nuevo nodo, y el nuevo nodo debe referirse al que estábamos buscando. Ahora, el nuevo nodo está especificado por el índice requerido.
+
+La siguiente imagen muestra cómo agregar un nuevo elemento con el valor 19 por el índice 2: ver imagen
+
+Esta operación toma O (n) tiempo ya que primero necesitamos encontrar la posición para insertar.
+
+
+Eliminar elementos
+
+Hay varias posibilidades para eliminar un elemento. Puede eliminar: (1) la cabeza, (2) la cola, (3) un elemento por un índice específico, (4) un elemento por valor, y así sucesivamente. Al igual que agregar operaciones, las operaciones de eliminación se realizan manipulando referencias entre nodos de lista. No lo consideraremos en este tema.
