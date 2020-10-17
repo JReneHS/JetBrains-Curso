@@ -1,0 +1,118 @@
+descripción general del programa básico
+
+
+En este tema, aprenderá a desarrollar su primer script JS. Estos programas son bastante simples pero funcionales, por lo que hacen un buen trabajo mostrando que programar en JavaScript es una actividad fácil y agradable. Sin embargo, existen advertencias y dificultades en todas partes, por lo que también veremos algunos errores de programación comunes para que pueda evitarlos con éxito.
+
+
+¡Hola Mundo!
+Al aprender cualquier lenguaje de programación, es una especie de tradición empezar escribiendo un programa que muestra un mensaje "Hello, World!"en la pantalla o en otro dispositivo. ¿Y quiénes somos para romper las tradiciones?
+
+    console.log("Hello, World!");
+
+Como puede ver, el script consta de una línea y simplemente imprime el texto entre paréntesis. Tenga en cuenta que las comillas también se ignoran al generar el resultado. Este código es muy simple, pero merece una consideración detallada.
+
+
+Explicación
+Aquí console.log hay una función. Una función es un bloque de código que realiza un trabajo útil para usted, como imprimir texto. En cierto modo, una función es una subrutina que se puede reutilizar en sus programas. Cuando el nombre de una función va seguido de paréntesis, significa que se ha llamado para obtener el resultado. console.logle permite enviar información a la consola, por lo que esta función se usa a menudo para encontrar errores en el código.
+
+Continuando: "Hello, World!"es una cuerda . Todas las cadenas en JavaScript están encerradas entre comillas simples o dobles, por 'Hello, World!'lo que también sería una cadena válida. Compruébelo usted mismo: intente ejecutar el siguiente código:
+
+    console.log('JavaScript');}
+
+
+Impresión de comillas
+Si desea incluir comillas en una cadena, hay dos formas de evitar la confusión e imprimirlas correctamente:
+
+Puede citar esta línea en otros tipos de citas, por ejemplo:
+
+    console.log("Yes, I'm ready to learn JS.");
+
+O ponga una barra invertida ( \ ) antes de la cita:
+
+    console.log('Yes, I\'m ready to learn JS.');
+
+También funcionará con otros tipos de citas. Puede intentar ejecutar todos los ejemplos para familiarizarse mejor con JS.
+
+
+Posibles errores
+Incluso en líneas de código simples, ocurren errores. Los más comunes son:
+
+    consle.log("Hello, World!");
+
+Esta línea contiene en consle.loglugar de console.log. Este código no funcionará debido a un error de imprenta.
+
+falta una o ambas comillas para una cadena:
+
+    console.log(JavaScript);
+
+
+
+
+programas multilínea
+
+Ya sabe cómo escribir programas JavaScript simples de una sola línea que envían una línea de texto a la consola. Esto es un logro en sí mismo, pero los programas reales contienen una cantidad significativa de líneas: desde decenas y cientos para pequeños scripts hasta varios miles para grandes proyectos. Después de completar este tema, podrá escribir programas que pueden generar varias líneas de texto en la consola a la vez.
+
+
+Ejemplo
+Comencemos con un ejemplo de tales scripts. El siguiente código imprime exactamente tres líneas de texto, cada una de una nueva línea:
+
+    console.log("I");
+    console.log("know");
+    console.log("JavaScript");
+
+También se puede hacer un salto de línea usando el símbolo \n:
+
+    console.log("I\nknow\nJavaScript!");
+
+Línea vacía
+La console.logfunción también le permite generar una línea vacía sin ninguna información en ella:
+
+    console.log("I");
+    console.log();
+    console.log("know");
+    console.log();
+    console.log("JavaScript");
+
+Hay otras formas de imprimir texto de varias líneas que utilizan solo una llamada de función: las veremos en los siguientes temas.
+
+
+
+Comentarios
+
+En los scripts JS, hay una forma de escribir fragmentos de texto que el intérprete de JS ignorará. Estos textos se denominan comentarios . ¿Por qué escribirlos si al final simplemente se ignoran? Bueno, el intérprete ignorará los comentarios, pero otros desarrolladores no. Los comentarios le permiten hacer que su código sea más legible y comprensible para los desarrolladores.
+
+El lenguaje JavaScript admite dos tipos de comentarios: una línea y varias líneas. Veámoslos más de cerca.
+
+Comentarios de una línea
+Los comentarios que ocupan solo una línea se denominan comentarios de una línea . Eche un vistazo a las características sintácticas de estos comentarios:
+
+    console.log("Nice to see you!"); // This code outputs the message to the console
+
+En el ejemplo anterior, // el intérprete ignora todo el texto posterior . Con la ayuda de tales notas, recordará rápidamente para qué está destinado un determinado fragmento de código, incluso si ha pasado un tiempo desde la última vez que lo vio.
+
+Comentarios de varias líneas
+Los comentarios que ocupan varias líneas se denominan comentarios de varias líneas . Estas son sus características sintácticas:
+
+    /*  
+    The following code outputs the message to the console
+    The console will display a line with the text "Hello, JS!"
+    */
+    console.log("Hello, JS!");
+
+El intérprete ignora todo el texto entre /*y el más cercano */. Estos comentarios son útiles para explicar fragmentos de código particularmente complejos o comentar temporalmente fragmentos de código cuando necesite encontrar un error. Además, los comentarios de varias líneas ubicados al principio de un archivo son bastante útiles cuando necesita especificar información de copyright.
+
+A veces puede encontrar una sintaxis ligeramente modificada de notas de varias líneas: el comentario se abre con la /**etiqueta y cada línea comienza con *:
+
+
+    /**
+    * The first program
+    * Author: Bob  
+    */
+    console.log("Hi, I'm Bob");
+
+Estos comentarios a menudo contienen información sobre el archivo de programación, incluido su nombre, versión y autor del script.
+
+JavaScript no admite comentarios anidados. Esto significa que no podrá escribir un comentario dentro de otro comentario.
+
+Conclusión
+Los comentarios hacen que su código sea más claro y ayudan a simplificar el trabajo de todos aquellos programadores que trabajarán con su código en el futuro. Los comentarios también se utilizan para comentar temporalmente fragmentos de código cuando necesita encontrar un error. En otras palabras, realmente puede beneficiarse de los comentarios, así que no los ignore, aunque su intérprete de JS lo hará. No abuse de los comentarios, utilícelos sabiamente, no olvide que los comentarios no pueden reemplazar un código bien escrito.

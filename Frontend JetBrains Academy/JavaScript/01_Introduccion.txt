@@ -1,0 +1,28 @@
+Introduction to JavaScript
+
+En estos días, es difícil encontrar sitios que no permitan a los visitantes interactuar con ellos. Piense en controles deslizantes, galerías web, animación y cualquier otro evento interactivo que surja cuando presiona algún botón. JavaScript proporciona el procesamiento de la entrada del usuario, la capacidad de enviar / recibir datos desde servidores y otros comportamientos interactivos .
+
+Que es JavaScript
+JavaScript (JS) es uno de los lenguajes de programación más utilizados. Fue creado por Brendan Eich en 1995 y le llevó diez días. Lo leíste bien: ¡JavaScript se desarrolló realmente en solo diez días!
+
+Según GitHub 2018 , JS encabeza la lista de los lenguajes de programación más populares. Se utiliza tanto para el desarrollo de front-end como de back-end.
+
+JavaScript no es Java. Estos son diferentes lenguajes de programación. Sus nombres similares fueron un movimiento de marketing para llamar la atención sobre el nuevo lenguaje y aprovechar la popularidad de Java.
+JavaScript se basa en el estándar ECMAScript (a menudo abreviado a ES) . La última versión de este estándar es ES10 .
+
+
+El primer programa
+Los programas escritos en este idioma se denominan scripts . Aquí hay un ejemplo de un script JS simple que se imprime I am starting to learn JavaScript!:
+
+    console.log("I am starting to learn JavaScript!");
+
+Todos los navegadores modernos tienen un programa integrado que le permite ejecutar JS directamente en ellos. Veamos el resultado de nuestro primer programa en el navegador. Para hacer esto, presione Ctrl + Shift + J / Ctrl + Shift + K o Cmd + Opt + J / Cmd + Option + C en Mac, escriba el código JS en la consola abierta, luego presione Enter.
+
+Como puede ver, el resultado de nuestro primer script fue la línea I am starting to learn JavaScript!.
+
+
+
+Conclusión
+JavaScript tiene una gran comunidad de desarrolladores en todo el mundo. Este lenguaje de programación es fácil de aprender y agradable para escribir programas. Seguirá encontrando dificultades, pero cuando lo haga, siempre podrá pedir ayuda a otros programadores o incluso encontrar una respuesta lista para usar .
+
+Hay mucha información nueva en este tema, por lo que intentamos no aburrirlo con la historia de la creación de JavaScript. Si aún desea leerlo, puede visitar esta página en Wikipedia y luego continuar aprendiendo.

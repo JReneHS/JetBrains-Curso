@@ -1,0 +1,67 @@
+Templates
+
+
+Si alguna vez intentó agregar variables a cadenas de texto, probablemente notó que el programa resultante parece difícil de leer.
+
+Anteriormente, solo usábamos comillas simples '' o dobles "" para crear una cadena. Esto generó varias restricciones e inconvenientes, por lo que es hora de que aprendamos a administrar cadenas sin complicaciones innecesarias.
+
+
+
+Usar literales de plantilla
+
+Supongamos que necesitamos mostrar un mensaje sobre la temperatura actual en alguna ciudad:
+
+    Now, the temperature in ... is ... degrees Celsius.
+
+En lugar de ..., necesitamos escribir ciertos valores.
+
+Podemos hacerlo de esta manera:
+
+    let city = "Paris";
+    let temp = "24";
+
+    console.log("Now, the temperature in " + city + " is " + temp + " degrees Celsius.");
+
+Aquí declaramos dos variables, por ejemplo, city y temp, y además construimos la cadena de resultado usando una secuencia de concatenaciones. Por supuesto, este código funciona correctamente, pero es largo y tenemos que vigilar de cerca los espacios para no obtener accidentalmente texto sólido en la salida.
+
+JavaScript proporciona una forma más conveniente de administrar cadenas: literales de plantilla . Para poner el valor de una variable en una cadena, escriba el signo de dólar $ antes del nombre de la variable, póngalo entre corchetes {}; encierre la cadena entre comillas inversas en ` `lugar de doble o simple:
+
+
+    let city = "Paris";
+    let temp = "24";
+    
+    console.log(`Now, the temperature in ${city} is ${temp} degrees Celsius.`);
+
+
+Strings Multi-Linea
+
+Los símbolos de una nueva línea forman parte de los literales de la plantilla. Ahora puede escribir un programa de varias líneas de forma rápida y sin esfuerzo. Por ejemplo:
+
+    console.log(`String text line 1
+    String text line 2`);
+
+La salida de este código será la siguiente:
+
+    String text line 1
+    String text line 2
+
+Esto es bastante útil, porque ahora no hay necesidad de duplicar funciones o acertar sobre dónde colocar los caracteres de salto de línea (\n).
+
+
+Syntactic sugar
+
+Gracias a los literales de la plantilla, resultó conveniente no solo insertar valores de variables, sino también insertar expresiones completas. Echale un vistazo a éste ejemplo:
+
+    let a = 1;
+    let b = 2;
+    console.log(`The sum of numbers ${a} and ${b} is not equal to ${ 10 * a + b }.`);
+    // The sum of numbers 1 and 2 is not equal to 12.
+
+Sin los literales de la plantilla, este código se vería así:
+
+    let a = 1;
+    let b = 2;
+    console.log("The sum of numbers " + a + " and " + b + " is not equal to "+ (10 * a + b) + ".");
+    // The sum of numbers 1 and 2 is not equal to 12.
+
+Los literales de plantilla son una innovación realmente útil en ES6. Permite una gestión de líneas flexible, una fácil creación de programas de varias líneas y una fácil inserción de expresiones en cadenas.

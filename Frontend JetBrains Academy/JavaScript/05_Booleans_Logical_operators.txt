@@ -1,0 +1,64 @@
+operadores lógicos y booleanos
+
+
+Ya sabe cuáles son las variables de tipos numéricos y de cadena. Sin embargo, la programación requiere más que eso. En este tema, consideraremos otro tipo de variable importante y los operadores que trabajan con él.
+
+Tipo booleano
+Hay afirmaciones sobre las que podemos decir si son ciertas o no. Imagínese que hoy está lloviendo, por lo que la afirmación "está lloviendo" es cierta. La afirmación "5 < 3" es siempre falsa y "la Luna orbita alrededor de la Tierra" es verdadera. Estas declaraciones tienen un tipo especial : lógico o booleano .
+
+Solo hay dos valores posibles de variables booleanas: truey false. Mire el ejemplo de establecer una variable booleana e imprimirla:
+
+    let bool = true;
+    console.log(bool); // true
+
+Operadores logicos
+Para realizar operaciones con las variables booleanas, se utilizan operadores lógicos . Solo hay tres de ellos en JavaScript: Y AND lógico ( &&), O OR lógico ( ||) y NO NOT ( !). Los dos primeros operadores son binarios , lo que significa que se usan con dos operandos y el !operador es unario, por lo que solo toma un operando.
+
+&& devuelve verdadero si ambos operandos son verdaderos y falsos en todos los demás casos:
+
+    console.log(true && true);   // true
+    console.log(true && false);  // false
+    console.log(false && true);  // false
+    console.log(false && false); // false
+
+|| devuelve falso si ambos operandos son falsos y verdaderos en todos los demás casos:
+
+    console.log(true || true);   // true
+    console.log(true || false);  // true
+    console.log(false || true);  // true
+    console.log(false || false); // false
+
+!devuelve falso a verdadero y verdadero a falso:
+
+    console.log(!false);  // true
+    console.log(!true);   // false
+    console.log(!!true);  // true
+
+
+
+Más capacidades de operadores lógicos en JS
+
+En realidad, los operadores lógicos en JavaScript tienen capacidades mucho más amplias que el uso tradicional descrito anteriormente. Sus operandos pueden ser no solo las variables lógicas sino también variables de otros tipos.
+
+Entre los valores numéricos, 0 se considera false, y todos los demás números son true. Se consideran todas las cadenas  como true excepto las vacías.
+
+La expresión siempre se calcula de izquierda a derecha. && devuelve falso tan pronto como encuentra que el primero es falso , y el operador || devuelve verdadero tan pronto como ve el primero como verdadero :
+
+    console.log(true || 0);      // true
+    console.log(false && "sun"); // false
+    console.log(1 || 0);         // 1
+
+
+
+Prioridad
+Cuando trabaje con expresiones complejas, debe tener en cuenta su prioridad . La prioridad de ! es más alta que la de && y la prioridad de && es más alta que la de ||. Si necesita cambiar la prioridad, use paréntesis:
+
+    console.log(!false && !true);   // false
+    console.log(!(false && !true)); // true
+
+
+
+
+Conclusión
+
+En este tema, aprendimos qué son los booleanos, revisamos tres operadores lógicos en JavaScript y vimos que los operadores lógicos JS se pueden aplicar no solo a variables lógicas. Ahora es el momento de pasar a aplicar este conocimiento en la práctica.

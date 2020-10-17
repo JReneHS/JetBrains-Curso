@@ -1,0 +1,58 @@
+Introducción a los objetos
+
+
+Ya está familiarizado con cadenas y números. Estos tipos de datos se consideran primitivos porque solo pueden almacenar un valor. Esto puede resultar inconveniente cuando tiene que tratar con conjuntos de información relacionada. Para trabajar cómodamente con colecciones de valores, hay objetos . ¡Averigüemos qué son los objetos y cómo funcionan!
+
+
+
+No todo en JS es un objeto
+
+Un objeto es un tipo de datos no primitivo que representa una colección desordenada de propiedades . Una propiedad es una parte del objeto que imita una variable. Consiste en una clave y un valor separados por dos puntos. La clave solo puede ser una cadena o Symbol(tipo de datos, que conoceremos más adelante), pero el valor puede ser de cualquier tipo de datos. Puede crear objetos vacíos sin una sola propiedad:
+
+    let book = {};
+
+Existe una forma alternativa de crear un objeto vacío, pero rara vez se usa en la práctica:
+
+    let book = new Object();
+
+Puede comprobar que ambos métodos crean un objeto utilizando el typeof operador que ya conoce.
+
+    let book1 = {};
+    let book2 = new Object();
+
+    console.log(typeof book1); // object
+    console.log(typeof book2); // object
+
+Si desea crear un objeto con varias propiedades, todas menos la última deben ir seguidas de una coma. Para comprender mejor la sintaxis, eche un vistazo al siguiente ejemplo:
+
+    let country = {
+    name: "Netherlands",
+    population: 17.18
+    };
+
+Como en muchos casos en JavaScript, la creación de objetos a menudo comienza con la definición e inicialización de una variable. En el ejemplo anterior, le hemos asignado el nombre al objeto country. Luego se especificaron dos propiedades entre corchetes: la clave name con el valor "Netherlands" y la clave population con 17.18. Como puede ver, los objetos son muy útiles para agrupar datos.
+
+La sintaxis con corchetes utilizada para crear objetos tiene su propio nombre: notación literal . No es la única forma de hacerlo, pero probablemente la más común.
+
+
+
+Propiedades
+
+Los objetos son uno de los pilares del lenguaje JavaScript, por lo que es importante saber cómo trabajar con sus propiedades.
+
+Existe la posibilidad de hacer referencia a las propiedades. Para acceder a las propiedades, usamos un registro con el nombre del objeto y un punto. Usemos el ejemplo de código anterior e intentemos acceder a la propiedad name:
+
+    console.log(country.name); // Netherlands
+
+Las propiedades también se pueden agregar usando el símbolo de punto y el =símbolo de asignación. Agreguemos a nuestro objeto una propiedad con la clave capital y el valor "Amsterdam":
+
+    country.capital = "Amsterdam";
+
+Para eliminar una propiedad, podemos usar el operador delete y un punto. Esto parecerá eliminar la propiedad population de un objeto llamado country:
+
+    delete country.population;
+
+
+Conclusión
+
+Trabajar con datos agrupados es una de las tareas más comunes en la programación. Ahora tienes una herramienta importante que te ayudará con eso: los objetos y sus propiedades. ¡Camino a seguir!

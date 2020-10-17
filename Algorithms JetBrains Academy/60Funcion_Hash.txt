@@ -1,0 +1,87 @@
+Función hash
+
+
+Introducción
+
+En teoría, una función hash es cualquier función que pueda tomar cualquier valor grande y generar un valor de tamaño fijo. Sin embargo, no todas las funciones con esta propiedad son útiles ya que los diferentes casos de uso necesitan propiedades diferentes. Para entenderlo mejor, ahora veremos algunas propiedades generales de las funciones hash y algunos ejemplos de ellas.
+
+
+
+Definiendo una buena función hash
+
+¿Cuál es la diferencia entre cualquier función hash y una buena? Para definir una buena función hash, necesitamos aprender tres de sus propiedades: eficiente, determinista y uniforme.
+
+Una función hash eficiente debería calcular el valor hash en tiempo constante: O (1) en el tamaño de la entrada. Digamos que tiene una matriz de n enteros. Entonces, una buena función hash tomaría tiempo O (n), ya que n es el tamaño de la entrada, y podría calcular hash para n> 100.000.000 en menos de un segundo. Ahora digamos que otra función hash toma tiempo O (n ^ 2). Entonces apenas podría calcular hashes para n ∼ 10,000 en un segundo.
+
+Si dos entradas son iguales, deberían tener el mismo valor hash, por eso necesitamos que una función hash sea determinista. Hay dos cosas para recordar aquí:
+
+    Primero, determinista significa que la función no puede ser aleatoria. Por ejemplo, la función que devuelve 0 o 1 aleatoriamente, independientemente de la entrada, es una función hash, pero no determinista.
+
+    En segundo lugar, imagine que tiene dos variables distintas, ambas con el mismo valor, digamos 7. Para una computadora, ocupan lugares diferentes en la memoria, por lo que son diferentes, pero estas variables son iguales si se comparan los valores. En este caso, queremos que la función hash devuelva el mismo valor. Un ejemplo de una función hash que no hace eso es la función que devuelve la dirección en la memoria del valor.
+
+Como ya sabe, la tercera propiedad es uniforme: los valores hash se distribuyen uniformemente. Esto significa que las entradas deben mapearse por igual entre los posibles valores hash. Otra forma de decirlo: si agrupamos las posibles entradas por su valor hash, queremos que los grupos tengan tamaños cercanos entre sí.
+
+Esas son las propiedades generales que debería tener cualquier función hash. Veamos algunos comunes para ver cómo funciona.
+
+
+
+Funciones hash estándar
+
+Para usar las funciones hash, primero debemos aprender la notación. Las funciones hash generalmente se indican con h. El valor hash de un objeto x en particular se indica con h (x). Las funciones hash que se utilizan en la programación diaria normalmente toman un tipo de valor y devuelven números enteros. Se usan en tablas hash y tienen las tres propiedades que discutimos anteriormente. Estos son algunos de los hash más fáciles y utilizados:
+
+    Enteros: utilizamos la función identidad, que siempre devuelve el valor que se le da: h (x) = x, o el módulo: (x) = x% p, para algún número p (normalmente un primo). El módulo x% p devuelve el resto al dividir x por p. Veamos cómo funcionan para algún número aleatorio, digamos 10. La identidad siempre devolverá el número que se le dio, por lo que tenemos h (10) = 10. Para el módulo, si elegimos p = 7, entonces tenemos h ( 10) = 10% 7 = 3. Si elegimos p = 10, entonces tenemos h (10) = 10% 10 = 0. https://en.wikipedia.org/wiki/Modulo_operation
+
+    Matrices de enteros: digamos que la matriz tiene la forma [v_1, v_2, ..., v_n]. La idea es comenzar de izquierda a derecha y recopilar todos los valores en un solo entero. En cada paso, multiplique el número entero que tiene por algún número y agregue el siguiente valor. Podemos escribir esto matemáticamente como h_0 = 0, h_ {i + 1} = h_i * p + v_ {i + 1}, donde p es un número (generalmente un primo). Entonces h_n será el valor hash. Si miramos lo que obtenemos: h_n = v_1 * p ^ {n-1} + v_2 * p ^ {n-2} + ... + v_n. Esto considera todos los elementos pero en diferentes proporciones. ¿Qué pasa si tomamos solo la suma normal de todos los elementos? Entonces, todas las matrices con los mismos elementos, posiblemente en un orden diferente, tendrán el mismo valor hash. ¡Pero no son iguales! Este truco ayuda a distinguir entre estos casos.
+
+    Matrices generales: ¿qué sucede si sus matrices tienen algún otro tipo de datos, en lugar de números enteros? Primero, elija una función hash para ese tipo de datos, llamémosla h ', que tiene las propiedades anteriores y genera números enteros. Luego, puede hacer lo mismo que antes, pero, en lugar de agregar el siguiente valor, agregue su hash. Matemáticamente, el único cambio es: h_ {i + 1} = h_i * p + h '(v_ {i + 1}), ¡eso es todo! Por ejemplo, imagine que queremos calcular el hash para una matriz de matrices de enteros. Podemos usar la fórmula hash actualizada si elegimos h 'para que sea una función hash para matrices enteras.
+
+    Cadenas: las cadenas no son más que matrices de caracteres. Un carácter es, en general, un número entero entre 0 y 255, por lo que podemos calcular la función hash de la misma manera que lo hacemos para una matriz de números enteros.
+
+Para aclararlo, veamos cómo calculamos el valor hash para la matriz [1, 2, 3, 4] usando p = 5:
+
+
+    h1 = h0 ∗ p + v1 = 0 ∗ 5 + 1 = 1
+
+    h2 = h1 * p + v2 = 1 * 5 + 2 = 7
+    
+    h3 = h2 * p + v3 = 7 * 5 + 3 = 38
+    
+    h4 = h3 * p + v_4 = 38 * 5 + 4 = 194
+
+Así que tenemos un valor hash 194. ¡Tenga en cuenta que el hash crece rápido! Debido a esto, generalmente elegimos otro primo q diferente de py mucho más grande, y modificamos el paso a h_ {i + 1} = (hi * p + h '(v_ {i + 1}))% q. El módulo es el resto de dividir por q, por lo que, de esta manera, el valor hash siempre será menor que qq. Con un poco de matemáticas, podemos demostrar que tomar el módulo en cada paso da el mismo resultado que solo tomar el módulo de h_n, ¡así que mantenemos todas las propiedades que queremos!
+
+Ahora, ¿qué sucede si cambiamos el orden de los valores en la matriz mientras mantenemos p = 5? Para [2,1,3,4] el valor hash es h4 '= 294 y para [1,2,4,3] tenemos h_4' '= 198. ¡Cuanto más cerca del inicio, mayor es la diferencia!
+
+
+
+Funciones hash criptográficas
+
+Los hashes criptográficos están diseñados para funcionar con cualquier entrada de cualquier longitud y tipo considerándola como una secuencia de bits: unos y ceros. También generan una secuencia de bits, pero de longitud fija. La computadora puede funcionar bastante bien con él, pero para nosotros es bastante difícil "ver" si no lo formateamos claramente. Normalmente, hay unos pocos cientos de bits en la salida, así que lo que hacemos es considerarlo como un número grande en base 2, convertirlo a base 16 y escribirlo como una cadena.
+
+Los hash criptográficos siguen respetando las propiedades anteriores, pero son más complejos. Tienen menos casos de uso pero son extremadamente importantes en seguridad. Veamos qué propiedades necesitan:
+
+    Imagine que una empresa almacena una tabla de pares de nombre de usuario y contraseña para un sitio web que utiliza. Si esa tabla se filtra, cualquiera puede ver su contraseña. Entonces, lo que hacen en su lugar es guardar el hash de su contraseña. Siempre que les envías tu contraseña, calculan el hash y comprueban si es la misma que la guardada. Ahora, si se filtra la tabla, un atacante debe encontrar una contraseña que tenga el mismo valor que su contraseña para poder iniciar sesión como usted. Por lo tanto, la función hash debe hacer que sea muy difícil para un atacante encontrar dicha contraseña. Esta función se denomina resistente a la preimagen: dado un valor hash h, es difícil encontrar un mensaje m con hash (m) = h.
+
+    Una de las formas en que podemos asegurarnos de que un mensaje no se modificó es enviando el hash del mensaje junto con el mensaje en sí. Suponga que un atacante quiere cambiar el mensaje, pero no puede cambiar el hash. Luego tiene que encontrar un mensaje diferente que tenga el mismo valor. Incluso si el nuevo mensaje puede no tener sentido, puede afectar la comunicación de alguna manera. Una función hash que no lo permite se llama resistente a la segunda preimagen o resistente a colisiones débil: dado un mensaje m_1 es difícil encontrar un mensaje diferente m_2 con hash (m_1) = hash (m_2).
+
+Cuando decimos que es difícil encontrar algún valor, eso significa que encontrar un valor con las propiedades necesarias llevaría años, incluso con las supercomputadoras más potentes. Si cree que es difícil conseguir esas propiedades, ¡tiene razón! No todo el mundo puede crear tal función. Afortunadamente, existen algunos estándares que se utilizan ampliamente en la actualidad. Sus implementaciones son complicadas, por lo que no entraremos en detalles.
+
+Primero, veamos MD5. Fue creado en 1992 como una mejor alternativa a su predecesor, MD4. Toma cualquier entrada y genera un valor hash de 128 bits. Inicialmente, se creía que era resistente a las colisiones, pero en 2004 se demostró que no era así. Se necesitaron 12 años y mucha investigación para encontrar esto, por lo que es mejor seguir con los hash existentes que intentar crear nuevos.
+
+Otra función hash criptográfica, más segura, es SHA256. Su salida es de 256 bits y se usa en muchos lugares, uno de ellos es la prueba de trabajo de Bitcoin. Veamos algunos ejemplos y veamos qué pequeños cambios en la entrada hacen al valor hash: https://en.bitcoin.it/wiki/Proof_of_work
+
+    SHA256 ("¡Los hash son divertidos!") = C128f0e84f60397828b11eaa3cbb67262b99f4d11f3ad630139ffa36cc600278
+
+    SHA256 ("¡los hash son divertidos!") = 9659f1fcdf143e3e1f66a922d71500d86c3b7d8f3a5ef03e1d9676547632317e
+
+    SHA256 ( "Los hash son divertidos" ) = b2cde78b638667158fb91d0c665d1d20cc247925b45d9eccb7d25c08721fea12
+
+    SHA256 (    "¡Los hash son fnu!"   ) = C75bb5fed45a21695e0c607376cc1c925939a02c38fac8e7d5488b8820487bca
+
+¡Incluso los pequeños cambios producen grandes diferencias! Esta es la consecuencia de la resistencia a colisiones y la resistencia a la imagen previa.
+
+
+
+Conclusión
+
+Ahora ya sabe qué son las funciones hash y las funciones hash criptográficas. Aprendimos las propiedades estándar de las funciones hash: eficiente, determinista y uniforme, y cómo construir funciones hash para algunos tipos de datos estándar. También vimos los diferentes casos de uso de las funciones hash criptográficas y su importancia. Ahora está listo para profundizar y aprender algunas otras técnicas de hash, por ejemplo, tablas hash.

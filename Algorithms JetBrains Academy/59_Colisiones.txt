@@ -1,0 +1,104 @@
+Colisionesᵝ
+
+
+Introducción
+
+En el tema sobre hash, hemos aprendido sobre funciones hash y tablas hash. También descubrimos que dos valores diferentes pueden tener el mismo valor hash y pueden enviarse al mismo depósito. Siempre que se envían dos o más valores al mismo depósito decimos que producen colisiones. Recuerde que dos elementos pueden caer en el mismo grupo incluso si tienen diferentes valores de hash. Si tenemos muchas colisiones, la tabla hash será más lenta, ya que tendrá que buscar entre muchos valores para encontrar el que estamos buscando. En este tema, veremos formas de reducir y manejar las colisiones.
+
+Muy a menudo, los valores que queremos agregar a una tabla hash no son aleatorios. Puede suceder que, por sus propiedades, algunos valores hash aparezcan con mayor frecuencia. Echemos un vistazo a un ejemplo.
+
+Desea almacenar una tabla hash de números primos mayores que 2 y desea utilizar la función hash h (n) = n % 4. Si los números que desea almacenar fueran aleatorios, los valores hash se distribuirían uniformemente. Veamos qué sucede cuando agregamos {5, 7, 11, 13, 19, 23}: ver imagen
+
+¡Esos números no parecen distribuidos uniformemente! De hecho, como todos los números primos mayores que 2 son impares, nunca tendremos nada en los depósitos 0 y 2. Veamos qué sucede si elegimos una función hash diferente, como h (n) = n % 5: ver imagen
+
+¡Esto es mucho mejor! Elegir una buena función hash es importante para una tabla hash rápida, pero las funciones hash casi siempre producen colisiones. Encontrar una buena función hash no siempre es fácil y no existe una forma estándar de encontrar una. Veamos algunas otras formas de reducir y manejar las colisiones que hacen que las tablas hash sean buenas incluso sin funciones hash perfectas.
+
+
+
+Factor de carga
+
+Piense en una tabla hash con 100 cubos y 200 valores. Una función hash ideal distribuiría los valores de manera uniforme y tendríamos 2 valores en cada depósito. Luego, siempre que verifiquemos un valor, tenemos que verificar la igualdad con ambos valores en el cubo correspondiente. Esto no está mal, pero, idealmente, los depósitos deberían tener 1 o 0 elementos. Para ello, siempre queremos tener más cubos que elementos.
+
+El factor de carga de una tabla hash es un número l entre 0 y 1 que nos dice qué tan llena está la tabla hash. Podemos calcularlo en cualquier momento con la fórmula: l = #elementos / #cubos. Cada tabla hash tiene un factor de carga máximo alfa (α), un número constante entre 0 y 1 que es un límite superior para el factor de carga. Después de insertar un valor en la tabla hash, calculamos el nuevo factor de carga l. Si l > alphal (α), aumentamos el número de cubos en la tabla hash, generalmente creando una nueva matriz de dos veces más cubos e insertando en ella todos los valores del anterior. Un valor común para el factor de carga máximo es 0,75, lo que asegura que haya suficientes depósitos, sin desperdiciar mucha memoria en los vacíos.
+
+Hasta ahora, hemos intentado reducir el número de colisiones tanto como sea posible, pero esto no garantiza que cada elemento caiga en un cubo diferente. Ahora, veamos algunas formas de manejar las colisiones cuando aparecen.
+
+
+
+Encadenamiento
+
+Primero, introduzcamos rápidamente las listas vinculadas. Las listas enlazadas son una estructura de datos representada como una secuencia de nodos. Cada nodo almacena algunos datos y una referencia al siguiente nodo. Es posible insertar nuevos nodos, buscar datos en un nodo y eliminar un nodo con sus datos. Todas esas operaciones tienen una complejidad de tiempo lineal.
+
+Lo más natural es tener los depósitos como listas enlazadas. Cuando agrega un nuevo elemento a un depósito, verifica todos los valores en la lista para ver si alguno de ellos es igual al nuevo. Si ninguno de ellos es igual al nuevo elemento, agréguelo al final de la lista. La búsqueda y la eliminación son similares. Este método se llama encadenamiento.
+
+Todas las operaciones toman un tiempo lineal en el tamaño de la lista vinculada, por lo que sigue siendo importante tener depósitos pequeños. Veamos un ejemplo en el que ignoramos el factor de carga.
+
+Tiene una tabla hash con 4 depósitos e inserta {1, 4, 6, 7, 11, 16} en este orden utilizando el hash de identidad: ver imagen
+
+Veamos cómo se ve esto si usamos un factor de carga máximo de 0,75. Después de insertar el cuarto elemento, necesitaremos duplicar el número de cubos e insertar todo nuevamente: ver imagen
+
+Esto es mucho mejor, ¡ahora todos los depósitos tienen 1 elemento como máximo! El método de encadenamiento es fácil de implementar y funciona bien. La única desventaja es que el almacenamiento de listas enlazadas requiere bastante espacio adicional y, si la función hash no es muy buena, muchos de los depósitos estarán vacíos, pero aún ocupan espacio.
+
+
+
+Palpado lineal
+
+Otra idea sería tener cubos que contengan solo un elemento y de alguna manera poner los elementos 'extra' en otros cubos vacíos. De esta forma podemos mantener una matriz simple para la tabla hash, sin necesidad de otras estructuras de datos como listas enlazadas. Hay algunos problemas nuevos que surgen de esto:
+
+    ¿Podemos buscar rápidamente un elemento?
+
+    ¿Cómo podemos eliminar elementos rápidamente sin afectar las operaciones futuras?
+    
+    ¿Cómo nos aseguramos de tener siempre un espacio para un elemento nuevo?
+
+El palpado lineal es el método adecuado para esto. Primero, necesitamos dos valores que sabemos que nunca se insertarán en la tabla hash, uno para representar vacío y otro para representar eliminado. Por ejemplo, si queremos insertar solo enteros estrictamente mayores que 0, podemos usar 0 para significar vacío y -1 para significar eliminado. Veremos en breve por qué necesitamos un valor diferente para eliminado. Veamos el algoritmo:
+
+    Insertar: Calculamos el valor hash hh y buscamos el cubo correspondiente. Si el depósito está vacío o eliminado, escribimos el valor allí. De lo contrario, revisamos el cubo a la derecha h + 1h + 1 y repetimos hasta encontrar uno vacío o eliminado. Si llegamos al final de la matriz, volvemos al inicio y continuamos.
+    
+    Buscando: Igual que insertar, pero deje de buscar solo cuando encontremos un cubo vacío.
+    
+    Eliminando: busque el valor que queremos eliminar y coloque eliminado en ese depósito.
+
+Primero, para asegurarnos de que siempre haya espacio para agregar nuevos elementos, podemos usar un factor de carga máximo estrictamente menor que 1, como el predeterminado 0,75. Esto también tiene la ventaja de que cuando cambiamos el tamaño de la matriz nos deshacemos de todos los depósitos eliminados.
+
+Ahora veamos un ejemplo para ver por qué necesitamos un valor eliminado especial. Digamos que tenemos una tabla hash con 4 cubos e insertamos {1, 2, 5} en este orden usando el hash de identidad. Entonces obtenemos: ver imagen
+
+Aquí 5 tiene que ir al depósito 1, pero ya tiene un elemento. Luego probamos el cubo 2, también está ocupado. Cuando probamos el cubo 3, vemos que está vacío, por lo que podemos insertarlo allí. Ahora queremos eliminar 2 y luego buscar 5. Veamos qué sucede si no usamos un valor separado para eliminado: ver imagen
+
+Buscamos en el depósito 1, no está allí, así que pasamos al siguiente. El cubo 2 está vacío, por lo que regresamos diciendo que 5 no está en la tabla hash. ¡Ups! Veamos ahora si usamos un valor eliminado: ver imagen
+
+Cuando llegamos al depósito 2, podemos ver que está eliminado, no vacío, así que vamos más allá y encontramos 5 en el depósito 3. ¡Así que funcionó!
+
+
+
+Palpado cuadrático
+
+El sondeo lineal funciona bien con una buena función hash. Sin embargo, en la práctica, a veces tenemos algunos valores con valores hash cercanos. Si usamos el sondeo lineal, esto significa que creamos algunos clústeres locales que ralentizan la inserción, búsqueda o eliminación de elementos con esos valores hash. El sondeo cuadrático es una pequeña modificación del sondeo lineal que asegura que no formamos esos grupos. La forma de hacerlo es, en lugar de movernos un paso a la vez, usamos la función H (i) = h + a * i + b * i ^ 2 para decirnos qué cubo considerar en el paso ii, donde aa y bb son dos números que podemos elegir y hh es el valor hash del elemento que queremos insertar. Por ejemplo, si tomamos a = 1, b = 0 obtenemos lo mismo que un palpado lineal. En general, como queremos evitar los problemas del sondeo lineal, tomamos b ≥ 1.
+
+Tenemos la siguiente tabla hash que usa el hash de identidad: ver imagen
+
+Observe el grupo al comienzo del hash. Veamos qué pasa si queremos insertar 9 con palpado lineal: ver imagen
+
+El hash es 9, por lo que primero miramos en el cubo 1. Está lleno, así que tenemos que ir a la derecha. De hecho, tenemos que ir a la derecha 4 veces, ¡eso es la mitad del tamaño de la mesa! Y ahora, cada vez que queremos buscar 9 tenemos que dar esos 4 pasos. Esto es ineficaz.
+
+Veamos cómo insertaríamos 9 en la tabla hash con un sondeo cuadrático usando H (i) = h + i ^ 2: ver imagen
+
+
+Primero, comprobamos el cubo 1. Está lleno. Luego vamos al cubo 1 + 1 * 1 = 2, también está lleno. Luego saltamos al cubo 1 + 2 * 2 = 5 y está vacío, por lo que insertamos 9 allí. ¡Nos saltamos 2 cubos llenos!
+
+Así que el sondeo cuadrático parece funcionar bien. Sin embargo, estamos introduciendo una búsqueda más complicada, por lo que debemos asegurarnos de que todo funcione según lo previsto. Digamos que tenemos la siguiente tabla hash que usa hash de identidad y H (i) = h + 2 * i ^ 2: ver imagen
+
+Digamos que queremos buscar el valor 16. Luego, primero miramos en el depósito 0, luego vamos al depósito 2, luego volvemos al 0, volvemos al 2 y así sucesivamente. Si hacemos los cálculos, podemos ver:
+
+    H (2k) = 16 + 2 * (2k) ^ 2 = 16 + 8k ^ 2 ≡ 0 mod 8
+
+        y
+
+    H (2k + 1) = 16 + 2 * (2k + 1) ^ 2 = 16 + 2 * (4k ^ 2 + 4k +1) = 8 * (2 + k ^ 2 + k) + 2 ≡ 2 mod 8 .
+    
+¡Entonces se repetirá para siempre! Esto nos advierte que no todas las funciones HH nos llevan a través de toda la tabla y tenemos que asegurarnos de que escenarios como el anterior no sucedan.
+
+
+Resumen
+
+Ahora hemos aprendido sobre las colisiones y cómo afectan el rendimiento de las tablas hash. Buscamos formas de reducir el número de colisiones eligiendo una buena función hash para los valores que tenemos y manteniendo un factor de carga máximo de la tabla. También buscamos formas de manejar las colisiones al implementar tablas hash, es decir, encadenamiento y sondeo lineal y cuadrático. En todos ellos, ¡vimos lo importante que es una buena función hash! Entonces, aunque en teoría las tablas hash son realmente rápidas, todo se reduce a la elección de la función hash.

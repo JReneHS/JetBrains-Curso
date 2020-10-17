@@ -1,0 +1,176 @@
+Variables
+
+Ya puede trabajar en JavaScript con tipos de datos, cuyo valor no necesita cambiarse. Sin embargo, al escribir programas a gran escala, generalmente es necesario almacenar datos y resultados de cálculos intermedios en algún lugar. Para ello se utilizan variables .
+
+Que es una variable
+Una variable es un lugar con nombre donde puede almacenar un valor para acceder a él más tarde. Es como una caja con un regalo dentro: ¡esto también es una especie de variable!
+
+Cada variable tiene un nombre para distinguirla de otras variables. Es posible acceder a un valor por el nombre de su variable.
+
+Las variables son uno de los elementos de los programas que se utilizan con más frecuencia, por lo que es importante comprenderlas y utilizarlas bien.
+
+
+Declaración de variables
+Antes de comenzar a trabajar con una variable, debe declararla (en otras palabras, crearla). JavaScript utiliza dos palabras clave para crear variables:
+
+    let define una variable mutable cuyo valor se puede cambiar tantas veces como sea necesario;
+    
+    const declara una constante cuyo valor desea prohibir la sobrescritura.
+
+Cuando declaras una variable, debes darle un nombre después de una de estas palabras clave. Es una buena práctica asignar un nombre de variable que describa su contenido. Intente siempre elegir nombres significativos y legibles para las variables para que su código sea fácil de entender.
+
+
+
+Variables mutables
+Intentemos crear una variable mutable y entendamos por qué se llama así. Vamos a llamarlo month y ponerle datos usando el símbolo = : 
+
+    let month = "November"; // define the variable and assign it a value
+
+En variables, es posible almacenar cualquier tipo de datos. En este caso, guardamos la cadena "November". Puede hacer referencia a esta línea si usa un nombre de variable:
+
+    let month = "November";
+
+    console.log(month); // outputs the content of the variable to the console
+
+El caso de un nombre es importante: month no es lo mismo que Month.
+
+Ahora intentemos cambiar la variable y generar un nuevo valor en la consola:
+
+    let month = "November";
+    month = "December";
+
+    console.log(month); // December
+
+
+
+Otras formas de declarar variables
+
+En scripts más antiguos, puede ver que varse usa la palabra clave en lugar de let. Se parece a esto:
+
+    var age = 21;
+
+Esta es una forma obsoleta de declarar una variable. La varpalabra clave es mala per se, pero no es necesario utilizarla varen nuevos proyectos. También puede encontrar código cuando las variables se declaran sin palabras clave:
+
+    age = 21;
+
+Tampoco es una buena práctica. En el futuro consideraremos por qué es una mala idea declarar variables sin palabras clave o con var, pero por ahora es más útil familiarizarse con las constantes.
+
+
+
+Constantes
+
+Declare la variable inmutable llamada language y agregue la cadena "JavaScript"como valor:
+
+    const language = "JavaScript";
+
+Si quisiéramos cambiar el valor de una variable creada con la constpalabra clave, habríamos fallado y obtendríamos un error:
+
+    const language = "JavaScript";
+    language = "PHP"; // error
+
+Ahora que conoce las variables, podrá crear programas más complejos e interesantes.
+
+
+
+nombrar variables
+
+Como sabes, cada variable tiene un nombre único que la identifica entre otras variables. Establecer un buen nombre de variable puede no ser tan fácil como parece. Los desarrolladores experimentados prestan mucha atención a los nombres para que sus programas sean fáciles de entender. Es importante porque los programadores pasan mucho tiempo leyendo y entendiendo el código escrito por otros desarrolladores. Si las variables no están bien nombradas, incluso su propio código puede parecerle poco claro después de unos meses. Esto no es bueno, porque la programación no se trata solo de escribir programas, sino también de su mayor soporte y desarrollo.
+
+En este tema, veremos más de cerca cómo seleccionar buenos nombres para sus variables de acuerdo con los acuerdos y prácticas establecidos en la comunidad JavaScript.
+
+Restricciones
+No hay requisitos específicos para los caracteres que se pueden usar en JavaScript para crear nombres. Sin embargo, hay dos restricciones que fácilmente puede recordar: un nombre sólo puede consistir en letras, números y símbolos _, $; y el nombre no debe comenzar con un dígito.
+
+Mira los ejemplos a continuación:
+
+    let $testName; // right
+    let testName;  // right
+    let test_name; // right
+    let test18;    // right
+    let test;      // right
+
+    let 18test;    // wrong
+    let test-name; // wrong
+
+Un guión no - es un carácter válido para nombres de variables en JS.
+
+Nombres reservados
+Los nombres reservados no se pueden utilizar al seleccionar un nombre de variable. Son palabras que ya realizan funciones específicas en Javascript. Estas palabras incluyen: let , const , return y function . La lista completa de palabras reservadas se puede encontrar en MDN . https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Lexical_grammar#Keywords
+
+El siguiente código devuelve un error sintáctico:
+
+    let const = 5;          // error
+    let return = "apple";   // error 
+
+Convenciones de nomenclatura para variables
+Además, existen las siguientes convenciones para nombrar variables:
+
+    El nombre de la variable debe ser legible y descriptivo, y debe explicar al lector qué tipo de valores se almacenan.
+    Proponer nombres de este tipo, breves y precisos, conlleva experiencia, pero solo si pones algo de trabajo en ello.
+
+    A pesar de la validez del _símbolo de subrayado , la mayoría de las guías de estilo recomiendan optar por camelCase para escribir un nombre que consta de varias palabras. camelCase es una forma de escribir frases donde cada nueva palabra en el medio de la frase comienza con una letra mayúscula, sin espacios intermedios ni signos de puntuación.
+
+Estas convenciones son opcionales, pero se recomienda encarecidamente seguirlas. Como mencionamos al principio de esta lección, hacen que su código sea más legible para usted y otros programadores de JavaScript.
+
+
+
+
+Strings y números
+
+Cualquier información que desee utilizar en los scripts tiene su propio tipo. El tipo describe cómo almacenar estos datos en la memoria y qué operaciones se aplican a ellos.
+
+Dibujemos una analogía: los tipos pueden ser representados por especies animales o cualquier otro atributo abstracto diseñado para agrupar objetos por alguna característica común. Todos los gatitos y gatos machos que ves son del tipo gatos , pero cada uno de ellos es un objeto separado. Pensando en un gato como un tipo, puede asumir algunas operaciones disponibles, por ejemplo, un gato puede ronronear.
+
+En este tema, consideraremos dos tipos de datos simples que se usan a menudo en programación.
+
+Strings
+
+Cuando trabaje con información textual en su programa, tendrá que usar cadenas . Este tipo de datos es extremadamente común en JavaScript. Las cadenas se escriben entre comillas simples o dobles.
+
+Ejemplos de cadenas entre comillas dobles:
+
+    console.log("");             // empty string
+    console.log("string");       // one word
+    console.log("Hello, world"); // a phrase
+
+Ejemplos de cadenas entre comillas simples:
+
+    console.log('a');    // single character
+    console.log('1234'); // a sequence of digits
+
+Tenga en cuenta que cualquier dígito entre comillas también se considerará una cadena.
+
+Como puede ver, ¡las cuerdas son muy fáciles de usar!
+
+
+
+Números
+
+Los números son lo más importante para cualquier programador. Difícilmente podrá escribir un programa serio sin números, así que veamos cómo enviar un número a la consola:
+
+    console.log(12);
+    console.log(0); 
+    console.log(-11); 
+    console.log(-1.04); 
+
+Puede utilizar números positivos, negativos y cero. No hay dificultades adicionales para registrar números de punto flotante.
+
+Los números enteros se pueden usar para contar objetos físicos, mientras que los números de punto flotante son una buena opción para cálculos estadísticos y científicos.
+
+
+tipo de operador
+Podemos reconocer fácilmente el tipo de datos usando el typeof operador. Veamos dos ejemplos para ver cómo enviar el tipo de datos a la consola.
+
+Hay dos formas de escribir este operador.
+
+Entre paréntesis:
+
+    console.log(typeof(9)); // number
+
+Sin paréntesis:
+
+    console.log(typeof 9); // number
+
+El resultado de estas dos muestras de código es el mismo: queremos averiguar qué tipo de datos 9son y resulta ser un number.
+
+Este operador es especialmente útil cuando está trabajando con muchos tipos de datos diferentes, porque JavaScript puede convertir automáticamente tipos de datos entre sí, lo que no siempre es útil, pero hablaremos de esto en los siguientes temas.

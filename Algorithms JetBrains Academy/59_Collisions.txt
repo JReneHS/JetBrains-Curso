@@ -1,0 +1,104 @@
+Collisionsᵝ
+
+
+Introduction
+
+In the topic about hashing, we've learned about hash functions and hash tables. We've also found out that two different values can have the same hash value and can be sent to the same bucket. Whenever two or more values are sent to the same bucket we say that they produce collisions. Remember that two elements can fall under the same bucket even if they have different hash values. If we have a lot of collisions, the hash table will be slower, as it will have to search through many values to find the one we are looking for. In this topic, we will look at ways to reduce and handle collisions.
+
+Quite often the values we want to add to a hash table are not random. It may happen that, due to their properties, some hash values will appear more often. Let's take a look at an example.
+
+You want to store a hash table of prime numbers larger than 2 and want to use the hash function h(n) = n % 4. If the numbers you wanted to store were random, the hash values would be distributed uniformly. Let's see what happens when we add {5, 7, 11, 13, 19, 23}: view image
+
+Those numbers don't seem uniformly distributed! In fact, as all prime numbers larger than 2 are odd, we will never have anything in buckets 0 and 2. Let's see what happens if we pick a different hash function, like h(n) = n % 5: view image
+
+This is much better! Choosing a good hash function is important for a fast hash table, but hash functions almost always produce collisions. Finding a good hash function is not always easy and there is no standard way to find one. Let's look at a few other ways of reducing and handling collisions that make hash tables good even without perfect hash functions.
+
+
+
+Load factor
+
+Think about a hash table with 100 buckets and 200 values in it. An ideal hash function would spread the values uniformly and we would have 2 values in each bucket. Then, whenever we check for a value, we have to check for equality with both values in the corresponding bucket. This is not bad, but, ideally, buckets should have 1 or 0 elements. For this, we always want to have more buckets than elements.
+
+The load factor of a hash table is a number l between 0 and 1 that tells us how full the hash table is. We can calculate it at any time with the formula: l = #elements/#buckets . Each hash table has a max load factor alpha (α), a constant number between 0 and 1 that is an upper limit for the load factor. After we insert value to the hash table, we calculate the new load factor l. If l > alphal (α), then we increase the number of buckets in the hash table, usually by creating a new array of twice as many buckets and inserting in it all the values from the old one. A common value for the max load factor is 0.75, which makes sure there are enough buckets, while not wasting a lot of memory on empty ones.
+
+Until now, we've tried to reduce the number of collisions as much as possible, but this doesn't guarantee that each element will fall in a different bucket. Now, let's look at some ways to handle collisions when they appear.
+
+
+
+Chaining
+
+First, let's quickly introduce linked lists. Linked lists are a data structure represented as a sequence of nodes. Each node stores some data and a reference to the next node. It is possible to insert new nodes, search for data in a node, and delete a node with its data. All those operations have linear time complexity.
+
+The most natural thing to do is to have the buckets as linked lists. When you add a new element to a bucket, you check all the values in the list to see if any of them is equal to the new one. If none of them is equal to the new element, add it to the end of the list. Searching and removing are similar. This method is called chaining.
+
+All operations take linear time in the size of the linked list, so it is still important to have small buckets. Let's look at an example where we ignore the load factor.
+
+You have a hash table with 4 buckets and insert {1, 4, 6, 7, 11, 16} in this order using the identity hash: view image
+
+Let's see what this looks like if we use a maximum load factor of 0.75. After we insert the 4th element we will need to double the number of buckets and insert everything again: view image
+
+This is much better, now all buckets have 1 element at most! The chaining method is easy to implement and it works well. The only disadvantage is that storing linked lists takes quite a bit of extra space and, if the hash function isn't very good, a lot of the buckets will be empty, but still take space.
+
+
+
+Linear Probing
+
+Another idea would be to have buckets hold only one element and somehow put the 'extra' elements into other empty buckets. This way we can keep a simple array for the hash table, without needing other data structures such as linked lists. There are a few new problems that arise from this:
+
+    Can we quickly search for an element?
+
+    How can we delete elements fast without affecting future operations?
+    
+    How do we make sure we always have a space for a new element?
+
+Linear probing is just the right method for this. First, we need two values that we know will never be inserted in the hash table, one to represent empty and one to represent deleted. For example, if we want to insert only integers strictly bigger than 0, we can use 0 to mean empty and -1 to mean deleted. We will see shortly why we need a different value for deleted. Let's look at the algorithm:
+
+    Inserting: We compute the hash value hh and look for the corresponding bucket. If the bucket is empty or deleted we write the value there. Otherwise, we check the bucket to the right h+1h+1 and repeat until we find an empty or deleted one. If we get to the end of the array, we go back to the start and continue.
+    
+    Searching: Same as inserting, but stop searching only when we find an empty bucket.
+    
+    Deleting: Search for the value we want to delete and put deleted in that bucket.
+
+First, to make sure that there is always space to add new elements, we can use a maximum load factor strictly less than 1, such as the default 0.75. This also has the advantage that when we resize the array we get rid of all the deleted buckets.
+
+Now let's look at an example to see why we need a special deleted value. Let's say we have a hash table with 4 buckets and insert {1, 2, 5} in this order using the identity hash. Then we get: view image
+
+Here 5 has to go to bucket 1, but it already has an element. Then we try bucket 2, it's also occupied. When we try bucket 3 we see that it's empty, so we can insert it there. Now we want to delete 2 and then search for 5. Let's see what happens if we don't use a separate value for deleted: view image
+
+We search in bucket 1, it's not there, so we go to the next one. Bucket 2 is empty, so we return saying that 5 is not in the hash table. Oops! Let's see now if we use a deleted value: view image
+
+When we get to bucket 2, we can see it's deleted, not empty, so we go further and find 5 in bucket 3. So it worked!
+
+
+
+Quadratic Probing
+
+Linear probing works well with a good hash function. However, in practice sometimes we have a few values with close hash values. If we use linear probing, this means that we create some local clusters that make it slow to insert, search, or delete elements with those hash values. Quadratic probing is a small modification to linear probing which makes sure we don't form those clusters. The way to do it is, instead of moving one step at a time, we use the function H(i) = h + a * i + b * i^2 to tell us which bucket to consider at step ii, where aa and bb are two numbers we can choose and hh is the hash value of the element we want to insert. For example, if we take a = 1, b = 0 we get the same thing as linear probing. In general, as we want to avoid the problems of linear probing, we take b ≥ 1.
+
+We have the following hash table which uses the identity hash: view image
+
+Notice the cluster at the beginning of the hash. Let's see what happens if we want to insert 9 with linear probing: view image
+
+The hash is 9, so we first look in bucket 1. It's full, so we have to go to the right. In fact, we have to go to the right 4 times, that's half the size of the table! And now, every time we want to search for 9 we have to take those 4 steps. This is inefficient.
+
+Let's look at how we would insert 9 in the hash table with quadratic probing using H(i) = h + i^2: view image
+
+
+First, we check bucket 1. It's full. Then we go to bucket 1 + 1 * 1 = 2, it's also full. Then we jump to bucket 1 + 2 * 2 = 5 and it's empty, so we insert 9 there. We skipped 2 full buckets!
+
+So quadratic probing seems to work well. However, we're introducing a more complicated search, so we have to make sure everything still works as intended. Let's say we have the following hash table which uses identity hash and H(i) = h + 2 * i^2: view image
+
+Let's say we want to search for the value 16. Then we first look in bucket 0, then we go to bucket 2, then back to 0, back to 2, and so on. If we do the math we can see:
+
+    H(2k) = 16 + 2 * (2k)^2 = 16 + 8k^2 ≡ 0 mod 8 
+
+        and 
+
+    H(2k+1) = 16 + 2 * (2k+1)^2 = 16 + 2 * (4k^2 + 4k +1) = 8 * (2 + k^2 + k) + 2 ≡ 2 mod 8.
+    
+So it will loop forever! This warns us that not all functions HH take us through the whole table and we have to make sure scenarios as the one above do not happen!
+
+
+Summary
+
+Now we've learned about collisions and how they affect the performance of hash tables. We looked at ways to reduce the number of collisions by picking a good hash function for the values we have and by keeping a maximum load factor of the table. We also looked at ways to handle collisions when implementing hash tables, i.e. chaining and linear and quadratic probing. In all of those, we saw how important a good hash function is! So, even though in theory hash tables are really fast, it all comes down to the choice of the hash function.
