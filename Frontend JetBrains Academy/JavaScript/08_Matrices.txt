@@ -1,0 +1,96 @@
+Imagina una situación: estás escribiendo una lista de compras antes de ir al supermercado. Para ahorrar tiempo, está enumerando los artículos exactamente en el orden en el que va a comprar: primero obtendrá alimentos, luego algunos artículos de limpieza, luego comprará algunos artículos de papelería ... Si estuviera escribiendo las compras list no en el papel, sino con la ayuda de JavaScript, Arraysse ajustaría mejor a ese propósito.
+
+Arraysson una colección ordenada que nos permite mantener los valores en un orden estrictamente definido. Podemos acceder a los elementos por índice: si necesita el elemento 15, ¡obtiene el elemento 15!
+
+Ahora echemos un vistazo a algunos ejemplos y veamos de qué se tratan las matrices.
+
+
+Establecer una matriz
+El Arrayque ya tiene algunos valores se puede configurar de esta manera:
+
+    let items = ["cheese", "shampoo", "pen"];
+
+Para establecer un vacío Array, use una de las dos formas que se muestran a continuación:
+
+    let emptyArrayOne = new Array();
+    let emptyArrayTwo = [];
+
+Leer elementos por índice
+La principal diferencia entre Objectsy Arraysradica en obtener los valores: obtienes valores de objeto a través de la clave de cadena y valores de matriz a través del índice ordinal (el número del elemento). Los índices se numeran a partir de cero.
+
+Imprimamos cada elemento del ejemplo con elementos que utilizan índices:
+
+    console.log(items[0]);
+    console.log(items[1]);
+    console.log(items[2]);
+
+En la salida, obtenemos lo siguiente:
+
+    cheese
+    shampoo
+    pen
+
+El elemento cero aquí es cheese, el primero es shampooy el segundo es pen. El tercer elemento no existe, por lo tanto no podemos llamarlo.
+
+Para mostrar el conjunto Array, podemos llamarlo por su nombre, sin índices:
+
+    console.log(items);
+
+Escribir elementos por índice
+Para escribir un nuevo elemento o reescribir uno antiguo, use la siguiente sintaxis:
+
+    items[1] = "soap";
+    items[3] = "book";
+
+Además, digamos que configuramos el quinto elemento omitiendo el cuarto y, por lo tanto, lo dejamos vacío:
+
+    items[5] = "postcard";
+    console.log(items);
+
+La salida de este código será la siguiente:
+
+    Array(6) [ "cheese", "soap", "pen", "book", undefined, "postcard" ]
+
+Array's la longitud se mantiene en su propiedad length:
+
+    console.log(items.length);
+
+
+
+Matrices en colas
+
+Por lo general, Arraysse utilizan con dos tipos de estructuras de datos: queuey stack.
+
+Para entender qué queuees, puedes imaginar una cola normal en una tienda de alimentos: nuevas personas se unen a la cola al final y las que están al principio se van primero. Es por eso que necesitamos dos métodos para implementar un queue: uno que agrega elementos al final del Arrayy otro que elimina los elementos al comienzo del queue. Estos dos métodos son push()para agregar uno o más elementos al final de una matriz y devolver una nueva longitud de matriz y shift()para eliminar el elemento cero de la matriz y devuelve su valor:
+
+    items.push("flowers");
+    items.shift();
+    console.log(items);
+
+Tenga en cuenta que también el elemento eliminado desplaza el queue, por lo que el primer elemento se convierte en cero, el segundo gira primero y así sucesivamente.
+
+    Array(6) [ "soap", "pen", "book", undefined, "postcard", "flowers" 
+
+
+
+Matrices en pilas
+
+Para entender la idea stacks, imagine una pila (una pila) de hojas de papel. Apilamos estas hojas en un orden determinado, una por una. Agregamos cada elemento nuevo en la parte superior, y cuando necesitamos sacar una hoja específica de la pila, también tenemos que comenzar desde la parte superior, desde el último elemento.
+
+Necesitamos dos métodos para implementar a stack: agregar un elemento al final y eliminar el último. Ya sabemos cómo agregar un elemento al final: ese es nuestro viejo push()método. El método pop()se encarga de eliminar el último elemento y devuelve su valor:
+
+    items.pop();
+    console.log(items);
+
+La salida será la siguiente:
+
+    Array(5) [ "soap", "pen", "book", undefined, "postcard" ]
+
+Como era de esperar, se eliminó el último elemento (flores).
+
+
+Conclusión
+
+En el tema actual que consideramos una nueva estructura de datos, Arrays. Aprendimos sobre las operaciones de leer, escribir, agregar un nuevo elemento al final Arrayy eliminar el primero y el último elemento. En los ejemplos, también nos familiarizamos con queuesy a stacks.
+
+Ahora es el momento de poner en práctica los nuevos conocimientos.
