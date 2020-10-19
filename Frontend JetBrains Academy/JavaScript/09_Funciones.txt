@@ -1,0 +1,79 @@
+Funciones
+
+
+A menudo tenemos que repetir la misma acción en muchas partes del script, por ejemplo, resumiendo diferentes datos ingresados ​​por los usuarios cada vez o mostrando ventanas emergentes con descripciones de productos para una tienda en línea.
+
+Para evitar la duplicación de código y estructurar mejor programas grandes, existen funciones .
+
+Las funciones en JavaScript pueden ser integradas o definidas por el usuario , es decir, creadas específicamente por el programador. Ya ha trabajado con una función incorporada console.log(). Hoy aprenderás a crear el tuyo propio.
+
+
+Sintaxis básica
+
+Eche un vistazo de cerca a la sintaxis de la creación de funciones:
+
+    function name(parameters) {
+    // function body 
+    }
+
+Para crear una función, debe escribir una palabra clave function, darle un nombre y abrir paréntesis. Entre paréntesis, puede especificar los parámetros : datos que desea transferir al programa. El código de la función, también llamado cuerpo de la función , debe escribirse dentro de las llaves.
+
+Basándonos en el pseudocódigo escrito anteriormente, intentemos escribir una función que envíe una cadena "Find and book your ideal tour!"a la consola.
+
+    function writeMessage() {
+    console.log("Find and book your ideal tour!");
+    }
+
+Nuestra nueva función tiene una lista vacía de parámetros y un nombre writeMessage. Intentemos llamar a esta función. Para hacer esto, debe escribir el nombre de la función y un par de paréntesis.
+
+    function writeMessage() {
+    console.log("Find and book your ideal tour!");
+    }
+
+    writeMessage(); // Find and book your ideal tour!
+
+La llamada de writeMessage()ejecuta el código escrito en el cuerpo de la función. La función se puede llamar más de una vez:
+
+    function writeMessage() {
+    console.log("Find and book your ideal tour!");
+    }
+
+    writeMessage(); // Find and book your ideal tour!
+    writeMessage(); // Find and book your ideal tour!
+
+Aquí mostramos el mensaje a la consola dos veces. Si queremos, podemos mostrarlo tres, cuatro o incluso cien veces.
+
+La función se llama en cualquier parte del archivo. Puede llamar a la función tanto antes como después de su creación.
+
+    writeMessage(); // Find and book your ideal tour!
+
+    function writeMessage() {
+    console.log("Find and book your ideal tour!");
+    }
+
+    writeMessage(); // Find and book your ideal tour!
+
+La capacidad de llamar a una función antes de su creación se debe a las peculiaridades del procesamiento de archivos JS por parte de los navegadores: el navegador primero revisa todo el código, encuentra todas las funciones y solo entonces comienza a ejecutar el código.
+
+
+
+Parámetros
+
+En los ejemplos anteriores, dejamos los parámetros desatendidos: volvamos a eso.
+
+Podemos transferir cualquier información dentro de la función usando los parámetros.
+
+Intentemos pasar dos argumentos a la función: ay b.
+
+    function quotient(a, b) {
+    console.log(a / b);
+    }
+
+    quotient(10, 5); // 2
+    quotient(6, 2);  // 3
+
+Llamamos a la función pasando los valores que se copiaron en variables ay b, y se usaron en el cuerpo de la función.
+
+
+
+Devolviendo un valor

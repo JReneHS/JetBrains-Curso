@@ -1,11 +1,13 @@
-Imagina una situación: estás escribiendo una lista de compras antes de ir al supermercado. Para ahorrar tiempo, está enumerando los artículos exactamente en el orden en el que va a comprar: primero obtendrá alimentos, luego algunos artículos de limpieza, luego comprará algunos artículos de papelería ... Si estuviera escribiendo las compras list no en el papel, sino con la ayuda de JavaScript, Arraysse ajustaría mejor a ese propósito.
+Imagina una situación: estás escribiendo una lista de compras antes de ir al supermercado. Para ahorrar tiempo, está enumerando los artículos exactamente en el orden en el que va a comprar: primero obtendrá alimentos, luego algunos artículos de limpieza, luego comprará algunos artículos de papelería ... Si estuviera escribiendo las compras list no en el papel, sino con la ayuda de JavaScript, Arrays se ajustaría mejor a ese propósito.
 
-Arraysson una colección ordenada que nos permite mantener los valores en un orden estrictamente definido. Podemos acceder a los elementos por índice: si necesita el elemento 15, ¡obtiene el elemento 15!
+Arrays son una colección ordenada que nos permite mantener los valores en un orden estrictamente definido. Podemos acceder a los elementos por índice: si necesita el elemento 15, ¡obtiene el elemento 15!
 
 Ahora echemos un vistazo a algunos ejemplos y veamos de qué se tratan las matrices.
 
 
+
 Establecer una matriz
+
 El Arrayque ya tiene algunos valores se puede configurar de esta manera:
 
     let items = ["cheese", "shampoo", "pen"];
@@ -16,7 +18,7 @@ Para establecer un vacío Array, use una de las dos formas que se muestran a con
     let emptyArrayTwo = [];
 
 Leer elementos por índice
-La principal diferencia entre Objectsy Arraysradica en obtener los valores: obtienes valores de objeto a través de la clave de cadena y valores de matriz a través del índice ordinal (el número del elemento). Los índices se numeran a partir de cero.
+La principal diferencia entre Objects y Arrays radica en obtener los valores: obtienes valores de objeto a través de la clave de cadena y valores de matriz a través del índice ordinal (el número del elemento). Los índices se numeran a partir de cero.
 
 Imprimamos cada elemento del ejemplo con elementos que utilizan índices:
 
@@ -30,13 +32,16 @@ En la salida, obtenemos lo siguiente:
     shampoo
     pen
 
-El elemento cero aquí es cheese, el primero es shampooy el segundo es pen. El tercer elemento no existe, por lo tanto no podemos llamarlo.
+El elemento cero aquí es cheese, el primero es shampoo y el segundo es pen. El tercer elemento no existe, por lo tanto no podemos llamarlo.
 
 Para mostrar el conjunto Array, podemos llamarlo por su nombre, sin índices:
 
     console.log(items);
 
+
+
 Escribir elementos por índice
+
 Para escribir un nuevo elemento o reescribir uno antiguo, use la siguiente sintaxis:
 
     items[1] = "soap";
@@ -59,9 +64,9 @@ Array's la longitud se mantiene en su propiedad length:
 
 Matrices en colas
 
-Por lo general, Arraysse utilizan con dos tipos de estructuras de datos: queuey stack.
+Por lo general, Arrays se utilizan con dos tipos de estructuras de datos: queue y stack.
 
-Para entender qué queuees, puedes imaginar una cola normal en una tienda de alimentos: nuevas personas se unen a la cola al final y las que están al principio se van primero. Es por eso que necesitamos dos métodos para implementar un queue: uno que agrega elementos al final del Arrayy otro que elimina los elementos al comienzo del queue. Estos dos métodos son push()para agregar uno o más elementos al final de una matriz y devolver una nueva longitud de matriz y shift()para eliminar el elemento cero de la matriz y devuelve su valor:
+Para entender qué queue es, puedes imaginar una cola normal en una tienda de alimentos: nuevas personas se unen a la cola al final y las que están al principio se van primero. Es por eso que necesitamos dos métodos para implementar un queue: uno que agrega elementos al final del Array y otro que elimina los elementos al comienzo del queue. Estos dos métodos son push() para agregar uno o más elementos al final de una matriz y devolver una nueva longitud de matriz y shift() para eliminar el elemento cero de la matriz y devuelve su valor:
 
     items.push("flowers");
     items.shift();
@@ -77,7 +82,7 @@ Matrices en pilas
 
 Para entender la idea stacks, imagine una pila (una pila) de hojas de papel. Apilamos estas hojas en un orden determinado, una por una. Agregamos cada elemento nuevo en la parte superior, y cuando necesitamos sacar una hoja específica de la pila, también tenemos que comenzar desde la parte superior, desde el último elemento.
 
-Necesitamos dos métodos para implementar a stack: agregar un elemento al final y eliminar el último. Ya sabemos cómo agregar un elemento al final: ese es nuestro viejo push()método. El método pop()se encarga de eliminar el último elemento y devuelve su valor:
+Necesitamos dos métodos para implementar a stack: agregar un elemento al final y eliminar el último. Ya sabemos cómo agregar un elemento al final: ese es nuestro viejo push()método. El método pop() se encarga de eliminar el último elemento y devuelve su valor:
 
     items.pop();
     console.log(items);

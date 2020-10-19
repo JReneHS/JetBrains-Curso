@@ -1,0 +1,66 @@
+funciones de flecha
+
+
+Funciones de flecha
+Imagínese: está escribiendo un programa de calculadora en JavaScript. Para desarrollar su funcionalidad, necesita escribir funciones. Podemos escribir funciones usando la sintaxis que ya conocemos. Por ejemplo, aquí hay una función para sumar dos números:
+
+    function append(a, b) {
+    result = a + b;
+    return result;
+    }
+
+JavaScript en realidad tiene una forma más corta y conveniente de escribir funciones, y se llama funciones de flecha . Este es el mismo ejemplo que el anterior escrito con la sintaxis de las funciones de flecha:
+
+    let append = (a, b) => a + b;
+
+Aquí, no solo declaramos una función, sino que también la almacenamos en una variable. La función de flecha se puede utilizar como una función normal:
+
+    let result = append(30, 5)
+    console.log(result) // 35
+
+
+
+Configuración de funciones de flecha
+
+Puede utilizar dos métodos para asignar funciones de flecha:
+
+    let append = (a, b) => a + b; // short syntax
+
+y
+
+    let append = (a, b) => { return a + b; }; // block syntax
+
+La principal diferencia es que las llaves, a diferencia de las redondas, nos permiten escribir instrucciones multilínea dentro de una función. Sin embargo, recuerde que cuando utilice este método, debe especificar una return directiva para devolver el valor.
+
+Si hay un parámetro en su función, no es necesario enmarcarlo entre paréntesis. Por ejemplo:
+
+    let sum = a => a + 2;
+    sum(1);  // 3
+
+Al mismo tiempo, se necesitan paréntesis en funciones sin parámetros.
+
+
+
+Comparación
+
+Creemos algunas funciones usando la sintaxis tradicional, la sintaxis de la función de flecha de bloque y la sintaxis de la función de flecha corta, y comparémoslas:
+
+    function mult1(a, b) {
+    return a * b;
+    }
+    let mult2 = (a, b) => { return a * b; };
+    let mult3 = (a, b) => a * b;
+
+    console.log(mult1(3, 2)) // 6
+    console.log(mult2(3, 2)) // 6
+    console.log(mult3(3, 2)) // 6
+
+Como puede ver, los resultados de todas estas funciones son idénticos, pero la sintaxis más corta de la función de flecha hace que sea más conveniente escribir.
+
+Es importante utilizar una herramienta adecuada para el problema en particular. Si tiene un código en el que todas las funciones están escritas de forma tradicional, no utilice las funciones de flecha. Piense siempre en términos de la estructura de código existente.
+
+
+
+Conclusión
+
+En el tema, consideramos las funciones de Arrow y dos formas de configurarlas. Verificamos que diferentes métodos producen los mismos resultados, pero algunos son más convenientes que otros. Sea inteligente con este nuevo conocimiento y buena suerte con las tareas de práctica.

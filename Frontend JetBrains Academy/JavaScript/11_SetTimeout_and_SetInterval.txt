@@ -1,0 +1,119 @@
+setTimeout y setInterval
+
+
+Al escribir scripts con dos líneas, asumimos que el navegador ejecutará la segunda línea después de la primera. Sin embargo, algunas situaciones requieren un enfoque diferente: por ejemplo, ¿qué sucede si desea mostrar un anuncio solo después de que el usuario haya pasado 5 segundos en su sitio web? Echemos un vistazo más de cerca a cómo controlar las funciones en situaciones como esa.
+
+
+
+setTimeout
+
+Imagina que tienes una lista de compras, pero no quieres ir a la tienda inmediatamente. Planea hacerlo en una hora, después de haber visto una película. Si lo ponemos en términos de programación, tienes una función llamada "comprar comida" que quieres ejecutar después de 60 minutos.
+
+En el mundo de JavaScript, diríamos que está "programando una llamada" : ya ha escrito el código y desea ejecutarlo en un momento específico.
+
+Uno de los métodos para ayudar a programar una llamada es setTimeout. No se ejecuta instantáneamente: setTimeoutse ejecuta solo después de un período de tiempo específico. Mire el ejemplo de un mensaje publicitario que se muestra después de 5 segundos:
+
+    setTimeout(function() {
+    console.log("Welcome to our website! You have a special discount today!");
+    }, 5000)
+
+Aquí hay otra forma de escribir setTimeout. Como puede ver, llamamos a una función llamada bienvenida en lugar de una función anónima:
+
+    function welcome(name) {
+    console.log(name + ", welcome to our website! You have a special discount today!");
+    }
+    let userWelcomeMessage = setTimeout(welcome, 5000, "Mary")
+
+
+Veamos las variables del setTimeoutmétodo:
+
+    function() {console.log(`…`)}: la función a llamar después del retraso;
+
+    5000: el período de demora en milisegundos (1000 ms = 1 segundo), es decir, el tiempo después del cual se ejecuta la función.
+
+    Mary: un argumento para la función de bienvenida ;
+
+El texto "María" va a la función de bienvenida como variable de nombre , y veremos el mensaje "María, ¡bienvenida a nuestro sitio web! ¡Tienes un descuento especial hoy!" en 5 segundos como resultado. Puede pasar más de un argumento a una función agregando variables adicionales al setTimeout método.
+
+
+
+Cero retrasos establecidos
+
+Consideremos otro caso con el setTimeout método. Aquí está nuestro ejemplo:
+
+    setTimeout(function() {
+    console.log("Welcome to our website!");
+    }, 5000)
+
+Ahora bien, ¿qué sucede si cambiamos la variable de retardo a cero o la eliminamos?
+
+    function welcome() {
+    console.log("Welcome to our website!");
+    }
+
+    setTimeout(welcome, 0)
+
+La función se ejecutará inmediatamente, sin demora. Sin embargo, debe recordar que si se escribe otra función después, se ejecutará primero. Consideremos un ejemplo para entenderlo mejor:
+
+    function welcome() {
+    console.log("Welcome to our website!");
+    }
+
+    setTimeout(welcome, 0)
+
+    console.log("2nd of May");
+
+El navegador llama setTimeout solo después de que console.log se ejecuta la función . La welcome() función se coloca en la cola y se inicia una vez que se completa el código actual. Como resultado, el usuario verá "2 de mayo" primero y solo después "¡Bienvenido a nuestro sitio web!".
+
+
+
+setInterval
+
+Imagina que quieres despertarte a las 8 am todos los días. Para hacerlo, agrega una alarma por un tiempo específico y la configura para que se repita cada 24 horas. En términos de programación, tiene una función llamada "alarma" y desea ejecutarla nuevamente en un cierto intervalo.
+
+El método setInterval hace precisamente eso: llama a la función una y otra vez después de un período de tiempo específico.
+
+Aquí hay un ejemplo:
+
+    function alarm(time) {
+    console.log("Wake up! It’s " + time + " o'clock!");
+    }
+
+    setInterval(alarm, 3000, 8);
+
+El usuario verá "¡Despierta! ¡Son las 8 en punto!" en tres segundos y luego cada tres segundos.
+
+Como el setTimeout método, setInterval tiene variables similares:
+
+    la función a ejecutar;
+    
+    un intervalo (en ms) en el que la función se ejecutará cada vez;
+    
+    argumentos de función.
+
+
+Intervalos de compensación
+
+Como sabe, es posible ejecutar una función con retraso. Jack el programador lo ha hecho 1000 veces en la página web para mostrar diferentes anuncios a un usuario, y el navegador del usuario empezó a funcionar muy lentamente. ¿Cómo podemos ayudar a Jack?
+
+Cuando inicia el temporizador, el navegador sigue ejecutando la tarea para siempre y, por lo tanto, gasta recursos. Para evitarlo, debemos detener los temporizadores que no son necesarios. Ejecuta el temporizador con setTimeout, y para romperlo, debe usar clearTimeout.
+
+En este caso, debe saber la identificación del temporizador que desea detener. setTimeout ayuda con eso: devuelve el identificador del temporizador que se había creado. Mira el siguiente ejemplo:
+
+    let timerId = setTimeout(...);
+
+    clearTimeout(timerId);
+    
+Si desea romper el temporizador creado por setInterval, debe usar clearInterval:
+
+    const intervalId = setInterval(alarm, 2000);
+
+    clearInterval(intervalId);
+
+Nuevamente: no olvide detener todos los temporizadores innecesarios, porque de lo contrario, la ejecución de todos los procesos consumirá recursos informáticos importantes.
+
+
+
+Conclusión
+
+En este tema, hemos considerado dos métodos para ejecutar código con retraso: setTimeout y setInterval. El setTimeout método se usa para lanzar código una vez, mientras que se setIntervalejecuta cada vez con un intervalo específico. También sabe cómo detener el uso de temporizadores clearTimeout y clearInterval métodos para que el navegador no se vea abrumado.
