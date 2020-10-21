@@ -1,0 +1,64 @@
+Incremento y decremento
+
+
+En este tema, discutiremos algunos de los operadores más utilizados en programación: incremento y decremento . Existen en muchos idiomas, incluido JavaScript. Estos dos operadores se utilizan para registrar de manera concisa las operaciones de aumentar y disminuir el valor de una variable en uno. En muchas tareas de programación, se requiere cambiar el valor de esta manera, por lo que conocer el incremento y la disminución es fundamental.
+
+
+Usando ++ y - en JavaScript
+
+JavaScript tiene dos operaciones opuestas llamadas incremento ( ++) y decremento ( --) para aumentar o disminuir el valor de una variable en uno, respectivamente. Por ejemplo:
+
+    let a = 10;
+    let b = 10;
+    console.log(++a); // 11
+    console.log(--b); // 9
+
+El código anterior en realidad da el mismo resultado que el código siguiente:
+
+    let a = 10;
+    let b = 10;
+    console.log(a + 1); // 11
+    console.log(b - 1); // 9
+
+
+
+Incremento de prefijo
+
+Ambos operadores de incremento y decremento tienen dos formas que son muy importantes cuando se usa el resultado en la declaración actual:
+
+    prefijo ( ++n o  --n ) aumenta / disminuye el valor de una variable antes de que se use;
+    postfix ( n++ o  n-- ) aumenta / disminuye el valor de una variable después de su uso.
+
+Veamos el incremento de prefijo:
+
+    let a = 4;
+    let b = ++a;
+    
+    console.log(a); // 5
+    console.log(b); // 5
+
+En este caso, el valor de ase incrementó y luego se asignó a b. Por lo tanto, b es 5.
+
+
+
+Incremento de sufijo
+El incremento de sufijo aumenta o disminuye el valor de una variable después de su uso. Considere un ejemplo:
+
+    let a = 4;
+    let b = a++;
+
+    console.log(a); // 5
+    console.log(b); // 4
+
+En JavaScript, el operador de sufijo tiene mayor precedencia que el operador de asignación. Devuelve el valor original de a, no el incrementado. Es por eso que cuando asignamos a++ a b, en realidad asignamos 4, mientras que él amismo ya se ha incrementado. Entonces, bes 4 y a es 5.
+
+Si eso aún no es lo suficientemente claro para usted, eche un vistazo al código:
+
+    let a = 4;
+    console.log(a++ + a); // 9
+
+
+
+Conclusión
+
+JS usa dos operadores, incremento y decremento, para una escritura más corta de operaciones que aumentan o disminuyen el valor de la variable en uno. Hay formas de prefijo y sufijo de su registro: el prefijo cambia la variable antes de usarla y el sufijo la cambia después. Estos operadores son útiles, pero no abuse de ellos si le preocupa la legibilidad del código.

@@ -1,0 +1,88 @@
+Object methods and keyword "this"
+
+
+
+Al escribir scripts, generalmente necesitamos crear objetos para presentar algo del mundo real: usuarios, productos, mapas y más. En la vida real, es posible considerar los productos en detalle o poner algo en un carrito de compras, por lo que en programación también es una opción. Tales acciones en JavaScript están disponibles gracias a métodos de objeto , es decir, las funciones que puede utilizar como propiedades de objeto.
+
+
+
+Creación de método de objeto
+
+Intentemos comprender cómo se crean los métodos de objeto. Para hacer esto, considere el siguiente ejemplo:
+
+    let product = {
+        name: "Microwave",
+        description: "With oven mode",
+        price: 398
+    };
+
+    product.giveDiscount = function() {
+        console.log("You have a 10% discount!");
+    };
+
+    product.giveDiscount(); // You have a 10% discount!
+
+En este código, hemos permitido que el objeto informe un descuento en el producto escribiendo el método giveDiscount.
+
+
+
+Shortened recording
+
+Las funciones de configuración como propiedades se pueden escribir más cortas. Por ejemplo:
+
+    let person = {
+        greetings: function() {
+            console.log("Hello");
+        }
+    };
+
+También podemos omitir la palabra clave function:
+
+    let person = {
+        greetings() {
+            console.log("Hello");
+        }
+    };
+
+La sintaxis abreviada no solo le ahorra tiempo, sino que también hace que el código sea más legible.
+
+
+
+this keyword
+
+En lenguaje natural, podemos señalar a una persona, animal u objeto específico usando pronombres. En JavaScript, también puede hacer referencia a un objeto específico utilizando la palabra clave this:
+
+let user = {
+  firstName: "Elliot",
+  lastName: "Alderson",
+  fullName() {
+    return this.firstName + " " + this.lastName;
+  }
+}; 
+
+console.log(user.fullName()); // Elliot Alderson
+
+En el ejemplo anterior, con la ayuda de this, la fullNamefunción ha accedido a la información firstName y lastNamealmacenada en el user objeto porque está declarada dentro de él.
+
+Aplicar this a objetos anidados puede crear cierta confusión. En tales situaciones, debe tener en cuenta que la palabra clave se this refiere al objeto en cuyo método se utiliza.
+
+
+
+"this" and arrow functions
+
+Las funciones de flecha no se pueden enlazar this. En otras palabras, las funciones de flecha no tienen las suyas propias this.
+
+Si usamos this dentro de una función de flecha, su valor se toma de una función externa declarada de la forma habitual:
+
+    let movie = {
+        name: "The Thirteenth Floor",
+        age: 1999,
+        getInfo() {
+            let arrow = () => console.log("The movie " + this.name + " was shot in " + this.age);
+            arrow();
+        }
+    }; 
+
+    movie.getInfo(); // The movie The Thirteenth Floor was shot in 1999
+
+De hecho, los detalles del uso this en JavaScript no se limitan a los ejemplos descritos anteriormente. Aquí cubrimos solo los conceptos básicos para trabajar con esta palabra clave, por lo que hay mucho más que aprender.

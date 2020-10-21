@@ -1,0 +1,59 @@
+En JavaScript, hay dos tipos de datos especiales para indicar la ausencia de un valor: null y undefined. Uno podría pensar, ¿por qué habría tipos de datos especiales para indicar lo que no está allí y por qué dos de ellos? Bueno, en JS las cosas no son tan simples. En este tema, descubriremos la diferencia entre null y undefined, y aprenderemos cuándo se usan.
+
+
+
+nulo
+
+null significa que a la variable se le asignó explícitamente un valor vacío o inexistente. Si la variable lo es null, sabemos que no contiene un número, cadena u otro tipo de datos aceptable:
+
+    let name = null; 
+    console.log(name); // null
+
+El ejemplo anterior muestra que la variable name es desconocida o por alguna razón no tiene un valor.
+
+
+
+indefinido
+
+El undefinedvalor se devuelve cuando se declaró una variable, pero no se estableció su valor. Consideremos el siguiente ejemplo:
+
+    let count; 
+    console.log(count); // undefined 
+
+Aquí, como se esperaba, el undefined valor se envió a la consola.
+
+undefined también puede ocurrir en los casos en que las propiedades del objeto no existen:
+
+    let person = {
+    age: 27
+    };
+
+    console.log(person.name); // undefined
+
+En este caso, undefined se devuelve porque intentamos enviar a la consola una propiedad name que no estaba especificada en nuestro objeto.
+
+¡Pero eso no es todo! El undefined valor también se devuelve cuando a una función le falta un parámetro:
+
+    function getDetails(a) {
+    console.log(a);
+    }
+
+    getDetails(); // undefined
+
+En el ejemplo anterior, undefinedse imprime porque a falta el parámetro en la función escrita.
+
+Verifica los tipos de datos
+null y undefined literalmente significa "sin valor", pero tienen diferentes tipos de datos:
+
+    console.log(typeof null);       // object
+    console.log(typeof undefined);  // undefined
+
+Esperabas que ese tipo null regresara null, ¿no?
+
+Tenías razón si pensabas eso. De hecho, null no es un objeto, sino un tipo de datos independiente. Este extraño comportamiento es un error oficialmente reconocido en el idioma. El error existe desde hace varias décadas. La razón por la que nadie lo corrige es que miles de sitios creados en JavaScript dependen de este tipo de comportamiento incorrecto. La solución de este error puede provocar que muchos sitios y aplicaciones web populares fallen. Por eso no tenemos nada más que hacer que recordar esta peculiaridad del lenguaje y tenerla en cuenta a la hora de escribir Scripts. Hablaremos más sobre los objetos como un tipo de datos separado la próxima vez.
+
+
+
+Conclusión
+
+¡Buen trabajo! Ahora usted sabe lo que nully undefinedtienen en común. También conoce las diferencias entre estos valores y sus características extrañas. Trate de no abusar de estos tipos de datos: utilícelos sabiamente y evitará muchos errores en sus programas.

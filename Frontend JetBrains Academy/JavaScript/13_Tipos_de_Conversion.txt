@@ -1,0 +1,84 @@
+conversión de tipos
+
+
+
+JavaScript tiene conversión automática de tipos de datos. Esto significa que el intérprete convierte independientemente los valores al tipo que espera ver en una parte particular de su programa. Tal conversión se llama implícita . A primera vista, esto parece útil y parece eliminar acciones innecesarias. A veces realmente lo es, pero en otras ocasiones las características de JS pueden ser confusas, dejándote preguntándote por qué tu código produce error tras error o se comporta de manera extraña, no de la manera que deseas.
+
+A lo largo de su práctica de programación, a menudo se encontrará en situaciones en las que necesita indicar explícitamente (es decir, por nosotros mismos) que necesita cambiar el valor de un determinado tipo de datos. Es por eso que hoy vamos a aprender cómo las cadenas, los booleanos y los números se pueden convertir entre sí.
+
+Conversión de cadenas
+La conversión de cadenas se produce cuando desea representar algo como una cadena. Para convertir explícitamente un valor en una cadena, se le String()debe aplicar la función. Por ejemplo:
+
+
+    String(123);   // "123"
+    String(false); // "false"
+    String(-12.3); // "-12.3"
+    String(true);  // "true"
+
+Como puede ver, la conversión es simple e intuitiva.
+
+En JS, el operador binario llamará a una conversión implícita+ cuando uno de los operandos sea una cadena:
+
+    "3" + 4                        // "34"
+    4 + ""                         // "4"
+    true + "detective"             // "truedetective"
+    "You are " + 25 + " years old" // "You are 25 years old"
+
+La conversión automática se llevará a cabo independientemente de la ubicación de la cadena del operando en el lado derecho o izquierdo de la expresión.
+
+Recuerda el orden de las operaciones aritméticas. Si hay varios números antes de la cadena, estos números se agregarán antes de la conversión:
+
+    3 + 10 + "1" // "131", not "3101"
+
+La conversión implícita puede ser confusa, así que esté atento al escribir programas.
+
+
+
+Conversión numérica
+
+La conversión numérica ocurre cuando desea representar algo como un número. Para realizar una conversión explícita , aplique la Number() función:
+
+    Number("1");    // 1
+    Number(" 37 "); // 37
+    Number("");     // 0
+    Number("\n3");  // 3
+    Number("\n");   // 0
+    Number("\t");   // 0
+    Number(true);   // 1
+    Number(false);  // 0
+
+Al convertir una cadena en un número, los espacios y caracteres \n, \t al principio y al final de la cadena se cortan. Si la cadena resulta estar vacía, el resultado será 0. El tipo booleano se comporta como se esperaba: false se convierte en 0, true se convierte en 1.
+
+No todos los valores se pueden convertir en números. El resultado de tales intentos de conversión es NaN. Por ejemplo, Number("apple")devolverá un NaN valor, que significa No es un número . Normalmente, este valor se devuelve cuando una operación con números se realiza de forma incorrecta.
+La conversión implícita es un poco más confusa. Ocurre en casi todas las funciones y expresiones matemáticas:
+
+    true + 43 // 44
+    3 - false // 3
+    10 / "5"  // 2
+    -true     // -1
+    +"85"     // 85
+
+Para la conversión explícita a un número, la cadena también debe ser un número correcto.
+
+Además, recuerde que binary plus no puede convertir una cadena en un número, mientras que la Number() función sí. Entonces, el resultado de la expresión "5" + 7 será una cadena y el resultado Number("5" + 7) será un número.
+
+
+
+Conversión booleana
+
+La conversión booleana se produce cuando desea representar algo como booleano. Para convertir explícitamente a un valor booleano, sedebe aplicar la función Boolean():
+
+    Boolean(1);            // true
+    Boolean(0);            // false
+    Boolean("Am I nice?"); // true
+    Boolean("");           // false 
+
+Las reglas para usar esta función son simples. Los valores siguientes como un resultado de la conversión dan el valor false: false, undefined, null, 0, NaN, "". Todos los demás valores del resultado de la conversión dan el valor true.
+
+Se produce una conversión implícita cuando se utilizan operadores lógicos ( || && !):
+
+    !!3                      // true
+    0 || "go"                // "go"
+    "Master" && "Margarita"  // "Margarita"
+
+Una conversión implícita con operadores || y && ocurre bajo el capó y finalmente devuelve el valor original de uno de los operadores.

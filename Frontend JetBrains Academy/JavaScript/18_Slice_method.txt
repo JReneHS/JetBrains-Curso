@@ -1,0 +1,67 @@
+Slice method
+
+
+JavaScript proporciona muchas funciones para trabajar con matrices. Una de las cosas que puede hacer con una secuencia es recuperar parte de ella, lo que implica obtener elementos por sus índices. Puedes hacer esto con el slice() método.
+
+
+Obtener secciones de secuencias
+El slice() método no cambia la matriz fuente, pero devuelve una copia de la matriz que contiene copias de los elementos cortados de la matriz fuente. Así es como se ve su sintaxis:
+
+    arr.slice(begin, end);
+
+Como puede ver, este método acepta dos parámetros:
+
+    begin : en lugar de esta palabra, especifique el índice del elemento que será el comienzo de la partición de matriz extraída.
+
+    end : aquí, especifique el índice del elemento de matriz por el cual terminará la extracción. Este elemento no se incluirá en la copia de la matriz.
+
+No olvide que la indexación en la matriz comienza desde cero.
+Estos parámetros son opcionales. Si no se especifican, slice()simplemente creará una copia de la matriz con la que está trabajando:
+
+    let sheep = ["Dolly", "Polly", "Molly"];
+
+    console.log(sheep.slice()); // ["Dolly", "Polly", "Molly"];
+
+
+Si no especifica el primer parámetro, la matriz se copiará de 0 index. Del mismo modo, si no especifica el segundo, se copiarán todos los elementos posteriores al índice desde el que comenzaron.
+
+Si el primer parámetro es más largo que la longitud de la secuencia, una matriz vacía devolverá:
+
+    let nums = [1, 2, 3];
+    
+    console.log(nums.slice(10)); // []
+
+Intentemos trabajar con los dos parámetros especificados:
+
+    let planets = ["Mercury", "Venus", "Earth", "Mars", "Jupiter"];
+
+    console.log(planets.slice(1, 4)); // ["Venus", "Earth", "Mars"]
+
+
+
+Valores de índice negativos
+
+Los índices también pueden ser negativos. Si especifica un índice negativo en el primer parámetro, cambiará el final de la secuencia. Alternativamente, se puede llamar desplazamiento negativo. Por ejemplo, slice(-4) call extraerá los últimos cuatro elementos de la secuencia:
+
+    let fibNums = [0, 1, 1, 2, 3, 5, 8, 13, 21];
+    
+    console.log(fibNums.slice(-4)); // [5, 8, 13, 21]
+
+Puede especificar el segundo índice como negativo: también significará un cambio desde el final de la secuencia:
+
+    let fibNums = [0, 1, 1, 2, 3, 5, 8, 13, 21];
+    
+    console.log(fibNums.slice(3,-2)); // [2, 3, 5, 8]
+
+
+Strings
+En JS, el slice() método también se puede aplicar a cadenas para buscar subcadenas. El principio es similar a la interacción con matrices:
+
+    let str = "lighthouses";
+
+    console.log(str.slice(-6, -1)); // house
+
+
+Conclusión
+
+Con slice(), puede obtener cualquier parte de una matriz o una cadena. Recuerde que los índices son opcionales en la sintaxis de este método, por lo que todos tienen un valor predeterminado. Además, tenga en cuenta que puede establecerlos en negativo si la situación lo requiere.

@@ -1,0 +1,120 @@
+operadores condicionales
+
+
+Operadores condicionales
+Hasta ahora, solo hemos considerado programas que ejecutan comandos línea por línea. Pero en la programación real, pueden parecer una encrucijada:
+
+En la vida, a veces nos encontramos en una encrucijada donde nuestro camino se bifurca y se divide en dos. Esto también sucede en la programación: los programas pueden bifurcarse. En estos casos usamos operadores condicionales.
+
+La declaración "if"
+A menudo, necesitamos tomar una decisión en función de algunas condiciones. En programación y JavaScript en particular, este concepto se realiza con la ayuda de la ifbdeclaración. Se llama operador condicional . Por ejemplo, imagina que tienes un gato que maúlla cuando tiene hambre después de las 6 am. Podemos escribir una declaración:
+
+    function meow() {
+        return "Meow!";
+    }
+
+    let time = 10;
+    let sound;
+
+    if (time >= 6) {
+        sound = meow();
+        console.log(sound);
+    }
+
+En la función meow() describimos lo que hace el gato cada vez que pasa de las 6 de la mañana.
+
+Tenga en cuenta que cuando trabajamos con la if declaración, la condición dentro del paréntesis se convierte en un booleano. El código interno if se ejecuta si el booleano es verdadero. Entonces, cada booleano podría ser una condición:
+
+    let condition = true; 
+
+    if (condition) {
+        console.log("True!");
+    }
+
+
+
+El bloque "else"
+
+Cuando la condición es falsa, el else bloque se puede utilizar en lugar de if. Por ejemplo:
+
+    function meow() {
+        return "Meow!";
+    }
+
+    function sleep() {
+        return "Zzzzz...";
+    }
+
+    let time = 5;
+    let sound;
+
+    if (time >= 6) {
+        sound = meow();
+    }
+    else {
+        sound = sleep();
+    }
+    console.log(sound);
+
+Aquí, nuestro gato maúlla cuando la hora es posterior o igual a las 6 am; de lo contrario, duerme.
+
+
+Varias condiciones: bloque "else if"
+Hay situaciones en las que tenemos no solo dos, sino varias condiciones posibles. Para ello utilizamos el else if bloque:
+
+    function meow() {
+        return "Meow!";
+    }
+
+    function sleep() {
+        return "Zzzzz...";
+    }
+
+    function play() {
+        return "Bang bang!";
+    }
+
+    let time = 9;
+    let sound;
+
+    if (time < 6) {
+        sound = sleep();
+    }
+    else if (time < 8) {
+        sound = meow();
+    }
+    else {
+        sound = play();
+    }
+    console.log(sound);
+
+Como ves, aquí comprobamos tres posibles variantes: el gato duerme antes de las 6 de la mañana, maúlla cuando son entre las 6 y las 8 de la mañana, y juega en caso contrario. Hemos definido tres funciones para tres posibles sonidos que hace el gato. ¿Qué sonido se emitirá como resultado?
+
+
+
+El operador ternario "?:"
+
+Cuando el objetivo del programa es asignar una variable en función de una condición, podemos utilizar la versión corta del if...elsebloque: el operador ternario ? : . Funciona así:
+
+    let time = 11;
+    let isHungry = (time >= 6) ? true : false;
+
+En el ejemplo, puede ver la condición. Luego va ?y dos posibles valores de la variable establecida: primero, lo que establecemos cuando la condición es verdadera, y después :viene lo que establezcamos como falso. Se puede colocar una condición para la visibilidad entre paréntesis, pero esta acción no es necesaria. El mismo código, pero sin corchetes, se ejecutará de la misma forma:
+
+    let time = 11;
+    let isHungry = time >= 6 ? true : false;
+
+La condición puede ser tan simple como en el ejemplo anterior, así como más compleja. Por ejemplo, utilizando operadores lógicos:
+
+    let time = 11;
+    let isHungry = !(time <= 6) ? true : false;
+
+Echemos un vistazo más de cerca a nuestra condición. Los !medios “no”, por lo que podemos interpretar la declaración como “ no es el momento después de o igual a 6 ?”.
+
+
+
+Conclusión
+
+En este tema, hemos considerado qué hacer si nuestro programa debería funcionar de acuerdo con algunas condiciones. Los operadores condicionales son una parte importante de la programación. Recuerde: cuando trabajamos con if...elseoperadores o el operador ternario, la condición debe ser booleana.
+
+ 

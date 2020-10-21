@@ -1,0 +1,95 @@
+Function constructor
+
+
+Ya sabes cómo crear un objeto. Imaginemos una situación en la que necesite generar cien objetos similares. Por supuesto, sería muy difícil hacerlo manualmente. En este tema, aprenderemos cómo automatizar este tedioso proceso.
+
+
+Constructor de funciones
+
+Supongamos que tiene un gran aparcamiento y compra varios coches nuevos cada mes. Hoy ha decidido comprar un Mercedes y un Audi:
+
+    const car1000 = {
+    brand: "Mercedes",
+    year: 2020
+    };
+
+    const car1001 = {
+    brand: "Audi",
+    year: 2019
+    };
+
+En este ejemplo, creamos dos objetos de automóvil con dos propiedades, pero en la vida real, los vehículos tienen docenas de características técnicas. Siguiendo la lógica anterior, debemos ingresar cada propiedad de forma manual, lo cual no suena terrible para dos autos, pero ¿y si necesitas agregar cien autos con datos reales?
+
+Al manipular objetos similares, es más fácil utilizar el constructor de funciones . Averigüemos cómo funciona.
+
+    function Car(brand, year) {
+    this.brand = brand;
+    this.year = year;
+    }
+
+    const car1000 = new Car("Mercedes", 2020);
+    const car1001 = new Car("Audi", 2019);
+
+
+
+Hemos definido la Carfunción y la usamos para crear dos objetos de automóvil usando la palabra clave new. En este caso, la Carfunción se denomina constructor de funciones . Parece una función normal pero se utiliza para crear objetos similares.
+
+
+
+Características del constructor de funciones
+
+En el ejemplo anterior, creamos car1000 y car1001 objetos, los cuales son instancias de Car objetos. El resultado de la invocación new Car ("Mercedes, 2020") es el siguiente:
+
+    {
+    brand: "Mercedes",
+    year: 2020
+    }
+
+De esta manera, no tenemos que definir un objeto cada vez que agregamos un auto nuevo. En su lugar, llamamos a la función del constructor de automóviles con parámetros específicos.
+
+Las funciones de constructor tienen algunas características únicas.
+
+    1) Escribimos la función constructora con una letra mayúscula ( Car). Si bien esto no es una regla, es una convención de nomenclatura entre desarrolladores. Utilice esta recomendación: nos permite encontrar el constructor de la función más rápido.
+
+    2) Es fundamental llamar al constructor de la función con la palabra clave new.
+
+    3) Dentro de la función constructora, this no tiene valor. Una vez que se ha creado un nuevo objeto, el valor de se this convierte en el nuevo objeto.
+
+    4) Los constructores siempre devuelven un nuevo objeto sin usar la return palabra clave dentro de ellos. Por defecto, regresan this. Puede cambiar fácilmente esta lógica y usarla return cuando lo desee.
+
+        function Car(brand, year) {
+        this.brand = brand;
+        this.year = year;
+        return year;
+        }
+
+        const myCar = new Car("BMW", 2001);
+
+
+
+Métodos en constructor
+
+Puede crear métodos y propiedades dentro de objetos regulares. Lo mismo ocurre con las funciones constructoras.
+
+    function Car(model, speed) {
+    this.model = model;
+    this.speed = speed;
+
+    this.getSpeed = function() {
+        console.log("The speed of " + this.model + " is: " + this.speed + " km per hour");
+    };
+    }
+
+Como puede ver, solíamos referirnos a un objeto en su método this .
+
+Entonces podemos llamar al getSpeed método:
+
+    const carKIA = new Car("KIA Stinger", 209);
+    carKIA.getSpeed();
+
+La consola muestra "La velocidad del KIA Stinger es de 209 km por hora".
+
+
+Conclusión
+
+Los constructores son una forma común de crear objetos similares. Son funciones regulares, pero según la Convención, debemos nombrarlas con mayúscula. Para crear un nuevo objeto, necesitamos llamar a la función constructora con la palabra clave newy los parámetros del objeto. También puede manipular variables de objeto dentro del método constructor de funciones.
