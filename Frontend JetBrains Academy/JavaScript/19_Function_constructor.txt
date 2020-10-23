@@ -72,12 +72,12 @@ Métodos en constructor
 Puede crear métodos y propiedades dentro de objetos regulares. Lo mismo ocurre con las funciones constructoras.
 
     function Car(model, speed) {
-    this.model = model;
-    this.speed = speed;
+        this.model = model;
+        this.speed = speed;
 
-    this.getSpeed = function() {
-        console.log("The speed of " + this.model + " is: " + this.speed + " km per hour");
-    };
+        this.getSpeed = function() {
+            console.log("The speed of " + this.model + " is: " + this.speed + " km per hour");
+        };
     }
 
 Como puede ver, solíamos referirnos a un objeto en su método this .

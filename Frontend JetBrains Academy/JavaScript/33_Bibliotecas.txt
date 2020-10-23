@@ -1,0 +1,58 @@
+Bibliotecas
+
+
+Si ya está familiarizado con al menos un lenguaje de programación, sabrá que cualquier lenguaje de programación tiene un diseño legible por humanos. La mayoría de ellos usa símbolos de escritura latina para representar funciones, palabras clave y operadores. Sin embargo, no es el lenguaje que la máquina puede entender, por eso usamos intérpretes, compiladores y ensambladores. Entonces, para facilitar el proceso de creación de un código de máquina, necesitamos una interfaz de alto nivel que nos permita operar con comandos verbales que el programa mismo transformaría en 'ceros y unos'.
+
+La misma idea se puede aplicar cuando desee reutilizar un código existente que le proporcione funciones y métodos de alto nivel, en lugar de escribirlo usted mismo una vez más. No estamos allí para hablar del tedioso copiar y pegar, sino de la utilidad de las bibliotecas de programación.
+
+Alto nivel significa que cada función a la que llama organiza el trabajo de bajo nivel para usted. Por ejemplo, alguna función imaginaria WRITE_DATA debajo del capó abre el archivo, escribe datos en él y finalmente cierra el archivo.
+
+
+
+Que es una biblioteca
+
+Una biblioteca de programación es una colección de códigos reutilizables y redistribuibles que tiene una interfaz bien definida para usar.
+
+La biblioteca le proporciona funciones y métodos de alto nivel. Podemos esperar que una biblioteca tenga documentación para familiarizarse con el comportamiento de la implementación interna. Debe tratar una biblioteca como una caja negra: tiene la documentación de su interfaz, pero no necesita conocer una implementación. Al igual que los lenguajes de programación lo aíslan de trabajar con el código de máquina, las bibliotecas lo aíslan de trabajar con operaciones de bajo nivel.
+
+Entonces, ¿qué piensas? ¿Puede una gran pila de funciones incoherentes ser una biblioteca? Por supuesto, ¡pero es poco probable que alguien lo use! Intentemos destacar las principales características que nos parecen importantes en términos de usabilidad. Una buena biblioteca:
+
+pertenece a un dominio de conocimiento, por ejemplo, leer y escribir archivos, nada más
+proporciona la documentación
+tiene una interfaz clara, donde el nombre de cada objeto refleja su función
+no contiene código malicioso
+tiene pruebas
+sigue el estilo de código del lenguaje de programación
+
+
+Ahora sabe cómo comprender si una biblioteca que ha elegido está bien escrita. ¿Cómo podemos usarlo exactamente?
+
+
+
+Bibliotecas estándar y de terceros
+
+Hay varios tipos de bibliotecas, pero ¿dónde puede encontrarlas?
+
+Las implementaciones del lenguaje de programación son el software habitual que puede instalar en su computadora, y la mayoría de las implementaciones vienen con bibliotecas estándar. La biblioteca estándar es una colección estable y estandarizada de módulos para las necesidades esenciales del proceso de desarrollo. Por lo general, las bibliotecas estándar consisten en utilidades comunes como trabajar con el sistema de archivos, realizar conexiones de red o analizar archivos JSON, y son parte de la especificación del lenguaje de programación.
+
+La biblioteca estándar difícilmente puede cubrir todas sus necesidades. Por ejemplo, es posible que desee crear una aplicación de escritorio o un rastreador web, pero la biblioteca estándar no le brinda herramientas útiles para eso. En este caso, puede buscar en Internet para encontrar una biblioteca de terceros en sitios como Github . Una biblioteca de terceros es una colección de módulos de alto nivel, además de la biblioteca estándar de un lenguaje de programación. Esas bibliotecas suelen ser de código abierto.
+
+Para incluir una biblioteca en su programa, debe usar una palabra clave y su nombre. Si usa herramientas de terceros, primero debe revisar la documentación y averiguar cómo puede instalarla en su computadora; los autores de una biblioteca proporcionan esta información en el archivo README .
+
+Entonces, ahora puede sentir que ha aprendido todos los conceptos básicos sobre el uso de las bibliotecas. Sin embargo, quizás todavía tenga una pregunta: ¿es más eficiente que simplemente escribir un código necesario usted mismo? La respuesta es: en muchos casos, sí.
+
+
+
+Por que usar bibliotecas
+
+Las bibliotecas no son una solución milagrosa para todos los problemas de programación. No todas las bibliotecas son lo suficientemente maduras para ser utilizadas en la producción de código, y algunas de ellas tienen errores. Si el problema es demasiado estrecho, es difícil encontrar una biblioteca para resolverlo, incluso si existe.
+
+Supongamos que existe una biblioteca para su problema. No podemos cubrir todos los casos, pero podemos darle varias razones para usarlo:
+
+Reduce el tiempo de desarrollo de un producto final. Podemos enfocarnos en implementar la lógica de la aplicación, no en hacer software auxiliar.
+El desarrollo de una biblioteca está impulsado por la comunidad. Significa que muchas personas apoyan una biblioteca, y puede unirse a ellos si una biblioteca es de código abierto, si lo desea.
+Si una biblioteca es popular, muchas empresas y programadores la utilizan. Significa que una biblioteca ha sido probada y explotada por diferentes personas, y es probable que un nuevo desarrollador de su equipo también conozca esta biblioteca.
+Las bibliotecas tienen documentación. Puede leer un tutorial y comenzar a usar una biblioteca sin aprender sobre la implementación interna.
+El objetivo principal de las bibliotecas es evitar que las personas hagan el mismo trabajo dos veces . Puede seguir esta regla y crear su software sin distraerse con otros problemas.
+
+Si su código usa una biblioteca, siempre puede reemplazar una función de biblioteca con la suya propia sin romper el programa. Tienes el control de lo que quieres usar.

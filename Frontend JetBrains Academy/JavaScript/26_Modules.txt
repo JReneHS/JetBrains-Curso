@@ -1,0 +1,107 @@
+Modules
+
+
+Imagina que tienes la tarea de desarrollar una nueva red social. Para crear uno, debe escribir más de 100 000 líneas de código. Por supuesto, puede poner todo este código en un solo archivo, pero probablemente tendrá que lidiar con muchos problemas para soportarlo. En este tema, aprenderá cómo organizar mejor su código dividiéndolo en varios archivos usando módulos.
+
+
+¿Qué son los módulos?
+
+Un módulo es un archivo único con código independiente que se puede descargar desde otro archivo. El archivo que usa el módulo solo funciona con su resultado y no conoce su implementación interna. Esto ayuda a mantener el programa. Cuando desea reescribir un módulo, solo cambia su propio código sin afectar otras partes del programa.
+
+Si está intentando codificar un sitio web grande sin utilizar módulos, puede escribir más de mil líneas de código en un solo archivo. Al hacerlo, es muy fácil escribir cientos de variables globales y cambiar accidentalmente algunas de ellas, lo que conduce a errores. Para resolver este problema, puede dividir la lógica en varias funciones con variables locales y dividirlas en varios archivos.
+
+A algunos programadores les gusta copiar y pegar código que ya ha sido escrito para realizar la misma tarea. Esta es una muy mala idea porque viola la regla principal del desarrollo, "no te repitas", lo que significa que no necesitas escribir el mismo código nuevamente con pequeños cambios. Para evitar repeticiones, es mucho mejor escribir el código una vez en un módulo y luego reutilizarlo cuando sea necesario.
+
+Como puede ver, los módulos tienen muchos beneficios. ¡Veamos cómo podemos crearlos!
+
+
+
+Importar y exportar
+
+Si desea utilizar una función de otro archivo, en ES6 primero debe escribir la palabra clave export antes de su nombre.
+
+
+    // library.js
+    export function myBestFunction() {
+    //...
+    }
+
+
+En segundo lugar, debe importarlo al archivo donde desea llamarlo usando la palabra clave de importación . Después de eso, puede iniciar la función importada donde quiera.
+
+
+    // main.js
+    import { myBestFunction } from './library.js';
+
+    myBestFunction();  
+
+
+También puede cambiar el nombre de una función importada utilizando la palabra clave as .
+
+    // main.js
+    import { myBestFunction as myFunction } from './library.js';
+
+    myFunction();
+
+
+A veces es necesario utilizar varias funciones de un solo módulo. En lugar de enumerarlos todos, puede importar el módulo completo utilizando el *símbolo.
+
+
+    // main.js
+    import * as myLib from './library.js';
+
+    myLib.myBestFunction();
+
+
+También puede evitar escribir el nombre de la función al importarla. Para hacer esto, agregue la palabra clave default después exporte e importe la función usando cualquier nombre sin corchetes.
+
+
+    // library.js
+    export default function myBestFunction() {
+    //...
+    }
+
+    // main.js
+    import anyNameToFunction from './library.js';
+
+    anyNameToFunction();  
+
+
+Solo puede tener una exportación predeterminada en un archivo, pero puede combinar exportaciones predeterminadas y no predeterminadas desde un solo archivo.
+
+
+    // library.js
+    export function myFunction() {
+    //...
+    }
+
+    export default function myBestFunction() {
+    //...
+    }
+
+    // main.js
+    import anyNameToFunction, {myFunction} from './library.js';
+
+    anyNameToFunction();
+
+    myFunction(); 
+
+
+Existe un gran debate entre los desarrolladores sobre si deberían utilizar las exportaciones de forma predeterminada. El problema es que cada programador crea su propio nombre al importar la función predeterminada, lo que da como resultado un código inconsistente. Para evitar esto, debe nombrar la función importada de acuerdo con su nombre de archivo.
+
+
+    // main.js
+    import library, {myFunction} from './library.js';
+
+    library();
+
+    myFunction();
+
+
+Así es como puede trabajar con funciones a través de módulos. En la vida real, los programadores usan módulos no solo para funciones, sino también para clases, constantes, etc.
+
+
+
+Conclusión
+
+Los módulos le ayudan a encapsular el código y evitar posibles errores. Esta es una excelente razón para usarlos, especialmente porque es bastante sencillo. Solo necesita escribir la export palabra clave antes del nombre de la función cuando se crea y escribir la importpalabra clave cuando la importa a otro archivo.

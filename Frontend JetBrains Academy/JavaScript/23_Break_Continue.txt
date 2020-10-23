@@ -1,0 +1,50 @@
+Break and Continue
+
+
+Al escribir bucles en programas, a menudo tiene que cambiar su comportamiento estándar: finalizar su ejecución antes u omitir algunas iteraciones (una ejecución de un cuerpo de bucle se llama iteración). Este trabajo más flexible con bucles es posible gracias a dos operadores: break y continue. En este tema, consideraremos cómo trabajar con ellos.
+
+El operador de descanso
+La mayoría de las veces, la ejecución del ciclo termina cuando su condición se vuelve false, pero el break operador le permite salir del ciclo en cualquier momento que lo necesite. Considere el ejemplo de código donde se usa este operador:
+
+    for (let n = 1; n <= 50; n++) {
+    if (n == 5) {
+        break;
+    }
+    console.log(n); // 4
+    }
+
+En el ejemplo anterior, creamos un contador que tenía que devolver valores entre 1 y 50. Sin embargo, esto no sucede porque hemos establecido una condición para salir del ciclo usando el break operador. Rompe el ciclo después de 5 iteraciones.
+
+Cuidado: solo completa el bucle en el que se encuentra en ese momento. Si este ciclo se ejecuta dentro de otro ciclo, el ciclo externo no se detendrá.
+
+El break operador tiene dos usos:
+
+    se termina el bucle de corriente de cualquier tipo ( for, while, do-while);
+
+    termina un caso en la switchdeclaración;
+
+El break operador se aplica con mayor frecuencia cuando un bucle no se puede ejecutar por alguna razón, como cuando la aplicación detecta un error.
+
+
+El operador continue
+
+El continue operador le permite detener la iteración del ciclo actual y comenzar una nueva.
+
+Este operador se puede utilizar dentro de cualquier tipo de bucles:
+
+    dentro del ciclo while o do-while, vuelve directamente a la condición del ciclo;
+
+    Dentro del for ciclo, primero calcula la expresión de incremento y luego regresa a la condición.
+
+Se utiliza si está claro que no hay nada más que hacer en la iteración del ciclo actual. Por lo tanto, el siguiente código imprimirá todos los números pares del 1 al 10 en la consola:
+
+    for (let n = 1; n <= 10; n++) {
+    if (n % 2 !== 0) {
+        continue;
+    }
+    console.log(n); // 2 4 6 8 10
+    } 
+
+No puede usar romper y continuar con el operador, ? a que tales construcciones conducen a errores.
+
+Ahora que lo sabes todo, no tendrás miedo de ningún bucle: ¡puedes encontrar la manera de salir incluso de un bucle infinito!

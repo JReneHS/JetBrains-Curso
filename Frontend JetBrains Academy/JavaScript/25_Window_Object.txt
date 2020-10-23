@@ -1,0 +1,67 @@
+Window Object (Objeto de ventana)
+
+
+Juego de calentamiento: ¡encuentra la ventana más cercana! ¿Donde estas buscando? Está aquí mismo: ¡estás leyendo este tema en uno de ellos! Window Object es un objeto que representa una ventana del navegador. Proporciona la interfaz de interacción del navegador JavaScript. Si un documento HTML contiene una <iframe> etiqueta, el navegador crea una Window Object para el documento HTML y una Window Object para cada una de esas etiquetas en el documento.
+
+Echemos un vistazo más de cerca a las propiedades y métodos de este objeto.
+
+
+Propiedades
+
+Una de las características del Window Object es que es global . Esto significa que el acceso a sus propiedades y métodos se puede realizar desde cualquier lugar del programa. Mira un ejemplo de acceso a una propiedad cerrada que regresa true o false dependiendo de si la ventana está cerrada o no:
+
+    console.log(window.closed);
+
+También se puede escribir de la siguiente manera:
+
+    console.log(closed);
+
+Como puede ver, esto se puede hacer sin especificar el Window Object.
+
+Veamos otra propiedad:
+
+    console.log(innerHeight);
+
+Devuelve la altura de la ventana actual. Y aquí está la innerWidthpropiedad:
+
+    console.log(innerWidth);
+
+Contiene el valor del ancho de la ventana.
+
+No podríamos encontrar todas las propiedades aquí, así que lo invitamos a que revise la lista completa de propiedades usted mismo. https://www.w3schools.com/jsref/obj_window.asp
+
+
+
+Métodos
+
+Para crear una nueva ventana de navegador vacía, utilice el siguiente método:
+
+    open();
+
+Puede especificar la URL como parámetro, por ejemplo, abrir una nueva ventana con el sitio web de Hyperskill:
+
+    open("https://hyperskill.org/");
+
+Para cerrar la ventana actual, use el close() método:
+
+    close();
+
+Téngalo en cuenta: ¡JavaScript solo puede cerrar la ventana que se abrió con él!
+
+Otro método importante es llamar a una ventana de alerta que contiene un mensaje y un OK botón. Por ejemplo, intente ingresar el siguiente código en la consola:
+
+    alert("Hello Hyperskill!");
+
+Un método similar es confirm():
+
+    confirm("Hyperskill is excellent");
+
+Sin embargo, aunque alert() no devuelve nada, confirm() regresa true si OK se presionó el botón y false si el usuario hizo clic Cancel.
+
+Una vez más, esta no es una lista completa de métodos, por lo que lo invitamos a consultar otros métodos . https://www.w3schools.com/jsref/obj_window.asp
+
+
+
+Conclusión
+
+Hoy hemos considerado un importante tipo de objeto, Window Object. En el contexto de los navegadores, es importante saber que el objeto de la ventana no es parte de JS en sí mismo (no es parte de la especificación), es por eso que otros entornos no tienen ninguno Window Object. Recuerde que este objeto es global, por lo que el acceso a sus propiedades y métodos es posible desde cualquier lugar del programa y sin especificar un objeto. Tiene una lista extensa de propiedades y métodos, algunos de los cuales consideramos aquí.

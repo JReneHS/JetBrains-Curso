@@ -1,0 +1,75 @@
+Promises
+
+
+Imagina que tu amiga te prometió contratarte como desarrollador frontend si su empresa abre un puesto junior y tú comienzas a aprender todos los temas de JS. Pasará los próximos dos meses memorizando las funciones de la interfaz, esperando obtener la respuesta de su amigo. Si el resultado es positivo, harás una gran fiesta para celebrar tu primer trabajo de programador real; de lo contrario, continuarás estudiando JS. En este caso, "promesa " significa que solo tiene un acuerdo por ahora, y su amigo se comunicará con usted más tarde cuando haya un resultado real.
+
+El mismo concepto existe en programación: una función está esperando un resultado y cuando recibe una respuesta, realiza alguna acción. Su comportamiento depende de si el resultado es positivo o negativo. Echemos un vistazo más de cerca a cómo funciona y consideremos ejemplos específicos.
+
+
+
+Sintaxis de promesa
+Eche un vistazo al esquema general de la sintaxis de Promise:
+
+
+    let promise = new Promise(function(resolve, reject) {
+    // code to be executed
+    });
+
+
+Dentro de una nueva Promesa, hay una función llamada ejecutor que lanza inmediatamente la promesa creada. No conoce el resultado de inmediato: el código solo muestra que obtendrá un valor más adelante. El beneficio más significativo de las promesas es que el programa continúa funcionando mientras se calcula el valor prometido. Tan pronto como finalice la función ejecutada, verá el resultado.
+
+Por ejemplo, como usuario, puede ver todo el sitio web sin un avatar cargado, por lo que puede interactuar con el sitio en lugar de mirar una página en blanco durante 30 segundos mientras el navegador carga la imagen personal. Una vez que se haya cargado el avatar, lo verá donde se supone que debe estar.
+
+Hay dos argumentos dentro del ejecutor: resolve y reject. Estas funciones predefinidas se llaman dependiendo de si la promesa se cumplió con éxito o sin éxito:
+
+    resolve(value) en caso de éxito con el resultado value;
+
+    reject(error) en caso de falla con el objeto de error como error.
+
+Recuerde que el ejecutor llama a la función resolver o rechazar: no puede invocar a ambas.
+Ejemplos
+
+Volvamos a su hipotético trabajo de programación. Aquí hay una promesa respectiva con datos:
+
+
+    const myFriendHaveApprovedMyPosition = true;
+
+    let promise = new Promise(function(resolve, reject) {
+    if (myFriendHaveApprovedMyPosition){
+        resolve("Hooray! Now I'm a true programmer!");
+    } else {
+        reject(new Error("Whoops! Have to study more =("));
+    }
+    });
+
+
+En este caso, creamos una promesa en función de la myFriendHaveApprovedMyPosition constante. Si el valor es verdadero, llamamos a la función de resolución con "Hooray! Now I'm a true programmer!"; si el valor es falso, usamos la función de rechazo con el objeto Error con "Whoops! Have to study more =(". Como puede ver, el valor es verdadero, por lo que se ejecuta la función de resolución.
+
+En el ejemplo, usamos la función de resolución inmediatamente porque se conocía el valor. En realidad, los programadores utilizan principalmente promesas en los casos en que la ejecución de una función lleva algún tiempo. Echemos un vistazo a un ejemplo con setTimeout:
+
+
+    let promise = new Promise(function(resolve, reject) {
+    setTimeout(() => resolve("I have completed"), 5000);
+    });
+
+Ahora, en esta situación, el navegador ha lanzado la función de promesa de inmediato, pero la función de resolución se llamará solo en 5 segundos. Esto es particularmente útil cuando necesitamos cargar datos desde una fuente remota.
+
+
+
+Estados de promesa
+
+Una promesa es un objeto que tiene una propiedad estatal . En cualquier momento, Promise puede estar en uno de estos estados:
+
+pendiente : el estado inicial cuando se ha lanzado una promesa pero no se ha resuelto;
+cumplido : la promesa se ha completado con éxito, se llama a la función de resolución;
+rechazado : la promesa ha fallado, se llama a la función de rechazo.
+Para comprender el proceso, eche un vistazo al diagrama: ver imagen
+
+Como puede ver, al principio la promesa tiene el estado "pendiente" . En caso de éxito, el ejecutor llama a resolve (valor) y cambia el estado de la promesa a "cumplido" . Si la promesa ha fallado, llama a rechazar (error), lo que establece el estado de la promesa en "rechazado" . El estado prometido se puede cambiar solo una vez.
+
+
+
+
+Conclusión
+
+Las promesas son una característica conveniente que permite ejecutar una función que tarda algún tiempo en finalizar sin pausar otros procesos. Las promesas le permiten iniciar la función de inmediato, pero establecer un resultado solo después de que se complete el proceso. Es especialmente útil en caso de cargar datos grandes cuando desea mostrar el cargador a un usuario mientras la respuesta está pendiente. En este tema, hemos cubierto la idea principal de las promesas y, más adelante, aprenderá cómo usar el resultado de las promesas en su código.

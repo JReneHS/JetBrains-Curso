@@ -1,0 +1,125 @@
+"then", "catch" and "finally" methods
+
+
+Anteriormente, hemos aprendido los conceptos básicos de las promesas; ahora es el momento de interactuar con ellos. En este tema, vamos a considerar tres métodos promesa de que los programadores utilizar para trabajar con una promesa asentado: .then, .catch, y .finally.
+
+
+
+.then
+
+.then El método se utiliza para manejar resultados de promesas positivos o negativos.
+
+Veamos un ejemplo: digamos, estamos trabajando en un programa que ayuda a los estudiantes ocupados a realizar un seguimiento de las fechas de sus exámenes. Creamos una promesa para informar al usuario si faltó a su examen en base a la fecha actual. Si el evento aún no se ha producido, resolvemos el valor " You should prepare for the exam" ; de lo contrario, rechazamos con el texto de error " Oops! You have missed your exam!" .
+
+
+    const examDate = new Date(2020, 7, 5);
+    const promise = new Promise(function(resolve, reject){
+        const currentDate = new Date();
+        if (currentDate < examDate){
+            resolve("You should prepare for the exam");
+        } else {
+            reject("Oops! You have missed your exam!");
+        }
+    });
+
+
+Ahora, hagamos que la salida muestre el mensaje de respuesta a través de la consola en caso de éxito, o una alerta en caso de falla. Para hacer eso, usamos una .then función con dos parámetros: una función para manejar un resultado positivo y otra para manejar una excepción. Si la promesa se resolvió, llamamos a la successStatus función con el resultado prometido y mostramos la respuesta en la consola. De lo contrario, ejecutamos la failStatus función con el resultado de la promesa e imprimimos el mensaje de error en una alerta.
+
+
+    promise.then(
+        function successStatus(response) {
+            console.log(response);
+            return response;
+        },
+        function failStatus(error) {
+            console.log(error);
+            return error;
+        }
+    );
+
+
+Entonces, el .then método se usa para trabajar el resultado prometido y lanzar ciertas acciones basadas en él. Ambos argumentos de. then son opcionales.
+
+
+
+
+.catch
+
+Digamos que necesitamos manejar solo errores. En este caso, puede usar .then sin el primer argumento .then(null, function failStatus(error) { ... }) o .catch:
+
+
+    promise.catch(function failStatus(error) {
+        console.log(error);
+        return error;
+    });
+
+
+En el .catch método, le dijimos al programa lo que queremos hacer en caso de falla. En nuestra situación, mostramos una alerta con un mensaje de error.
+
+Es posible usar .then y .catch juntos para la misma promesa:
+
+
+    promise
+        .then(function successStatus(response) {
+            console.log(response);
+            return response;
+        })
+        .catch(function failStatus(error) {
+            console.log(error);
+            return error;
+        })
+
+
+
+.finally
+El método .finally se utiliza cuando queremos invocar una función después de que se haya establecido la promesa, independientemente del estado de la promesa. La .finally función no tiene ningún argumento, por lo que dentro de la función no puede interactuar con el resultado o el estado de promesa real. Veamos la sintaxis:
+
+
+    promise
+        .then(function successStatus(response) {
+            console.log(response);
+            return response;
+        })
+        .catch(function failStatus(error) {
+            console.log(error);
+            return error;
+        })
+        .finally(function stopLoader() {    
+            console.log("The loader has stopped");
+        });
+
+
+El texto " The loader has stopped" se mostrará después de que se haya establecido la promesa. El usuario lo verá sin importar si la promesa fue resuelta o rechazada. Es útil cuando tiene algunas acciones necesarias que no dependen del resultado de la promesa, por ejemplo, para detener cargadores o mostrar el texto de saludo predeterminado.
+
+
+
+Encadenamiento de promesas
+
+Suponga que tiene algunos scripts que dependen de otros scripts y necesita cargarlos secuencialmente. Por ejemplo, primero debe cargar el rol del usuario. En segundo lugar, debe cargar la información del usuario y, en tercer lugar, un banner personal según sus preferencias. En tales casos, el encadenamiento de promesas es una gran característica que permite llamar a la solicitud solo después de que se haya resuelto la anterior:
+
+
+    loadData("https://mywebsite.com/loadRoles")
+        .then(function() {
+            return loadData("https://mywebsite.com/loadUserInfo");
+        })
+        .then(function(user) {
+            return loadData(`https://mywebsite.com/loadBanner_${user.id}`);
+        })
+        .catch(function(error) {
+            console.log("Oops! An error occured!")
+        });
+
+
+El .catch método se ejecutará para errores en cualquier paso.
+
+Tenga en cuenta que para que el código sea asincrónico, debe devolver la promesa en cada paso.
+Conclusión
+Hemos cubierto tres métodos que nos ayudan a trabajar con los resultados prometedores. Recapitulemos:
+
+    .then se utiliza para realizar algunas acciones en función de la salida;
+
+    .catch se utiliza para manejar errores;
+
+    .finally se utiliza para iniciar una función tan pronto como se haya establecido la promesa, ignorando el estado de promesa.
+
+Todos ellos son útiles en tareas de programación reales. Hablando de tareas reales: ¿de acuerdo?

@@ -1,0 +1,182 @@
+Bucles For y While
+
+
+A veces, los programadores necesitan repetir la misma parte del código varias veces. Suponga que va a trabajar todos los días, de lunes a viernes, y salude a su colega Nessie cuando llegue a su oficina: "¡Hola Nessie!" Simulemos esta situación usando las herramientas que ya tenemos:
+
+
+    console.log("1, Hi Nessie!"); // Monday
+    console.log("2, Hi Nessie!"); // Tuesday
+    console.log("3, Hi Nessie!"); // Wednesday
+    console.log("4, Hi Nessie!"); // Thursday
+    console.log("5, Hi Nessie!"); // Friday
+
+
+Podemos crear un bucle en lugar de toda esa repetición:
+
+
+    let i;
+    for (i = 1; i <= 5; i++) {
+        console.log(i + ", Hi Nessie!");
+    }
+
+
+Esto es mucho más rápido y conveniente, especialmente si tenemos que repetir lo mismo 10 veces, 100 veces o incluso más.
+
+Acerquémonos a la sintaxis del forbucle. Establecemos una variable antes del ciclo: el icontador. A continuación, la condición dentro de los corchetes tiene tres partes: (...;...;...). El valor inicial de la variable de contador es lo primero; en nuestro caso, es igual 1. La segunda parte es la condición en la que se detiene el bucle, que en nuestro caso es i <= 5. Finalmente, en la tercera parte, indicamos cómo debe cambiar exactamente el contador de una iteración a otra. La i++grabación es la misma que i = i + 1, es decir, el contador varía de 1a 5con el paso de 1en cada iteración. Cualquier parte de la condición dentro de los corchetes es opcional y puede omitirse.
+
+
+
+Bucle infinito
+
+Un bucle infinito es un bucle cuya ejecución nunca se detiene porque no existe una condición para salir del bucle (la segunda condición entre paréntesis). Para escribir un bucle infinito, simplemente omita la condición para salir del bucle para hacer una construcción como esta:
+
+
+    for (i=0;;i++) {
+        console.log(i);
+    }
+
+
+... o esto:
+
+
+    for (i=0;;) {
+        console.log(i);
+    }
+
+
+... ¡o incluso esto!
+
+
+
+    for (;;) {
+        console.log('Hi!');
+    }
+
+
+¿Porqué es eso? Dado que ninguna de las condiciones entre paréntesis es obligatoria, podemos omitir algunas o incluso todas. Pero dado que omitimos la condición para salir del ciclo, el ciclo se vuelve infinito.
+
+Tenga cuidado con los bucles infinitos: dado que no hay salida de un bucle infinito, tarde o temprano la memoria se desbordará. Esto hará que su computadora se congele y tendrá que reiniciarla en modo de emergencia. Aún así, a veces necesitamos que el bucle se ejecute sin fin, por ejemplo, al programar juegos o microcontroladores, por lo que en estos casos, el uso de bucles infinitos es razonable.
+
+
+
+For...in loop
+
+Examinemos otro tipo de bucle relacionado con la forcategoría de bucle, el for...inbucle:
+
+    let animals = ['cat', 'dog', 'turtle'];
+
+    for (x in animals) {
+    console.log(animals[x]);
+    }
+
+
+Obtenemos lo siguiente como salida:
+
+    cat
+    dog
+    turtle
+
+En este ejemplo, creamos una matriz que contiene los nombres de los animales. A continuación, revisamos los índices de cada animal en la matriz y mostramos los nombres de los animales, uno por línea.
+
+Tenga en cuenta que el for...inbucle pasa solo por las propiedades enumerables del objeto, es decir, por propiedades que se pueden contar.
+
+
+Conclusión
+
+En este tema, descubrimos qué son los bucles y dónde los necesitamos. También observamos la sintaxis de dos tipos de bucles y aprendimos cómo se vería un bucle infinito si lo escribiéramos usando el for bucle.
+
+
+
+
+bucles while
+
+Quizás tuviste tiempo para prepararte una taza de café antes de comenzar con este tema, lo que significa que estás tomando tu café mientras lees esto. Mientras tanto, el clima está cambiando afuera; tal vez empezó a llover después de una mañana nublada. Mientras llueve, el pavimento se moja y los charcos se hinchan. Estos procesos, todos basados ​​en la construcción "Mientras ... (condición)", ilustran la idea de while bucles.
+
+Un bucle es una acción (una parte del código) que se repite una cierta cantidad de veces. Los while bucles continúan mientras se cumple cierta condición, por ejemplo, "mientras lee el tema" o "mientras está lloviendo". Algunas condiciones siempre son ciertas. Por ejemplo, si escribe while (5 < 6), obtendrá un bucle infinito , ya 5que siempre es menor que 6. Otras condiciones se pueden ejecutar solo en un número finito de iteraciones.
+
+Mientras que la sintaxis
+El while bucle tiene la siguiente sintaxis:
+
+    while (condition) {
+    ...
+    }
+
+Funciona mientras condition == true. Una vez que el valor entre paréntesis se vuelve falso , el ciclo termina.
+
+Mira el siguiente ejemplo:
+
+    let n = 2;
+    while (n < 100) {
+        n = n * n;
+        console.log(n);
+    }
+
+Finalmente, obtenemos esta respuesta:
+
+    4
+    16
+    256
+
+¿Como paso? Consideremos cada paso de la iteración en detalle.
+
+Al principio, la variable n = 2. Cuando ingresamos al ciclo while, comprobamos de inmediato si el n < 100. La condición sigue siendo cierta, por eso entramos en el ciclo. Luego, cuadramos ny se muestra el producto, que es como llegamos 4a la primera línea.
+
+En la segunda iteración, nuevamente verificamos la condición antes de ingresar al ciclo. 4 * 4 = 16: esa es la segunda línea. Ya 16 < 100 que ingresamos al ciclo por tercera vez, multiplicamos 16 por 16 y obtenemos el resultado 256. Ahora, antes de intentar ingresar al bucle por cuarta vez, notamos que 256 no es menor que 100, por lo que el bucle termina.
+
+
+
+Do ... while sintaxis
+
+Hay otro tipo de bucle que se ejecuta mientras se cumplen las condiciones: se llama do...while bucle. Tiene la siguiente sintaxis:
+
+    do {
+    ...
+    } while (condition);
+
+El ejemplo anterior se puede reescribir usando la do...while construcción:
+
+    let n = 2;
+    do {
+        n = n * n;
+        console.log(n);
+    } while (n < 100);
+
+No es difícil ver que la conclusión será la misma que con while:
+
+    4
+    16
+    256
+
+Entonces, ¿cuál es la diferencia entre estos y por qué necesitaríamos dos tipos de bucles que funcionen igual?
+
+
+
+While vs do... While
+
+De hecho, hay una diferencia. El siguiente ejemplo nos ayudará a detectarlo.
+
+    let n = 256;
+    while (n < 100) {
+        n = n * n;
+        console.log(n);
+    }
+
+¿Qué se mostrará? Eso es correcto: ¡nada! La precisión de la condición se verifica antes de ingresar al circuito. ¿Y qué pasa do...while? Ejecute el siguiente código en la consola:
+
+    let n = 256;
+    do {
+        n = n * n;
+        console.log(n);
+    } while (n < 100);
+
+¡Verás por ti mismo que se mostrará la pantalla 65536!
+
+Entonces, ¿por qué sucede? El caso es que, en el caso de do...while, la condición se verifica después de ingresar al ciclo y ejecutar la primera iteración. Esto garantiza que el ciclo se ejecuta al menos una vez, incluso si la condición es falsa desde el principio.
+
+
+
+Conclusión
+
+En este tema, hemos aprendido un nuevo término: bucles. Observamos dos tipos de bucles whiley do...while, y vimos la diferencia entre ellos. También descubrimos que si la condición establecida siempre es verdadera, obtenemos un bucle infinito.
+
+Ahora es el momento de desafiarse a sí mismo y poner en práctica este conocimiento.

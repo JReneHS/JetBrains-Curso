@@ -1,0 +1,41 @@
+addEventListener
+
+
+Ya has estudiado qué son los eventos DOM, pero ¿cómo trabajar con ellos? Hoy aprenderá a procesarlos en su navegador usando el addEventListener() método.
+
+
+addEventListener ()
+
+Cada evento del navegador tiene un controlador de eventos : un bloque de código que ocurre después de la operación del evento. Cuando se ejecuta el bloque de código, podemos decir que registramos el controlador de eventos. Es gracias a esto que puede reaccionar a las acciones del usuario a través del código JavaScript. Puedes crear eventos usando el addEventListener() método.
+
+El addEventListener() método registra el controlador de eventos para el objeto de destino, por lo que se llamará cuando ocurra el evento. El objeto de destino puede ser un elemento HTML, a document, o cualquier otro objeto que admita eventos. Considere la sintaxis de este método:
+
+
+    document.addEventListener("click", function() {
+        console.log("There's been a browser event");
+    });
+
+
+En este ejemplo, usamos addEventListener() para crear un click controlador de eventos para el document objeto. En nuestro caso, la salida de la "There's been a browser event" cadena de texto a la consola es el controlador de eventos.
+
+Puede aplicar addEventListener() a las etiquetas HTML de la siguiente manera:
+
+
+    document.getElementById("myBtn").addEventListener("keypress", function() {
+        // body
+});
+
+
+Aquí trabajamos con un elemento HTML que tiene la extensión id myBtn. Lo mismo se puede hacer mediante una variable para que nuestro código no se vea tan voluminoso:
+
+
+    let element = document.getElementById("myBtn");
+
+    element.addEventListener("keypress", function() {
+        // body
+    });
+
+
+Conclusión
+
+Hay muchos más eventos de navegador y formas de manejarlos. Hemos tocado el más simple y, más adelante, aprenderemos sobre otras funciones útiles. Después de todo, esto es lo que hace que una página web funcione e interactúe con éxito con sus usuarios.

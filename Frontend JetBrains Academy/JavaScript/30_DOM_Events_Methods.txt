@@ -1,0 +1,177 @@
+DOM
+
+
+¿Alguna vez se preguntó cómo se representan las páginas web? ¿Ha pensado en cómo funciona el navegador durante la carga del sitio y qué hace con el código fuente? Es bueno tener curiosidad y es útil tener al menos una idea general de cómo funciona esto. ¡Intentemos resolverlo juntos!
+
+
+
+Brevemente sobre DOM
+
+Para empezar, es una buena idea comprender cómo un navegador muestra las páginas web.
+
+El navegador envía una solicitud al servidor, en respuesta, recibe el código fuente HTML e intenta analizarlo. Luego, en el proceso de analizar el código HTML, el navegador crea un árbol DOM en la memoria de la computadora y lo usa para representar aún más la página web.
+
+DOM ( Document Object Model ) es la representación de un documento HTML como una estructura de árbol con la que pueden trabajar varios programas.
+
+Para comprender cómo se ve la estructura DOM, tomaremos un documento simple:
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>DOM</title>
+  </head>
+  <body>
+    <h1>What is DOM?</h1>
+    <p>DOM is...</p>
+  </body>
+</html>
+Se puede representar como el siguiente árbol DOM:
+
+ver  imagen
+
+Cada nodo del árbol , incluida la raíz, es un elemento de documento HTML. Tiene cero o más niños nodos (elementos anidados). Un nodo que no tiene hijos se llama hoja . Estas hojas pueden ser cadenas de texto, imágenes, videos, etc.
+
+
+
+Nodos
+
+Todo en HTML es parte del DOM, incluida la <!DOCTYPE...> directiva y los comentarios, aunque no aparezcan en el navegador. Incluso todo el documento que representa un objeto document es técnicamente un nodo DOM. El DOM es la interfaz de la página HTML y el primer paso para representarlo en el navegador. Podemos interactuar con los nodos DOM utilizando lenguajes de programación. En los siguientes temas, aprenderemos cómo obtener los elementos que necesita y agregar clases y estilos.
+
+
+
+
+eventos DOM
+
+El DOM representa un conjunto de capacidades que proporciona un navegador web al entorno JavaScript. Por ejemplo, cuando comienza a ingresar su solicitud de búsqueda en un cuadro de búsqueda de Google, le brinda varias recomendaciones que puede ver instantáneamente. Cuando pasa el mouse sobre un enlace, el enlace a menudo cambia de color. Incluso puede controlar el reproductor de video en YouTube pausando o cambiando el volumen del video. Todas estas acciones se basan en los mismos principios. Aprenderemos más sobre ellos en este tema.
+
+
+Eventos DOM
+
+Veamos ejemplos de la vida real. Entras en el ascensor y presionas el botón del séptimo piso. Este botón envía una señal al sistema, diciendo que el ascensor debe subir al séptimo piso. El sistema recibe esta señal, se da cuenta de que necesita el séptimo piso y comienza a elevar el ascensor a la altitud correcta.
+
+En palabras de programación, cuando hizo clic en el botón, creó un evento para visitar el séptimo piso. El sistema procesó este evento elevando el elevador a la distancia requerida. Sin embargo, si hubiera hecho clic en el botón del piso 13, el evento habría sido diferente y se habrían realizado otras acciones.
+
+Dibujemos otro paralelo con una aplicación web. Está buscando un hotel de vacaciones y haga clic en uno de los enlaces para ver los detalles. En este caso, cuando hace clic en el enlace, se produce un evento de clic y el sistema comienza a responderle. Para gestionar su evento, el navegador descarga una nueva página con información adicional sobre el hotel. Si hace clic en un enlace diferente a un hotel, se cargará información diferente. Si especifica algunos detalles en un filtro de hotel, ocurrirán otros eventos que llevarán a diferentes acciones.
+
+Los eventos que ocurren en una aplicación web se denominan eventos DOM . Los desarrolladores los utilizan en elementos de una página HTML: botón, img, entrada, formulario, div, etc.
+
+Tipos de eventos
+En el ejemplo anterior, solo observamos el evento de clic, ¡pero hay más de 100 de esos eventos! Cuando cambia el tamaño de una ventana, hace doble clic en un botón del mouse, mueve el puntero del mouse o pega algo del portapapeles, activa otro evento correspondiente. Aquí puedes encontrar la lista completa de ellos. https://developer.mozilla.org/en-US/docs/Web/Events
+
+Como puede ver, la cantidad de eventos es enorme, por lo que es lógico dividir la lista de eventos en varias categorías, es decir, en tipos de eventos. Los más populares son los eventos de mouse , teclado y focus . ¡Echemos un vistazo más en profundidad a ellos!
+
+Los eventos de mouse ocurren cuando el usuario interactúa con el mouse. Los más populares son:
+
+
+    click cuando el usuario hace clic con el botón izquierdo del mouse;
+
+    contextmenu cuando el usuario hace clic con el botón derecho del mouse;
+
+    dblclick cuando el usuario hace clic dos veces con el botón izquierdo del mouse;
+
+    mouseenter cuando el usuario mueve el puntero del mouse hacia el elemento;
+
+    mouseleave cuando el usuario aleja el puntero del mouse del elemento.
+
+
+Los eventos de teclado son el resultado de la interacción del usuario con el teclado. Hay tres tipos de tales eventos:
+
+
+    keydown cuando el usuario presiona cualquier tecla;
+
+    keypress cuando el usuario presiona cualquier tecla excepto Shift, Fn o CapsLock;
+
+    keyup cuando el usuario suelta una tecla.
+
+
+Los eventos de enfoque ocurren cuando un elemento recibe o pierde el enfoque. Esto es especialmente útil para la entrada cuando los desarrolladores marcan en rojo el campo de entrada llenado incorrectamente, como los campos de correo electrónico o teléfono.
+
+
+    focus cuando un elemento recibe foco;
+
+    blur cuando un elemento pierde el foco.
+
+
+
+Conclusión
+
+Los eventos DOM se utilizan mejor al crear páginas web atractivas e interactivas. Se pueden asignar a elementos HTML como button, div, input, etc. Recuerde los distintos tipos de eventos DOM: mouse , teclado y eventos de enfoque . Ahora sabe que una aplicación web interactiva no es mágica, y para crearla solo necesita aprender a trabajar con eventos DOM.
+
+
+
+
+
+métodos DOM
+
+El DOM nos permite no solo ver el contenido de la página, sino también interactuar con ella. Por ejemplo, puede obtener los elementos que necesita usando JS y continuar trabajando con ellos. Para eso, existen varios métodos , o funciones integradas, y en este tema consideraremos el más común de ellos.
+
+
+getElementById ()
+
+Si la etiqueta que necesitamos tiene un id atributo, podemos obtenerlo llamando al getElementById(). Considere este ejemplo:
+
+
+    <p id="blue-text">What's your hyper skill?</p>
+
+    <script>
+        let element = document.getElementById("blue-text"); // get the element by id
+    </script>
+
+
+Aquí logramos que el elemento pasara id blue-text por el document nodo, pero ¿qué sigue? Además, podemos utilizar este elemento en nuestras funciones, cambiar su contenido, estilos, moverlo en la página y mucho más. Esto es posible porque de acuerdo con el concepto DOM, cada etiqueta HTML e incluso el texto que contiene es un objeto, por lo que podemos trabajar con ellos como objetos. Tan fascinante como es, nuestro humilde objetivo de hoy es solo aprender a obtener los elementos.
+
+Si aún desea asegurarse de que este método realmente le permite tomar un elemento, puede ejecutar un código de muestra y agregarle la siguiente línea:
+
+
+    element.style.color = "blue";
+
+
+Este código cambiará el color del texto a azul.
+
+
+querySelector ()
+
+Con el querySelector() método es posible devolver el primer elemento del documento que corresponde al selector especificado:
+
+
+    <p>What's your hyper skill?</p>
+
+    <script>
+    let element = document.querySelector("p"); // get the element by selector
+    </script>
+
+
+En este ejemplo, obtuvimos el primer elemento mediante el p selector de etiquetas.
+
+Este método nos permite obtener un elemento para seguir trabajando en cualquier selector o su grupo, no solo en el selector de elementos.
+
+
+Tenga cuidado, querySelector devuelve solo un elemento correspondiente a la solicitud.
+
+
+querySelectorAll ()
+
+querySelectorAll() obtiene todos los elementos que coinciden con el selector especificado:
+
+
+<p>Tell me</p>
+<p>What's your hyper skill?</p>
+
+<script>
+  let elements = document.querySelectorAll("p"); // get elements by selector
+</script>
+
+
+En el código anterior, obtuvimos todos los elementos con el pselector de etiquetas.
+
+Este método es el más universal porque le permite usar cualquier selector de CSS y obtener múltiples elementos.
+
+
+No olvides que hay selectores de clases (".className"), ("#idName") selectores de id y muchos otros. Todos ellos se pueden utilizar en los métodos de querySelectorAll() y querySelector().
+querySelectorAll(), a diferencia de los métodos anteriores, devuelve una matriz. Para crear el controlador, debe usar forEach. Aprenderemos sobre el forEach método en las siguientes lecciones.
+
+
+
+Conclusión
+
+JavaScript ofrece muchas oportunidades para trabajar con interfaces web. Hoy hemos dado un paso más hacia el dominio de este lenguaje de programación y hemos aprendido a obtener elementos utilizando los métodos DOM. Cada uno de ellos permite obtener elementos de diferentes formas. ¡Veamos si puedes usarlos correctamente!

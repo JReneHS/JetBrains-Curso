@@ -1,0 +1,82 @@
+Frameworks
+
+
+¿Qué son los frameworks?
+Cada programa es diferente al igual que los copos de nieve, sin embargo, son las similitudes a las que queremos dirigir su atención, o más bien, cómo estas similitudes se pueden usar para beneficio del desarrollador. En programación, es una práctica común reutilizar el código empaquetado en bibliotecas para simplificar el desarrollo y evitar cometer los mismos errores una y otra vez. Estas bibliotecas existen para la mayoría de los lenguajes de programación; proporcionan una buena documentación y un código bien probado que utilizan muchas personas.
+
+Las grandes aplicaciones como las tiendas de Internet, los bancos en línea o las redes sociales a menudo necesitan los mismos componentes y funciones típicas, como la autorización del usuario, la interacción con la base de datos, el envío de notificaciones, etc. Para reutilizarlos, los desarrolladores crearon un tipo especial de software llamado frameworks para todos los lenguajes de programación populares.
+
+Un framework es una pieza de software universal y reutilizable que facilita el desarrollo de aplicaciones típicas o sus partes. Consiste en plantillas de código estructurado y proporciona una funcionalidad genérica que se puede ampliar fácilmente para las necesidades de una aplicación específica. Para ceder el control de las tareas de bajo nivel y centrarse en los problemas de alto nivel, debe utilizar la API proporcionada por el framework. Puede reducir significativamente el tiempo total de desarrollo.
+
+Algunos frameworks son tan grandes que de hecho son una unión de diferentes frameworks con un solo nombre.
+
+Los frameworks son extremadamente útiles y relativamente fáciles de comprender: por ejemplo, el concepto mismo de frameworks tiene algunas analogías con la vida real que harían que la comprensión fuera indolora para todo tipo de estudiantes.
+https://www.altcademy.com/explain/framework
+
+
+
+Frameworks vs bibliotecas
+
+A primera vista, puede parecer que los frameworks y las bibliotecas son muy similares, pero no es del todo cierto.
+
+Las aplicaciones que utilizan frameworks se construyen sobre ellos y amplían su código para obtener una funcionalidad específica. En cierto sentido, un framework sirve como el esqueleto de una aplicación o sus partes y establece "las reglas del juego". Una biblioteca, por otro lado, solo proporciona algunas operaciones específicas sin tener una influencia tan global. Esta es la diferencia clave entre frameworks y bibliotecas. Sin embargo, las bibliotecas se pueden proporcionar como partes de frameworks.
+
+Por supuesto, no hay escapatoria a las evidentes similitudes entre frameworks y bibliotecas. El programador que usa un framework no modifica su código fuente, actúa solo como su usuario.
+
+
+
+Inversión de control
+
+El principio más común que viene con los frameworks es la inversión de control (IoC) .
+
+En un framework, a diferencia de las bibliotecas o las aplicaciones de usuario estándar, el flujo de control general del programa no lo dicta la persona que llama, sino el framework. Significa que el framework llama a su código y no al revés:
+
+Esto sucede porque un framework proporciona plantillas para resolver posibles tareas y la interacción entre las plantillas ha sido definida por los desarrolladores del framework. El usuario de un framework simplemente toma las plantillas y las amplía con código específico de la aplicación.
+
+
+
+Ventajas y desventajas
+
+Es hora de sopesar todo. Para comenzar con una nota positiva, el uso de frameworks tiene una serie de ventajas importantes:
+
+
+    creación rápida de prototipos y desarrollo;
+
+    estandarización de estructuras de proyectos: es más fácil comprender proyectos similares con la misma estructura;
+
+    amplio uso en empresas de todo el mundo;
+
+    correcciones de errores y actualizaciones de seguridad por parte de los autores;
+
+    un esqueleto bien diseñado: por regla general, los frameworks utilizan prácticas y patrones actualizados para proporcionar un esqueleto firme para las aplicaciones.
+
+
+A pesar de las ventajas, existen varios inconvenientes comunes:
+
+
+    seleccionar un framework inadecuado puede dificultar la implementación de una aplicación;
+
+    ralentización de la aplicación: los frameworks a menudo hacen muchas cosas pesadas ocultas a los programadores;
+
+    es difícil reemplazar el framework usado por otro si el suyo ya no le conviene (mientras que las bibliotecas se pueden reemplazar fácilmente);
+
+    puede encontrar un error en el framework que puede afectar su trabajo.
+
+
+Puede que esta no sea una lista completa de ventajas y desventajas, pero a medida que vaya adquiriendo más práctica con el uso de frameworks, los descubrirá usted mismo.
+
+
+
+Cómo elegir frameworks
+
+Como regla general, cada lenguaje de programación tiene varios frameworks para elegir. Por supuesto, si viene a una empresa donde ya se está utilizando algún framework, es posible que no haya otra opción para usted. Pero si tiene una opción, intente tener en cuenta todos los posibles beneficios y problemas al tomar una decisión.
+
+A continuación, se ofrecen algunos consejos generales para elegir un framework adecuado:
+
+
+    Preste atención a los frameworks conocidos con buena documentación. Esto simplificará enormemente el uso y le permitirá encontrar fácilmente desarrolladores que ya estén familiarizados con este framework. Algunos frameworks populares incluso se convierten en un estándar de facto para desarrollar tipos específicos de aplicaciones. Estos frameworks deben considerarse en primer lugar.
+
+    Si escribe una aplicación pequeña que probablemente nunca cambiará, puede desarrollarla sin frameworks. Además, para una aplicación de este tipo, pueden introducir una complejidad adicional innecesaria. Pero también puede considerar el uso de los llamados frameworks ligeros o elegir un framework solo para algunas partes de su aplicación.
+
+    
+Ésta es información general; como dijimos, los programas son diferentes, al igual que los posibles frameworks que existen. La mejor parte es conocer frameworks específicos y trabajar con ellos de cerca.

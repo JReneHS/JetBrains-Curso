@@ -1,0 +1,164 @@
+Scope Variables (alcance de las variables)
+
+Hemos estado declarando todas las variables con la ayuda de let y const realmente no lo pensamos dos veces. Ahora es el momento para aprender más sobre var y al mismo tiempo familiarizarse con global y local alcance de las variables.
+
+
+
+
+Alcance local (Local Scope)
+
+Cuando creamos una variable dentro de una función o bloque de código, en realidad creamos una variable local que está disponible solo dentro de una cierta parte del código pero no en todo el programa.
+
+Veamos el ejemplo:
+
+
+    function someFunc() {
+        let someVar = "local";
+        console.log("Some variable in local scope - " + someVar);
+    }
+
+    someFunc();
+    console.log("Some variable in global scope - " + someVar);
+
+
+Cuando llamamos a una función, podemos acceder a la variable y mostrar su valor en la pantalla. Sin embargo, una variable declarada dentro de la función no está disponible fuera de ella. Por tanto, la variable someVar es local, en otras palabras, pertenece al local scope.
+
+Local las variables a su vez pueden tener función y alcance de bloque . Una variable declarada con var está disponible dentro de toda la función y tiene la extensión function scope . La variable también puede estar disponible solo en el bloque de código, entre { y } ; esta variable se declara con let y tiene un alcance block scope
+
+Podemos tener varios bloques de código en una función:
+
+
+    function someFunc2() {
+        let funcVar = "function scope variable";
+        console.log("Some variable in function local scope - " + funcVar);
+        if (funcVar == "function scope variable") {
+            let block1Var = "some variable in block local scope";
+            console.log(funcVar + 'is available in if block as ' + block1Var);
+        }
+        else {
+            let block2Var = "some variable in another block of code";
+            console.log("In else block is available " + block2Var + " and " + funcVar);
+        }
+    }
+
+    someFunc2();
+
+
+Como puede ver, podemos acceder a una variable declarada en función externa desde los bloques de código interno if y else.
+
+
+
+Alcance global
+
+Una variable global es accesible desde cualquier parte del programa, no solo desde un bloque de código en particular. Aquí hay un ejemplo:
+
+
+    let someVar = "global";
+
+    function someFunc() {
+        console.log("Some variable in local scope - " + someVar);
+    }
+
+    someFunc();
+    console.log("Some variable in global scope - " + someVar);
+
+
+Obtendremos el siguiente resultado:
+
+
+    Some variable in local scope - global 
+    Some variable in global scope - global
+
+
+La variable someVar aquí es global, porque se puede llamar desde cualquier lugar del programa, no solo en la función donde fue declarada.
+
+Si una variable se declara sin una palabra clave especial, se considera una global variable por defecto, sin importar en qué parte del programa se haya declarado. Por ejemplo, intente ejecutar esto en la consola:
+
+    function someFunc() {
+        someVar = "global";
+        console.log("Some variable in local scope - " + someVar);
+    }
+
+    someFunc();
+    console.log("Some variable in global scope - " + someVar);
+
+
+Verás que la salida será así:
+
+
+    Some variable in local scope - global
+    Some variable in global scope - global
+
+
+Prioridad de variables
+
+Las variables local y global difieren en su prioridad : es mayor para las local variables. Consideremos el siguiente ejemplo:
+
+
+    someVar = "global";
+
+    function someFunc() {
+        let someVar = "local";
+        console.log("Some variable in local scope - " + someVar);
+    }
+
+    someFunc();
+    console.log("Some variable in global scope - " + someVar);
+
+
+Como resultado, obtenemos lo siguiente:
+
+
+    Some variable in local scope - local
+    Some variable in global scope - global
+
+
+Aunque la variable someVar en a global scope fue declarada antes, cuando accedemos a la variable someVar dentro de la función, la local variable se recibe debido a la prioridad de las local variables.
+
+
+
+Let Vs const Vs var
+
+Como sabe, además let, hay dos identificadores más para declarar una variable: const y var.
+
+A diferencia de lo que ocurre con el let identificador, las variables declaradas con const no se pueden anular. Vea el ejemplo a continuación:
+
+    const someVar = "constant variable";
+    someVar = "mutable variable";
+
+Conseguiremos TypeError.
+
+Continuando: en versiones anteriores de JavaScript, se acostumbraba usar var para declarar una variable. Sin embargo, hoy en día este método se considera obsoleto.
+
+Como dijimos anteriormente, la variable declarada con var está disponible dentro de toda la función y tiene un llamado function scope. Por ejemplo:
+
+    function someFunc() {
+        var i;
+        for (i = 0; i <= 5; i++) {
+            var someVar = i * i;
+        }
+        console.log(i);
+        console.log(someVar);
+    }
+
+    someFunc();
+
+Aquí obtendremos los últimos valores de i y someVar.
+
+    function someFunc() {
+        let i;
+        for (i = 0; i <= 5; i++) {
+            let someVar = i * i;
+        }
+        console.log(i);
+        console.log(someVar);
+    }
+
+    someFunc();
+
+Sin embargo, aquí obtendremos ReferenceError como resultado si intentamos acceder someVar, porque el let identificador tiene un block scope, por lo que las variables declaradas con él son accesibles dentro del bloque de código entre {} paréntesis.
+
+
+Conclusión
+
+En este tema, examinamos qué son los alcances local y global, descubrimos que las local variables pueden tener function o block scope, analizamos diferentes formas de declarar variables y vimos cómo las variables pueden diferir en sus alcances.

@@ -1,0 +1,202 @@
+Estilo de código JavaScript
+
+
+Un programador profesional escribe código que no solo funciona, sino que también se ve claro. Hace que sea más fácil para otros desarrolladores trabajar con él y ahorra tiempo a todos. Veamos por qué esto es tan importante y cómo escribir código claro.
+
+
+¿Qué es una guía de estilo?
+
+Imagínese que trabaja en una gran empresa de TI en la que todos programan con su propio estilo. Digamos que prefiere usar dos espacios como sangría, nombrar variables con camelCase y agregar una cadena vacía entre declaraciones. A otro desarrollador le gusta usar cuatro espacios como sangría, prefiere la notación de subrayado y elimina todas las líneas en blanco.
+
+Cuando observa el código escrito por otro desarrollador, tiene que dedicar mucho tiempo a comprenderlo porque está acostumbrado a diferentes principios de estilo de código. Le resultará difícil encontrar errores en el código de otro desarrollador y mantenerlo. Para minimizar las dificultades, es mejor tener algunas reglas generales para escribir código. También le ayuda a escribir código más rápido porque ya no necesita pensar en principios de estilo menores.
+
+La lista de mejores prácticas para escribir código se llama guía de estilo . Seguirlo hace que su código sea comprensible y fácil de leer para otros desarrolladores.
+
+En la mayoría de los casos, las empresas no necesitan crear su propia recomendación de estilo porque pueden seguir las guías de estilo creadas por otras empresas. Los más populares son:
+
+    Guía de estilo de JavaScript de Airbnb
+        https://airbnb.io/javascript/
+    Guía de estilo de JavaScript de Google
+        https://google.github.io/styleguide/jsguide.html
+
+
+
+
+Guía de estilo de JavaScript de Airbnb
+
+Echemos un vistazo a la guía de estilo más común, la Guía de estilo JavaScript de Airbnb . Este manual describe recomendaciones para espacios, cadenas vacías, punto y coma, longitud de línea, etc. ¡Consideremos algunos de ellos!
+
+
+1. A veces, los desarrolladores escriben largas líneas de código; para leerlos por completo, debe utilizar el desplazamiento horizontal. La mejor alternativa es establecer la longitud máxima de línea y mover los demás caracteres a continuación. Como se indica en la Guía de estilo de JavaScript de Airbnb, 100 caracteres para una cadena son suficientes.
+
+
+    // good 
+    const thePaymentIsActive = isPaymentFromToday(payment.date)
+    && isPaymentFromAvaliableAdresses(payment.id) 
+    && isPaymentToShow(payment.id)
+
+    // bad
+    const thePaymentIsActive = isPaymentFromToday(payment.date) && isPaymentFromAvaliableAdresses(payment.id) && isPaymentToShow(payment.id)
+
+
+2. Existe una eterna discusión entre los programadores sobre si usar espacios o tabulaciones como sangría. La Guía de estilo de JavaScript de Airbnb proporciona una respuesta a esta pregunta y recomienda utilizar dos espacios. Si desea utilizar la tabulación, puede establecerla en dos espacios.
+
+
+    // good
+    function myFunction() {
+    const name = "Alex";
+    }
+
+    // only one space is bad
+    function myFunction() {
+    const name = "Alex";
+    }
+
+    // four spaces are bad
+    function myFunction() {
+        const name = "Alex";
+    }
+
+
+3. En funciones, debe colocar un espacio antes del primer soporte.
+
+
+    // good
+    function show() {
+    console.log("My name is Helen");
+    }
+
+
+    // bad
+    function show(){
+    console.log("My name is Helen");
+    }
+
+
+4. En las instrucciones de control, es mejor poner solo un espacio antes del corchete de apertura.
+
+
+    // good
+    if (a === b) {
+    console.log(a)
+    }
+
+    // bad 
+    if(a === b) {
+    console.log(a)
+    }
+
+
+5. En el caso del encadenamiento de métodos, es una buena idea dividirlo en varias líneas, cada una llamando a un nuevo método.
+
+
+    // good
+    document
+    .getElementById("reviewsContainer")
+        .classList
+        .remove("active");
+
+    // bad
+    document.getElementById("reviewsContainer").classList.remove("active");
+
+
+6. Solo debe usar una línea vacía para separar su código.
+
+
+    // good 
+    if (a > b) {
+    console.log ("a is bigger than b");
+    }
+
+    // bad 
+    if (a > b) {
+
+
+    console.log ("a is bigger than b");
+
+
+    }
+
+
+7. Es una buena práctica terminar el archivo con un carácter de una sola línea y no usar espacios adicionales al final de las líneas de código.
+
+
+    // good
+    function myFunction() {
+    // …
+    }
+
+    export default myFunction;↵
+
+    // bad
+    function myFunction() {
+    // …
+    }
+
+    export default myFunction;
+
+    // bad
+    function myFunction() {
+    // …
+    }
+
+    export default myFunction;↵
+    ↵
+
+
+8. No olvide escribir el punto y coma al final de sus declaraciones. De lo contrario, JavaScript puede dividir su código incorrectamente.
+
+
+    // good 
+    const a = 5;
+    const b = 7;
+    const c = 10;
+
+    // bad
+    const a = 5
+    const b = 7
+    const c = 10
+
+
+9. Es mejor usar camelCase para nombrar funciones, objetos y métodos. camelCase significa que para los nombres que constan de varias palabras, la primera palabra debe comenzar con una letra minúscula y el resto de las palabras deben comenzar con una letra mayúscula.
+
+
+    // good
+    function myFunctionToCheckValues() {
+    //...
+    }
+
+    // bad
+    function MyFunctionToCheckValues() {
+    //...
+    }
+
+    // bad
+    function myfunctiontocheckvalues() {
+    //...
+    }
+
+
+Arriba, hemos revisado diez reglas esenciales para escribir código de alta calidad. La documentación oficial tiene más de cien recomendaciones sobre cómo hacer esto: consúltelas en la Guía de estilo JavaScript completa de Airbnb.
+
+
+Linters
+
+Ha aprendido algunas reglas para escribir código claro. Ahora la pregunta es: ¿cómo los recuerda todos cuando escribe código? Estamos listos para ofrecerle una herramienta que lo ayudará a verificar todos los patrones automáticamente: linters . Ahora no es necesario que recuerde todos los patrones.
+
+Con linters, debe especificar la configuración necesaria y la herramienta le notificará si escribió algo incorrecto. Los linters más populares son:
+
+    JSLint : un linter sin una lista extensa de opciones de configuración.
+https://www.jslint.com/
+
+    JSHint : este estilo tiene más parámetros de configuración que JSLint.
+https://jshint.com/
+
+    ESLint : uno de los linters más comunes. No solo puede mostrarle errores, sino también corregir sus scripts automáticamente.
+https://eslint.org/
+
+
+
+Conclusión
+
+Es una pesadilla mantener el código escrito en diferentes estilos. Cada empresa debe crear un patrón de estilo unificado o utilizar uno que ya exista, como la Guía de estilo JavaScript de Airbnb. Además, los linters pueden ayudarlo a monitorear el cumplimiento de las reglas al escribir código. No olvide utilizar guías de estilo y linters en su código: esto le ahorrará a usted y a otros desarrolladores mucho tiempo y energía.

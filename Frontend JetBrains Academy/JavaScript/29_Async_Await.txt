@@ -1,0 +1,169 @@
+Async / await
+
+
+
+En los temas anteriores, aprendimos cómo crear una Promesa y cómo usar los métodos .then, .catch y .finally para manejar los resultados de Promise. En este tema, aprenderemos una forma más sencilla de trabajar con Promise con un código más legible.
+
+Las palabras clave "async / await" nos permiten crear funciones asincrónicas que siempre devolverán una Promesa , sin tener que crear explícitamente una nueva Promesa y terminar con el encadenamiento de Promesas .
+
+
+
+Async
+Comencemos con la async palabra clave.
+
+La usamos antes de una declaración de la función, así: async function. De esta forma definimos que nuestra función será una función asíncrona.
+
+Observemos un ejemplo sencillo:
+
+
+    async function foo() {
+        return 'bar';
+    }
+
+    console.log(foo()); // Promise { 'bar' }
+
+
+Como puede ver, no es necesario devolver explícitamente una Promis e porque la devolución de una función asíncrona siempre será una Promise .
+
+Para comprender mejor cómo funciona, creemos dos funciones:
+
+    searchEngine (motor): esta función recibirá un argumento y devolverá una Promesa si el parámetro es igual a "Google". 
+    Por ahora, la función devolverá solo una Promesa resuelta.
+
+    handlePromiseResult (): esta función guardará el resultado de la searchEngine() función en la resultOfThePromiseconstante.
+
+
+El resultado será el siguiente:
+
+
+    async function searchEngine(engine) {
+        if (engine === 'Google') {
+            return Promise.resolve('You can start googling!');
+        }
+    }
+
+
+    function handlePromiseResult() {
+        const resultOfThePromise = searchEngine('Google');
+
+    resultOfThePromise
+        .then(response => console.log(response)); // You can start googling!
+    }
+
+    handlePromiseResult();
+
+
+La searchEngine() función devolvió una Promise como se esperaba; de lo contrario, no podríamos usar el .then() método. Luego almacenamos el resultado en la constante resultOfThePromise y usamos el .then() método y mostramos la respuesta en la consola.
+
+
+
+Await
+
+Puede ver la principal ventaja de usar la asyncfunción cuando la combina con await.
+
+En lugar de usar promise.then(), podemos usar esta sintaxis para manejar el resultado de Promise. Usamos la palabra clave await siempre dentro de una función asincrónica y la colocamos antes del retorno de una función asincrónica, lo cual es más fácil.
+
+
+    async function handlePromiseResult() {
+        const resultOfThePromise = await searchEngine('Google'); // Wait until the promise resolves.
+    }
+
+
+Continuando con nuestra searchEngine() función ¿qué pasará si nuestra Promesa tarda algún tiempo en cumplirse y devolver el resultado? Cambiaremos la searchEngine() función para devolver una Promesa después de 2 segundos.
+
+
+    async function searchEngine(engine) {
+        return new Promise((resolve, reject) => {
+            if (engine === 'Google') {
+                setTimeout(() => resolve('You can start googling!'), 2000);
+            }
+        });
+    }
+
+
+Ahora tenemos que hacer que la función handlePromiseResult()espere a que se cumpla nuestra Promesa.
+Así es como se debe hacer:
+
+
+    async function handlePromiseResult() {
+        const resultOfThePromise = await searchEngine('Google'); // Wait until the promise resolves.
+
+        console.log(resultOfThePromise); // You can start googling!
+    }
+
+    handlePromiseResult();
+
+
+Cuando llamamos a la función searchEngine('Google'), await suspende la ejecución de la función y espera hasta que se cumpla la Promesa. Cuando se cumple la Promesa, el await reanuda la función, almacena el resultado en la constante resultOfThePromisey luego muestra el resultado en la consola.
+
+Si usamos await fuera de una función asincrónica, recibiremos un SyntaxError
+
+
+    function handlePromiseResult() {
+        const resultOfThePromise = await searchEngine('Google');
+        
+        console.log(resultOfThePromise); // SyntaxError: await is only valid in async function
+    }
+
+    handlePromiseResult();
+
+
+Nuestra handlePromiseResult() función devolvió un error: SyntaxError : await solo es válido en la función asincrónica.
+Ocurrió porque await no se puede usar en una función no asíncrona.
+
+
+
+Manejo de excepciones
+
+Nuestra searchEngine() función aún está incompleta. Debemos mejorarlo para que la Promesa sea rechazada si el parámetro es diferente de "Google".
+
+
+
+    async function searchEngine(engine) {
+        return new Promise((resolve, reject) => {
+            if (engine === 'Google') {
+                setTimeout(() => resolve('You can start googling!'), 2000);
+            } else {
+                reject('Sorry! Only Google is allowed.');
+            }
+        });
+    }
+
+
+Cuando se cumple la Promesa, await devuelve el resultado esperado, pero si se rechaza arroja un error. Podemos detectar el error usando try..catch declaraciones.
+
+Ahora, si llamamos a nuestra handlePromiseResult() función, obtendremos el Unhandled promise rejection error. Eso es porque necesitamos manejar el caso rechazado . Sin embargo, en lugar de implementar el .catch() método, implementaremos las try..catch declaraciones.
+
+
+    async function handlePromiseResult() {
+        try {
+            const resultOfThePromise = await searchEngine('Bing');
+            console.log(resultOfThePromise);
+        } catch(err) {
+            console.log(err); // Sorry! Only Google is allowed.
+        }  
+    }
+
+    handlePromiseResult();
+
+
+Aquí puede ver que en lugar de usar los métodos .then() y .catch(), usamos las try..catch palabras clave. Así es como funcionan:
+
+    
+    Primero se ejecutará todo entre try y catch.
+
+    En caso de que se resuelva la Promesa, el trybloque se ejecuta y finaliza con éxito.
+
+    En caso de que se rechace la Promesa, catchcaptura el error y se ejecuta el bloqueo.
+
+
+
+Conclusión
+
+Hemos aprendido dos palabras clave para trabajar con Promesas: async y await.
+
+La async palabra clave tiene dos aplicaciones principales. Hace que una función siempre devuelva una Promesa y nos permite usar await para pausar una función y reanudarla cuando se cumpla la Promesa.
+
+La await palabra clave hace que una función espere hasta que se cumpla una promesa. Al igual que el .then() método ordinario , await hace que la función espere a que se cumpla la Promesa. Siempre debe usarse dentro de una función asincrónica.
+
+También nos hemos encontrado con las try..catchdeclaraciones para manejar los rechazos y errores. ¡Ahora vayamos a los desafíos del código!

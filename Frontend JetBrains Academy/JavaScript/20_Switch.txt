@@ -1,0 +1,122 @@
+Switch
+
+
+Ya sabe cómo escribir condiciones usando los if operadores. Esta construcción es ideal para casos simples, pero cuando se usa con demasiadas ramas se vuelve demasiado complicada. Hay otro operador llamado switch que funciona mejor cuando necesita verificar múltiples valores potenciales. En este tema, aprenderá a usarlo.
+
+
+Cambiar sintaxis
+Imagínese que está ayudando a escribir un programa para una aplicación de billetes de tren. Debe mostrar el precio del boleto, que varía según el destino de la persona. Usando el if operador, puede hacerlo así:
+
+    const cityTo = "Paris";
+
+    if (cityTo === "Berlin") {
+    console.log("The price is $100");
+    } else if (cityTo === "Paris") {
+    console.log("The price is $120");
+    } else(cityTo === "London") {
+    console.log("The price in $150");
+    }
+
+
+Como resultado, verá el texto "El precio es $ 120" en la consola.
+
+Aunque no hay demasiadas opciones de destino, el ejemplo anterior sigue siendo difícil de leer y repetitivo. No es la mejor idea procesar valores usando el if operador: en tales casos, es mejor usar el switch operador:
+
+    const cityTo = "Paris";
+
+    switch (cityTo) {
+    case "Berlin":
+        console.log("The price is $100");
+        break;
+    case "Paris":
+        console.log("The price is $120");
+        break;
+    case "London":
+        console.log("The price is $150");
+        break;
+    }
+
+El resultado será el mismo.
+
+La switch declaración se utiliza para realizar acciones específicas en función del valor de la variable. Coincide con el valor o la expresión entre paréntesis ( cityTo) con cada cláusula de caso ("Berlín", "París" y "Londres"). Si la cláusula del caso es igual a la expresión, se ejecuta el operador correspondiente (se muestra "El precio es $ 120" en la consola). Para cada uno case, el operador verifica el valor en estricta igualdad mediante la verificación de tipos.
+
+Preste atención al break operador al final de cada caso. Veremos esto con más detalle más adelante.
+
+
+
+Procesando casos similares
+
+Digamos que los precios de un billete a Londres y un billete a Roma son los mismos. Ahora puede combinar estos casos para manejarlos juntos:
+
+    const cityTo = "Rome";
+
+    switch (cityTo) {
+    case "Berlin":
+        console.log("The price is $100");
+        break;
+    case "Paris":
+        console.log("The price is $120");
+        break;
+    case "London":
+    case "Rome":
+        console.log("The price is $150");
+        break;
+    }
+
+
+Como resultado, tanto para Londres como para Roma, verá el texto "El precio es $ 150" en la consola.
+
+¿Qué pasa si tiene el mismo precio para todas las ciudades excepto Berlín, París y Londres? Sería extraño enumerar los nombres de todas estas ciudades con precios idénticos. En esta situación, es mejor utilizar el default caso de la switch declaración. He aquí un ejemplo:
+
+switch (cityTo) {
+  case "Berlin":
+    console.log("The price is $100");
+    break;
+  case "Paris":
+    console.log("The price is $120$");
+    break;
+  case "London":
+    console.log("The price is $150");
+    break;
+  default:
+    console.log("The price is $90");
+    break;
+}
+Si cityTo es igual a Berlin, aparecerá el mensaje "El precio es $ 100" en la consola, como antes. Si cityT ocontiene "Estocolmo", "Atenas" o "Helsinki", verá "El precio es $ 90".
+
+De esta manera, el default caso funciona si algunos casos no coinciden. El default caso se puede colocar en cualquier parte de la switch declaración, pero por convención es mejor agregarlo a la última cláusula.
+
+
+
+Operador de rotura
+
+En todos los ejemplos anteriores, probablemente notó la break palabra clave agregada al final de cada fragmento de código. Como resultado, el programa comparó cada expresión y, cuando fue verdadera , procesó el bloque asociado y dejó de calcular los casos restantes. La situación sería diferente si olvidáramos insertar la break palabra clave:
+
+    const cityTo = "Berlin";
+
+    switch (cityTo) {
+    case "Berlin":
+        console.log("The price is $100");
+    case "Paris":
+        console.log("The price is $120");
+    case "London":
+        console.log("The price is $150");
+    default:
+        console.log("The price is $90");
+    }
+
+
+Cuando el navegador encuentra la declaración correcta, comienza a ejecutarla hasta que encuentra la break palabra clave. Sin él, el navegador pensará que no queremos detener el programa, por lo que seguirá procesando otros bloques de código aunque correspondan a otros cases. Entonces, el resultado de ejecutar el código en la consola se verá así:
+
+    The price is $100
+    The price is $120
+    The price is $150
+    The price is $90
+
+Dicho esto, no olvide utilizar la break palabra clave después de cada bloque de código para evitar errores.
+
+
+
+Conclusión
+
+Ahora sabe que es mucho más preferible usar la switch instrucción en lugar de if manejar varios valores de variable diferentes. Switch ayuda a evitar repeticiones innecesarias y hace que su código sea más fácil de leer. También le brinda más opciones para administrar el bloque de controlador usando las palabras clave break y default.
